@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pr-br">
+<head>
+  <title>TheoMe</title>
+
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+   <!-- font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"/>
+   <!-- icons -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+   
+   <!-- bootstrap customization -->
+   <link rel="stylesheet" href="/styles/parts/main.css" />
+   <link rel="stylesheet" href="/styles/parts/header.css" />
+   <link rel="stylesheet" href="/styles/parts/footer.css" />
+   <link rel="stylesheet" href="/styles/parts/button.css" />
+   <link rel="stylesheet" href="/styles/parts/form.css" />
+   <link rel="stylesheet" href="/styles/parts/modal.css" />
+   <link rel="stylesheet" href="/styles/parts/navbar-cms.css" />
+
+    </head>
+<body>
+    
+
+ <header>
+            <div class="">
+                <a href="/">
+                    <img 
+                    id="logo" 
+                    src="/images/TheoMe_Logo.jpg" 
+                    alt="Logo" 
+                    height="60" 
+                    width="350" />
+                </a>  
+             </div>
+            
+            <div class="icon-bar">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="#"><i class="fas fa-street-view"></i></a>
+                <a href="#" data-toggle="modal" data-target="#LanguageModal"><i class="fas fa-globe-americas"></i></a>
+            </div>
+   
+</header>
+
+            <!-- TRIGGER MODAL LANGUAGE -->
+            <div class="modal fade" id="LanguageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+
+                    <%- include('language')  %>   
+
+                </div>
+              </div>
+             <!-- END MODAL -->
+</body>  

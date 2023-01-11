@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+  <title>TheoMe</title>
+
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+   <!-- font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"/>
+   <!-- icons -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+
+   <!-- bootstrap customization -->
+    <link rel="stylesheet" href="/styles/pages/index.css" />
+    <link rel="stylesheet" href="/styles/parts/main.css" />
+    <link rel="stylesheet" href="/styles/parts/header.css" />
+    <link rel="stylesheet" href="/styles/parts/footer.css" />
+    <link rel="stylesheet" href="/styles/parts/navbar.css" />
+    <link rel="stylesheet" href="/styles/parts/button.css" />
+    <link rel="stylesheet" href="/styles/parts/cardbutton.css" />
+
+</head>
+<body>
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+    <%- include('../parts/header')  %>
+
+    <%- include('../parts/menu')  %>    
+   
+    <main>
+        <h1>Biblioteca</h1>
+        <p>A história de cada personagem, fatos importantes, informações contextuais, conversões de medidas e muitas outras informações catalogadas para ajudar a elucidar passagens bíblicas e entender as motivações.</p>
+
+        <div class="tools-grid">
+            
+            <div class="button-margin">
+                <div class="tool-box">
+                  <i class="fas fa-map-signs"></i>
+                  <div>
+                    <h3>Eventos históricos</h3>
+                  </div>
+                </div>
+              </div>
+                                          
+            <div class="button-margin">  
+              <div class="tool-box">
+                <i class="fas fa-user-alt"></i>
+                <div>
+                  <h3>Personagens</h3>
+                </div>
+              </div>
+            </div>          
+             
+            <div class="button-margin">  
+              <div class="tool-box">
+                <i class="fas fa-map-marked-alt"></i>
+                <div>
+                  <h3>Mapas</h3>
+                </div> 
+              </div>
+            </div>
+              
+            <div class="button-margin"> 
+              <div class="tool-box">
+                <i class="fas fa-landmark"></i>
+                <div>
+                  <h3>Cenáculos</h3>
+                </div> 
+              </div>
+            </div>
+              
+            <div class="button-margin">
+              <div class="tool-box">
+                <i class="fas fa-chart-bar"></i>
+                <div>
+                  <h3>Infográficos</h3>
+                </div>  
+              </div>
+            </div>
+  
+            <div class="button-margin">
+              <div class="tool-box">
+                <i class="fas fa-balance-scale-right"></i>
+                <div>
+                  <h3>Leis e Cerimônias</h3>
+                </div>
+              </div>
+            </div>
+      
+            <div class="button-margin">
+              <div class="tool-box">
+                <i class="fas fa-menorah"></i>
+                <div>
+                  <h3>Símbolos</h3>
+                </div>
+              </div>
+            </div>
+            
+            <div class="button-margin">
+              <div class="tool-box">
+                <i class="fas fa-sun"></i>
+                <div>
+                  <h3>Profecias</h3>
+                </div>
+              </div>
+            </div>
+      
+            <div class="button-margin">
+              <div class="tool-box">
+                <i class="fas fa-music"></i>
+                <div>
+                  <h3>Louvores</h3>
+                </div>
+              </div>
+            </div>
+              
+            <div class="button-margin">
+              <div class="tool-box">
+                <i class="fas fa-spell-check"></i>
+                <div>
+                  <h3>Dicionário</h3>
+                </div>
+              </div>
+            </div>    
+  
+          </div>
+    </main>
+
+    <%- include('../parts/footer')  %> 
+    
+</body>

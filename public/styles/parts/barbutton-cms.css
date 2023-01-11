@@ -1,0 +1,26 @@
+.barbutton {
+    display: flex;
+    padding: 0 80px;
+}
+
+.button-frame {
+    padding-right: 8px;
+}
+
+.bar-button {    
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    background-color: #4F768B;
+    width: 45px;
+    height: 45px;
+    font-size: 26px;
+}
+
+.bar-button:hover {
+    background-color: #416172;  
+    box-shadow: none;
+    transition: 0.2s ease-in;
+}

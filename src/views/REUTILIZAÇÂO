@@ -1,0 +1,48 @@
+                     <div class="row">
+                        <div class="col-md-6">
+                            <label for="" class="form-label"><i class="fas fa-arrow-left"></i>&nbsp Item antecessor</label>
+                            <select name="dataFormat" class="form-control">
+                                <option value=""data-default disabled selected></option>
+                                <option value="">Item de estudo XYZ</option>                
+                                <option value="">Item de estudo ABC</option>                              
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="" class="form-label">Item sucessor &nbsp<i class="fas fa-arrow-right"></i></label>
+                            <select name="dataFormat" class="form-control">
+                                <option value=""data-default disabled selected></option>
+                                <option value="">Item de estudo XYZ</option>                
+                                <option value="">Item de estudo ABC</option>                                 
+                            </select>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <label for="" class="form-label">História</label>
+                            <select name="dataFormat" class="form-control">
+                                <option value=""data-default disabled selected></option>
+                                <option value="">A conversão de paulo</option>                            
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="" class="form-label">Contexto</label>
+                            <select name="dataFormat" class="form-control">
+                                <option value=""data-default disabled selected></option>
+                                <option value="">*TODOS OS ASSUNTOS DA HISTÓRIA*</option>
+                                <option value="">Paulo encontra-se com Jesus e fica cego</option>
+                                <option value="">Paulo é curado da cegueira</option>                       
+                            </select>
+                        </div>
+                    </div>

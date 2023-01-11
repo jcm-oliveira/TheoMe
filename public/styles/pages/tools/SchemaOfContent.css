@@ -1,0 +1,33 @@
+/* CONTENT CARDS */
+
+.card-margin{
+    padding: 20px;
+}
+
+div.card {
+    padding: 20px;
+}
+
+.schema-options {
+    display: grid;
+    width: 100%;    
+    grid-template-columns: 1fr 1fr;
+}
+
+.schema-options i {
+    display:flex;
+    justify-content:left;
+    padding-left: 20px;
+    font-size: 50px;
+    color: rgb(94, 93, 93);
+}
+
+h3.card-title {
+    display:grid;
+    text-align:center;
+}
+
+
+
+
+

@@ -1,0 +1,93 @@
+
+button {
+    border: none;
+    padding: 6px 30px;
+    /* box-shadow: 2px 2px 4px gray;
+    transition: 0.2s ease-out;    */
+}
+
+button i {
+    font-size: 15px; 
+}
+
+/* button:hover {
+    box-shadow: none; 
+    transition: 0.2s ease-in; 
+} */
+
+/* CAROUSEL BUTTON */
+
+.carousel-button {
+    padding-bottom: 15px;
+}
+
+/* PRIMARY BUTTON */
+
+button.btn.btn-primary {
+    border: 1px solid #4F768B;
+    background: #4F768B;
+    /* padding: 6px 20px;     */
+}
+
+button.btn.btn-primary:hover {
+    border: 1px solid #354e5b;
+    background: #354e5b;
+}
+
+/* SUCCESS BUTTON */
+
+button.btn.btn-success {
+    border: 1px solid #259970;
+    background: #259970;    
+}
+
+button.btn.btn-success:hover {
+    border: 1px solid #1e7959;
+    background: #1e7959;
+}
+
+
+/* COMBOBOX ADD BUTTON */
+
+.button-combobox {
+ display: flex;
+ align-items:flex-end;
+}
+
+/* BAR BUTTON */
+
+.barbutton {
+    display: flex;
+    padding: 10px 0;
+}
+
+.button-frame {
+    padding-right: 8px;
+}
+
+.bar-button {    
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    background-color: #4F768B;
+    width: 45px;
+    height: 45px;
+    font-size: 26px;
+}
+
+.bar-button:hover {
+    background-color: #416172;   
+    /* background-color: #363636;
+    box-shadow: none;
+    transition: 0.2s ease-in; */
+}
+
+/* BUTTON SPACE */
+.button-space {
+    display: flex;
+    justify-content: left;
+    margin: 0;
+    padding: 20px 0px 20px 0px;
+}

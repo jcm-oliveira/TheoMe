@@ -1,0 +1,51 @@
+/* ----- FOOTER ----- */
+
+h3.card-title{
+    display: flex;
+    justify-content: left;
+    margin:0;
+}
+
+p.card-text  {
+    display: flex;
+    justify-content: left;
+    margin: 0px 0px 16px 0px;  
+}
+
+footer {
+    padding: 20px 80px;
+    background-color: #4F768B;
+}
+
+footer .card {
+    border: none;
+    background-color: #4F768B;
+    color: white;
+    border-radius: 0px;
+}
+
+.contact-data {
+    display: flex;
+    align-items: center;
+    margin: 0 0 16px;;
+}
+
+.contact-data p {
+    display:flex;
+    justify-content: left;
+    padding-left: 20px;
+}
+
+
+/* ----- COPYRIGHT ----- */
+
+.copyright {
+    background-color: #4F4F4F;
+    height: 40px;
+    color: white;
+    font-size: 14px;
+    width: 100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}

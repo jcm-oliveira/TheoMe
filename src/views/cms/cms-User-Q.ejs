@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+  <title>TheoMe</title>
+
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+   <!-- font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"/>
+   <!-- icons -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    
+    <!-- bootstrap customization -->
+        <link rel="stylesheet" href="/styles/parts/main-cms.css" />
+        <link rel="stylesheet" href="/styles/parts/header.css" />
+        <link rel="stylesheet" href="/styles/parts/footer.css" />
+        <link rel="stylesheet" href="/styles/parts/button.css" />
+        <link rel="stylesheet" href="/styles/parts/grid.css">
+
+</head>
+
+<body>
+    
+ <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <%- include('../parts/header')  %>
+  
+    <%- include('../parts/navbar')  %>    
+   
+    <main>
+        <h1>Consultar - Usuário</h1>
+
+        <div class="barbutton">
+
+            
+            <a href="/cms-User-C">
+              <div class="button-frame">
+                  <button class="btn btn-success"><i class="fas fa-plus"></i></button>
+              </div>
+            </a>
+        
+            <a href="#">
+              <div class="button-frame">
+                  <button class="btn btn-secondary"  data-toggle="modal" data-target="#FilterUserModal"><i class="fas fa-filter"></i></button>
+              </div>
+            </a>
+        
+            <a href="#">
+              <div class="button-frame">
+                  <button class="btn btn-secondary"><i class="fas fa-print"></i></button>
+              </div>
+            </a>
+        
+        </div>
+        
+        <div class="routine-table">
+            <table class="table table-bordered table-striped table-sm table-hover">
+            <tr>
+                <th>Cod.</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Telefone</th>
+                <th>Idade</th>            
+                <th>Local de origem</th>
+                <th>Permissão</th>
+                <th>Status</th>
+                <th>Opções</th>           
+            </tr>
+            <tr>
+                <td>001</td>
+                <td>João Carlos Monteiro de Oliveira</td>
+                <td>joao@olivelab.com.br</td>
+                <td>55 11 995952150</td>
+                <td>40</td>
+                <td>São Paulo/SP/Brasil</td>
+                <td>Administrador</td>
+                <td>Ativo</td>
+                <td class="item-option"><i class="fas fa-pen"></i></td>               
+            </tr>
+            <tr>
+                <td>002</td>
+                <td>Queila Costa de Oliveira</td>
+                <td>queila@advocacia.com.br</td>
+                <td>55 11 995954444</td>
+                <td>40</td>
+                <td>São Paulo/SP/Brasil</td>
+                <td>Pesquisador</td>
+                <td>Ativo</td>
+                <td class="item-option"><i class="fas fa-pen"></i></td>  
+            </tr>
+            <tr>
+                <td>002</td>
+                <td>José Afonso de Oliveira</td>
+                <td>jose@gmail.com.br</td>
+                <td>55 11 995952222</td>
+                <td>45</td>
+                <td>São Paulo/SP/Brasil</td>
+                <td>Estudante</td>
+                <td>Ativo</td>
+                <td class="item-option"><i class="fas fa-pen"></i></td>  
+            </tr>
+            </table>
+        </div>
+
+
+        <!-- TRIGGER MODAL BIBLIOGRAPHIC REFERENCE FILTER -->
+          <div class="modal fade" id="FilterUserModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+
+                <%- include('cms-User-F')  %>   
+
+            </div>
+          </div>
+        <!-- END MODAL -->
+
+    </main>
+
+    <%- include('../parts/footer')  %> 
+    
+</body>

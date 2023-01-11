@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+  <title>TheoMe</title>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <!-- font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <!-- icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+
+  <!-- bootstrap customization -->
+  <link rel="stylesheet" href="/styles/parts/navbar.css" />
+  <link rel="stylesheet" href="/styles/parts/main.css" />
+
+
+</head>
+
+<body>
+
+  <!-- CMS NAVBAR -->
+  <nav class="navbar navbar-expand-lg">
+
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav mr-auto my-2 my-lg-0 navbar-nav-scroll" style="max-height: 100px;">
+
+        <li class="nav-item">
+          <a class="nav-link" href="/cms-MainPage"> <i class="fas fa-home"></i></a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+            Bíblia
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/cms-BibleTranslation-Q">Traduções</a></li>
+            <li><a class="dropdown-item" href="/cms-Book-Q">Livros</a></li>
+            <li><a class="dropdown-item" href="/cms-Chapter-Q">Capítulos</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+            Pesquisa
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/cms-StudyItem-Q">Item de estudo</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+            Cadastros
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/cms-Category-Q">Categoria</a></li>
+            <li><a class="dropdown-item" href="/cms-Timeline-Q">Linha temporal</a></li>
+            <li><a class="dropdown-item" href="/cms-HistoricalPerspective-Q">Perspectiva histórica</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="/cms-BibliographicReference-Q">Referência bibliográfica</a></li>
+            <li><a class="dropdown-item" href="/cms-Publisher-Q">Editora</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="/cms-Continent-Q">Continente</a></li>
+            <li><a class="dropdown-item" href="/cms-Country-Q">País</a></li>
+            <li><a class="dropdown-item" href="/cms-Region-Q">Região</a></li>
+            <li><a class="dropdown-item" href="/cms-State-Q">Estado</a></li>
+            <li><a class="dropdown-item" href="/cms-City-Q">Cidade</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+            Sistema
+          </a>
+          <ul class="dropdown-menu">
+
+            <li><a class="dropdown-item" href="/cms-User-Q">Usuários</a></li>
+            <li><a class="dropdown-item" href="/cms-Language-Q">Idiomas</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="/cms-BannerSlider-Q">Banner Slider</a></li>
+            <li><a class="dropdown-item" href="/cms-InstitutionalVideo-C">Vídeo institucional</a></li>
+
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-user"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#" data-toggle="modal" data-target="#UserPreferencesModal"><i class="fas fa-cog"></i>Preferências</a></li>
+            <li><a class="dropdown-item" href="#" data-toggle="modal" data-target="#ChangePasswordModal"><i class="fas fa-unlock-alt"></i>Trocar senha</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/cms-LoginPage"><i class="fas fa-sign-out-alt"></i>Sair</a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+
+  <!-- TRIGGER MODAL CHANGE PASSWORD -->
+  <div class="modal fade" id="ChangePasswordModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+
+      <%- include('../cms/cms-ChangePassword-I')  %>   
+
+    </div>
+  </div>
+  <!-- END MODAL -->
+
+
+  <!-- TRIGGER MODAL USER PREFERENCES -->
+  <div class="modal fade" id="UserPreferencesModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+
+      <%- include('../cms/cms-UserPreferences-I')  %>   
+
+    </div>
+  </div>
+  <!-- END MODAL -->
+
+</body>

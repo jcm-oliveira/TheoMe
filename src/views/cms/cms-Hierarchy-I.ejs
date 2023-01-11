@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+  <title>TheoMe</title>
+
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+   <!-- font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"/>
+   <!-- icons -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    
+    <!-- bootstrap customization -->
+      <link rel="stylesheet" href="/styles/parts/main.css" />
+      <link rel="stylesheet" href="/styles/parts/header.css" />
+      <link rel="stylesheet" href="/styles/parts/footer.css" />
+      <link rel="stylesheet" href="/styles/parts/button.css" />
+      <link rel="stylesheet" href="/styles/parts/form.css" />
+      <link rel="stylesheet" href="/styles/parts/modal.css" />
+</head>
+
+<body>
+  
+ <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="HierarchyModal">Inserir - Vínculo hieráquico</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            
+            <div class="input-center">
+              <div class="col-md-4">
+                <label for="" class="form-label">Item Superior &#8593</label>
+                <select name="dataFormat" class="form-control">
+                  <option value="" data-default disabled selected></option>
+                  <option value="">Item de estudo XYZ</option>
+                  <option value="">Item de estudo ABC</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <label for="" class="form-label">&#8592 Item Anterior</label>
+                <select name="dataFormat" class="form-control">
+                  <option value="" data-default disabled selected></option>
+                  <option value="">Item de estudo XYZ</option>
+                  <option value="">Item de estudo ABC</option>
+                </select>
+              </div>
+              
+              <div class="col-md-4">
+                <label for="" form-label>Item referência</label>
+                <input type="text" class="form-control" placeholder="Jacó" disabled>
+              </div>
+
+              <div class="col-md-4">
+                <label for="" class="form-label">&#8594 Item Posterior</label>
+                <select name="dataFormat" class="form-control">
+                  <option value="" data-default disabled selected></option>
+                  <option value="">Item de estudo XYZ</option>
+                  <option value="">Item de estudo ABC</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="input-center">
+              <div class="col-md-4">
+                <label for="" class="form-label">Item Inferior &#8595</label>
+                <select name="dataFormat" class="form-control">
+                  <option value="" data-default disabled selected></option>
+                  <option value="">Item de estudo XYZ</option>
+                  <option value="">Item de estudo ABC</option>
+                </select>
+              </div>
+            </div>
+          
+            <!-- <div class="col-md-12">
+              <label for="" class="form-label">Tipo de vínculo</label>
+              <select name="dataFormat" class="form-control">
+                <option value="" data-default disabled selected></option>
+                <option value="">&#8596 Paridade</option>
+                <option value="">&#8593 Superior</option>
+                <option value="">&#8595 Inferior</option>
+                <option value="">&#8592 Anterior</option>
+                <option value="">&#8594 Posterior</option>
+              </select>
+            </div>
+          
+            <div class="col-md-12">
+              <label for="" class="form-label">Item de estudo vinculado</label>
+              <select name="dataFormat" class="form-control">
+                <option value="" data-default disabled selected></option>
+                <option value="">Item de estudo XYZ</option>
+                <option value="">Item de estudo ABC</option>
+              </select>
+            </div> -->
+          
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success">Inserir</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        
+      </div>
+    </div>
+    
+</body>

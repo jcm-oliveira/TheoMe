@@ -1,0 +1,28 @@
+/* CONTENT CARDS */
+
+div.card {
+    border: none;   
+}
+
+.content-description {
+    display: grid;
+    width: 100%;
+    padding: 40px 60px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.content-description i {
+    display:flex;
+    justify-content:left;
+    padding-left: 30px;
+    font-size: 60px;
+}
+
+h3.card-title {
+    display:flex;
+    text-align:center;
+}
+
+
+
+

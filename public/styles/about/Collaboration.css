@@ -1,0 +1,43 @@
+/* CONTENT CARDS */
+
+.card-margin{
+    padding: 20px;
+}
+
+div.card {
+    padding: 20px;
+}
+
+.collaboration-option {
+    display: grid;
+    width: 100%;    
+    grid-template-columns: 1fr 1fr; 
+}
+
+.collaboration-option i {
+    display:flex;
+    justify-content:left;
+    padding-left: 20px;
+    font-size: 50px;
+    color: rgb(94, 93, 93);
+}
+
+h3.card-title {
+    display:grid;
+    text-align:center;
+}
+
+.finance-card {
+    background-color: #D4DDE2;
+    padding: 10px;
+}
+
+.finance-display {
+    display:flex;
+    background-color: #D4DDE2;
+    padding: 10px;
+}
+
+
+
+

@@ -1,0 +1,467 @@
+<!-- <!DOCTYPE html> -->
+<html lang="pt-br">
+
+<head>
+
+    <title>TheoMe</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <!-- icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+
+    <!-- bootstrap customization -->
+    <link rel="stylesheet" href="/styles/parts/main.css" />
+    <link rel="stylesheet" href="/styles/parts/header.css" />
+    <link rel="stylesheet" href="/styles/parts/footer.css" />
+    <link rel="stylesheet" href="/styles/parts/button.css" />
+    <link rel="stylesheet" href="/styles/parts/form.css" />
+    <link rel="stylesheet" href="/styles/parts/modal.css" />
+</head>
+
+<body>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+
+    <%- include('../parts/header') %>
+
+    <%- include('../parts/navbar') %>
+
+    <main>
+        <h1>Cadastrar - Item de Estudo</h1>
+
+        <form action="">
+            <fieldset class="flex">
+
+<!-- Basic Data-->
+
+                <legend><i class="fas fa-pen-nib">&nbsp&nbsp</i>Dados básicos</legend>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="" form-label>Código</label>
+                        <input type="text" class="form-control" disabled>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="" form-label>Status</label>
+                        <select name="status" class="form-control">
+                            <option value="">Ativo</option>
+                            <option value="">Inativo</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="" form-label>Idioma</label>
+                        <select name="status" class="form-control">
+                            <option value="">Português</option>
+                            <option value="">Inglês</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-9">
+                        <label for="" class="form-label">Nome do item de estudo</label>
+                        <input type="text" class="form-control" autofocus>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="" class="form-label">Categoria</label>
+                        <select name="dataFormat" class="form-control">
+                            <option value="" data-default disabled selected></option>
+                            <option value="">Evento histórico</option>
+                            <option value="">Assunto bíblico</option>
+                            <option value="">Personagem</option>
+                            <option value="">Mapa</option>
+                            <option value="">Infográfico</option>
+                            <option value="">Genealogia</option>
+                            <option value="">Leis e Cerimônias</option>
+                            <option value="">Símbolos</option>
+                            <option value="">Profecias</option>
+                            <option value="">Louvores</option>
+                            <option value="">Glossário</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="col-md-14">
+                    <label for="" class="form-label">Descrição</label>
+                    <textarea name="" id="" class="form-control"></textarea>
+                </div>
+                <div class="col-md-14">
+                    <label for="" class="form-label">Legado</label>
+                    <textarea name="" id="" class="form-control"></textarea>
+                </div>
+
+                <div class="cod-mb-12">
+                    <label for="formFile" class="form-label">Figura</label>
+                    <input class="form-control" type="file" id="formFile">
+                </div>
+
+                <div class="col-md-14">
+                    <label for="" class="form-label">Vídeo (URL)</label>
+                    <input type="text" class="form-control">
+                </div>
+            
+<!-- Geographic Localization -->
+
+                <legend><i class="fas fa-globe">&nbsp&nbsp</i>Localização geográfica</legend>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="" class="form-label">Continente</label>
+                        <select name="continent" class="form-control">
+                            <option value="" data-default disabled selected></option>
+                            <option value="">*NÃO INFORMADO*</option>
+                            <option value="">África</option>
+                            <option value="">América do Norte</option>
+                            <option value="">América do Sul</option>
+                            <option value="">Ásia</option>
+                            <option value="">Antárdida</option>
+                            <option value="">Europa</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="" class="form-label">País</label>
+                        <select name="dataFormat" class="form-control">
+                            <option value="" data-default disabled selected></option>
+                            <option value="">*NÃO INFORMADO*</option>
+                            <option value="">EUA</option>
+                            <option value="">Brasil</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="" class="form-label">Região</label>
+                        <select name="region" class="form-control">
+                            <option value="" data-default disabled selected></option>
+                            <option value="">*NÃO INFORMADO*</option>
+                            <option value="">Leste</option>
+                            <option value="">Norte</option>
+                            <option value="">Nordeste</option>
+                            <option value="">Oeste</option>
+                            <option value="">Centro-oeste</option>
+                            <option value="">Sul</option>
+                            <option value="">Sudeste</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="" class="form-label">Estado</label>
+                        <select name="dataFormat" class="form-control">
+                            <option value="" data-default disabled selected></option>
+                            <option value="">*NÃO INFORMADO*</option>
+                            <option value="">New York</option>
+                            <option value="">Santa Catarina</option>
+                        </select>
+                    </div>
+                    <div class="col-md-9">
+                        <label for="" class="form-label">Cidade</label>
+                        <select name="dataFormat" class="form-control">
+                            <option value="" data-default disabled selected></option>
+                            <option value="">*NÃO INFORMADO*</option>
+                            <option value="">São Paulo</option>
+                            <option value="">New York</option>
+                        </select>
+                    </div>
+                </div>
+
+<!-- Contextualization -->
+
+                <legend><i class="fas fa-sliders-h">&nbsp&nbsp</i>Contextualização</legend>
+
+                <div class="button-space">
+                    <a href="#" data-toggle="modal" data-target="#ContextualizationModal">
+                        <button class="btn btn-success"><i class="fas fa-plus"></i></button>
+                    </a>
+                </div>
+
+                <div class="routine-table">
+                    <table class="table table-bordered  table-sm table-hover">
+                        <tr>
+                            <th>Cod.</th>
+                            <th>Perspectiva</th>
+                            <th>Opções</th>
+                        </tr>
+                        <tr>
+                            <td>001</td>
+                            <td>Geopolítica</td>
+                            <td class="item-option"><i class="fas fa-trash-alt"></i></td>
+                        </tr>
+                        <tr>
+                            <td>002</td>
+                            <td>Bíblica</td>
+                            <td class="item-option"><i class="fas fa-trash-alt"></i></td>
+                        </tr>
+                    </table>
+                </div>
+
+
+<!-- Chronology - Timeline Register -->
+
+                <legend><i class="fas fa-history">&nbsp&nbsp</i>Cronologia - Registro na linha do tempo</legend>
+
+                <div class="button-space">
+                    <a href="#" data-toggle="modal" data-target="#ChronologyModal">
+                        <button class="btn btn-success"><i class="fas fa-plus"></i></button>
+                    </a>
+                </div>
+
+                <div class="routine-table">
+                    <table class="table table-bordered table-sm table-hover">
+                        <tr>
+                            <th>Cod.</th>
+                            <th>Linha temporal</th>
+                            <th>Tipo Registro</th>
+                            <th>Período histórico</th>
+                            <th>Início</th>
+                            <th>Término</th>
+                            <th>Opções</th>
+                        </tr>
+                        <tr>
+                            <td>001</td>
+                            <td>Guerras</td>
+                            <td>Período</td>
+                            <td>Idade Média</td>
+                            <td>1800 a.C</td>
+                            <td>1500 a.C</td>
+                            <td class="item-option"><i class="fas fa-trash-alt"></i></td>
+                        </tr>
+                    </table>
+                </div>
+
+<!-- Hierarchy-->
+
+                <legend><i class="fas fa-layer-group">&nbsp&nbsp</i>Hierarquia</legend>
+
+                <div class="button-space">
+                    <a href="#" data-toggle="modal" data-target="#HierarchyModal">
+                        <button class="btn btn-success"><i class="fas fa-plus"></i></button>
+                    </a>
+                </div>
+
+                <div class="routine-table">
+                    <table class="table table-bordered table-sm table-hover">
+                        <tr>
+                            <th>Cod.</th>
+                            <th>Item</th>
+                            <th>Superior</th>
+                            <th>Inferior</th>
+                            <th>Anterior</th>
+                            <th>Posterior</th>
+                            <th>Opções</th>
+                        </tr>
+                        <tr>
+                            <td>001</td>
+                            <td>Jacó</td>
+                            <td>Isaque</td>
+                            <td>José</td>
+                            <td>Esaú</td>
+                            <td>-</td>
+                            <td class="item-option"><i class="fas fa-trash-alt"></i></td>
+                        </tr>
+                    </table>
+                </div>
+
+<!-- Item Association-->
+
+                <legend><i class="fas fa-link">&nbsp&nbsp</i>Associação de itens</legend>
+
+                <div class="button-space">
+                    <a href="#" data-toggle="modal" data-target="#ItemAssociationModal">
+                        <button class="btn btn-success"><i class="fas fa-plus"></i></button>
+                    </a>
+                </div>
+
+                <div class="routine-table">
+                    <table class="table table-bordered table-sm table-hover">
+                        <tr>
+                            <th>Cod.</th>
+                            <th>Categoria</th>
+                            <th>Associated Item</th>
+                            <th>Opções</th>
+                        </tr>
+                        <tr>
+                            <td>001</td>
+                            <td>Mapas</td>
+                            <td>Mapa Egito</td>
+                            <td class="item-option"><i class="fas fa-trash-alt"></i></td>
+                        </tr>
+                        <tr>
+                            <td>002</td>
+                            <td>Símbolos</td>
+                            <td>Castiçal</td>
+                            <td class="item-option"><i class="fas fa-trash-alt"></i></td>
+                        </tr>
+                        <tr>
+                            <td>002</td>
+                            <td>Personagens</td>
+                            <td>Adão</td>
+                            <td class="item-option"><i class="fas fa-trash-alt"></i></td>
+                        </tr>
+                    </table>
+                </div>
+
+<!-- Bible Markup -->
+
+                <legend><i class="fas fa-bookmark">&nbsp&nbsp</i>Marcação Bíblica</legend>
+
+
+                <div class="button-space">
+                    <a href="#" data-toggle="modal" data-target="#BibleMarkupModal">
+                        <button class="btn btn-success"><i class="fas fa-plus"></i></button>
+                    </a>
+                </div>
+
+                <div class="routine-table">
+                    <table class="table table-bordered table-sm table-hover">
+                        <tr>
+                            <th>Cod.</th>
+                            <th>Livro</th>
+                            <th>Capítulo</th>
+                            <th>Verso inicial</th>
+                            <th>Verso final</th>
+                            <th>Opções</th>
+                        </tr>
+                        <tr>
+                            <td>001</td>
+                            <td>Mateus</td>
+                            <td>23</td>
+                            <td>10</td>
+                            <td>14</td>
+                            <td class="item-option"><i class="fas fa-trash-alt"></i></td>
+                        </tr>
+                        <tr>
+                            <td>002</td>
+                            <td>Gênesis</td>
+                            <td>12</td>
+                            <td>20</td>
+                            <td>27</td>
+                            <td class="item-option"><i class="fas fa-trash-alt"></i></td>
+                        </tr>
+                    </table>
+                </div>
+
+<!-- Bibliographic Reference -->
+
+                <legend><i class="fas fa-book">&nbsp&nbsp</i>Referência bibliográfica</legend>
+                
+                <div class="button-space">
+                    <a href="#" data-toggle="modal" data-target="#BibliographicReferenceModal">
+                        <button class="btn btn-success"><i class="fas fa-plus"></i></button>
+                    </a>
+                </div>
+                
+                <div class="routine-table">
+                    <table class="table table-bordered table-sm table-hover">
+                        <tr>
+                            <th>Cod.</th>
+                            <th>Publicação</th>
+                            <th>Complemento</th>
+                            <th>Opções</th>
+                        </tr>
+                        <tr>
+                            <td>001</td>
+                            <td>OLIVEIRA, João Carlos, TheoMe, Brasil, 2022</td>
+                            <td>Cap. 3, Pag. 2</td>
+                            <td class="item-option"><i class="fas fa-trash-alt"></i></td>
+                        </tr>
+                    </table>
+                </div>
+    </fieldset>
+</form>
+
+<!-- BUTTON AREA -->
+        <div class="button-area">
+            <a href="/cms-StudyItem-Q">
+                <div class="button-frame">
+                    <button class="btn btn-success">Salvar</button>
+                </div>
+            </a>        
+            <a href="/cms-StudyItem-C">
+                <div class="button-frame">
+                    <button class="btn btn-success">Salvar e Novo</button>
+                </div>
+            </a>
+            <a href="/cms-StudyItem-Q">
+                <div class="button-frame">
+                    <button class="btn btn-secondary">Cancelar</button>
+                </div>
+            </a>
+        </div>
+
+    </main>
+
+    <%- include('../parts/footer') %>
+
+    <!-- MODAL TRIGGERS -->
+
+    <!-- Contextualization -->
+        <div class="modal fade" id="ContextualizationModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+
+                <%- include('cms-Contextualization-I') %>
+
+            </div>
+        </div>
+
+    <!-- Chronology -->
+        <div class="modal fade" id="ChronologyModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+
+                <%- include('cms-Chronology-I') %>
+
+            </div>
+        </div>
+
+    <!-- Hierarchy -->
+        <div class="modal fade" id="HierarchyModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+
+                <%- include('cms-Hierarchy-I') %>
+
+            </div>
+        </div>
+
+    <!-- Item Association -->
+        <div class="modal fade" id="ItemAssociationModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+
+                <%- include('cms-ItemAssociation-I') %>
+
+            </div>
+        </div>
+
+    <!-- Bibliographic Reference -->
+        <div class="modal fade" id="BibliographicReferenceModal" tabindex="-1"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+
+                <%- include('cms-BibliographicReference-I') %>
+
+            </div>
+        </div>
+
+</body>

@@ -1,0 +1,40 @@
+/* TOOL CARDS */
+
+.tool-cards {
+    display:inline-block;
+    width: 100%;
+    padding: 20px 40px;
+    background-color: #E1E4E5;
+}
+
+div.background-card {
+    background-color: #E1E4E5;
+    border:none;
+}
+
+div.card-body {
+    padding: 10px;
+}
+
+.col-md-1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.col-md-1 i {
+    font-size: 50px;
+}
+
+h3.card-title{
+    display: flex;
+    justify-content: left;
+    margin:0;
+}
+
+p.card-text  {
+    display: flex;
+    justify-content: left;
+    margin: 0px 0px 16px 0px;  
+}
+

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+  <title>TheoMe</title>
+
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+   <!-- font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"/>
+   <!-- icons -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+
+   <!-- bootstrap customization -->
+    <link rel="stylesheet" href="/styles/pages/index.css" />
+    <link rel="stylesheet" href="/styles/parts/main.css" />
+    <link rel="stylesheet" href="/styles/parts/header.css" />
+    <link rel="stylesheet" href="/styles/parts/footer.css" />
+    <link rel="stylesheet" href="/styles/parts/navbar.css" />
+    <link rel="stylesheet" href="/styles/parts/button.css" />
+    <link rel="stylesheet" href="/styles/parts/form.css" />
+    <link rel="stylesheet" href="/styles/community/Community-MainPage.css" />
+
+</head>
+<body>
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <%- include('../parts/header')  %>
+
+    <%- include('../parts/menu')  %>    
+   
+    <main>
+        <h1>Comunidade</h1>
+        <p>O corpo de Cristo, que é a sua igreja, consiste na convivência harmoniosa entre seus membros, respeitando e tolerando as diferenças com os seus irmãos crentes na mesma fé e esperança de salvação.</p>
+        <p>Interagir socialmente, apesar dos conflitos inevitáveis, é parte do aperfeiçoamento espiritual e exercício da caridade fraternal, necessários para agradar a Deus.</p>
+
+        <div class="CommunitySignUpRegister">
+            <form>
+            
+                <legend>Faça parte de nossa comunidade gratuitamente.</legend>
+            
+            
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="" form-label>Nome completo</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="" form-label>E-mail</label>
+                        <input type="text" class="form-control" autofocus>
+                    </div>        
+                </div>
+            
+                <div class="row">        
+                    <div class="col-md-4">
+                        <label for="" form-label>Telefone (Opcional)</label>
+                        <input type="text" class="form-control" autofocus>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="" form-label>Ano em que nasceu</label>
+                        <select name="status" class="form-control">
+                            <option value="" data-default disabled selected></option>
+                            <option value="">1990</option>
+                            <option value="">1989</option>
+                            <option value="">1988</option>
+                            <option value="">1987</option>
+                            <option value="">1986</option>
+                            <option value="">1985</option>
+                            <option value="">1984</option>
+                            <option value="">1933</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="" form-label>Local de origem</label>
+                        <select name="status" class="form-control">
+                            <option value="" data-default disabled selected></option>
+                            <option value="">São Paulo/SP/Brasil</option>
+                            <option value="">New York/NY/EUA</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="" form-label>Senha</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="" form-label>Confirmar senha</label>
+                        <input type="text" class="form-control" autofocus>
+                    </div>        
+                </div>
+       
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" checked>
+                    <label class="form-check-label" for="exampleCheck1">Quero ficar por dentro das novidades da comunidade</label>
+                </div>
+                        
+            </form>
+            <button type="submit" class="btn btn-success"><a href="#">Cadastrar </a></button>
+        </div>
+      </div>
+      
+  </main>
+
+
+    </main>
+
+    <%- include('../parts/footer')  %> 
+    
+</body>

@@ -1,0 +1,46 @@
+
+/* SLIDER PANEL */
+
+button.carousel-control-prev, button.carousel-control-next {
+    width: 80px;    
+    background-color: inherit;
+   
+}
+
+
+/* VIDEO TUTORIAL */
+
+.main-tutorial {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: #D4DDE2;
+}
+
+.main-tutorial span {
+    font-size: 22px;
+}
+
+.theome-text {
+    color: #4F768B;
+    font-style: bold;
+}
+
+.video-tutorial {
+    display: flex;
+    justify-content: center;
+    min-width: 510px;
+    padding:40px 30px;
+}
+
+.text-tutorial {
+    min-width: 510px;
+    padding:40px 30px;
+}
+
+.text-tutorial p {
+    padding: 0px;
+}
+
+
+
+

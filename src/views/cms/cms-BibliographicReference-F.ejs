@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+  <title>TheoMe</title>
+
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+   <!-- font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"/>
+   <!-- icons -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    
+    <!-- bootstrap customization -->
+      <link rel="stylesheet" href="/styles/parts/main-cms.css" />
+      <link rel="stylesheet" href="/styles/parts/header.css" />
+      <link rel="stylesheet" href="/styles/parts/footer.css" />
+      <link rel="stylesheet" href="/styles/parts/button.css" />
+      <link rel="stylesheet" href="/styles/parts/form.css" />
+      <link rel="stylesheet" href="/styles/parts/modal.css" />
+</head>
+
+<body>
+  
+ <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="FilterReferenceModal">Filtrar - Referência Bibliográfica</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="" form-label>Status</label>
+                    <select name="status" class="form-control">
+                        <option value="">Ativo</option>
+                        <option value="">Inativo</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="" form-label>Idioma</label>
+                    <select name="status" class="form-control">
+                        <option value="">Português</option>
+                        <option value="">Inglês</option>
+                    </select>
+                </div>
+            </div>
+          </div> 
+
+          <div class="form-group">
+             
+            <label for="recipient-name" class="col-form-label">Nome do Autor (SOBRENOME, Nome.)</label>
+            <select name="dataFormat" class="form-control">
+              <option value="">*TODOS*</option>
+              <option value="">OLIVEIRA, João Carlos</option>
+              <option value="">COSTA, Queila</option>                            
+          </select>
+            
+            <label for="recipient-publication" class="col-form-label">Nome da Publicação</label>
+            <select name="dataFormat" class="form-control">
+              <option value="">*TODAS*</option>
+              <option value="">TheoMe, Brasil</option>
+              <option value="">Advocacia para todos</option>                            
+            </select>
+                      
+            <label for="recipient-name" class="col-form-label">Ano da Publicação</label>
+            <select name="dataFormat" class="form-control">
+              <option value="">*TODAS*</option>
+              <option value="">2019</option>
+              <option value="">2020</option>                            
+            </select>
+
+            <label for="recipient-name" class="col-form-label">Editora</label>
+            <select name="dataFormat" class="form-control">
+              <option value="">*TODAS*</option>
+              <option value="">CPAD - Casa Publicadora Assembléia de Deus</option>
+              <option value="">Editora Abril</option>                            
+            </select>
+
+            <label for="recipient-name" class="col-form-label">Continente</label>
+            <select name="dataFormat" class="form-control">
+              <option value="">*TODOS*</option>
+              <option value="">Europa</option>
+              <option value="">América do Norte</option>                            
+            </select>
+          
+            <label for="recipient-name" class="col-form-label">País</label>
+            <select name="dataFormat" class="form-control">
+              <option value="">*TODOS*</option>
+              <option value="">EUA</option>
+              <option value="">Brasil</option>                            
+            </select>
+
+            <label for="recipient-name" class="col-form-label">Região</label>
+            <select name="dataFormat" class="form-control">
+              <option value="">*TODAS*</option>
+              <option value="">Norte</option>
+              <option value="">Sudeste</option>                            
+            </select>
+
+            <label for="recipient-name" class="col-form-label">Estado</label>
+            <select name="dataFormat" class="form-control">
+              <option value="">*TODOS*</option>
+              <option value="">New York</option>
+              <option value="">Santa Catarina</option>                            
+            </select>
+
+            <label for="recipient-name" class="col-form-label">Cidade</label>
+            <select name="dataFormat" class="form-control">
+              <option value="">*TODAS*</option>
+              <option value="">São Paulo</option>
+              <option value="">New York</option>                            
+            </select>
+     
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success">Filtrar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>        
+      </div>
+    </div>
+    
+</body>

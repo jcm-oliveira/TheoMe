@@ -1,0 +1,89 @@
+express = require('express');
+const routes = express.Router()
+
+
+const views = __dirname + "/views/"
+
+
+routes.get('/', (req,res) => res.render(views + "index"));
+
+// TOOLS
+routes.get('/Tools-MainPage', (req,res) => res.render(views + "tools/Tools-MainPage"));
+routes.get('/SchemaOfContent', (req,res) => res.render(views + "tools/SchemaOfContent"));
+routes.get('/SchemaOfContent-C-Dashboard', (req,res) => res.render(views + "tools/SchemaOfContent-C-Dashboard"));
+routes.get('/SchemaOfContent-C-BookPage', (req,res) => res.render(views + "tools/SchemaOfContent-C-BookPage"));
+
+// LIBRARY
+routes.get('/Library-MainPage', (req,res) => res.render(views + "library/Library-MainPage"));
+
+//CHRISTIANITY
+routes.get('/Christianity-MainPage', (req,res) => res.render(views + "christianity/Christianity-MainPage"));
+
+// COMMUNITY
+routes.get('/Community-MainPage', (req,res) => res.render(views + "community/Community-MainPage"));
+
+// ABOUT
+routes.get('/WhoWeAre', (req,res) => res.render(views + "about/WhoWeAre"));
+routes.get('/Collaboration', (req,res) => res.render(views + "about/Collaboration"));
+
+// CMS - Content Management System - B4
+routes.get('/cms-LoginPage', (req,res) => res.render(views + "cms/cms-LoginPage"));
+routes.get('/cms-MainPage', (req,res) => res.render(views + "cms/cms-MainPage"));
+
+// CATALOG
+routes.get('/cms-StudyItem-Q', (req,res) => res.render(views + "cms/cms-StudyItem-Q"));
+routes.get('/cms-StudyItem-C', (req,res) => res.render(views + "cms/cms-StudyItem-C"));
+
+// REGISTER
+routes.get('/cms-BibleTranslation-Q', (req,res) => res.render(views + "cms/cms-BibleTranslation-Q"));
+routes.get('/cms-BibleTranslation-C', (req,res) => res.render(views + "cms/cms-BibleTranslation-C"));
+
+routes.get('/cms-Book-Q', (req,res) => res.render(views + "cms/cms-Book-Q"));
+routes.get('/cms-Book-C', (req,res) => res.render(views + "cms/cms-Book-C"));
+
+routes.get('/cms-Chapter-Q', (req,res) => res.render(views + "cms/cms-Chapter-Q"));
+routes.get('/cms-Chapter-C', (req,res) => res.render(views + "cms/cms-Chapter-C"));
+
+routes.get('/cms-Category-Q', (req,res) => res.render(views + "cms/cms-Category-Q"));
+routes.get('/cms-Category-C', (req,res) => res.render(views + "cms/cms-Category-C"));
+
+routes.get('/cms-Timeline-Q', (req,res) => res.render(views + "cms/cms-Timeline-Q"));
+routes.get('/cms-Timeline-C', (req,res) => res.render(views + "cms/cms-Timeline-C"));
+
+routes.get('/cms-HistoricalPerspective-Q', (req,res) => res.render(views + "cms/cms-HistoricalPerspective-Q"));
+routes.get('/cms-HistoricalPerspective-C', (req,res) => res.render(views + "cms/cms-HistoricalPerspective-C"));
+
+routes.get('/cms-Continent-Q', (req,res) => res.render(views + "cms/cms-Continent-Q"));
+routes.get('/cms-Continent-C', (req,res) => res.render(views + "cms/cms-Continent-C"));
+
+routes.get('/cms-Country-Q', (req,res) => res.render(views + "cms/cms-Country-Q"));
+routes.get('/cms-Country-C', (req,res) => res.render(views + "cms/cms-Country-C"));
+
+routes.get('/cms-Region-Q', (req,res) => res.render(views + "cms/cms-Region-Q"));
+routes.get('/cms-Region-C', (req,res) => res.render(views + "cms/cms-Region-C"));
+
+routes.get('/cms-State-Q', (req,res) => res.render(views + "cms/cms-State-Q"));
+routes.get('/cms-State-C', (req,res) => res.render(views + "cms/cms-State-C"));
+
+routes.get('/cms-City-Q', (req,res) => res.render(views + "cms/cms-City-Q"));
+routes.get('/cms-City-C', (req,res) => res.render(views + "cms/cms-City-C"));
+
+routes.get('/cms-BibliographicReference-Q', (req,res) => res.render(views + "cms/cms-BibliographicReference-Q"));
+routes.get('/cms-BibliographicReference-C', (req,res) => res.render(views + "cms/cms-BibliographicReference-C"));
+
+routes.get('/cms-Publisher-Q', (req,res) => res.render(views + "cms/cms-Publisher-Q"));
+routes.get('/cms-Publisher-C', (req,res) => res.render(views + "cms/cms-Publisher-C"));
+
+//CONFIGURATION
+routes.get('/cms-User-Q', (req,res) => res.render(views + "cms/cms-User-Q"));
+routes.get('/cms-User-C', (req,res) => res.render(views + "cms/cms-User-C"));
+
+routes.get('/cms-Language-Q', (req,res) => res.render(views + "cms/cms-Language-Q"));
+routes.get('/cms-Language-C', (req,res) => res.render(views + "cms/cms-Language-C"));
+
+routes.get('/cms-BannerSlider-Q', (req,res) => res.render(views + "cms/cms-BannerSlider-Q"));
+routes.get('/cms-BannerSlider-C', (req,res) => res.render(views + "cms/cms-BannerSlider-C"));
+
+routes.get('/cms-InstitutionalVideo-C', (req,res) => res.render(views + "cms/cms-InstitutionalVideo-C"));
+
+module.exports = routes;

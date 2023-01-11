@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+  <title>TheoMe</title>
+
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+   <!-- font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"/>
+   <!-- icons -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    
+    <!-- bootstrap customization -->
+      <link rel="stylesheet" href="/styles/parts/main-cms.css" />
+      <link rel="stylesheet" href="/styles/parts/header.css" />
+      <link rel="stylesheet" href="/styles/parts/footer.css" />
+      <link rel="stylesheet" href="/styles/parts/button.css" />
+      <link rel="stylesheet" href="/styles/parts/form.css" />
+</head>
+
+<body>
+    
+ <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <%- include('../parts/header')  %>
+
+    <%- include('../parts/navbar')  %>    
+   
+    <main>
+        <h1>Cadastrar - Região</h1>
+        
+        <form action="">            
+            <fieldset class="flex">
+                <legend>Dados básicos</legend>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="" form-label>Código</label>
+                        <input type="text" class="form-control" disabled>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="" form-label>Status</label>
+                        <select name="status" class="form-control">
+                            <option value="">Ativo</option>
+                            <option value="">Inativo</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="" form-label>Idioma</label>
+                        <select name="status" class="form-control">
+                            <option value="">Português</option>
+                            <option value="">Inglês</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="" form-label>Continente</label>
+                        <select name="dataFormat" class="form-control">
+                            <option value=""data-default disabled selected></option>
+                            <option value="">Ásia</option>                
+                            <option value="">América do Sul</option>
+                            <option value="">Europa</option>
+                            <option value="">Oceania</option>                              
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="" form-label>País</label>
+                        <select name="dataFormat" class="form-control">
+                            <option value=""data-default disabled selected></option>
+                            <option value="">Israel</option>                
+                            <option value="">Espanha</option>
+                            <option value="">Itália</option>
+                            <option value="">Brasil</option>                              
+                        </select>
+                    </div>
+                </div>
+                    <div class="col-md-14">
+                        <label for="" form-label>Nome da Região</label>
+                        <input type="text" class="form-control" autofocus>
+                    </div>
+
+                    <div class="col-md-14">
+                        <label for="" class="form-label">Descrição</label>
+                        <textarea name="" id="" class="form-control"></textarea>
+                    </div>
+
+                    <div class="cod-mb-12">
+                        <label for="formFile" class="form-label">Figura</label>
+                        <input class="form-control" type="file" id="formFile">
+                    </div>
+            </fieldset>
+        </form>
+
+        <!-- BUTTON AREA -->
+        <div class="button-area">
+            <a href="/cms-Region-Q">
+                <div class="button-frame">
+                    <button class="btn btn-success">Salvar</button></a>
+                </div>
+            </a>
+            <a href="/cms-Region-C">
+                <div class="button-frame">
+                    <button class="btn btn-success">Salvar e Novo</button>
+                </div>
+            </a>
+            <a href="/cms-Region-Q">
+                <div class="button-frame">
+                    <button class="btn btn-secondary">Cancelar</button>
+                </div>
+            </a>
+        </div>
+
+    </main>
+
+    <%- include('../parts/footer')  %> 
+    
+</body>
