@@ -100,28 +100,47 @@
                             </select>
                         </div>
                     </div>
-                    <div class="row">    
-                        <div class="col-md-4">
-                            <label for="" class="form-label">Data início</label>
+                    
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="" class="form-label">Dia</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="" class="form-label">Mês</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="" class="form-label">Ano</label>
                             <input type="text" class="form-control">
                         </div>
                         <div class="col-md-2">
                             <label for="" class="form-label">Ref.</label>
                             <select name="christReference" class="form-control">
-                                <option value=""data-default disabled selected></option>                
+                                <option value="" data-default disabled selected></option>
                                 <option value="a.C">a.C</option>
                                 <option value="d.C">d.C</option>
                             </select>
                         </div>
-
-                        <div class="col-md-4">
-                            <label for="" class="form-label">Data término</label>
-                            <input type="text" class="form-control" id="EndDate">
+                    </div>
+                    
+                    <div class="row" id="EndDate">
+                        <div class="col-md-2">
+                            <label for="" class="form-label">Dia</label>
+                            <input type="text" class="form-control">
                         </div>
+                        <div class="col-md-2">
+                            <label for="" class="form-label">Mês</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="" class="form-label">Ano</label>
+                            <input type="text" class="form-control">
+                        </div> 
                         <div class="col-md-2">
                             <label for="">Ref.</label>
                             <select class="form-control" id="RefEndDate">
-                                <option value=""data-default disabled selected></option>                
+                                <option value="" data-default disabled selected></option>
                                 <option value="a.C">a.C</option>
                                 <option value="d.C">d.C</option>
                             </select>
@@ -143,21 +162,11 @@
         function CheckRegisterType() {
             console.log("Chamou a função")        
 
-            let register = document.querySelector('select#RegisterType')
-            console.log(register.value)
-
-            if ( register.value == 'Marco') {
-                console.log("Entrou no if!")
-                document.querySelector('input#EndDate').readOnly = true
-                document.querySelector('select#RefEndDate').disabled = true
-
-                let register2 = document.querySelector('select#RefEndDate')
-                console.log(register2.value)
-
-
+            if (document.querySelector('select#RegisterType').value == 'Marco') 
+            {
+                document.querySelector('div#EndDate').style.display = "none";
             } else {
-                document.querySelector('input#EndDate').readOnly = false
-                document.querySelector('select#RefEndDate').disabled = false
+                document.querySelector('div#EndDate').style.display = "flex";
             }
         }
 
