@@ -25,6 +25,8 @@
       <link rel="stylesheet" href="/styles/parts/button.css" />
       <link rel="stylesheet" href="/styles/parts/form.css" />
       <link rel="stylesheet" href="/styles/parts/modal.css" />
+      <link rel="stylesheet" href="/styles/pages/cms/cms-StudyItem-C.css" />
+      
 </head>
 
 <body>
@@ -42,8 +44,8 @@
       <div class="modal-body">
         <form>
             
-                  <div class="row">
-                    <div class="col-md-9">
+                  
+                    <div class="col-md-14">
                         <label for="" class="form-label">Linha temporal</label>
                         <select name="temporalyPerspective" class="form-control">
                             <option value=""data-default disabled selected></option>
@@ -56,55 +58,60 @@
                             <option value="">Personagens Políticos</option>                               
                         </select>
                     </div>
-                    <div class="col-md-3">
-                        <label for="" class="form-label">Tipo de registro</label>
-                        <select name="registerType" class="form-control" id="RegisterType" onclick="CheckRegisterType()">
-                            <option value=""data-default disabled selected></option>               
-                            <option value="Marco">Marco</option>
-                            <option value="Período">Período</option>
-                        </select>
-                    </div>
-                </div>
 
                     <div class="row">
-
-                        <div class="col-md-6">
+                        <div class="col-md-3">
+                            <label for="" class="form-label">Tipo de registro</label>
+                            <select name="registerType" class="form-control" id="RegisterType" onclick="CheckRegisterType()">
+                                <option value="" data-default disabled selected></option>
+                                <option value="Marco">Marco</option>
+                                <option value="Período">Período</option>
+                            </select>
+                        </div>
+                        <div class="col-md-7">
                             <label for="" class="form-label">Período histórico</label>
                             <select name="dataFormat" class="form-control">
-                                <option value=""data-default disabled selected></option>
-                                <option value="">Pré-histórica</option>                
+                                <option value="" data-default disabled selected></option>
+                                <option value="">Pré-histórica</option>
                                 <option value="">Idade Antiga</option>
                                 <option value="">Idade Contemporânea</option>
                                 <option value="">Idade Média</option>
-                                <option value="">Idade Moderna</option>                            
+                                <option value="">Idade Moderna</option>
                             </select>
                         </div>
                         <div class="col-md-2">
                             <label for="" class="form-label">Século</label>
                             <select name="dataFormat" class="form-control">
-                                <option value=""data-default disabled selected></option>    
+                                <option value="" data-default disabled selected></option>
                                 <option value="">I</option>
                                 <option value="">II</option>
-                                <option value="">III</option>  
-                                <option value="">IV</option>  
-                                <option value="">V</option>  
-                                <option value="">VI</option>  
-                                <option value="">VII</option>                    
-                            </select>
-                        </div>                    
-                        <div class="col-md-4">
-                            <label for="" class="form-label">Formato data</label>
-                            <select name="dataFormat" class="form-control">
-                                <option value=""data-default disabled selected></option>                
-                                <option value="">Data completa</option>
-                                <option value="">Somente Mês e Ano</option>
-                                <option value="">Somente Ano</option>
+                                <option value="">III</option>
+                                <option value="">IV</option>
+                                <option value="">V</option>
+                                <option value="">VI</option>
+                                <option value="">VII</option>
                             </select>
                         </div>
+
+                        <div class="radion-button">
+                            <label for="" class="form-label">Formato data</label>
+                            <div class="btn-group btn-group">
+                                <label class="btn">
+                                    <input type="radio" name="options" id="option1" checked> Data completa
+                                </label>
+                                <label class="btn">
+                                    <input type="radio" name="options" id="option2"> Somente Mês e Ano
+                                </label>
+                                <label class="btn">
+                                    <input type="radio" name="options" id="option3"> Somente Ano
+                                </label>
+                            </div>
+                        </div>
+                        
                     </div>
                 
                     <div class="row" id="StartDate" style="display: none;">
-                        <legend id="StartDate-legend" style="padding-left:12px">Data de início</legend>  
+                        <label class="form-label" id="StartDate-legend" style="padding-left:16px">Data de início</label>
                         <div class="col-md-2">
                             <label for="" class="form-label">Dia</label>
                             <input type="text" class="form-control">
@@ -128,7 +135,7 @@
                     </div>
                     
                     <div class="row" id="EndDate" style="display: none;">
-                        <legend style="padding-left:12px">Data de término</legend>
+                        <label class="form-label" id="EndDate-legend" style="padding-left:16px">Data de término</label>
                         <div class="col-md-2">
                             <label for="" class="form-label">Dia</label>
                             <input type="text" class="form-control">

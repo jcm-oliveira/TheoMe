@@ -1,0 +1,7 @@
+#StartDate-legend, #EndDate-legend {
+    width: 100%;
+}
+
+#StartDate.col, #EndDate.col {
+    padding-left: 18px;
+}
