@@ -29,6 +29,8 @@
 
 <body>
 
+<script src="/scripts/cms-StudyItem-C.js"></script>
+
  <!-- Modal content -->
     <div class="modal-content">
       <div class="modal-header">
@@ -102,7 +104,7 @@
                     </div>
                 
                     <div class="row" id="StartDate" style="display: none;">
-                        <legend id="StartDate-legend">Data de início</legend>  
+                        <legend id="StartDate-legend" style="padding-left:12px">Data de início</legend>  
                         <div class="col-md-2">
                             <label for="" class="form-label">Dia</label>
                             <input type="text" class="form-control">
@@ -126,7 +128,7 @@
                     </div>
                     
                     <div class="row" id="EndDate" style="display: none;">
-                        <legend>Data de término</legend>
+                        <legend style="padding-left:12px">Data de término</legend>
                         <div class="col-md-2">
                             <label for="" class="form-label">Dia</label>
                             <input type="text" class="form-control">
@@ -156,31 +158,5 @@
         
       </div>
     </div>
-    
-    <!-- <script src="/public/scripts/cms/cms-StudyItem-C.js"></script> -->
-
-    <script>
-
-        function CheckRegisterType() {
-            console.log("Chamou a função")      
-            if (document.querySelector('select#RegisterType').value == '') 
-            {
-                document.querySelector('div#StartDate').style.display = "none";
-                document.querySelector('div#EndDate').style.display = "none";              
-
-            } else if (document.querySelector('select#RegisterType').value == 'Marco') {
-                document.querySelector('div#StartDate').style.display = "flex";
-                document.querySelector('div#EndDate').style.display = "none";
-                document.querySelector('legend#StartDate-legend').innerHTML = 'Data';
-
-            } else if (document.querySelector('select#RegisterType').value == 'Período') {
-                document.querySelector('div#StartDate').style.display = "flex";
-                document.querySelector('div#EndDate').style.display = "flex";
-                document.querySelector('legend#StartDate-legend').innerHTML = 'Data de início';
-            }              
-        }
-        
-    </script>
-
 
 </body>

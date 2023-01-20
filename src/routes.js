@@ -4,7 +4,6 @@ const routes = express.Router()
 
 const views = __dirname + "/views/"
 
-
 routes.get('/', (req,res) => res.render(views + "index"));
 
 // TOOLS
