@@ -325,7 +325,6 @@
 
                 <legend><i class="fas fa-bookmark">&nbsp&nbsp</i>Marcação Bíblica</legend>
 
-
                 <div class="button-space">
                     <a href="#" data-toggle="modal" data-target="#BibleMarkupModal">
                         <button class="btn btn-success"><i class="fas fa-plus"></i></button>
@@ -366,7 +365,7 @@
                 <legend><i class="fas fa-book">&nbsp&nbsp</i>Referência bibliográfica</legend>
                 
                 <div class="button-space">
-                    <a href="#" data-toggle="modal" data-target="#BibliographicReferenceModal">
+                    <a href="#" data-toggle="modal" data-target="#BibliographicModal">
                         <button class="btn btn-success"><i class="fas fa-plus"></i></button>
                     </a>
                 </div>
@@ -413,7 +412,7 @@
 
     <%- include('../parts/footer') %>
 
-    <!-- MODAL TRIGGERS -->
+<!-- MODAL TRIGGERS -->
 
     <!-- Contextualization -->
         <div class="modal fade" id="ContextualizationModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -455,7 +454,7 @@
             </div>
         </div>
 
-    <!-- Item Association -->
+    <!-- Bible Markup -->
         <div class="modal fade" id="BibleMarkupModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
 
@@ -465,13 +464,13 @@
         </div>
 
     <!-- Bibliographic Reference -->
-        <div class="modal fade" id="BibliographicReferenceModal" tabindex="-1"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
+    <div class="modal fade" id="BibliographicModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
 
-                <%- include('cms-BibliographicReference-I') %>
+            <%- include('cms-BibliographicReference-I') %>
 
-            </div>
         </div>
+    </div>
+
 
 </body>

@@ -60,14 +60,6 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-3">
-                            <label for="" class="form-label">Tipo de registro</label>
-                            <select name="registerType" class="form-control" id="RegisterType" onclick="CheckRegisterType()">
-                                <option value="" data-default disabled selected></option>
-                                <option value="Marco">Marco</option>
-                                <option value="Período">Período</option>
-                            </select>
-                        </div>
                         <div class="col-md-7">
                             <label for="" class="form-label">Período histórico</label>
                             <select name="dataFormat" class="form-control">
@@ -92,18 +84,26 @@
                                 <option value="">VII</option>
                             </select>
                         </div>
+                        <div class="col-md-3">
+                            <label for="" class="form-label">Tipo de registro</label>
+                            <select name="registerType" class="form-control" id="RegisterType" onclick="CheckRegisterType(), DataFormat()">
+                                <option value="" data-default disabled selected></option>
+                                <option value="Marco">Marco</option>
+                                <option value="Período">Período</option>
+                            </select>
+                        </div>
 
                         <div class="radion-button">
-                            <label for="" class="form-label">Formato data</label>
+                            <label for="" class="form-label">Formato data:</label>
                             <div class="btn-group btn-group">
                                 <label class="btn">
-                                    <input type="radio" name="options" id="option1" checked> Data completa
+                                    <input type="radio" name="options" id="option1" onclick="DataFormat()" checked> Data completa
                                 </label>
                                 <label class="btn">
-                                    <input type="radio" name="options" id="option2"> Somente Mês e Ano
+                                    <input type="radio" name="options" id="option2" onclick="DataFormat()"> Somente Mês e Ano
                                 </label>
                                 <label class="btn">
-                                    <input type="radio" name="options" id="option3"> Somente Ano
+                                    <input type="radio" name="options" id="option3" onclick="DataFormat()"> Somente Ano
                                 </label>
                             </div>
                         </div>
@@ -111,16 +111,30 @@
                     </div>
                 
                     <div class="row" id="StartDate" style="display: none;">
-                        <label class="form-label" id="StartDate-legend" style="padding-left:16px">Data de início</label>
-                        <div class="col-md-2">
+                        <label class="form-label" id="StartDate-legend" style="padding-left:16px">DATA DE INÍCIO</label>
+                        <div class="col-md-2" id="start-day">
                             <label for="" class="form-label">Dia</label>
                             <input type="text" class="form-control">
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-3" id="start-month">
                             <label for="" class="form-label">Mês</label>
-                            <input type="text" class="form-control">
+                            <select name="christReference" class="form-control">
+                                <option value="" data-default disabled selected></option>
+                                <option value="Janeiro">Janeiro</option>
+                                <option value="Fevereiro">Fevereiro</option>
+                                <option value="Março">Março</option>
+                                <option value="Abril">Abril</option>
+                                <option value="Maio">Maio</option>
+                                <option value="Junho">Junho</option>
+                                <option value="Julho">Julho</option>
+                                <option value="Agosto">Agosto</option>
+                                <option value="Setembro">Setembro</option>
+                                <option value="Outubro">Outubro</option>
+                                <option value="Novembro">Novembro</option>
+                                <option value="Dezembro">Dezembro</option>                                
+                            </select>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3" id="start-year">
                             <label for="" class="form-label">Ano</label>
                             <input type="text" class="form-control">
                         </div>
@@ -133,18 +147,34 @@
                             </select>
                         </div>
                     </div>
+                    <br>
+                    
                     
                     <div class="row" id="EndDate" style="display: none;">
-                        <label class="form-label" id="EndDate-legend" style="padding-left:16px">Data de término</label>
-                        <div class="col-md-2">
+                        <label class="form-label" id="EndDate-legend" style="padding-left:16px">DATA DE TÉRMINO</label>
+                        <div class="col-md-2" id="end-day">
                             <label for="" class="form-label">Dia</label>
                             <input type="text" class="form-control">
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-3" id="end-month">
                             <label for="" class="form-label">Mês</label>
-                            <input type="text" class="form-control">
+                            <select name="christReference" class="form-control">
+                                <option value="" data-default disabled selected></option>
+                                <option value="Janeiro">Janeiro</option>
+                                <option value="Fevereiro">Fevereiro</option>
+                                <option value="Março">Março</option>
+                                <option value="Abril">Abril</option>
+                                <option value="Maio">Maio</option>
+                                <option value="Junho">Junho</option>
+                                <option value="Julho">Julho</option>
+                                <option value="Agosto">Agosto</option>
+                                <option value="Setembro">Setembro</option>
+                                <option value="Outubro">Outubro</option>
+                                <option value="Novembro">Novembro</option>
+                                <option value="Dezembro">Dezembro</option>                                
+                            </select>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3" id="edn-year">
                             <label for="" class="form-label">Ano</label>
                             <input type="text" class="form-control">
                         </div> 
