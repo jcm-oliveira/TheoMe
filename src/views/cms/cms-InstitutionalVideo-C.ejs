@@ -19,7 +19,7 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     
     <!-- bootstrap customization -->
-      <link rel="stylesheet" href="/styles/parts/main-cmss" />
+      <link rel="stylesheet" href="/styles/parts/main.css" />
       <link rel="stylesheet" href="/styles/parts/header.css" />
       <link rel="stylesheet" href="/styles/parts/footer.css" />
       <link rel="stylesheet" href="/styles/parts/button.css" />
@@ -32,6 +32,8 @@
  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+ <script src="/scripts/cms-System.js"></script>
 
     <%- include('../parts/header')  %>
 
@@ -80,19 +82,19 @@
                 </div>
             
                 <div class="mb-6 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Botão Call To Action</label>
+                    <input type="checkbox" class="form-check-input" id="CallToAction-Check" onclick="CallToActionCheck()">
+                    <label class="form-check-label" for="exampleCheck1">Incluir Botão 'Call To Action'</label>
                 </div>
             
-                <div class="row">            
+                <div class="row" id="CallToAction-Fields" style="display:none;">            
                     <div class="col-md-6">
                         <label for="" form-label>Destino da chamada</label>
-                        <input type="text" class="form-control" placeholder="https://" disabled>
+                        <input type="text" class="form-control" placeholder="https://">
                     </div>
             
                     <div class="col-md-6">
                         <label for="" form-label>Texto do botão</label>
-                        <input type="text" class="form-control" placeholder="Saiba mais" disabled>
+                        <input type="text" class="form-control" placeholder="Saiba mais">
                     </div>
                 </div>
             
