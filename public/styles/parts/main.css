@@ -45,6 +45,10 @@ legend {
     padding: 10px 0px 10px 0px;
 }
 
+label {
+    margin: 8px 0px 4px 0px;
+}
+
 .icon{
     width: 10px;
 }
