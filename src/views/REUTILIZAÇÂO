@@ -46,3 +46,33 @@
                             </select>
                         </div>
                     </div>
+
+
+<!-- ________________________________________________________________________________ -->
+
+
+                    <div class="row">
+                        <div class="col-md-7">
+                            <label for="" class="form-label">Período histórico</label>
+                            <select name="dataFormat" class="form-control">
+                                <option value="" data-default disabled selected></option>
+                                <option value="">Pré-histórica</option>
+                                <option value="">Idade Antiga</option>
+                                <option value="">Idade Contemporânea</option>
+                                <option value="">Idade Média</option>
+                                <option value="">Idade Moderna</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="" class="form-label">Século</label>
+                            <select name="dataFormat" class="form-control">
+                                <option value="" data-default disabled selected></option>
+                                <option value="">I</option>
+                                <option value="">II</option>
+                                <option value="">III</option>
+                                <option value="">IV</option>
+                                <option value="">V</option>
+                                <option value="">VI</option>
+                                <option value="">VII</option>
+                            </select>
+                        </div>
