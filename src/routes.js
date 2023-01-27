@@ -29,11 +29,11 @@ routes.get('/Collaboration', (req,res) => res.render(views + "about/Collaboratio
 routes.get('/cms-LoginPage', (req,res) => res.render(views + "cms/cms-LoginPage"));
 routes.get('/cms-MainPage', (req,res) => res.render(views + "cms/cms-MainPage"));
 
-// CATALOG
+// RESEARCH
 routes.get('/cms-StudyItem-Q', (req,res) => res.render(views + "cms/cms-StudyItem-Q"));
 routes.get('/cms-StudyItem-C', (req,res) => res.render(views + "cms/cms-StudyItem-C"));
 
-// REGISTER
+// BIBLE
 routes.get('/cms-BibleTranslation-Q', (req,res) => res.render(views + "cms/cms-BibleTranslation-Q"));
 routes.get('/cms-BibleTranslation-C', (req,res) => res.render(views + "cms/cms-BibleTranslation-C"));
 
@@ -43,6 +43,7 @@ routes.get('/cms-Book-C', (req,res) => res.render(views + "cms/cms-Book-C"));
 routes.get('/cms-Chapter-Q', (req,res) => res.render(views + "cms/cms-Chapter-Q"));
 routes.get('/cms-Chapter-C', (req,res) => res.render(views + "cms/cms-Chapter-C"));
 
+// REGISTER
 routes.get('/cms-Category-Q', (req,res) => res.render(views + "cms/cms-Category-Q"));
 routes.get('/cms-Category-C', (req,res) => res.render(views + "cms/cms-Category-C"));
 
@@ -51,6 +52,12 @@ routes.get('/cms-Timeline-C', (req,res) => res.render(views + "cms/cms-Timeline-
 
 routes.get('/cms-HistoricalPerspective-Q', (req,res) => res.render(views + "cms/cms-HistoricalPerspective-Q"));
 routes.get('/cms-HistoricalPerspective-C', (req,res) => res.render(views + "cms/cms-HistoricalPerspective-C"));
+
+routes.get('/cms-PeriodType-Q', (req,res) => res.render(views + "cms/cms-PeriodType-Q"));
+routes.get('/cms-PeriodType-C', (req,res) => res.render(views + "cms/cms-PeriodType-C"));
+
+routes.get('/cms-Period-Q', (req,res) => res.render(views + "cms/cms-Period-Q"));
+routes.get('/cms-Period-C', (req,res) => res.render(views + "cms/cms-Period-C"));
 
 routes.get('/cms-Continent-Q', (req,res) => res.render(views + "cms/cms-Continent-Q"));
 routes.get('/cms-Continent-C', (req,res) => res.render(views + "cms/cms-Continent-C"));
@@ -73,7 +80,7 @@ routes.get('/cms-BibliographicReference-C', (req,res) => res.render(views + "cms
 routes.get('/cms-Publisher-Q', (req,res) => res.render(views + "cms/cms-Publisher-Q"));
 routes.get('/cms-Publisher-C', (req,res) => res.render(views + "cms/cms-Publisher-C"));
 
-//CONFIGURATION
+//SYSTEM
 routes.get('/cms-User-Q', (req,res) => res.render(views + "cms/cms-User-Q"));
 routes.get('/cms-User-C', (req,res) => res.render(views + "cms/cms-User-C"));
 
@@ -84,5 +91,8 @@ routes.get('/cms-BannerSlider-Q', (req,res) => res.render(views + "cms/cms-Banne
 routes.get('/cms-BannerSlider-C', (req,res) => res.render(views + "cms/cms-BannerSlider-C"));
 
 routes.get('/cms-InstitutionalVideo-C', (req,res) => res.render(views + "cms/cms-InstitutionalVideo-C"));
+
+
+
 
 module.exports = routes;
