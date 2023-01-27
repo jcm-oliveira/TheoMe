@@ -9,8 +9,8 @@ routes.get('/', (req,res) => res.render(views + "index"));
 // TOOLS
 routes.get('/Tools-MainPage', (req,res) => res.render(views + "tools/Tools-MainPage"));
 routes.get('/SchemaOfContent', (req,res) => res.render(views + "tools/SchemaOfContent"));
-routes.get('/SchemaOfContent-C-Dashboard', (req,res) => res.render(views + "tools/SchemaOfContent-C-Dashboard"));
-routes.get('/SchemaOfContent-C-BookPage', (req,res) => res.render(views + "tools/SchemaOfContent-C-BookPage"));
+routes.get('/SchemaOfContent-BookDashboard', (req,res) => res.render(views + "tools/SchemaOfContent-BookDashboard"));
+routes.get('/SchemaOfContent-BookPage', (req,res) => res.render(views + "tools/SchemaOfContent-BookPage"));
 
 // LIBRARY
 routes.get('/Library-MainPage', (req,res) => res.render(views + "library/Library-MainPage"));
