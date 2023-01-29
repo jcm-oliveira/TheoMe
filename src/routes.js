@@ -12,6 +12,8 @@ routes.get('/SchemaOfContent', (req,res) => res.render(views + "tools/SchemaOfCo
 routes.get('/SchemaOfContent-BookDashboard', (req,res) => res.render(views + "tools/SchemaOfContent-BookDashboard"));
 routes.get('/SchemaOfContent-BookPage', (req,res) => res.render(views + "tools/SchemaOfContent-BookPage"));
 routes.get('/SchemaOfContent-ChronologicalDashboard', (req,res) => res.render(views + "tools/SchemaOfContent-ChronologicalDashboard"));
+routes.get('/SchemaOfContent-ChronologicalPage', (req,res) => res.render(views + "tools/SchemaOfContent-ChronologicalPage"));
+routes.get('/ChronologicalEvents', (req,res) => res.render(views + "tools/ChronologicalEvents"));
 
 // LIBRARY
 routes.get('/Library-MainPage', (req,res) => res.render(views + "library/Library-MainPage"));

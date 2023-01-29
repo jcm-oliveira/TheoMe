@@ -54,14 +54,3 @@
 .book-data {
     font-size: 15px;
 }
-
-.FilterOptions{
-    display: flex;
-    align-items: center;
-    background-color: #D4DDE2;
-    padding: 20px;
-}
-
-.FilterOptions label {
-    padding-right: 10px;
-}
