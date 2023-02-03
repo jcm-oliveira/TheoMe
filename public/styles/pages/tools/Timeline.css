@@ -1,25 +1,38 @@
-/* body { 
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
-}  */
+
+iframe {
+    width: 100%;
+}
+
+main#timeline-iframebar{
+    padding: 0px;
+}
+
+.ruler-scale {
+    display:inline-flex;
+    height: 60px;
+}
+
+.scale {
+    border: 1px solid rgb(7, 7, 7);
+    writing-mode: vertical-rl;
+   
+}
 
 .timeline-panel {
-    /* overflow-x: scroll; */
-    /* overflow-y: scroll; */
-    width: 10000px;    
-    height: 200px;
+    display:grid;
     white-space: nowrap;
 }
 
 .timeline-bar {
-   display: flex;
+   display:inline-flex;
 }
 
 .period-time {
-    height: 28px;
-    border-left: 2px solid rgb(0, 0, 0);
-    border-bottom: 4px solid white;
+    height: 32px;   
+    border: 2px solid white;
     font-size: 16px;
     padding-left: 10px;
 }
+
+
+
