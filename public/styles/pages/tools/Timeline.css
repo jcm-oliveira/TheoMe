@@ -17,10 +17,18 @@ main#timeline-iframePanel{
     white-space: nowrap;
 }
 
+
+/*-----------*/
+/*   RULER   */
+/*-----------*/
+
+
 .ruler {
     display:grid;
     white-space: nowrap;
-    padding-bottom: 10px;
+    padding: 10px 0px 0px 150px;
+    margin-bottom: 5px;
+    background-color: rgb(226, 225, 225);
 }
 
 .ruler-year {
@@ -30,19 +38,21 @@ main#timeline-iframePanel{
 .year {
     writing-mode: vertical-rl;
     width:100px;
+    display: flex;
+    align-items:flex-end;
 }
 
 .ruler-scale {
     display:inline-flex;
-    height: 30px;
+    height: 20px;
 }
 
 .scale-year {
     border-bottom: 1px solid rgb(0, 0, 0);
-    border-left: 1px solid rgb(7, 7, 7);
+    border-left: 2px solid rgb(7, 7, 7);
     border-right: 1px solid rgb(7, 7, 7);
     width:100px;
-    height: 60px;
+    height: 40px;
 }
 
 .scale {
@@ -50,14 +60,31 @@ main#timeline-iframePanel{
     border-left: 1px solid rgb(7, 7, 7);
     border-right: 1px solid rgb(7, 7, 7);
     width:10px;
-    height: 30px;
+    height: 20px;
 }
 
-.timeline-bar {
-   display:inline-flex;
+/*-----------*/
+/*   BARS   */
+/*-----------*/
+
+.timeline-name{
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+    width: 150px;
+    left: 0px;
 }
 
-.period-time {
+.timeline-bar-continuous {
+   display:flex;
+}
+
+.timeline-bar-expanded {
+    display:block;
+ }
+.period-time-continuous, .period-time-expanded {
+    display: flex;   
+    align-items: center;
     height: 32px;   
     border: 2px solid white;
     font-size: 16px;
@@ -65,7 +92,10 @@ main#timeline-iframePanel{
     cursor: pointer;
 }
 
-.period-time:hover {
-    background-color: gray;
+.period-time-continuous {
+    position: absolute;
 }
 
+.period-time-expanded {    
+    position: relative;
+}
