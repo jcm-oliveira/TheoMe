@@ -17,6 +17,16 @@ main#timeline-iframePanel{
     white-space: nowrap;
 }
 
+/*-----------*/
+/*   BUTTONS   */
+/*-----------*/
+
+.timelineScaleButton label.btn{
+    margin: 0;
+    background-color:#dbe4eb;
+}
+
+
 
 /*-----------*/
 /*   RULER   */
