@@ -1,24 +1,76 @@
+const ruler = {
+pixelsForDay: null,
+pixelsForWeek: null,
+pixelsForMonth: null,
+pixelsForYear: 1,
+pixelsForDecade: 1,
+pixelsForCentury: 10,
+pixelsForMillennium: 100
+};
 
-function PixelsByScale(Pixels) {
+const timelineRealDate = {
+    startDateDay: 1,
+    startDateMonth: 1,
+    startDateYear: -2500,
+    endDateDay: 1,
+    endDateMonth: 1,
+    endDateYear: -2100,
+};
+
+
+// CHECK THE SCALE RULER OPTION SELECTED AND BUILD THE RULER
+
+function RulerBuilder(ruler) {
   
     if (document.querySelector('input#optionDecade').checked == true) {
-        let Pixels.pixelsForDay = null;
-        let Pixels.pixelsForWeek = null;
-        let Pixels.pixelsForMonth = null;
-        let Pixels.pixelsForYear = null;
-        let Pixels.pixelsForDecade = 1;
-        let Pixels.pixelsForCentury = 10;
-        let Pixels.pixelsForMillennium = 100;
-    }
+        ruler.pixelsForDay = null;
+        ruler.pixelsForWeek = null;
+        ruler.pixelsForMonth = null;
+        ruler.pixelsForYear = 1;
+        ruler.pixelsForDecade = 1;
+        ruler.pixelsForCentury = 10;
+        ruler.pixelsForMillennium = 100;
+    }     
+        else if (document.querySelector('input#optionDecade').checked == true) {
+            ruler.pixelsForDay = null;
+            ruler.pixelsForWeek = null;
+            ruler.pixelsForMonth = null;
+            ruler.pixelsForYear = null;
+            ruler.pixelsForDecade = 1;
+            ruler.pixelsForCentury = 10;
+            ruler.pixelsForMillennium = 100;
+        } 
+            else if (document.querySelector('input#optionCentury').checked == true) {
+                ruler.pixelsForDay = null;
+                ruler.pixelsForWeek = null;
+                ruler.pixelsForMonth = null;
+                ruler.pixelsForYear = null;
+                ruler.pixelsForDecade = null;
+                ruler.pixelsForCentury = 1;
+                ruler.pixelsForMillennium = 10;
+            }
+                else if (document.querySelector('input#optionMillennium').checked == true) {
+                    ruler.pixelsForDay = null;
+                    ruler.pixelsForWeek = null;
+                    ruler.pixelsForMonth = null;
+                    ruler.pixelsForYear = null;
+                    ruler.pixelsForDecade = null;
+                    ruler.pixelsForCentury = null;
+                    ruler.pixelsForMillennium = 1;
+                }
+
+    return (Ruler)
 }
 
-function CalculateBar(Date) {
+// CONVERTION REALDATE TO PIXELDATE
 
-    let Date.DateDay = document.querySelector('input#option1').value
-    let Date.DateMonth = document.querySelector('input#option1').value
-    let Date.DateYear = document.querySelector('input#option1').value
+function ConvertionRealdateToPixeldate(timelineRealDate) {
 
-    PixelsByScale (Date)
+    return (timelinePixelDate)
+}
 
+// RECEIVE TIMELINE INPUTS AND CREATE THE TIMELINE BAR
+
+function BarCreation(timelinePixelDate) {
 
 }
