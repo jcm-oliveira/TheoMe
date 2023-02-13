@@ -1,20 +1,11 @@
 const ruler = {
-pixelsForDay: null,
-pixelsForWeek: null,
-pixelsForMonth: null,
-pixelsForYear: 1,
-pixelsForDecade: 1,
-pixelsForCentury: 10,
-pixelsForMillennium: 100
-};
-
-const timelineRealDate = {
-    startDateDay: 1,
-    startDateMonth: 1,
-    startDateYear: -2500,
-    endDateDay: 1,
-    endDateMonth: 1,
-    endDateYear: -2100,
+    pixelsForDay: null,
+    pixelsForWeek: null,
+    pixelsForMonth: null,
+    pixelsForYear: 1,
+    pixelsForDecade: 1,
+    pixelsForCentury: 10,
+    pixelsForMillennium: 100
 };
 
 
@@ -64,9 +55,18 @@ function RulerBuilder(ruler) {
 
 // CONVERTION REALDATE TO PIXELDATE
 
-function ConvertionRealdateToPixeldate(timelineRealDate) {
+function ConvertionRealdateToPixeldate(timelineRealDate, idTimeline) {
+    console.log('Scrit iniciado')    
+    
+    let teste = timelineRealDate * 2
+    console.log(teste)
+    
+    let id = idTimeline
+    console.log(id)
 
-    return (timelinePixelDate)
+    document.querySelector('div#abc').style.left = "500px";
+    document.querySelector('div#abc').style.width = "500px";
+    
 }
 
 // RECEIVE TIMELINE INPUTS AND CREATE THE TIMELINE BAR

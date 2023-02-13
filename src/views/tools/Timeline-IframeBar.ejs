@@ -29,10 +29,12 @@
 
 </head>
 <body>
+
+  <script src="/scripts/Timeline.js"> </script>
+
+  <button onclick="ConvertionRealdateToPixeldate(<%= FamiliaEscolhida.startDateYear %>, <%= FamiliaEscolhida.id %>)">Converter Data</button>
    
     <main id="timeline-iframePanel">
-
-
     
       <div class="timeline-panel">
 
@@ -158,19 +160,18 @@
 
         </div>
 
-
         <div class="timeline-bar-continuous">
           <div class="timeline-name">Períodos teológico</div>
-          <div class="period-time-continuous" style="left:150px; width:100px; background-color: aqua;">Começos</div>
-          <div class="period-time-continuous" style="left:250px; width:100px; background-color: aqua;">A Família Escolhida de Deus</div>
-          <div class="period-time-continuous" style="left:350px; width:100px; background-color: aqua;">Nascimento de Israel</div>
+          <!-- <div class="period-time-continuous" style="left:150px; width:100px; background-color: aqua;">Começos</div> -->
+          <div class="period-time-continuous" id="<%= FamiliaEscolhida.id %>" style=" background-color: aqua;">A Família Escolhida de Deus</div>
+          <!-- <div class="period-time-continuous" style="left:350px; width:100px; background-color: aqua;">Nascimento de Israel</div>
           <div class="period-time-continuous" style="left:450px; width:100px; background-color: aqua;">A Posse da Terra</div>
           <div class="period-time-continuous" style="left:550px; width:100px; background-color: aqua;">Monarquia Unida</div>
           <div class="period-time-continuous" style="left:650px; width:100px; background-color: aqua;">Nação fragmentada</div>
           <div class="period-time-continuous" style="left:750px; width:100px; background-color: aqua;">Exílio</div>
           <div class="period-time-continuous" style="left:850px; width:100px; background-color: aqua;">Retorno e Diáspora</div>
           <div class="period-time-continuous" style="left:950px; width:100px; background-color: aqua;">Jesus Cristo</div>
-          <div class="period-time-continuous" style="left:150px; width:150px; background-color: aqua;">A igreja</div>
+          <div class="period-time-continuous" style="left:150px; width:150px; background-color: aqua;">A igreja</div> -->
         </div>
     
         <div class="timeline-bar">

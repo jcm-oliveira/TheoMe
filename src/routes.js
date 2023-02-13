@@ -1,8 +1,22 @@
 express = require('express');
 const routes = express.Router()
 
-
 const views = __dirname + "/views/"
+
+// OBJECT
+
+const FamiliaEscolhida = {
+    id: "abc",
+    startDateDay: 1,
+    startDateMonth: 1,
+    startDateYear: 200,
+    endDateDay: 1,
+    endDateMonth: 1,
+    endDateYear: -1800,
+    period: 300
+}
+
+// ROUTES
 
 routes.get('/', (req,res) => res.render(views + "index"));
 
@@ -15,7 +29,8 @@ routes.get('/SchemaOfContent-ChronologicalDashboard', (req,res) => res.render(vi
 routes.get('/SchemaOfContent-ChronologicalPage', (req,res) => res.render(views + "tools/SchemaOfContent-ChronologicalPage"));
 routes.get('/ChronologicalEvents', (req,res) => res.render(views + "tools/ChronologicalEvents"));
 routes.get('/Timeline', (req,res) => res.render(views + "tools/Timeline"));
-routes.get('/Timeline-IframeBar.ejs', (req,res) => res.render(views + "tools/Timeline-IframeBar.ejs"));
+routes.get('/Timeline-IframeBar.ejs', (req,res) => res.render(views + "tools/Timeline-IframeBar.ejs", { FamiliaEscolhida }));
+
 
 // LIBRARY
 routes.get('/Library-MainPage', (req,res) => res.render(views + "library/Library-MainPage"));
@@ -96,8 +111,6 @@ routes.get('/cms-BannerSlider-Q', (req,res) => res.render(views + "cms/cms-Banne
 routes.get('/cms-BannerSlider-C', (req,res) => res.render(views + "cms/cms-BannerSlider-C"));
 
 routes.get('/cms-InstitutionalVideo-C', (req,res) => res.render(views + "cms/cms-InstitutionalVideo-C"));
-
-
 
 
 module.exports = routes;
