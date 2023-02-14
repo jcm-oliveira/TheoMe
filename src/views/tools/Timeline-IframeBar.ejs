@@ -32,7 +32,7 @@
 
   <script src="/scripts/Timeline.js"> </script>
 
-  <button onclick="ConvertionRealdateToPixeldate(<%= FamiliaEscolhida.startDateYear %>, <%= FamiliaEscolhida.id %>)">Converter Data</button>
+  <button onclick="ConvertionRealdateToPixeldate(<%= Period.id %>, <%= Period.startDateYear %>, <%= Period.duration %>)">Converter Data</button>
    
     <main id="timeline-iframePanel">
     
@@ -163,7 +163,7 @@
         <div class="timeline-bar-continuous">
           <div class="timeline-name">Períodos teológico</div>
           <!-- <div class="period-time-continuous" style="left:150px; width:100px; background-color: aqua;">Começos</div> -->
-          <div class="period-time-continuous" id="<%= FamiliaEscolhida.id %>" style=" background-color: aqua;">A Família Escolhida de Deus</div>
+          <div class="period-time-continuous" id="<%= Period.id %>" style=" background-color:<%= Period.backgroundcolor %>"><%= Period.name %></div>
           <!-- <div class="period-time-continuous" style="left:350px; width:100px; background-color: aqua;">Nascimento de Israel</div>
           <div class="period-time-continuous" style="left:450px; width:100px; background-color: aqua;">A Posse da Terra</div>
           <div class="period-time-continuous" style="left:550px; width:100px; background-color: aqua;">Monarquia Unida</div>

@@ -55,18 +55,19 @@ function RulerBuilder(ruler) {
 
 // CONVERTION REALDATE TO PIXELDATE
 
-function ConvertionRealdateToPixeldate(timelineRealDate, idTimeline) {
+function ConvertionRealdateToPixeldate(idPeriod, timelineRealDate, duration) {
     console.log('Scrit iniciado')    
     
-    let teste = timelineRealDate * 2
-    console.log(teste)
-    
-    let id = idTimeline
-    console.log(id)
+    console.log(idPeriod.id)
+    console.log(timelineRealDate)
+    console.log(duration)
 
-    document.querySelector('div#abc').style.left = "500px";
-    document.querySelector('div#abc').style.width = "500px";
-    
+    let timePixelDate = (150 * timelineRealDate) / -3000
+    console.log(timePixelDate)
+
+    document.getElementById(idPeriod.id).style.left = timePixelDate + "px";
+    document.getElementById(idPeriod.id).style.width = duration + "px";
+
 }
 
 // RECEIVE TIMELINE INPUTS AND CREATE THE TIMELINE BAR

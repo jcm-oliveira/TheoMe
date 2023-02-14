@@ -5,15 +5,17 @@ const views = __dirname + "/views/"
 
 // OBJECT
 
-const FamiliaEscolhida = {
+const Period = {
     id: "abc",
+    name: "A Família Escolhida de Deus",
     startDateDay: 1,
     startDateMonth: 1,
-    startDateYear: 200,
+    startDateYear: -2100,
     endDateDay: 1,
     endDateMonth: 1,
     endDateYear: -1800,
-    period: 300
+    duration: 300,
+    backgroundcolor: "#ffff11",
 }
 
 // ROUTES
@@ -29,7 +31,7 @@ routes.get('/SchemaOfContent-ChronologicalDashboard', (req,res) => res.render(vi
 routes.get('/SchemaOfContent-ChronologicalPage', (req,res) => res.render(views + "tools/SchemaOfContent-ChronologicalPage"));
 routes.get('/ChronologicalEvents', (req,res) => res.render(views + "tools/ChronologicalEvents"));
 routes.get('/Timeline', (req,res) => res.render(views + "tools/Timeline"));
-routes.get('/Timeline-IframeBar.ejs', (req,res) => res.render(views + "tools/Timeline-IframeBar.ejs", { FamiliaEscolhida }));
+routes.get('/Timeline-IframeBar.ejs', (req,res) => res.render(views + "tools/Timeline-IframeBar.ejs", { Period }));
 
 
 // LIBRARY
