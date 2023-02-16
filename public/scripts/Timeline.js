@@ -62,7 +62,9 @@ function ConvertionRealdateToPixeldate(idPeriod, timelineRealDate, duration) {
     console.log(timelineRealDate)
     console.log(duration)
 
-    let timePixelDate = (150 * timelineRealDate) / -3000
+    let marginTitle = 150
+    let minimunScaleRule = -3000
+    let timePixelDate = (timelineRealDate - minimunScaleRule) + marginTitle
     console.log(timePixelDate)
 
     document.getElementById(idPeriod.id).style.left = timePixelDate + "px";
