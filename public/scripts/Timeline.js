@@ -77,3 +77,9 @@ function ConvertionRealdateToPixeldate(idPeriod, timelineRealDate, duration) {
 function BarCreation(timelinePixelDate) {
 
 }
+
+// CHECK IF THE BAR IS CONTINUOUS OR EXPANDED
+
+function BarCreation(timelinePixelDate) {
+
+}

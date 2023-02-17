@@ -16,6 +16,7 @@ const Period = {
     endDateYear: -1800,
     duration: 300,
     backgroundcolor: "#ffff11",
+    visualization: "period-time-continuous",
 }
 
 // ROUTES
