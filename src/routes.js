@@ -5,19 +5,48 @@ const views = __dirname + "/views/"
 
 // OBJECT
 
-const Period = {
-    id: "abc",
-    name: "A Família Escolhida de Deus",
-    startDateDay: 1,
-    startDateMonth: 1,
-    startDateYear: -2100,
-    endDateDay: 1,
-    endDateMonth: 1,
-    endDateYear: -1800,
-    duration: 300,
-    backgroundcolor: "#ffff11",
-    visualization: "period-time-continuous",
-}
+const Period = [
+    {
+        id: "a",
+        name: "A Família Escolhida de Deus",
+        startDateDay: 1,
+        startDateMonth: 1,
+        startDateYear: -2100,
+        endDateDay: 1,
+        endDateMonth: 1,
+        endDateYear: -1800,
+        duration: 300,
+        backgroundcolor: "#483D8B",
+        visualization: "period-time-continuous",
+    },
+    {
+        id: "b",
+        name: "Nascimento de Israel",
+        startDateDay: 1,
+        startDateMonth: 1,
+        startDateYear: -1800,
+        endDateDay: 1,
+        endDateMonth: 1,
+        endDateYear: -1406,
+        duration: 394,
+        backgroundcolor: "#BDB76B",
+        visualization: "period-time-continuous",
+    },
+    {
+        id: "c",
+        name: "A posse da terra",
+        startDateDay: 1,
+        startDateMonth: 1,
+        startDateYear: -1406,
+        endDateDay: 1,
+        endDateMonth: 1,
+        endDateYear: -1050,
+        duration: 356,
+        backgroundcolor: "#9370DB",
+        visualization: "period-time-continuous",
+    }
+]
+
 
 // ROUTES
 
