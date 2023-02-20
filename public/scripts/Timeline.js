@@ -53,6 +53,13 @@ function RulerBuilder(ruler) {
     return (Ruler)
 }
 
+
+//GENERATE TIMELINE
+
+
+
+
+
 // CONVERTION REALDATE TO PIXELDATE
 
 function ConvertionRealdateToPixeldate(idPeriod, timelineRealDate, duration) {
