@@ -92,10 +92,14 @@ main#timeline-iframePanel{
 
 .timeline-continuous {
     display:flex;
+    padding: 20px;
+    background-color: rgb(109, 128, 157);
 }
 
 .timeline-expanded {
     display:block;
+    padding: 20px;
+    background-color: rgb(109, 128, 157);
  }
 
 .period-continuous, .period-expanded {
