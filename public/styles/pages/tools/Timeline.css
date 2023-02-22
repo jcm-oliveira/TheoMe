@@ -86,7 +86,8 @@ main#timeline-iframePanel{
 
 .timelinesOrganization {
     display:flex;
-    padding: 100px;
+    padding: 20px;
+    background-color: aquamarine;
 }
 
 .timeline-continuous {
