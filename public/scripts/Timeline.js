@@ -63,8 +63,7 @@ function RulerBuilder(ruler) {
 // CONVERTION REALDATE TO PIXELDATE
 
 function ConvertionRealdateToPixeldate(idPeriod, timelineRealDate, duration) {
-    console.log('Scrit iniciado')    
-    
+    console.log('Script iniciado')   
     console.log(idPeriod.id)
     console.log(timelineRealDate)
     console.log(duration)

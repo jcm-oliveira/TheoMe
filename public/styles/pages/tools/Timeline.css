@@ -84,14 +84,20 @@ main#timeline-iframePanel{
     left: 0px;
 }
 
-.timeline-bar-continuous {
-   display:flex;
+.timelinesOrganization {
+    display:flex;
+    padding: 100px;
 }
 
-.timeline-bar-expanded {
+.timeline-continuous {
+    display:flex;
+}
+
+.timeline-expanded {
     display:block;
  }
-.period-time-continuous, .period-time-expanded {
+
+.period-continuous, .period-expanded {
     display: flex;   
     align-items: center;
     height: 32px;   
@@ -101,10 +107,10 @@ main#timeline-iframePanel{
     cursor: pointer;
 }
 
-.period-time-continuous {
+.period-continuous {
     position: absolute;
 }
 
-.period-time-expanded {    
+.period-expanded {    
     position: relative;
 }

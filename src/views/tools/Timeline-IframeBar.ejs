@@ -163,30 +163,14 @@
           </div>
 
         </div>
+  
 
-        <div class="timeline-bar-continuous">
-          <div class="timeline-name">Períodos teológico</div>
-
-          <% Period.forEach((Period) => { %>
-            <div class="<%= Period.visualization %>" id="<%= Period.id %>" style=" background-color:<%= Period.backgroundcolor %>"><%= Period.name %></div>
-          <% }) %>
-
-        </div>
-    
-        <div class="timeline-bar">
-          <div class="timeline-name">Livros Bíblicos</div>
-          <div class="period-time-expanded" style="left:150px; width:150px; background-color: rgb(255, 0, 212);">Gênesis</div>
-          <div class="period-time-expanded" style="left:150px; width:150px; background-color: rgb(255, 0, 212);">Êxodo</div>
-          <div class="period-time-expanded" style="left:150px; width:150px; background-color: rgb(255, 0, 212);">Levídico</div>
-          <div class="period-time-expanded" style="left:150px; width:150px; background-color: rgb(255, 0, 212);">Números</div>
-          <div class="period-time-expanded" style="left:150px; width:150px; background-color: rgb(255, 0, 212);">Deuteronômio</div>
-          <div class="period-time-expanded" style="left:150px; width:150px; background-color: rgb(255, 0, 212);">Josué</div>
-          <div class="period-time-expanded" style="left:150px; width:150px; background-color: rgb(255, 0, 212);">Juízes</div>
-          <div class="period-time-expanded" style="left:150px; width:150px; background-color: rgb(255, 0, 212);">Rute</div>
-          <div class="period-time-expanded" style="left:150px; width:150px; background-color: rgb(255, 0, 212);">I Samuel</div>
-          <div class="period-time-expanded" style="left:150px; width:150px; background-color: rgb(255, 0, 212);">II Samuel</div>
-        </div>
-    
+      <div class="timelinesOrganization">
+          <div class="<%= Period.timelineVisualization %>">
+              <% Period.forEach((Period) => { %>                 
+                  <div class="<%= Period.periodVisualization %>" id="<%= Period.id %>" style=" background-color:<%= Period.backgroundcolor %>"><%= Period.name %></div>              
+              <% }) %>
+          </div>
       </div>
     
     </main>
