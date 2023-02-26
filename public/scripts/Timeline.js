@@ -56,7 +56,9 @@ function RulerBuilder(ruler) {
 
 //GENERATE TIMELINE
 
-
+function teste (Period)  {
+    console.log("teste");
+}
 
 
 

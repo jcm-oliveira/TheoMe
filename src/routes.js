@@ -10,7 +10,7 @@ const Period = [
     {
         id: "a",
         name: "A Família Escolhida de Deus",
-        timelineCode: 1,
+        timelineId: 1,
         timelineName:"Períodos teológicos",
         startDateDay: 1,
         startDateMonth: 1,
@@ -26,7 +26,7 @@ const Period = [
     {
         id: "b",
         name: "Nascimento de Israel",
-        timelineCode: 2,
+        timelineId: 1,
         timelineName:"Períodos teológicos",
         startDateDay: 1,
         startDateMonth: 1,
@@ -42,7 +42,7 @@ const Period = [
     {
         id: "c",
         name: "A posse da terra",
-        timelineCode: 1,
+        timelineId: 1,
         timelineName:"Períodos teológicos",
         startDateDay: 1,
         startDateMonth: 1,
@@ -59,7 +59,7 @@ const Period = [
     {
         id: "d",
         name: "Gênesis",
-        timelineCode: 2,
+        timelineId: 2,
         timelineName:"Bible Books",
         startDateDay: 1,
         startDateMonth: 1,
@@ -75,7 +75,7 @@ const Period = [
     {
         id: "e",
         name: "Êxodo",
-        timelineCode: 2,
+        timelineId: 2,
         timelineName:"Bible Books",
         startDateDay: 1,
         startDateMonth: 1,
@@ -91,7 +91,7 @@ const Period = [
     {
         id: "f",
         name: "Levídico",
-        timelineCode: 2,
+        timelineId: 2,
         timelineName:"Bible Books",
         startDateDay: 1,
         startDateMonth: 1,
@@ -105,7 +105,6 @@ const Period = [
         periodVisualization: "period-expanded",
     },
 ]
-
 
 // ROUTES
 

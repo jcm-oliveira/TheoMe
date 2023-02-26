@@ -32,11 +32,7 @@
 
   <script src="/scripts/Timeline.js"> </script>
 
-  <button onclick="ConvertionRealdateToPixeldate(
-        
-    <%= Period.id %>, <%= Period.startDateYear %>, <%= Period.duration %>
-        
-    )">Converter Data</button>
+  <button onclick="ConvertionRealdateToPixeldate( <%= Period[2].id %>, <%= Period[2].startDateYear %>, <%= Period[2].duration %>)">Converter Data</button>
    
     <main id="timeline-iframePanel">
     
@@ -163,14 +159,21 @@
           </div>
 
         </div>
-  
 
-      <div class="timelinesOrganization">
+        <h1><%= Period[2].startDateYear %></h1> 
+
+      <div class="timelinesOrganization">      
+
           <div class="<%= Period.timelineVisualization %>">
-              <% Period.forEach((Period) => { %>                 
-                  <div class="<%= Period.periodVisualization %>" id="<%= Period.id %>" style=" background-color:<%= Period.backgroundcolor %>"><%= Period.name %></div>              
-              <% }) %>
+
+            <% Period.forEach((Period) => { %>
+
+              <div class="<%= Period.periodVisualization %>" id="<%= Period.id %>" style=" background-color:<%= Period.backgroundcolor %>"><%= Period.name %></div>                  
+            
+            <% }) %>
+
           </div>
+
       </div>
     
     </main>
