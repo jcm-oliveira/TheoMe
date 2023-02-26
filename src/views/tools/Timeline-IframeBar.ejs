@@ -160,16 +160,23 @@
 
         </div>
 
-        <h1><%= Period[2].startDateYear %></h1> 
+        <h1><%= Period[2].startDateYear %></h1>
 
-      <div class="timelinesOrganization">      
+        <% const filteredPeriod = Period.filter((period) => { %>			
+          <% if (period.timelieId === "1") { return period } %>
+        <% }) %>
 
-          <div class="<%= Period.timelineVisualization %>">
+        <h2><%= filteredPeriod.startDateYear %></h2>
 
+
+
+
+
+
+      <div class="timelinesOrganization">
+          <div class="<%= Period.timelineVisualization %>">            
             <% Period.forEach((Period) => { %>
-
-              <div class="<%= Period.periodVisualization %>" id="<%= Period.id %>" style=" background-color:<%= Period.backgroundcolor %>"><%= Period.name %></div>                  
-            
+              <div class="<%= Period.periodVisualization %>" id="<%= Period.id %>" style=" background-color:<%= Period.backgroundcolor %>"><%= Period.name %></div>            
             <% }) %>
 
           </div>
