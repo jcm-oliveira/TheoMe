@@ -160,28 +160,28 @@
 
         </div>
 
-        <h1><%= Period[2].startDateYear %></h1>
-
-        <% const filteredPeriod = Period.filter((period) => { %>			
-          <% if (period.timelieId === "1") { return period } %>
+   <% for (let i = 0; i < 3; i++) { %>
+        
+        <% const filteredPeriod = Period.filter((period) => { %>
+          			
+          <% if (period.timelineId == i) { return period } %>
         <% }) %>
 
-        <h2><%= filteredPeriod.startDateYear %></h2>
-
-
-
-
-
-
-      <div class="timelinesOrganization">
-          <div class="<%= Period.timelineVisualization %>">            
-            <% Period.forEach((Period) => { %>
-              <div class="<%= Period.periodVisualization %>" id="<%= Period.id %>" style=" background-color:<%= Period.backgroundcolor %>"><%= Period.name %></div>            
+        <div class="timelinesOrganization">
+          <div class="<%= Period.timelineVisualization %>"> 
+            <% filteredPeriod.forEach((filteredPeriod) => { %>
+              <div class="<%= filteredPeriod.periodVisualization %>" id="<%= filteredPeriod.id %>" style=" background-color:<%= filteredPeriod.backgroundcolor %>"><%= filteredPeriod.name %></div>            
             <% }) %>
-
-          </div>
-
+        </div>
       </div>
+
+  <% } %>
+
+
+
+
+
+
     
     </main>
     
