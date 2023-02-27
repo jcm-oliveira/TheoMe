@@ -169,10 +169,10 @@
 
         <div class="timelinesOrganization">
           <div class="<%= Period.timelineVisualization %>"> 
-            <% filteredPeriod.forEach((filteredPeriod) => { %>
-              <div class="<%= filteredPeriod.periodVisualization %>" id="<%= filteredPeriod.id %>" style=" background-color:<%= filteredPeriod.backgroundcolor %>"><%= filteredPeriod.name %></div>            
-            <% }) %>
-        </div>
+              <% filteredPeriod.forEach((filteredPeriod) => { %>
+                <div class="<%= filteredPeriod.periodVisualization %>" id="<%= filteredPeriod.id %>" style=" background-color:<%= filteredPeriod.backgroundcolor %>"><%= filteredPeriod.name %></div>            
+              <% }) %>
+          </div>
       </div>
 
   <% } %>
