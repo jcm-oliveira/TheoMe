@@ -56,9 +56,6 @@ function RulerBuilder(ruler) {
 
 //GENERATE TIMELINE
 
-function teste (Period)  {
-    console.log("teste");
-}
 
 
 
@@ -71,7 +68,7 @@ function ConvertionRealdateToPixeldate(idPeriod, timelineRealDate, duration) {
     console.log(duration)
 
     let marginTitle = 150
-    let minimunScaleRule = -3000
+    let minimunScaleRule = -2500
     let timePixelDate = (timelineRealDate - minimunScaleRule) + marginTitle
     console.log(timePixelDate)
 
