@@ -106,6 +106,7 @@ const Period = [
     },
 ]
 
+
 // ROUTES
 
 routes.get('/', (req,res) => res.render(views + "index"));
@@ -120,6 +121,8 @@ routes.get('/SchemaOfContent-ChronologicalPage', (req,res) => res.render(views +
 routes.get('/ChronologicalEvents', (req,res) => res.render(views + "tools/ChronologicalEvents"));
 routes.get('/Timeline', (req,res) => res.render(views + "tools/Timeline"));
 routes.get('/Timeline-IframeBar.ejs', (req,res) => res.render(views + "tools/Timeline-IframeBar.ejs", { Period }));
+
+routes.get('/Timeline.js', (req,res) => res.render("scripts/Timeline.js", { Period }));
 
 
 // LIBRARY

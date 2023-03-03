@@ -1,61 +1,20 @@
-const ruler = {
-    pixelsForDay: null,
-    pixelsForWeek: null,
-    pixelsForMonth: null,
-    pixelsForYear: 1,
-    pixelsForDecade: 1,
-    pixelsForCentury: 10,
-    pixelsForMillennium: 100
-};
 
 
 // CHECK THE SCALE RULER OPTION SELECTED AND BUILD THE RULER
 
-function RulerBuilder(ruler) {
-  
-    if (document.querySelector('input#optionDecade').checked == true) {
-        ruler.pixelsForDay = null;
-        ruler.pixelsForWeek = null;
-        ruler.pixelsForMonth = null;
-        ruler.pixelsForYear = 1;
-        ruler.pixelsForDecade = 1;
-        ruler.pixelsForCentury = 10;
-        ruler.pixelsForMillennium = 100;
-    }     
-        else if (document.querySelector('input#optionDecade').checked == true) {
-            ruler.pixelsForDay = null;
-            ruler.pixelsForWeek = null;
-            ruler.pixelsForMonth = null;
-            ruler.pixelsForYear = null;
-            ruler.pixelsForDecade = 1;
-            ruler.pixelsForCentury = 10;
-            ruler.pixelsForMillennium = 100;
-        } 
-            else if (document.querySelector('input#optionCentury').checked == true) {
-                ruler.pixelsForDay = null;
-                ruler.pixelsForWeek = null;
-                ruler.pixelsForMonth = null;
-                ruler.pixelsForYear = null;
-                ruler.pixelsForDecade = null;
-                ruler.pixelsForCentury = 1;
-                ruler.pixelsForMillennium = 10;
-            }
-                else if (document.querySelector('input#optionMillennium').checked == true) {
-                    ruler.pixelsForDay = null;
-                    ruler.pixelsForWeek = null;
-                    ruler.pixelsForMonth = null;
-                    ruler.pixelsForYear = null;
-                    ruler.pixelsForDecade = null;
-                    ruler.pixelsForCentury = null;
-                    ruler.pixelsForMillennium = 1;
-                }
 
-    return (Ruler)
-}
 
 
 //GENERATE TIMELINE
 
+import {Period} from '../scripts/database.js'
+
+console.log(Period)
+
+function teste(oi)  {
+    console.log("entrou no teste");
+    console.log(oi);
+}
 
 
 
@@ -68,7 +27,7 @@ function ConvertionRealdateToPixeldate(idPeriod, timelineRealDate, duration) {
     console.log(duration)
 
     let marginTitle = 150
-    let minimunScaleRule = -2500
+    let minimunScaleRule = -2100
     let timePixelDate = (timelineRealDate - minimunScaleRule) + marginTitle
     console.log(timePixelDate)
 
@@ -79,12 +38,7 @@ function ConvertionRealdateToPixeldate(idPeriod, timelineRealDate, duration) {
 
 // RECEIVE TIMELINE INPUTS AND CREATE THE TIMELINE BAR
 
-function BarCreation(timelinePixelDate) {
 
-}
 
 // CHECK IF THE BAR IS CONTINUOUS OR EXPANDED
 
-function BarCreation(timelinePixelDate) {
-
-}
