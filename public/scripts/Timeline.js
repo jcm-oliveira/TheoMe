@@ -1,6 +1,5 @@
 import {Period} from '../scripts/database.js'
 
-
 // CONVERTION REALDATE TO PIXELDATE
 
 for (let i = 0; i < 7; i++) {
