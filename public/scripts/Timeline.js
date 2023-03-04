@@ -1,24 +1,9 @@
-
-
-// CHECK THE SCALE RULER OPTION SELECTED AND BUILD THE RULER
-
-
-
-
-//GENERATE TIMELINE
-
 import {Period} from '../scripts/database.js'
-
-console.log(Period)
-
-function teste(oi)  {
-    console.log("entrou no teste");
-    console.log(oi);
-}
-
 
 
 // CONVERTION REALDATE TO PIXELDATE
+
+// ConvertionRealdateToPixeldate(Period[0].id, Period[0].startDateYear, Period[0].duration)
 
 function ConvertionRealdateToPixeldate(idPeriod, timelineRealDate, duration) {
     console.log('Script iniciado')   
@@ -36,9 +21,5 @@ function ConvertionRealdateToPixeldate(idPeriod, timelineRealDate, duration) {
 
 }
 
-// RECEIVE TIMELINE INPUTS AND CREATE THE TIMELINE BAR
 
-
-
-// CHECK IF THE BAR IS CONTINUOUS OR EXPANDED
 
