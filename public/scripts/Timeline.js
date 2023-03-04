@@ -3,11 +3,13 @@ import {Period} from '../scripts/database.js'
 
 // CONVERTION REALDATE TO PIXELDATE
 
-// ConvertionRealdateToPixeldate(Period[0].id, Period[0].startDateYear, Period[0].duration)
+for (let i = 0; i < 7; i++) {
+    ConvertionRealdateToPixeldate(Period[i].id, Period[i].startDateYear, Period[i].duration)
+}
 
 function ConvertionRealdateToPixeldate(idPeriod, timelineRealDate, duration) {
     console.log('Script iniciado')   
-    console.log(idPeriod.id)
+    console.log(idPeriod)
     console.log(timelineRealDate)
     console.log(duration)
 
@@ -16,9 +18,8 @@ function ConvertionRealdateToPixeldate(idPeriod, timelineRealDate, duration) {
     let timePixelDate = (timelineRealDate - minimunScaleRule) + marginTitle
     console.log(timePixelDate)
 
-    document.getElementById(idPeriod.id).style.left = timePixelDate + "px";
-    document.getElementById(idPeriod.id).style.width = duration + "px";
-
+    document.getElementById(idPeriod).style.left = timePixelDate + "px";
+    document.getElementById(idPeriod).style.width = duration + "px";
 }
 
 

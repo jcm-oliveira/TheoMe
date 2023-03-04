@@ -30,12 +30,9 @@
 </head>
 <body>
 
-  <script type="module" src="/scripts/Timeline.js"> </script>
+  <script type="module" src="/scripts/Timeline.js"></script>
 
-  <button onclick="ConvertionRealdateToPixeldate( <%= Period[0].id %>, <%= Period[0].startDateYear %>, <%= Period[0].duration %>)">Converter Data</button>
-
-  
-    <main id="timeline-iframePanel">
+   <main id="timeline-iframePanel">
     
       <div class="timeline-panel">
 
@@ -160,24 +157,24 @@
           </div>
 
         </div>
-
-   <% for (let i = 1; i < 3; i++) { %>
-        
-        <% const filteredPeriod = Period.filter((period) => { %>
-          			
-          <% if (period.timelineId == i) { return period } %>
-        <% }) %>
-
-        <div class="timelinesOrganization">
-          <div class="<%= Period.timelineVisualization %>"> 
-              <% filteredPeriod.forEach((filteredPeriod) => { %>
-                <div class="<%= filteredPeriod.periodVisualization %>" id="<%= filteredPeriod.id %>" style=" background-color:<%= filteredPeriod.backgroundcolor %>"><%= filteredPeriod.name %></div>            
+      
+        <% for (let i = 1; i < 3; i++) { %>
+              
+              <% const filteredPeriod = Period.filter((period) => { %>
+                      
+                <% if (period.timelineId == i) { return period } %>
               <% }) %>
-          </div>
-      </div>
 
-  <% } %>
+              <div class="timelinesOrganization">
+                <div class="<%= Period.timelineVisualization %>"> 
+                    <% filteredPeriod.forEach((filteredPeriod) => { %>
+                      <div class="<%= filteredPeriod.periodVisualization %>" id="<%= filteredPeriod.id %>" style=" background-color:<%= filteredPeriod.backgroundcolor %>"><%= filteredPeriod.name %></div>            
+                    <% }) %>
+                </div>
+            </div>
+
+        <% } %>
     
-    </main>
+  </main>
     
 </body>
