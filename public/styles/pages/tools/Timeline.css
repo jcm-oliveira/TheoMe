@@ -85,14 +85,14 @@ main#timeline-iframePanel{
 }
 
 .timelinesOrganization {
-    display:flex;
+    /* display:flex; */
+    margin: 20px;
     padding: 20px;
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
 }
 
 .timeline-continuous {
     display:flex;
-    padding: 20px;
     background-color: rgb(109, 128, 157);
 }
 

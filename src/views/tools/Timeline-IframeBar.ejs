@@ -157,18 +157,20 @@
           </div>
 
         </div>
+
+       
       
         <% for (let i = 1; i < 3; i++) { %>
               
-              <% const filteredPeriod = Period.filter((period) => { %>
-                      
+              <% const filteredPeriod = Period.filter((period) => { %>                      
                 <% if (period.timelineId == i) { return period } %>
               <% }) %>
 
-              <div class="timelinesOrganization">
+              <div class="timelinesOrganization" style="background-color:<%= filteredPeriod[i].backgroundcolor %>">
+                <p><%= filteredPeriod[i].timelineName %></p>
                 <div class="<%= Period.timelineVisualization %>"> 
                     <% filteredPeriod.forEach((filteredPeriod) => { %>
-                      <div class="<%= filteredPeriod.periodVisualization %>" id="<%= filteredPeriod.id %>" style=" background-color:<%= filteredPeriod.backgroundcolor %>"><%= filteredPeriod.name %></div>            
+                      <div class="<%= filteredPeriod.periodVisualization %>" id="<%= filteredPeriod.id %>" style=" background-color:<%= filteredPeriod.barColor %>"><%= filteredPeriod.name %></div>            
                     <% }) %>
                 </div>
             </div>
