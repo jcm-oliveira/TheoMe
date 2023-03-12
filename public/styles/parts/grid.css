@@ -1,4 +1,7 @@
 
+
+ /* STANDARD GRID TO FORMS */
+
 .item-option {
      text-align: left;
      vertical-align:middle;
@@ -12,8 +15,22 @@
     padding: 0 8px;
 }
 
+.item-option i:hover {
+    color: #259970;
+}
+
 .item-option:hover {
     box-shadow: none;  
-    background: rgb(223, 223, 223);
     transition: 0.2s ease-in;    
+}
+
+/* GRID TO BIBLE READING VIEW*/
+
+.versusNumber {
+    vertical-align: top;
+    width: 30px;
+}
+
+.subjectTitle {
+    font-weight: bold;
 }

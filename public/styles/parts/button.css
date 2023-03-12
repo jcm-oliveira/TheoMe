@@ -96,3 +96,25 @@ button.btn.btn-success:hover {
     margin: 0;
     background-color:#dee7ef;
 }
+
+/* LIBRARY BAR BUTTON */
+
+.readingbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.libraryiconbar {
+    display:flex;
+    align-items: center;
+}
+
+.libraryiconbar a {
+    color: #5A6268;
+    font-size: 18px;
+    padding: 0px 8px;
+}
+
+.libraryiconbar a:hover {
+    color: #259970;
+}
