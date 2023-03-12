@@ -91,3 +91,8 @@ button.btn.btn-success:hover {
     margin: 0;
     padding: 20px 0px 20px 0px;
 }
+
+.timelineScaleButton label.btn{
+    margin: 0;
+    background-color:#dee7ef;
+}

@@ -27,7 +27,9 @@ h3.card-title {
     text-align:center;
 }
 
-
-
+td.SubjectSelection:hover {
+    color: #4F768B;
+    text-decoration: underline;
+}
 
 
