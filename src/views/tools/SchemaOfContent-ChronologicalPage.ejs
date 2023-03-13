@@ -53,7 +53,30 @@
 
       <main>
 
-        <h1>Nascimento Israel</h1>
+        <div class="barbutton">
+          <a href="#">
+            <div class="button-frame" data-toggle="tooltip" title="Menu anterior">
+              <button class="btn btn-primary"><i class="fas fa-arrow-left"></i></button>
+            </div>
+          </a>
+          <a href="#">
+            <div class="button-frame" data-toggle="tooltip" title="Modo de leitura">
+              <button class="btn btn-secondary"><i class="fas fa-expand"></i></button>
+            </div>
+          </a>
+          <a href="#" data-toggle="modal" data-target="#Tools-BibleChronologicalSelectionModal">
+            <div class="button-frame" data-toggle="tooltip" title="Selecionar assunto">
+              <button class="btn btn-secondary"><i class="fas fa-book"></i></button>
+            </div>
+          </a>
+          <a href="#" data-toggle="modal" data-target="#Tools-BibleTranslationModal">
+            <div class="button-frame" data-toggle="tooltip" title="Selecionar/Comparar Versões">
+              <button class="btn btn-secondary" data-toggle="modal" data-target="#"><i class="fas fa-copy"></i></button>
+            </div>
+          </a>
+        </div>
+
+        <h1>O começo de tudo</h1>
 
         <legend>Resumo</legend>
 
@@ -68,16 +91,9 @@
 
         <legend>Esquema de Conteúdo</legend>
 
-        <div class="barbutton">
-          <a href="#">
-            <div class="button-frame">
-              <a href="#" data-toggle="modal" data-target="#Tools-BibleTranslationModal">
-                <button class="btn btn-primary"><i class="fas fa-copy"></i></button>
-              </a>
-            </div>
-          </a>
-          <h4>NTLH - Nova Tradução na Linguagem de Hoje | Português</h4>
-        </div>
+
+        <p class="ReadingBibleVersion"><i class="fas fa-copy"></i>&nbsp NTLH - Nova Tradução na Linguagem de Hoje |
+          Português</p>
 
 
         <div class="routine-table">
@@ -88,7 +104,8 @@
               <th>Itens associados</th>
             </tr>
             <tr>
-              <td class="SubjectSelection"><a href="/ReadingPage">A criação do Universo e da raça humana</td>
+              <td class="SubjectSelection"><a href="/ReadingChronologicalPage">A criação do Universo e da raça humana
+              </td>
               <td>Gênesis 1:1-31, Gênesis 2:1-4</td>
               <td class="item-option">
                 <a href="#" data-toggle="modal" data-target="#Tools-ItemDescriptionModal"><i
@@ -147,6 +164,15 @@
       <%- include('../parts/footer') %>
 
         <!-- MODAL TRIGGERS -->
+
+        <!-- Bible Book Selection -->
+
+        <div class="modal fade" id="Tools-BibleChronologicalSelectionModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <%- include('Tools-BibleChronologicalSelection-I') %>
+          </div>
+        </div>
 
         <!-- Bible Translation -->
 
