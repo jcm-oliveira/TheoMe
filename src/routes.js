@@ -10,6 +10,7 @@ routes.get('/', (req,res) => res.render(views + "index"));
 
 // TOOLS
 routes.get('/Tools-MainPage', (req,res) => res.render(views + "tools/Tools-MainPage"));
+routes.get('/HolyBible', (req,res) => res.render(views + "tools/HolyBible"));
 routes.get('/SchemaOfContent', (req,res) => res.render(views + "tools/SchemaOfContent"));
 routes.get('/SchemaOfContent-BookDashboard', (req,res) => res.render(views + "tools/SchemaOfContent-BookDashboard"));
 routes.get('/SchemaOfContent-BookPage', (req,res) => res.render(views + "tools/SchemaOfContent-BookPage"));
