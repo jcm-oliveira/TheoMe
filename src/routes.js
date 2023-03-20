@@ -11,10 +11,10 @@ routes.get('/', (req,res) => res.render(views + "index"));
 // TOOLS
 routes.get('/Tools-MainPage', (req,res) => res.render(views + "tools/Tools-MainPage"));
 routes.get('/HolyBible', (req,res) => res.render(views + "tools/HolyBible"));
-routes.get('/SchemaOfContent', (req,res) => res.render(views + "tools/SchemaOfContent"));
-routes.get('/SchemaOfContent-BookDashboard', (req,res) => res.render(views + "tools/SchemaOfContent-BookDashboard"));
+routes.get('/BibleTypeSelection', (req,res) => res.render(views + "tools/BibleTypeSelection"));
+routes.get('/BookDashboard', (req,res) => res.render(views + "tools/BookDashboard"));
+routes.get('/ChronologicalDashboard', (req,res) => res.render(views + "tools/ChronologicalDashboard"));
 routes.get('/SchemaOfContent-BookPage', (req,res) => res.render(views + "tools/SchemaOfContent-BookPage"));
-routes.get('/SchemaOfContent-ChronologicalDashboard', (req,res) => res.render(views + "tools/SchemaOfContent-ChronologicalDashboard"));
 routes.get('/SchemaOfContent-ChronologicalPage', (req,res) => res.render(views + "tools/SchemaOfContent-ChronologicalPage"));
 routes.get('/ReadingBookPage', (req,res) => res.render(views + "tools/ReadingBookPage"));
 routes.get('/ReadingChronologicalPage', (req,res) => res.render(views + "tools/ReadingChronologicalPage"));
