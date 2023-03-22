@@ -30,6 +30,7 @@
   <link rel="stylesheet" href="/styles/parts/grid.css" />
   <link rel="stylesheet" href="/styles/pages/tools/SchemaOfContent.css" />
 
+
 </head>
 
 <body>
@@ -48,9 +49,11 @@
 
   <%- include('../parts/header') %>
 
-  <%- include('../parts/menu') %>
+    <%- include('../parts/menu') %>
 
       <main>
+
+        <h1>O começo de tudo</h1>
 
         <div class="barbutton">
           <a href="#">
@@ -63,20 +66,17 @@
               <button class="btn btn-secondary"><i class="fas fa-expand"></i></button>
             </div>
           </a>
-          <a href="#" data-toggle="modal" data-target="#Tools-BibleBookSelectionModal">
-            <div class="button-frame" data-toggle="tooltip" title="Selecionar Livro e Capítulo">
+          <a href="#" data-toggle="modal" data-target="#Tools-BibleChronologicalSelectionModal">
+            <div class="button-frame" data-toggle="tooltip" title="Selecionar assunto">
               <button class="btn btn-secondary"><i class="fas fa-book"></i></button>
             </div>
           </a>
           <a href="#" data-toggle="modal" data-target="#Tools-BibleTranslationModal">
             <div class="button-frame" data-toggle="tooltip" title="Selecionar/Comparar Versões">
-              <button class="btn btn-secondary" data-toggle="modal" data-target="#"><i
-                  class="fas fa-copy"></i></button>
+              <button class="btn btn-secondary" data-toggle="modal" data-target="#"><i class="fas fa-copy"></i></button>
             </div>
           </a>
         </div>
-
-        <h1>Gênesis</h1>
 
         <legend>Resumo</legend>
 
@@ -89,11 +89,17 @@
           nostrum voluptates, reprehenderit similique modi adipisci accusamus consequatur, assumenda necessitatibus ipsa
           inventore dolorem veniam beatae.</p>
 
+        <legend>Dados</legend>
+
+        <p><b>Ano início:</b> -2100</p>
+        <p><b>Ano término:</b> -1800</p>
+        <p><b>Abrangência:</b> 394 Anos</p>
+
         <legend>Esquema de Conteúdo</legend>
 
 
-          <p class="ReadingBibleVersion"><i class="fas fa-copy"></i>&nbsp NTLH - Nova Tradução na Linguagem de Hoje | Português</p>
-
+        <p class="ReadingBibleVersion"><i class="fas fa-copy"></i>&nbsp NTLH - Nova Tradução na Linguagem de Hoje |
+          Português</p>
 
 
         <div class="routine-table">
@@ -104,7 +110,8 @@
               <th>Itens associados</th>
             </tr>
             <tr>
-              <td class="SubjectSelection"><a href="/ReadingBookPage">A criação do Universo e da raça humana</a></td>
+              <td class="SubjectSelection"><a href="/ReadingChronologicalPage">A criação do Universo e da raça humana
+              </td>
               <td>Gênesis 1:1-31, Gênesis 2:1-4</td>
               <td class="item-option">
                 <a href="#" data-toggle="modal" data-target="#Tools-ItemDescriptionModal"><i
@@ -164,14 +171,14 @@
 
         <!-- MODAL TRIGGERS -->
 
-      <!-- Bible Book Selection -->
+        <!-- Bible Book Selection -->
 
-      <div class="modal fade" id="Tools-BibleBookSelectionModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-          <%- include('Tools-BibleBookSelection-I') %>
+        <div class="modal fade" id="Tools-BibleChronologicalSelectionModal" tabindex="-1"
+          aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <%- include('Tools-BibleChronologicalSelection-I') %>
+          </div>
         </div>
-      </div>
 
         <!-- Bible Translation -->
 
