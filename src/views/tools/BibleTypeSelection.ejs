@@ -1,250 +1,253 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
 
   <title>TheoMe</title>
 
-   <!-- Required meta tags -->
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-   <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-   <!-- font -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"/>
-   <!-- icons -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+  <!-- font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <!-- icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 
-   <!-- bootstrap customization -->
-    <link rel="stylesheet" href="/styles/pages/index.css" />
-    <link rel="stylesheet" href="/styles/parts/main.css" />
-    <link rel="stylesheet" href="/styles/parts/header.css" />
-    <link rel="stylesheet" href="/styles/parts/footer.css" />
-    <link rel="stylesheet" href="/styles/parts/navbar.css" />
-    <link rel="stylesheet" href="/styles/parts/button.css" />
-    <link rel="stylesheet" href="/styles/pages/tools/SchemaOfContent.css" />
+  <!-- bootstrap customization -->
+  <link rel="stylesheet" href="/styles/pages/index.css" />
+  <link rel="stylesheet" href="/styles/parts/main.css" />
+  <link rel="stylesheet" href="/styles/parts/header.css" />
+  <link rel="stylesheet" href="/styles/parts/footer.css" />
+  <link rel="stylesheet" href="/styles/parts/navbar.css" />
+  <link rel="stylesheet" href="/styles/parts/button.css" />
+  <link rel="stylesheet" href="/styles/pages/tools/SchemaOfContent.css" />
 
 </head>
+
 <body>
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
 
 
-    <%- include('../parts/header')  %>
+  <%- include('../parts/header') %>
 
-    <%- include('../parts/menu')  %>    
-   
-    <main>
+    <%- include('../parts/menu') %>
+
+      <main>
 
         <h1>Bíblia Sagrada</h1>
-        
-        <p>A organização estruturada e sumarizada dos temas bíblicos torna a busca por determinados assuntos mais fácil. Com resumos de conteúdo e contexto em cada livro e capítulo é possível identificar quais assuntos são abordados em cada parte das sagradas escrituras.</p>
-        <p>Duas opções de visualização estão disponíveis.</p>        
-    
+
+        <p>A organização estruturada e sumarizada dos temas bíblicos torna a busca por determinados assuntos mais fácil.
+          Com resumos de conteúdo e contexto em cada livro e capítulo é possível identificar quais assuntos são
+          abordados em cada parte das sagradas escrituras.</p>
+        <p>Duas opções de visualização estão disponíveis.</p>
+
         <div class="schema-options">
-          
+
+
+        <!-- LITERAL BIBLE -->
+        
+
           <div class="card-margin">
             <div class="card">
               <i class="fas fa-book"></i>
               <div class="card-body">
                 <h3 class="card-title">Livros (Estilo literário)</h3>
-                <p class="card-text">Organização encontrada na bíblia tradicional, separado em livros por estilo literário.</p>
+                <p class="card-text">Organização encontrada na bíblia tradicional, separado em livros por estilo
+                  literário.</p>
+
+
+                <h4>VELHO TESTAMENTO</h4>
+
+                <spam><b>Pentateuco</b></spam>
 
                 <div class="routine-table">
                   <table class="table-sm table-hover">
                     <tr>
-                      <th>Pentateuco</th>
-                      <th></th>
-                    </tr>
-                    <tr>
-                      <td></td>
                       <td><a href="/LandingBookPage">Gênesis</a></td>
                     </tr>
                     <tr>
-                    <tr>
-                      <td></td>
-                      <td><a href="/LandingBookPage">Levítico</a></td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td><a href="/LandingBookPage">Números</a></td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td><a href="/LandingBookPage">Deuteronômio</a></td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td><a href="/LandingBookPage">Deuteronômio</a></td>
-                    </tr>
-
-                    <tr>
-                      <th>Históricos</th>
-                      <th></th>
-                    </tr>
-                    <tr>
-                      <td></td>
                       <td><a href="/LandingBookPage">Êxodo</a></td>
                     </tr>
                     <tr>
-                      <td></td>
-                      <td><a href="/LandingBookPage">Josué</a></td>
+                      <td><a href="/LandingBookPage">Levítico</a></td>
                     </tr>
                     <tr>
-                      <td></td>
-                      <td><a href="/LandingBookPage">Juízes</a></td>
+                      <td><a href="/LandingBookPage">Números</a></td>
                     </tr>
                     <tr>
-                      <td></td>
-                      <td><a href="/LandingBookPage">Rute</a></td>
+                      <td><a href="/LandingBookPage">Deuteronômio</a></td>
                     </tr>
-                    <tr>
-                      <td></td>
-                      <td><a href="/LandingBookPage">1 Samuel</a></td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td><a href="/LandingBookPage">2 Samuel</a></td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td><a href="/LandingBookPage">1 Reis</a></td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td><a href="/LandingBookPage">2 Reis</a></td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td><a href="/LandingBookPage">1 Crônicas</a></td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td><a href="/LandingBookPage">2 Crônicas</a></td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td><a href="/LandingBookPage">Esdras</a></td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td><a href="/LandingBookPage">Neemias</a></td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td><a href="/LandingBookPage">Ester</a></td>
-                    </tr>
-                    
-                    <tr>
-                      <th>Poéticos</th>
-                      <th></th>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td><a href="/LandingBookPage">Jó</a></td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td><a href="/LandingBookPage">Salmos</a></td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td><a href="/LandingBookPage">Provérbios</a></td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td><a href="/LandingBookPage">Eclesiastes</a></td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td><a href="/LandingBookPage">Cânticos</a></td>
-                    </tr>
-                    <tr>
-                      <th>Profetas maiores</th>
-                      <th></th>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td><a href="/LandingBookPage"></a>Isaías</td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td><a href="/LandingBookPage"></a>Lamentações</td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td><a href="/LandingBookPage"></a>Ezequiel</td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td><a href="/LandingBookPage"></a>Daniel</td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td><a href="/LandingBookPage"></a>Oséias</td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td><a href="/LandingBookPage"></a>Joel</td>
-                    </tr>
-
-                    
                   </table>
                 </div>
 
+                <spam><b>Históricos</b></spam>
 
-                <a href="/LandingBookPage">Amós</a>
-                <a href="/LandingBookPage">Obadias</a>
-                <a href="/LandingBookPage">Jonas</a>
-                <a href="/LandingBookPage">Miquéias</a>
-                <a href="/LandingBookPage">Naum</a>
-                <a href="/LandingBookPage">Habacuque</a>
-                <a href="/LandingBookPage">Sofonias</a>
-                <a href="/LandingBookPage">Ageu</a>
-                <a href="/LandingBookPage">Zacarias</a>
-                <a href="/LandingBookPage">Mateus</a>
-                <a href="/LandingBookPage">Marcos</a>
-                <a href="/LandingBookPage">Lucas</a>
-                <a href="/LandingBookPage">João</a>
-                <a href="/LandingBookPage">Atos</a>
-                <a href="/LandingBookPage">Romanos</a>
-                <a href="/LandingBookPage">1 Coríntios</a>
-                <a href="/LandingBookPage">2 Coríntios</a>
-                <a href="/LandingBookPage">Gálatas</a>
-                <a href="/LandingBookPage">Efésios</a>
-                <a href="/LandingBookPage">Filipenses</a>
-                <a href="/LandingBookPage">Colossenses</a>
-                <a href="/LandingBookPage">1 Tessalonicenses</a>
-                <a href="/LandingBookPage">2 Tessalonicenses</a>
-                <a href="/LandingBookPage">1 Timóteo</a>
-                <a href="/LandingBookPage">2 Timóteo</a>
-                <a href="/LandingBookPage">Tito</a>
-                <a href="/LandingBookPage">Filemom</a>
-                <a href="/LandingBookPage">Hebreus</a>
-                <a href="/LandingBookPage">Tiago</a>
-                <a href="/LandingBookPage">1 Pedro</a>
-                <a href="/LandingBookPage">2 Pedro</a>
-                <a href="/LandingBookPage">1 João</a>
-                <a href="/LandingBookPage">2 João</a>
-                <a href="/LandingBookPage">3 João</a>
-                <a href="/LandingBookPage">Judas</a>
-                <a href="/LandingBookPage">Apocalipse</a>
+                <div class="routine-table">
+                  <table class="table-sm table-hover">
+                    <tr>
+                      <td><a href="/LandingBookPage">Êxodo</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage">Josué</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage">Juízes</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage">Rute</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage">1 Samuel</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage">2 Samuel</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage">1 Reis</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage">2 Reis</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage">1 Crônicas</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage">2 Crônicas</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage">Esdras</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage">Neemias</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage">Ester</a></td>
+                    </tr>
+                  </table>
+                </div>
+
+                <spam><b>Poéticos</b></spam>
+
+                <div class="routine-table">
+                  <table class="table-sm table-hover">
+                    <tr>
+                      <td><a href="/LandingBookPage">Jó</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage">Salmos</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage">Provérbios</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage">Eclesiastes</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage">Cânticos</a></td>
+                    </tr>
+                  </table>
+                </div>
+
+                <spam><b>Profetas Maiores</b></spam>
+
+                <div class="routine-table">
+                  <table class="table-sm table-hover">
+                    <tr>
+                      <td><a href="/LandingBookPage"></a>Isaias</td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage"></a>Jeremias</td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage"></a>Lamentações</td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage"></a>Ezequiel</td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage"></a>Daniel</td>
+                    </tr>
+                  </table>
+                </div>
+
+                <spam><b>Profetas Menores</b></spam>
+
+                <div class="routine-table">
+                  <table class="table-sm table-hover">
+                    <tr>
+                      <td><a href="/LandingBookPage"></a>Oséias</td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage"></a>Joel</td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage"></a>Amós</td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage"></a>Obadias</td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage"></a>Jonas</td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage"></a>Miquéias</td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage"></a>Naum</td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage"></a>Habacuque</td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage"></a>Sofonias</td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage"></a>Ageu</td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage"></a>Zacarias</td>
+                    </tr>
+                    <tr>
+                      <td><a href="/LandingBookPage"></a>Malaquias</td>
+                    </tr>
+                  </table>
+                </div>
+
+                <h4>VELHO TESTAMENTO</h4>
+
+                <spam><b>Evangelhos</b></spam>
               </div>
             </div>
           </div>
-          
+
+
+        <!-- CHRONOLOGICAL BIBLE -->
+
+
           <div class="card-margin">
             <div class="card">
               <i class="fas fa-history"></i>
               <div class="card-body">
                 <h3 class="card-title">Cronológico</h3>
-                <p class="card-text">Organização baseada na sequência cronológica dos fatos conforme eles ocorreram.</p>
+                <p class="card-text">Organização baseada na sequência cronológica dos fatos conforme eles
+                  ocorreram.</p>
                 <a href="/LandingChronologicalPage">Nascimento Israel</a>
                 <a href="/LandingChronologicalPage">A Posse da Terra</a>
                 <a href="/LandingChronologicalPage">A Monarquia Unida</a>
@@ -258,8 +261,8 @@
 
         </div>
 
-    </main>
+      </main>
 
-    <%- include('../parts/footer')  %> 
-    
+      <%- include('../parts/footer') %>
+
 </body>
