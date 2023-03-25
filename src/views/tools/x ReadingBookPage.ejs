@@ -29,7 +29,6 @@
   <link rel="stylesheet" href="/styles/parts/button.css" />
   <link rel="stylesheet" href="/styles/parts/grid.css" />
 
-
 </head>
 
 <body>
@@ -53,7 +52,7 @@
       <main>
 
         <div class="readingbar">
-          
+
           <div class="barbutton">
             <a href="#">
               <div class="button-frame" data-toggle="tooltip" title="Menu anterior">
@@ -78,17 +77,21 @@
             </a>
           </div>
 
+
           <div class="libraryiconbar">
+            <a href="#" data-toggle="tooltip" title="Resumo"><i class="fas fa-search"></i></a>
+            <a href="#" data-toggle="tooltip" title="Dados"><i class="fas fa-chart-bar"></i></a>
+            <a href="#" data-toggle="tooltip" title="Leitura do texto bíblico"><i class="fas fa-book-reader"></i></a>
             <a href="#" data-toggle="tooltip" title="Personagens"><i class="fas fa-user-alt"></i></a>
             <a href="#" data-toggle="tooltip" title="Mapas"><i class="fas fa-map-marked-alt"></i></a>
             <a href="#" data-toggle="tooltip" title="Cenáculos"><i class="fas fa-landmark"></i></a>
-            <a href="#" data-toggle="tooltip" title="Infográficos"><i class="fas fa-chart-bar"></i></a>
+            <a href="#" data-toggle="tooltip" title="Infográficos"><i class="fas fa-swatchbook"></i></a>
             <a href="#" data-toggle="tooltip" title="Leis e Cerimônias"><i class="fas fa-balance-scale-right"></i></a>
             <a href="#" data-toggle="tooltip" title="Utensílios, Armas e Ferramentas"><i class="fas fa-hammer"></i></a>
             <a href="#" data-toggle="tooltip" title="Costumes"><i class="fas fa-wine-glass-alt"></i></a>
             <a href="#" data-toggle="tooltip" title="Símbolos"><i class="fas fa-menorah"></i></a>
             <a href="#" data-toggle="tooltip" title="Profecias"><i class="fas fa-sun"></i></a>
-            <a href="#" data-toggle="tooltip" title="Passagens mais conhecidas"><i class="fas fa-highlighter"></i></a>            
+            <a href="#" data-toggle="tooltip" title="Passagens mais conhecidas"><i class="fas fa-highlighter"></i></a>
             <a href="#" data-toggle="tooltip" title="Louvores"><i class="fas fa-music"></i></a>
             <a href="#" data-toggle="tooltip" title="Glossário"><i class="fas fa-spell-check"></i></a>
           </div>
@@ -96,7 +99,7 @@
         </div>
 
 
-        <h1>Gênesis 1</h1>
+        <h2>Capítulo 1</h2>
 
 
         <!-- <h2>Capítulo 1</h2> -->
@@ -123,8 +126,10 @@
             </tr>
             <tr>
               <td class="versusNumber">2</td>
-              <td class="versusText">A terra, porém, estava sem forma e vazia; havia trevas sobre a face do abismo, e o Espírito de Deus pairava por sobre as águas.</td>
-              <td class="versusText">Era a terra sem forma e vazia; trevas cobriam a face do abismo, e o Espírito de Deus se movia sobre a face das águas.</td>
+              <td class="versusText">A terra, porém, estava sem forma e vazia; havia trevas sobre a face do abismo, e o
+                Espírito de Deus pairava por sobre as águas.</td>
+              <td class="versusText">Era a terra sem forma e vazia; trevas cobriam a face do abismo, e o Espírito de
+                Deus se movia sobre a face das águas.</td>
               <td class="item-option"><i class="fas fa-paperclip" data-toggle="tooltip" title="Referências"></i></td>
             </tr>
             <tr>
@@ -141,8 +146,10 @@
             </tr>
             <tr>
               <td class="versusNumber">5</td>
-              <td class="versusText">Deus chamou à luz dia, e às trevas chamou noite. Passaram-se a tarde e a manhã; esse foi o primeiro dia.</td>
-              <td class="versusText">E Deus chamou à luz Dia; e às trevas chamou Noite. E foi a tarde e a manhã: o dia primeiro.</td>
+              <td class="versusText">Deus chamou à luz dia, e às trevas chamou noite. Passaram-se a tarde e a manhã;
+                esse foi o primeiro dia.</td>
+              <td class="versusText">E Deus chamou à luz Dia; e às trevas chamou Noite. E foi a tarde e a manhã: o dia
+                primeiro.</td>
               <td class="item-option"><i class="fas fa-paperclip" data-toggle="tooltip" title="Referências"></i></td>
             </tr>
           </table>
@@ -166,34 +173,35 @@
             <button class="btn btn-success"><i class="fas fa-arrow-right"></i></button>
           </div>
         </a>
-
         </div>
 
 
 
       </main>
 
-      <!-- MODAL TRIGGERS -->
-
-      <!-- Bible Book Selection -->
-
-      <div class="modal fade" id="Tools-BibleBookSelectionModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-          <%- include('Tools-BibleBookSelection-I') %>
-        </div>
-      </div>
-
-      <!-- Bible Translation Reading -->
-
-      <div class="modal fade" id="Tools-BibleReadingTranslationModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-          <%- include('Tools-BibleTranslationComparison-I') %>
-        </div>
-      </div>
-
       <%- include('../parts/footer') %>
+
+        <!-- MODAL TRIGGERS -->
+
+        <!-- Bible Book Selection -->
+
+        <div class="modal fade" id="Tools-BibleBookSelectionModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <%- include('Tools-BibleBookSelection-I') %>
+          </div>
+        </div>
+
+        <!-- Bible Translation Reading -->
+
+        <div class="modal fade" id="Tools-BibleReadingTranslationModal" tabindex="-1"
+          aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <%- include('Tools-BibleTranslationComparison-I') %>
+          </div>
+        </div>
+
+
 
         </div>
 </body>

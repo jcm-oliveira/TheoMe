@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="/styles/parts/navbar.css" />
   <link rel="stylesheet" href="/styles/parts/button.css" />
   <link rel="stylesheet" href="/styles/parts/grid.css" />
-  <link rel="stylesheet" href="/styles/pages/tools/HolyBible.css" />
+
 
 </head>
 
@@ -52,141 +52,58 @@
 
       <main>
 
+        <div class="readingbar">
+
+          <div class="barbutton">
+            <a href="#">
+              <div class="button-frame" data-toggle="tooltip" title="Menu anterior">
+                <button class="btn btn-primary"><i class="fas fa-arrow-left"></i></button>
+              </div>
+            </a>
+            <a href="#">
+              <div class="button-frame" data-toggle="tooltip" title="Modo de leitura">
+                <button class="btn btn-secondary"><i class="fas fa-expand"></i></button>
+              </div>
+            </a>
+            <a href="#" data-toggle="modal" data-target="#Tools-BibleBookSelectionModal">
+              <div class="button-frame" data-toggle="tooltip" title="Selecionar Livro e Capítulo">
+                <button class="btn btn-secondary"><i class="fas fa-book"></i></button>
+              </div>
+            </a>
+            <a href="#" data-toggle="modal" data-target="#Tools-BibleTranslationModal">
+              <div class="button-frame" data-toggle="tooltip" title="Selecionar/Comparar Versões">
+                <button class="btn btn-secondary" data-toggle="modal" data-target="#"><i
+                    class="fas fa-copy"></i></button>
+              </div>
+            </a>
+          </div>
+
+
+          <div class="libraryiconbar">
+            <a href="#" data-toggle="tooltip" title="Resumo"><i class="fas fa-search"></i></a>
+            <a href="#" data-toggle="tooltip" title="Dados"><i class="fas fa-chart-bar"></i></a>
+            <a href="#" data-toggle="tooltip" title="Esquema de Conteúdo"><i class="fas fa-list-ul"></i></a>
+            <a href="#" data-toggle="tooltip" title="Leitura do texto bíblico"><i class="fas fa-book-reader"></i></a>
+            <a href="#" data-toggle="tooltip" title="Personagens"><i class="fas fa-user-alt"></i></a>
+            <a href="#" data-toggle="tooltip" title="Mapas"><i class="fas fa-map-marked-alt"></i></a>
+            <a href="#" data-toggle="tooltip" title="Cenáculos"><i class="fas fa-landmark"></i></a>
+            <a href="#" data-toggle="tooltip" title="Infográficos"><i class="fas fa-swatchbook"></i></a>
+            <a href="#" data-toggle="tooltip" title="Leis e Cerimônias"><i class="fas fa-balance-scale-right"></i></a>
+            <a href="#" data-toggle="tooltip" title="Utensílios, Armas e Ferramentas"><i class="fas fa-hammer"></i></a>
+            <a href="#" data-toggle="tooltip" title="Costumes"><i class="fas fa-wine-glass-alt"></i></a>
+            <a href="#" data-toggle="tooltip" title="Símbolos"><i class="fas fa-menorah"></i></a>
+            <a href="#" data-toggle="tooltip" title="Profecias"><i class="fas fa-sun"></i></a>
+            <a href="#" data-toggle="tooltip" title="Passagens mais conhecidas"><i class="fas fa-highlighter"></i></a>
+            <a href="#" data-toggle="tooltip" title="Louvores"><i class="fas fa-music"></i></a>
+            <a href="#" data-toggle="tooltip" title="Glossário"><i class="fas fa-spell-check"></i></a>
+          </div>
+
+        </div>
+
         <h1>Gênesis</h1>
 
-        <div class="barbutton">
-          <a href="#">
-            <div class="button-frame" data-toggle="tooltip" title="Menu anterior">
-              <button class="btn btn-primary"><i class="fas fa-arrow-left"></i></button>
-            </div>
-          </a>
-          <a href="#">
-            <div class="button-frame" data-toggle="tooltip" title="Modo de leitura">
-              <button class="btn btn-secondary"><i class="fas fa-expand"></i></button>
-            </div>
-          </a>
-          <a href="#" data-toggle="modal" data-target="#Tools-BibleBookSelectionModal">
-            <div class="button-frame" data-toggle="tooltip" title="Selecionar Livro e Capítulo">
-              <button class="btn btn-secondary"><i class="fas fa-book"></i></button>
-            </div>
-          </a>
-          <a href="#" data-toggle="modal" data-target="#Tools-BibleTranslationModal">
-            <div class="button-frame" data-toggle="tooltip" title="Selecionar/Comparar Versões">
-              <button class="btn btn-secondary" data-toggle="modal" data-target="#"><i class="fas fa-copy"></i></button>
-            </div>
-          </a>
-          <div class="btn-group btn-group-toggle timelineScaleButton" data-toggle="buttons">
-            <label class="btn btn-light">
-              <input type="radio" name="options" id="optionDay"> Resumo
-            </label>
-            <label class="btn btn-light">
-              <input type="radio" name="options" id="optionMonth"> Dados
-            </label>
-            <label class="btn btn-light active">
-              <input type="radio" name="options" id="optionYear" checked> Esquema de Conteúdo
-            </label>
-            <label class="btn btn-light">
-              <input type="radio" name="options" id="optionDecade"> Década
-            </label>
-            <label class="btn btn-light">
-              <input type="radio" name="options" id="optionCentury"> Século
-            </label>
-            <label class="btn btn-light">
-              <input type="radio" name="options" id="optionMillennium"> Milênio
-            </label>
-          </div>
-        </div>
+        <%- include('../tools/P-BookSchemaOfContent') %>
 
-        <legend>Resumo</legend>
-
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est eaque deleniti cumque consectetur neque
-          architecto
-          nostrum voluptates, reprehenderit similique modi adipisci accusamus consequatur, assumenda necessitatibus ipsa
-          inventore dolorem veniam beatae.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est eaque deleniti cumque consectetur neque
-          architecto
-          nostrum voluptates, reprehenderit similique modi adipisci accusamus consequatur, assumenda necessitatibus ipsa
-          inventore dolorem veniam beatae.</p>
-
-        <legend>Dados</legend>
-
-        <p><b>Autor:</b> Moisés</p>
-        <p><b>Onde foi escrito:</b> Deserto</p>
-        <p><b>Quando foi escrito:</b> 1513 a.C.</p>
-        <p><b>Período:</b> Do princípio até 1657</p>
-        <p><b>Capítulos:</b> 50</p>
-        <p><b>Versos:</b> 1533</p>
-
-        <legend>Esquema de Conteúdo</legend>
-
-
-        <p class="ReadingBibleVersion"><i class="fas fa-copy"></i>&nbsp NTLH - Nova Tradução na Linguagem de Hoje |
-          Português</p>
-
-
-
-        <div class="routine-table">
-          <table class="table table-bordered table-striped table-sm table-hover">
-            <tr>
-              <th>Assuntos</th>
-              <th>Referência(s)</th>
-              <th>Itens associados</th>
-            </tr>
-            <tr>
-              <td class="SubjectSelection"><a href="/ReadingBookPage">A criação do Universo e da raça humana</a></td>
-              <td>Gênesis 1:1-31, Gênesis 2:1-4</td>
-              <td class="item-option">
-                <a href="#" data-toggle="modal" data-target="#Tools-ItemDescriptionModal"><i
-                    class="fas fa-search"></i></a>
-                <i class="fas fa-book"></i>
-              </td>
-            </tr>
-            <tr>
-              <td>O jardim do Éden</td>
-              <td>Gênesis 2:4-25</td>
-              <td class="item-option">
-                <a href="#" data-toggle="modal" data-target="#Tools-ItemDescriptionModal"><i
-                    class="fas fa-search"></i></a>
-                <i class="fas fa-book"></i>
-                <i class="fas fa-user-alt"></i>
-                <i class="fas fa-map-marked-alt"></i>
-              </td>
-            </tr>
-            <tr>
-              <td>A desobediência do primeiro casal</td>
-              <td>Gênesis 3:1-13</td>
-              <td class="item-option">
-                <a href="#" data-toggle="modal" data-target="#Tools-ItemDescriptionModal"><i
-                    class="fas fa-search"></i></a>
-                <i class="fas fa-book"></i>
-                <i class="fas fa-user-alt"></i>
-                <i class="fas fa-menorah"></i>
-              </td>
-            </tr>
-            <tr>
-              <td>&nbsp&nbsp&nbsp O castigo</td>
-              <td>Gênesis 3:14-20</td>
-              <td class="item-option">
-                <a href="#" data-toggle="modal" data-target="#Tools-ItemDescriptionModal"><i
-                    class="fas fa-search"></i></a>
-                <i class="fas fa-book"></i>
-                <i class="fas fa-user-alt"></i>
-                <i class="fas fa-sun"></i>
-                <i class="fas fa-chart-bar"></i>
-              </td>
-            </tr>
-            <tr>
-              <td>Caim e Abel</td>
-              <td>Gênesis 4:1-16</td>
-              <td class="item-option">
-                <a href="#" data-toggle="modal" data-target="#Tools-ItemDescriptionModal"><i
-                    class="fas fa-search"></i></a>
-                <i class="fas fa-book"></i>
-                <i class="fas fa-user-alt"></i>
-              </td>
-            </tr>
-          </table>
-        </div>
       </main>
 
       <%- include('../parts/footer') %>
@@ -221,5 +138,5 @@
         </div>
 
 
-        </div>
+      
 </body>
