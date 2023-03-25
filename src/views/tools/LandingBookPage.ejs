@@ -45,10 +45,12 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
 
+  <script src="/scripts/tools-HolyBible.js"></script>
+
 
   <%- include('../parts/header') %>
 
-    <%- include('../parts/menu') %>
+  <%- include('../parts/menu') %>
 
       <main>
 
@@ -80,28 +82,29 @@
 
 
           <div class="libraryiconbar">
-            <a href="#" data-toggle="tooltip" title="Resumo"><i class="fas fa-search"></i></a>
-            <a href="#" data-toggle="tooltip" title="Dados"><i class="fas fa-chart-bar"></i></a>
-            <a href="#" data-toggle="tooltip" title="Esquema de Conteúdo"><i class="fas fa-list-ul"></i></a>
-            <a href="#" data-toggle="tooltip" title="Leitura do texto bíblico"><i class="fas fa-book-reader"></i></a>
-            <a href="#" data-toggle="tooltip" title="Personagens"><i class="fas fa-user-alt"></i></a>
-            <a href="#" data-toggle="tooltip" title="Mapas"><i class="fas fa-map-marked-alt"></i></a>
-            <a href="#" data-toggle="tooltip" title="Cenáculos"><i class="fas fa-landmark"></i></a>
-            <a href="#" data-toggle="tooltip" title="Infográficos"><i class="fas fa-swatchbook"></i></a>
-            <a href="#" data-toggle="tooltip" title="Leis e Cerimônias"><i class="fas fa-balance-scale-right"></i></a>
-            <a href="#" data-toggle="tooltip" title="Utensílios, Armas e Ferramentas"><i class="fas fa-hammer"></i></a>
-            <a href="#" data-toggle="tooltip" title="Costumes"><i class="fas fa-wine-glass-alt"></i></a>
-            <a href="#" data-toggle="tooltip" title="Símbolos"><i class="fas fa-menorah"></i></a>
-            <a href="#" data-toggle="tooltip" title="Profecias"><i class="fas fa-sun"></i></a>
-            <a href="#" data-toggle="tooltip" title="Passagens mais conhecidas"><i class="fas fa-highlighter"></i></a>
-            <a href="#" data-toggle="tooltip" title="Louvores"><i class="fas fa-music"></i></a>
-            <a href="#" data-toggle="tooltip" title="Glossário"><i class="fas fa-spell-check"></i></a>
+            <a href="#" onclick=LibraryOptionSelection(1) data-toggle="tooltip" title="Resumo"><i class="fas fa-search"></i></a>
+            <a href="#" onclick=LibraryOptionSelection(2) data-toggle="tooltip" title="Dados"><i class="fas fa-chart-bar"></i></a>
+            <a href="#" onclick=LibraryOptionSelection(3) data-toggle="tooltip" title="Esquema de Conteúdo"><i class="fas fa-list-ul"></i></a>
+            <a href="#" onclick=LibraryOptionSelection(4) data-toggle="tooltip" title="Leitura do texto bíblico"><i class="fas fa-book-reader"></i></a>
+            <a href="#" onclick=LibraryOptionSelection(5) data-toggle="tooltip" title="Personagens"><i class="fas fa-user-alt"></i></a>
+            <a href="#" onclick=LibraryOptionSelection(6) data-toggle="tooltip" title="Mapas"><i class="fas fa-map-marked-alt"></i></a>
+            <a href="#" onclick=LibraryOptionSelection(7) data-toggle="tooltip" title="Cenáculos"><i class="fas fa-landmark"></i></a>
+            <a href="#" onclick=LibraryOptionSelection(8) data-toggle="tooltip" title="Infográficos"><i class="fas fa-swatchbook"></i></a>
+            <a href="#" onclick=LibraryOptionSelection(9) data-toggle="tooltip" title="Leis e Cerimônias"><i class="fas fa-balance-scale-right"></i></a>
+            <a href="#" onclick=LibraryOptionSelection(10) data-toggle="tooltip" title="Utensílios, Armas e Ferramentas"><i class="fas fa-hammer"></i></a>
+            <a href="#" onclick=LibraryOptionSelection(11) data-toggle="tooltip" title="Costumes"><i class="fas fa-wine-glass-alt"></i></a>
+            <a href="#" onclick=LibraryOptionSelection(12) data-toggle="tooltip" title="Símbolos"><i class="fas fa-menorah"></i></a>
+            <a href="#" onclick=LibraryOptionSelection(13) data-toggle="tooltip" title="Profecias"><i class="fas fa-sun"></i></a>
+            <a href="#" onclick=LibraryOptionSelection(14) data-toggle="tooltip" title="Passagens mais conhecidas"><i class="fas fa-highlighter"></i></a>
+            <a href="#" onclick=LibraryOptionSelection(15) data-toggle="tooltip" title="Louvores"><i class="fas fa-music"></i></a>
+            <a href="#" onclick=LibraryOptionSelection(16) data-toggle="tooltip" title="Glossário"><i class="fas fa-spell-check"></i></a>
           </div>
 
         </div>
 
         <h1>Gênesis</h1>
-
+      
+        
         <%- include('../tools/P-BookSchemaOfContent') %>
 
       </main>
