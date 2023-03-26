@@ -12,10 +12,6 @@ a.dropdown-item i {
     font-size: 16px;
 }
 
-li.nav-item {
-    padding: 0 10px;
-}
-
 li.nav-item:hover {
     color: #4F768B;
 }
