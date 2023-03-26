@@ -45,7 +45,7 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
 
-   <%- include('../parts/header') %>
+  <%- include('../parts/header') %>
 
     <%- include('../parts/menu') %>
 
@@ -79,12 +79,31 @@
 
 
           <div class="libraryiconbar">
-            <a href="#" onclick=LibraryOptionSelection(1) data-toggle="tooltip" title="Resumo"><i
-                class="fas fa-search"></i></a>
-            <a href="#" onclick=LibraryOptionSelection(2) data-toggle="tooltip" title="Dados"><i
-                class="fas fa-chart-bar"></i></a>
-            <a href="#" onclick=LibraryOptionSelection(3) data-toggle="tooltip" title="Esquema de Conteúdo"><i
-                class="fas fa-list-ul"></i></a>
+
+            <ul class="nav nav-tabs" role="tablist">
+
+              <li class="nav-item" role="presentation">
+                <a href="#tabBookSummary" class="nav-link active" id="linkBookSummary" data-toggle="tab" role="tab"
+                  aria-controls="tabBookSummary" title="Resumo"><i class="fas fa-search"></i></a>
+              </li>
+    
+              <li class="nav-item" role="presentation">
+                <a href="#tabBookData" class="nav-link" id="linkBookData" data-toggle="tab" role="tab"
+                  aria-controls="tabBookData" title="Dados"><i class="fas fa-chart-bar"></i></a>
+              </li>
+    
+              <li class="nav-item" role="presentation">
+                <a href="#tabBookSchemaOfContent" class="nav-link" id="linkBookSchemaOfContent" data-toggle="tab" role="tab"
+                  aria-controls="tabBookSchemaOfContent" title="Esquema de Conteúdo"><i class="fas fa-list-ul"></i></a>
+              </li>
+              
+              <li class="nav-item" role="presentation">
+                <a href="#tabBookReadingPage" class="nav-link" id="linkBookReadingPage" data-toggle="tab" role="tab"
+                  aria-controls="tabBookReadingPage" title="Texto Bíblico"><i class="fas fa-book-reader"></i></a>
+              </li>
+    
+            </ul>
+            <!-- 
             <a href="#" onclick=LibraryOptionSelection(4) data-toggle="tooltip" title="Leitura do texto bíblico"><i
                 class="fas fa-book-reader"></i></a>
             <a href="#" onclick=LibraryOptionSelection(5) data-toggle="tooltip" title="Personagens"><i
@@ -110,34 +129,35 @@
             <a href="#" onclick=LibraryOptionSelection(15) data-toggle="tooltip" title="Louvores"><i
                 class="fas fa-music"></i></a>
             <a href="#" onclick=LibraryOptionSelection(16) data-toggle="tooltip" title="Glossário"><i
-                class="fas fa-spell-check"></i></a>
+                class="fas fa-spell-check"></i></a> -->
           </div>
 
         </div>
 
         <h1>Gênesis</h1>
 
+        <div class="tab-content" id="tabContent">
 
-        <ul class="nav nav-tabs" role="tablist">          
-          <li class="nav-item" role="presentation">
-            <a href="#tabBookSummary" class="nav-link active" id="linkBookSummary" data-toggle="tab" role="tab" aria-controls="tabBookSummary" title="Resumo"><i class="fas fa-search"></i></a>
-          </li>
-          <li class="nav-item" role="presentation">
-            <a href="#tabBookData" class="nav-link" id="linkBookData" data-toggle="tab" role="tab" aria-controls="tabBookData" title="Resumo"><i class="fas fa-chart-bar"></i></a>
-          </li>
-        </ul>
-
-        <div class="tab-content" id="meusConteudos">
           <div class="tab-pane fade show active" id="tabBookSummary" role="tabpanel" aria-labelledby="linkBookSummary">
             <%- include('../tools/P-BookSummary') %>
           </div>
+
           <div class="tab-pane fade" id="tabBookData" role="tabpanel" aria-labelledby="linkBookData">
-            <%- include('../tools/P-BookData') %>
+            asdasdsa
           </div>
+
+          <div class="tab-pane fade" id="tabBookSchemaOfContent" role="tabpanel" aria-labelledby="linkBookSchemaOfContent">
+            <div>
+            <iframe src="/P-BookSchemaOfContent.ejs" frameborder="0"></iframe>
+          </div>
+          </div>
+
+          <div class="tab-pane fade" id="tabBookReadingPage" role="tabpanel" aria-labelledby="linkBookReadingPage">
+            5467454
+          </div>
+
         </div>
 
-
-        
 
       </main>
 
@@ -171,7 +191,5 @@
             <%- include('Tools-ItemDescription-I') %>
           </div>
         </div>
-
-
 
 </body>
