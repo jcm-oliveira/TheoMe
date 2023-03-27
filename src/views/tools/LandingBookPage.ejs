@@ -101,13 +101,14 @@
                 <a href="#tabBookReadingPage" class="nav-link" id="linkBookReadingPage" data-toggle="tab" role="tab"
                   aria-controls="tabBookReadingPage" title="Texto Bíblico"><i class="fas fa-book-reader"></i></a>
               </li>
+
+              <li class="nav-item" role="presentation">
+                <a href="#tabBookPerson" class="nav-link" id="linkBookPerson" data-toggle="tab" role="tab"
+                  aria-controls="tabBookPerson" title="Personagens"><i class="fas fa-user-alt"></i></a>
+              </li>
     
             </ul>
             <!-- 
-            <a href="#" onclick=LibraryOptionSelection(4) data-toggle="tooltip" title="Leitura do texto bíblico"><i
-                class="fas fa-book-reader"></i></a>
-            <a href="#" onclick=LibraryOptionSelection(5) data-toggle="tooltip" title="Personagens"><i
-                class="fas fa-user-alt"></i></a>
             <a href="#" onclick=LibraryOptionSelection(6) data-toggle="tooltip" title="Mapas"><i
                 class="fas fa-map-marked-alt"></i></a>
             <a href="#" onclick=LibraryOptionSelection(7) data-toggle="tooltip" title="Cenáculos"><i
@@ -143,17 +144,19 @@
           </div>
 
           <div class="tab-pane fade" id="tabBookData" role="tabpanel" aria-labelledby="linkBookData">
-            asdasdsa
+            <%- include('../tools/P-BookData') %>
           </div>
 
           <div class="tab-pane fade" id="tabBookSchemaOfContent" role="tabpanel" aria-labelledby="linkBookSchemaOfContent">
-            <div>
-            <iframe src="/P-BookSchemaOfContent.ejs" frameborder="0"></iframe>
-          </div>
+            <%- include('../tools/P-BookSchemaOfContent') %>
           </div>
 
           <div class="tab-pane fade" id="tabBookReadingPage" role="tabpanel" aria-labelledby="linkBookReadingPage">
-            5467454
+            <%- include('../tools/P-BookReadingPage') %>
+          </div>
+          
+          <div class="tab-pane fade" id="tabBookPerson" role="tabpanel" aria-labelledby="linkBookPerson">
+             Not found.
           </div>
 
         </div>
