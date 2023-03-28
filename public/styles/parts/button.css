@@ -110,11 +110,14 @@ button.btn.btn-success:hover {
 }
 
 .libraryiconbar a {
+    display:flex;
+    justify-content: center;
     color: #5A6268;
     font-size: 18px;
-    padding: 0px 8px;
+    padding: 8px 12px;
+    width:50px;
 }
 
 .libraryiconbar a:hover {
-    color: #259970;
+    color: #4F768B;
 }

@@ -6,7 +6,15 @@
 }
 
 
+a.dropdown-item {
+    display:flex;
+    align-items: center;
+}
+
 a.dropdown-item i {
+    display:flex;
+    justify-content: center;
+    width:25px;
     padding-right: 10px;
     color:#c3c2c1;
     font-size: 16px;
@@ -14,4 +22,15 @@ a.dropdown-item i {
 
 li.nav-item:hover {
     color: #4F768B;
+}
+
+ol.breadcrumb {
+    background-color: white;
+    padding: 0px;
+    font-size: 15px;
+    color: #a4a3a3;
+}
+
+li.breadcrumb-item.active {
+    color: #6fa3bf;
 }
