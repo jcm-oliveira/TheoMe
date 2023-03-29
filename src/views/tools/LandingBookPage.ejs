@@ -45,6 +45,8 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
 
+  <script src="/scripts/tools-HolyBible.js"></script>
+
   <%- include('../parts/header') %>
 
     <%- include('../parts/menu') %>
@@ -60,6 +62,8 @@
         </nav>
 
         <div class="readingbar">
+
+          <!-- BUTTONS -->
 
           <div class="barbutton">
             <a href="#">
@@ -85,151 +89,178 @@
             </a>
           </div>
 
+          <!-- NAV TABS -->
 
           <div class="libraryiconbar">
-
             <ul class="nav nav-tabs" role="tablist">
-
               <li class="nav-item" role="presentation">
-                <a href="#tabBookSummary" class="nav-link active" id="linkBookSummary" data-toggle="tab" role="tab"
-                  aria-controls="tabBookSummary" title="Resumo"><i class="fas fa-search"></i></a>
+                <a href="#tabBookSummary" onclick="tabSelection('tabBookSummary')" class="nav-link active"
+                  id="linkBookSummary" data-toggle="tab" role="tab" aria-controls="tabBookSummary" title="Resumo"><i
+                    class="fas fa-search"></i></a>
               </li>
-
               <li class="nav-item" role="presentation">
-                <a href="#tabBookData" class="nav-link" id="linkBookData" data-toggle="tab" role="tab"
-                  aria-controls="tabBookData" title="Dados"><i class="fas fa-chart-bar"></i></a>
+                <a href="#tabBookData" onclick="tabSelection('tabBookData')" class="nav-link" id="linkBookData"
+                  data-toggle="tab" role="tab" aria-controls="tabBookData" title="Dados"><i
+                    class="fas fa-chart-bar"></i></a>
               </li>
-
               <li class="nav-item" role="presentation">
-                <a href="#tabBookSchemaOfContent" class="nav-link" id="linkBookSchemaOfContent" data-toggle="tab"
-                  role="tab" aria-controls="tabBookSchemaOfContent" title="Esquema de Conteúdo"><i
-                    class="fas fa-list-ul"></i></a>
+                <a href="#tabBookSchemaOfContent" onclick="tabSelection('tabBookSchemaOfContent')" class="nav-link"
+                  id="linkBookSchemaOfContent" data-toggle="tab" role="tab" aria-controls="tabBookSchemaOfContent"
+                  title="Esquema de Conteúdo"><i class="fas fa-list-ul"></i></a>
               </li>
-
               <li class="nav-item" role="presentation">
-                <a href="#tabBookReadingPage" class="nav-link" id="linkBookReadingPage" data-toggle="tab" role="tab"
-                  aria-controls="tabBookReadingPage" title="Texto Bíblico"><i class="fas fa-book-reader"></i></a>
+                <a href="#tabBookReadingPage" onclick="tabSelection('tabBookReadingPage')" class="nav-link"
+                  id="linkBookReadingPage" data-toggle="tab" role="tab" aria-controls="tabBookReadingPage"
+                  title="Texto Bíblico"><i class="fas fa-book-reader"></i></a>
               </li>
-
               <li class="nav-item" role="presentation">
-                <a href="#tabBookPerson" class="nav-link" id="linkBookPerson" data-toggle="tab" role="tab"
-                  aria-controls="tabBookPerson" title="Personagens"><i class="fas fa-user-friends"></i></a>
+                <a href="#tabBookPerson" onclick="tabSelection('tabBookPerson')" class="nav-link" id="linkBookPerson"
+                  data-toggle="tab" role="tab" aria-controls="tabBookPerson" title="Personagens"><i
+                    class="fas fa-user-friends"></i></a>
               </li>
-
               <li class="nav-item" role="presentation">
-                <a href="#tabBookPerson" class="nav-link" id="linkBookMap" data-toggle="tab" role="tab"
-                  aria-controls="tabBookPerson" title="Mapas"><i class="fas fa-map-marked-alt"></i></a>
+                <a href="#tabBookMap" onclick="tabSelection('tabBookMap')" class="nav-link" id="linkBookMap"
+                  data-toggle="tab" role="tab" aria-controls="tabBookMap" title="Mapas"><i
+                    class="fas fa-map-marked-alt"></i></a>
               </li>
-
               <li class="nav-item" role="presentation">
-                <a href="#tabBookScene" class="nav-link" id="linkBookScene" data-toggle="tab" role="tab"
-                  aria-controls="tabBookScene" title="Cenáculos"><i class="fas fa-landmark"></i></a>
+                <a href="#tabBookScene" onclick="tabSelection('tabBookScene')" class="nav-link" id="linkBookScene"
+                  data-toggle="tab" role="tab" aria-controls="tabBookScene" title="Cenários"><i
+                    class="fas fa-landmark"></i></a>
               </li>
-
               <li class="nav-item" role="presentation">
-                <a href="#tabBookInfographic" class="nav-link" id="linkBookInfographic" data-toggle="tab" role="tab"
-                  aria-controls="tabBookInfographic" title="Infográficos"><i class="fas fa-swatchbook"></i></a>
+                <a href="#tabBookInfographic" onclick="tabSelection('tabBookInfographic')" class="nav-link"
+                  id="linkBookInfographic" data-toggle="tab" role="tab" aria-controls="tabBookInfographic"
+                  title="Infográficos"><i class="fas fa-swatchbook"></i></a>
               </li>
-
               <li class="nav-item" role="presentation">
-                <a href="#tabBookLawCeremony" class="nav-link" id="linkBookLawCeremony" data-toggle="tab" role="tab"
-                  aria-controls="tabBookLawCeremony" title="Leis e Cerimônias"><i
-                    class="fas fa-balance-scale-right"></i></a>
+                <a href="#tabBookLawCeremony" onclick="tabSelection('tabBookLawCeremony')" class="nav-link"
+                  id="linkBookLawCeremony" data-toggle="tab" role="tab" aria-controls="tabBookLawCeremony"
+                  title="Leis e Cerimônias"><i class="fas fa-balance-scale-right"></i></a>
               </li>
-
               <li class="nav-item" role="presentation">
-                <a href="#tabBookUtensil" class="nav-link" id="linkBookUtensil" data-toggle="tab" role="tab"
-                  aria-controls="tabBookUtensil" title="Utensílios, Armas e Ferramentas"><i
+                <a href="#tabBookUtensil" onclick="tabSelection('tabBookUtensil')" class="nav-link" id="linkBookUtensil"
+                  data-toggle="tab" role="tab" aria-controls="tabBookUtensil" title="Utensílios, Armas e Ferramentas"><i
                     class="fas fa-hammer"></i></a>
               </li>
-
               <li class="nav-item" role="presentation">
-                <a href="#tabBookMores" class="nav-link" id="linkBookMores" data-toggle="tab" role="tab"
-                  aria-controls="tabBookMores" title="Costumes e Cultura"><i class="fas fa-wine-glass-alt"></i></a>
+                <a href="#tabBookMores" onclick="tabSelection('tabBookMores')" class="nav-link" id="linkBookMores"
+                  data-toggle="tab" role="tab" aria-controls="tabBookMores" title="Costumes e Cultura"><i
+                    class="fas fa-wine-glass-alt"></i></a>
               </li>
-
               <li class="nav-item" role="presentation">
-                <a href="#tabBookSymbol" class="nav-link" id="linkBookSymbol" data-toggle="tab" role="tab"
-                  aria-controls="tabBookSymbol" title="Símbolos"><i class="fas fa-menorah"></i></a>
+                <a href="#tabBookSymbol" onclick="tabSelection('tabBookSymbol')" class="nav-link" id="linkBookSymbol"
+                  data-toggle="tab" role="tab" aria-controls="tabBookSymbol" title="Símbolos"><i
+                    class="fas fa-menorah"></i></a>
               </li>
-
               <li class="nav-item" role="presentation">
-                <a href="#tabBookProphecy" class="nav-link" id="linkBookProphecy" data-toggle="tab" role="tab"
-                  aria-controls="tabBookProphecy" title="Profecias"><i class="fas fa-sun"></i></a>
+                <a href="#tabBookProphecy" onclick="tabSelection('tabBookProphecy')" class="nav-link"
+                  id="linkBookProphecy" data-toggle="tab" role="tab" aria-controls="tabBookProphecy"
+                  title="Profecias"><i class="fas fa-sun"></i></a>
               </li>
-
+              <li class="nav-item" role="presentation">
+                <a href="#tabBookHighlighter" onclick="tabSelection('tabBookHighlighter')" class="nav-link"
+                  id="linkBookHighlighter" data-toggle="tab" role="tab" aria-controls="tabBookHighlighter"
+                  title="Passagens mais conhecidas"><i class="fas fa-highlighter"></i></a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a href="#tabBookPraise" onclick="tabSelection('tabBookPraise')" class="nav-link" id="linkBookPraise"
+                  data-toggle="tab" role="tab" aria-controls="tabBookPraiser" title="Louvores"><i
+                    class="fas fa-music"></i></a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a href="#tabBookGlossary" onclick="tabSelection('tabBookGlossary')" class="nav-link"
+                  id="linkBookGlossary" data-toggle="tab" role="tab" aria-controls="tabBookGlossary"
+                  title="Glossário"><i class="fas fa-spell-check"></i></a>
+              </li>
             </ul>
-            <!-- 
-            <a href="#" onclick=LibraryOptionSelection(14) data-toggle="tooltip" title="Passagens mais conhecidas"><i
-                class="fas fa-highlighter"></i></a>
-            <a href="#" onclick=LibraryOptionSelection(15) data-toggle="tooltip" title="Louvores"><i
-                class="fas fa-music"></i></a>
-            <a href="#" onclick=LibraryOptionSelection(16) data-toggle="tooltip" title="Glossário"><i
-                class="fas fa-spell-check"></i></a> -->
           </div>
-
         </div>
 
         <h1>Gênesis</h1>
 
         <div class="tab-content" id="tabContent">
 
-          <div class="tab-pane fade show active" id="tabBookSummary" role="tabpanel" aria-labelledby="linkBookSummary">
+          <div class="tab-pane fade show active" id="tabBookSummary" role="tabpanel"
+            aria-labelledby="linkBookSummary">
             <%- include('../tools/P-BookSummary') %>
           </div>
 
-          <div class="tab-pane fade" id="tabBookData" role="tabpanel" aria-labelledby="linkBookData">
+          <div class="tab-pane fade" style="display:none" id="tabBookData" role="tabpanel"
+            aria-labelledby="linkBookData">
             <%- include('../tools/P-BookData') %>
           </div>
 
-          <div class="tab-pane fade" id="tabBookSchemaOfContent" role="tabpanel"
+          <div class="tab-pane fade" style="display:none" id="tabBookSchemaOfContent" role="tabpanel"
             aria-labelledby="linkBookSchemaOfContent">
             <%- include('../tools/P-BookSchemaOfContent') %>
           </div>
 
-          <div class="tab-pane fade" id="tabBookReadingPage" role="tabpanel" aria-labelledby="linkBookReadingPage">
+          <div class="tab-pane fade" style="display:none" id="tabBookReadingPage" role="tabpanel"
+            aria-labelledby="linkBookReadingPage">
             <%- include('../tools/P-BookReadingPage') %>
           </div>
 
-          <div class="tab-pane fade" id="tabBookPerson" role="tabpanel" aria-labelledby="linkBookPerson">
+          <div class="tab-pane fade" style="display:none" id="tabBookPerson" role="tabpanel"
+            aria-labelledby="linkBookPerson">
             Not found.
           </div>
 
-          <div class="tab-pane fade" id="tabBookMap" role="tabpanel" aria-labelledby="linkBookMap">
+          <div class="tab-pane fade" style="display:none" id="tabBookMap" role="tabpanel" aria-labelledby="linkBookMap">
             Not found.
           </div>
 
-          <div class="tab-pane fade" id="tabBookScene" role="tabpanel" aria-labelledby="linkBookScene">
+          <div class="tab-pane fade" style="display:none" id="tabBookScene" role="tabpanel"
+            aria-labelledby="linkBookScene">
             Not found.
           </div>
 
-          <div class="tab-pane fade" id="tabBookInfographic" role="tabpanel" aria-labelledby="linkBookInfographic">
+          <div class="tab-pane fade" style="display:none" id="tabBookInfographic" role="tabpanel"
+            aria-labelledby="linkBookInfographic">
             Not found.
           </div>
 
-          <div class="tab-pane fade" id="tabBookLawCeremony" role="tabpanel" aria-labelledby="linkBookLawCeremony">
+          <div class="tab-pane fade" style="display:none" id="tabBookLawCeremony" role="tabpanel"
+            aria-labelledby="linkBookLawCeremony">
             Not found.
           </div>
 
-
-          <div class="tab-pane fade" id="tabBookUtensil" role="tabpanel" aria-labelledby="linkBookUtensil">
+          <div class="tab-pane fade" style="display:none" id="tabBookUtensil" role="tabpanel"
+            aria-labelledby="linkBookUtensil">
             Not found.
           </div>
 
-          <div class="tab-pane fade" id="tabBookMores" role="tabpanel" aria-labelledby="linkBookMores">
+          <div class="tab-pane fade" style="display:none" id="tabBookMores" role="tabpanel"
+            aria-labelledby="linkBookMores">
             Not found.
           </div>
 
-          <div class="tab-pane fade" id="tabBookSymbol" role="tabpanel" aria-labelledby="linkBookSymbol">
+          <div class="tab-pane fade" style="display:none" id="tabBookSymbol" role="tabpanel"
+            aria-labelledby="linkBookSymbol">
             Not found.
           </div>
 
-          <div class="tab-pane fade" id="tabBookProphecy" role="tabpanel" aria-labelledby="linkBookProphecy">
+          <div class="tab-pane fade" style="display:none" id="tabBookProphecy" role="tabpanel"
+            aria-labelledby="linkBookProphecy">
+            Not found.
+          </div>
+
+          <div class="tab-pane fade" style="display:none" id="tabBookHighlighter" role="tabpanel"
+            aria-labelledby="linkBookHighlighter">
+            Not found.
+          </div>
+
+          <div class="tab-pane fade" style="display:none" id="tabBookPraise" role="tabpanel"
+            aria-labelledby="linkBookPraise">
+            Not found.
+          </div>
+
+          <div class="tab-pane fade" style="display:none" id="tabBookGlossary" role="tabpanel"
+            aria-labelledby="linkBookGlossary">
             Not found.
           </div>
 
         </div>
-
 
       </main>
 
