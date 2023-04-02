@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+  <title>TheoMe</title>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <!-- font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <!-- icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+
+  <!-- bootstrap customization -->
+  <link rel="stylesheet" href="/styles/parts/navbar.css" />
+  <link rel="stylesheet" href="/styles/parts/main.css" />
+
+
+</head>
+
+<body>
+
+  <script src="/scripts/tools-HolyBible.js"></script>
+
+  <div class="readingbar">
+
+    <!-- BUTTONS -->
+
+    <div class="barbutton">
+      <a href="#">
+        <div class="button-frame" data-toggle="tooltip" title="Menu anterior">
+          <button class="btn btn-primary"><i class="fas fa-arrow-left"></i></button>
+        </div>
+      </a>
+      <a href="#">
+        <div class="button-frame" data-toggle="tooltip" title="Modo de leitura">
+          <button class="btn btn-secondary"><i class="fas fa-expand"></i></button>
+        </div>
+      </a>
+      <a href="#" data-toggle="modal" data-target="#Tools-BibleBookSelectionModal">
+        <div class="button-frame" data-toggle="tooltip" title="Selecionar Livro e Capítulo">
+          <button class="btn btn-secondary"><i class="fas fa-book"></i></button>
+        </div>
+      </a>
+      <a href="#" data-toggle="modal" data-target="#Tools-BibleTranslationModal">
+        <div class="button-frame" data-toggle="tooltip" title="Selecionar/Comparar Versões">
+          <button class="btn btn-secondary" data-toggle="modal" data-target="#"><i class="fas fa-copy"></i></button>
+        </div>
+      </a>
+    </div>
+
+    <!-- NAV TABS -->
+
+
+    <div class="libraryiconbar">
+      <ul class="nav">
+        <li class="nav-item">
+          <a href="/T-BookSummary" onclick="tabSelection('tabBookSummary')" id="linkBookSummary" title="Resumo"><i
+              class="fas fa-search"></i></a>
+        </li>
+        <li class="nav-item">
+          <a href="/T-BookData" onclick="tabSelection('tabBookData')" id="linkBookData" title="Dados"><i
+              class="fas fa-chart-bar"></i></a>
+        </li>
+        <li class="nav-item">
+          <a href="/T-BookSchemaOfContent" onclick="tabSelection('tabBookSchemaOfContent')"
+            id="linkBookSchemaOfContent" title="Esquema de Conteúdo"><i class="fas fa-list-ul"></i></a>
+        </li>
+        <li class="nav-item">
+          <a href="/T-BookReadingPage" onclick="tabSelection('tabBookReadingPage')" id="linkBookReadingPage"
+            title="Texto Bíblico"><i class="fas fa-book-reader"></i></a>
+        </li>
+        <li class="nav-item">
+          <a href="#" onclick="tabSelection('tabBookPerson')" id="linkBookPerson" title="Personagens"><i
+              class="fas fa-user-friends"></i></a>
+        </li>
+        <li class="nav-item">
+          <a href="#" onclick="tabSelection('tabBookMap')" id="linkBookMap" title="Mapas"><i
+              class="fas fa-map-marked-alt"></i></a>
+        </li>
+        <li class="nav-item">
+          <a href="#" onclick="tabSelection('tabBookScene')" id="linkBookScene" title="Cenários"><i
+              class="fas fa-landmark"></i></a>
+        </li>
+        <li class="nav-item">
+          <a href="#" onclick="tabSelection('tabBookInfographic')" id="linkBookInfographic"
+            title="Infográficos"><i class="fas fa-swatchbook"></i></a>
+        </li>
+        <li class="nav-item">
+          <a href="#" onclick="tabSelection('tabBookLawCeremony')" id="linkBookLawCeremony"
+            title="Leis e Cerimônias"><i class="fas fa-balance-scale-right"></i></a>
+        </li>
+        <li class="nav-item">
+          <a href="#" onclick="tabSelection('tabBookUtensil')" id="linkBookUtensil"
+            title="Utensílios, Armas e Ferramentas"><i class="fas fa-hammer"></i></a>
+        </li>
+        <li class="nav-item">
+          <a href="#" onclick="tabSelection('tabBookMores')" id="linkBookMores"
+            title="Costumes e Cultura"><i class="fas fa-wine-glass-alt"></i></a>
+        </li>
+        <li class="nav-item">
+          <a href="#" onclick="tabSelection('tabBookSymbol')" id="linkBookSymbol" title="Símbolos"><i
+              class="fas fa-menorah"></i></a>
+        </li>
+        <li class="nav-item">
+          <a href="#" onclick="tabSelection('tabBookProphecy')" id="linkBookProphecy"
+            title="Profecias"><i class="fas fa-sun"></i></a>
+        </li>
+        <li class="nav-item">
+          <a href="#" onclick="tabSelection('tabBookHighlighter')" id="linkBookHighlighter"
+            title="Passagens mais conhecidas"><i class="fas fa-highlighter"></i></a>
+        </li>
+        <li class="nav-item">
+          <a href="#" onclick="tabSelection('tabBookPraise')" id="linkBookPraise" title="Louvores"><i
+              class="fas fa-music"></i></a>
+        </li>
+        <li class="nav-item">
+          <a href="#" onclick="tabSelection('tabBookGlossary')" id="linkBookGlossary"
+            title="Glossário"><i class="fas fa-spell-check"></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- MODAL TRIGGERS -->
+
+  <!-- Bible Book Selection -->
+
+  <div class="modal fade" id="Tools-BibleBookSelectionModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <%- include('../tools/Tools-BibleBookSelection-I') %>
+    </div>
+  </div>
+
+  <!-- Bible Translation -->
+
+  <div class="modal fade" id="Tools-BibleTranslationModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <%- include('../tools/Tools-BibleTranslationSelection-I') %>
+    </div>
+  </div>
+
+  <!-- Item Description -->
+
+  <div class="modal fade" id="Tools-ItemDescriptionModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <%- include('../tools/Tools-ItemDescription-I') %>
+    </div>
+  </div>
+
+</body>

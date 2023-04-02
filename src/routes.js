@@ -14,15 +14,19 @@ routes.get('/HolyBible', (req,res) => res.render(views + "tools/HolyBible"));
 routes.get('/BibleTypeSelection', (req,res) => res.render(views + "tools/BibleTypeSelection"));
 // routes.get('/BookDashboard', (req,res) => res.render(views + "tools/BookDashboard"));
 // routes.get('/ChronologicalDashboard', (req,res) => res.render(views + "tools/ChronologicalDashboard"));
-routes.get('/LandingBookPage', (req,res) => res.render(views + "tools/LandingBookPage"));
-routes.get('/LandingChronologicalPage', (req,res) => res.render(views + "tools/LandingChronologicalPage"));
+// routes.get('/LandingBookPage', (req,res) => res.render(views + "tools/LandingBookPage"));
+// routes.get('/LandingChronologicalPage', (req,res) => res.render(views + "tools/LandingChronologicalPage"));
 // routes.get('/ReadingBookPage', (req,res) => res.render(views + "tools/ReadingBookPage"));
 routes.get('/ReadingChronologicalPage', (req,res) => res.render(views + "tools/ReadingChronologicalPage"));
 routes.get('/ChronologicalEvents', (req,res) => res.render(views + "tools/ChronologicalEvents"));
 routes.get('/Timeline', (req,res) => res.render(views + "tools/Timeline"));
 routes.get('/Timeline-IframeBar.ejs', (req,res) => res.render(views + "tools/Timeline-IframeBar.ejs", { Period }));
 
-routes.get('/P-BookSchemaOfContent.ejs', (req,res) => res.render(views + "tools/P-BookSchemaOfContent.ejs"));
+routes.get('/T-BookSummary', (req,res) => res.render(views + "tools/T-BookSummary"));
+routes.get('/T-BookData', (req,res) => res.render(views + "tools/T-BookData"));
+routes.get('/T-BookSchemaOfContent', (req,res) => res.render(views + "tools/T-BookSchemaOfContent"));
+routes.get('/T-BookReadingPage', (req,res) => res.render(views + "tools/T-BookReadingPage"));
+
 
 
 // LIBRARY

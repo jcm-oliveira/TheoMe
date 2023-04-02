@@ -97,7 +97,7 @@ button.btn.btn-success:hover {
     background-color:#dee7ef;
 }
 
-/* LIBRARY BAR BUTTON */
+/* LIBRARY TAB NAV */
 
 .readingbar {
     display: flex;
@@ -115,7 +115,7 @@ button.btn.btn-success:hover {
     color: #5A6268;
     font-size: 18px;
     padding: 8px 12px;
-    width:50px;
+    width:40px;
 }
 
 .libraryiconbar a:hover {
