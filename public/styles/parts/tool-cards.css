@@ -8,8 +8,8 @@
 }
 
 div.background-card {
-    background-color: #E1E4E5;
-    border:none;
+    background-color: #f6f6f6;
+    margin-bottom: 8px;
 }
 
 div.card-body {
@@ -37,4 +37,5 @@ p.card-text  {
     justify-content: left;
     margin: 0px 0px 16px 0px;  
 }
+
 
