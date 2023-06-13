@@ -34,3 +34,7 @@ ol.breadcrumb {
 li.breadcrumb-item.active {
     color: #6fa3bf;
 }
+
+.dropdown-menu a:hover {
+    color: #4F768B;
+}
