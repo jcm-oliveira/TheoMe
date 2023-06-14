@@ -15,10 +15,10 @@ div.card {
     grid-template-columns: 1fr 1fr;
 }
 
-.schema-options i {
-    display:flex;
+.card i {
+    /* display:flex; */
     justify-content:left;
-    padding-left: 20px;
+    padding-left: 10px;
     font-size: 50px;
     color: rgb(94, 93, 93);
 }
@@ -32,5 +32,4 @@ td.SubjectSelection:hover {
     color: #4F768B;
     text-decoration: underline;
 }
-
 
