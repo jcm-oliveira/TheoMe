@@ -27,8 +27,6 @@ routes.get('/T-BookData', (req,res) => res.render(views + "tools/T-BookData"));
 routes.get('/T-BookSchemaOfContent', (req,res) => res.render(views + "tools/T-BookSchemaOfContent"));
 routes.get('/T-BookReadingPage', (req,res) => res.render(views + "tools/T-BookReadingPage"));
 
-
-
 // LIBRARY
 routes.get('/Library-MainPage', (req,res) => res.render(views + "library/Library-MainPage"));
 
