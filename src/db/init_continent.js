@@ -3,13 +3,26 @@
 
 const db = require("./continent");
 
+
 (async () => {
 
     //INSERT
-    console.log("inserting...");
-    const result1 = await db.insertContinent({name: "Europa"}); 
-    console.log (result1);
+    console.log("Starting insert command...");
+    const result = await db.insertContinent({name: "oxiiii", description: "descrição sei lá"}); 
+    console.log (result);
 
+})();
+
+
+
+
+
+
+
+
+
+
+// __________________________________________________________________________
     // //UPDATE
     // console.log("update done!");
     // const result3 = await db.updateAssociation_type(1, {name: "aquele update básico"}); 
@@ -24,7 +37,3 @@ const db = require("./continent");
     // console.log("select done!");
     // const result5 = await db.selectAssociation_type();
     // console.log (result5);
-
-})();
-
-

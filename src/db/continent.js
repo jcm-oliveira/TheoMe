@@ -1,31 +1,38 @@
 //MYSQL DATABASE CONFIGURATION / CONECTIONINSERT
-
-// const connect = require("./config");
-
-async function connect(){
-    //garantir que eu tenha apenas uma conexão por aplicação
-    if(global.connection && global.connection.state !== 'disconnected')
-        return global.connection;
-
-    const mysql = require("mysql2/promise");
-    const connection = await mysql.createConnection("mysql://root:@localhost:3306/theome");
-    console.log("Conectou no MySQL!");
-    global.connection = connection;
-    return connection;
-}
-
-connect();
+const mysql = require("./config");
 
 //INSERT
 async function insertContinent(continent){
-    const conn = await connect();
-    const sql = 'INSERT INTO continent(name) VALUES (?);';
-    const values = [continent.name];
-    console.log("returning...");
-    return await conn.query(sql, values);
+    console.log("Database conecting...");
+    const conn = await mysql.connect();
+
+    console.log("Object data received:")
+    const values = [continent];
+    console.log(values);
+
+    const sql = 'INSERT INTO continent(name, description) VALUES (?);';
+    console.log("Register inserted!");
     
+    return await conn.query(sql, values);
 }
 
+module.exports = {
+    insertContinent, 
+    // updateContinent,
+    // deleteContinent,
+    // selectContinent, 
+}
+
+
+
+
+
+
+
+
+
+
+// __________________________________________________________________________
 // //UPDATE
 // async function updateContinent(id, continent){
 //     const conn = await connect();
@@ -48,12 +55,6 @@ async function insertContinent(continent){
 //     return rows;
 //}
  
-module.exports = {
-    insertContinent, 
-    // updateContinent,
-    // deleteContinent,
-    // selectContinent, 
-}
 
 
 
