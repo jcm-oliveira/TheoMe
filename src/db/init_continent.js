@@ -8,8 +8,9 @@ const db = require("./continent");
 
     //INSERT
     console.log("Starting insert command...");
-    const result = await db.insertContinent({name: "oxiiii", description: "descrição sei lá"}); 
-    console.log (result);
+    const result = await db.insertContinent({name: "Asia", description: "xyz xyz xyz"});   
+    console.log (result);  
+    console.log("Register inserted!");
 
 })();
 

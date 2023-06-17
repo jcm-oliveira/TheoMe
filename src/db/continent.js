@@ -7,11 +7,10 @@ async function insertContinent(continent){
     const conn = await mysql.connect();
 
     console.log("Object data received:")
-    const values = [continent];
+    const values = [continent.name, continent.description];
     console.log(values);
 
-    const sql = 'INSERT INTO continent(name, description) VALUES (?);';
-    console.log("Register inserted!");
+    const sql = 'INSERT INTO continent(name, description) VALUES (?,?);';
     
     return await conn.query(sql, values);
 }
