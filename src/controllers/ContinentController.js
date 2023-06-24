@@ -1,18 +1,40 @@
-//DEFAULT DATABASE CREATION
-//This file was created and should be only used when the system been installed at the first time. This file will create the tables and insert the basic data and information in each one of the tables.
-
-const db = require("./continent");
+const db = require("../model/continent");
 
 
-(async () => {
+module.exports = {
 
-    //INSERT
-    console.log("Starting insert command...");
-    const result = await db.insertContinent({name: "Asia", description: "xyz xyz xyz"});   
-    console.log (result);  
-    console.log("Register inserted!");
+    create(req, res) {        
+        console.log("Create page loaded...")
+        return res.render("../views/cms/cms-Continent-C")            
+    },
 
-})();
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// (async () => {
+
+//     //INSERT
+//     console.log("Starting insert command...");
+//     const result = await db.insertContinent({name: "Asia", description: "xyz xyz xyz"});   
+//     console.log (result);  
+//     console.log("Register inserted!");
+
+// })();
 
 
 

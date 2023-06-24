@@ -1,5 +1,5 @@
 //MYSQL DATABASE CONFIGURATION / CONECTIONINSERT
-const mysql = require("./config");
+const mysql = require("../db/config");
 
 //INSERT
 async function insertContinent(continent){

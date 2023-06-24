@@ -3,6 +3,8 @@ const routes = express.Router()
 
 const views = __dirname + "/views/"
 
+const ContinentController = require('./controllers/ContinentController.js')
+
 
 // ROUTES
 
@@ -12,11 +14,6 @@ routes.get('/', (req,res) => res.render(views + "index"));
 routes.get('/Tools-MainPage', (req,res) => res.render(views + "tools/Tools-MainPage"));
 routes.get('/HolyBible', (req,res) => res.render(views + "tools/HolyBible"));
 routes.get('/BibleTypeSelection', (req,res) => res.render(views + "tools/BibleTypeSelection"));
-// routes.get('/BookDashboard', (req,res) => res.render(views + "tools/BookDashboard"));
-// routes.get('/ChronologicalDashboard', (req,res) => res.render(views + "tools/ChronologicalDashboard"));
-// routes.get('/LandingBookPage', (req,res) => res.render(views + "tools/LandingBookPage"));
-// routes.get('/LandingChronologicalPage', (req,res) => res.render(views + "tools/LandingChronologicalPage"));
-// routes.get('/ReadingBookPage', (req,res) => res.render(views + "tools/ReadingBookPage"));
 routes.get('/ReadingChronologicalPage', (req,res) => res.render(views + "tools/ReadingChronologicalPage"));
 routes.get('/ChronologicalEvents', (req,res) => res.render(views + "tools/ChronologicalEvents"));
 routes.get('/Timeline', (req,res) => res.render(views + "tools/Timeline"));
@@ -75,7 +72,10 @@ routes.get('/cms-Period-Q', (req,res) => res.render(views + "cms/cms-Period-Q"))
 routes.get('/cms-Period-C', (req,res) => res.render(views + "cms/cms-Period-C"));
 
 routes.get('/cms-Continent-Q', (req,res) => res.render(views + "cms/cms-Continent-Q"));
-routes.get('/cms-Continent-C', (req,res) => res.render(views + "cms/cms-Continent-C"));
+routes.get('/cms-Continent-C', ContinentController.create)
+
+
+
 
 routes.get('/cms-Country-Q', (req,res) => res.render(views + "cms/cms-Country-Q"));
 routes.get('/cms-Country-C', (req,res) => res.render(views + "cms/cms-Country-C"));

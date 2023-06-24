@@ -40,7 +40,7 @@
     <main>
         <h1>Cadastrar - Continente</h1>
         
-        <form action="">            
+        <form id="form-continent" method="post" action="/cms-Continent-Q">            
             <fieldset class="flex">
                 <legend>Dados básicos</legend>
                 <div class="row">
@@ -80,7 +80,9 @@
                         <div class="button-area">
                             <a href="/cms-Continent-Q">
                                 <div class="button-frame">
-                                    <button class="btn btn-success">Salvar</button></a>
+                                    <button class="btn btn-success" form="form-continent" 
+                                    type="submit" 
+                                    title="Save data">Salvar</button></a>
                                 </div>
                             </a>
                             <a href="/cms-Continent-C">
