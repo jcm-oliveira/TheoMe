@@ -71,9 +71,10 @@ routes.get('/cms-PeriodType-C', (req,res) => res.render(views + "cms/cms-PeriodT
 routes.get('/cms-Period-Q', (req,res) => res.render(views + "cms/cms-Period-Q"));
 routes.get('/cms-Period-C', (req,res) => res.render(views + "cms/cms-Period-C"));
 
+
 routes.get('/cms-Continent-Q', (req,res) => res.render(views + "cms/cms-Continent-Q"));
 routes.get('/cms-Continent-C', ContinentController.create)
-
+routes.post('/cms-Continent-C', ContinentController.save)
 
 
 

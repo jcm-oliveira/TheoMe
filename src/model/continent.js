@@ -1,26 +1,51 @@
-//MYSQL DATABASE CONFIGURATION / CONECTIONINSERT
 const mysql = require("../db/config");
 
-//INSERT
-async function insertContinent(continent){
+module.exports = {
+
+//CREATE
+async create(newContinent) {
+        
     console.log("Database conecting...");
     const conn = await mysql.connect();
 
-    console.log("Object data received:")
-    const values = [continent.name, continent.description];
-    console.log(values);
+    await conn.query(`INSERT INTO continent (
+        name,
+        description,
+        status
+        ) VALUES (            
+            "${newContinent.continentName}",
+            "${newContinent.continentDescription}",
+            "${newContinent.continentStatus}"
+        )`)
+    console.log("Data inserted in database.")
 
-    const sql = 'INSERT INTO continent(name, description) VALUES (?,?);';
+    // await mysql.close()        
+},
+}
+
+
+
+
+// __________________________________________________________________________
+// async function insertContinent(continent){
+//     console.log("Database conecting...");
+//     const conn = await mysql.connect();
+
+//     console.log("Object data received:")
+//     const values = [continent.name, continent.description];
+//     console.log(values);
+
+//     const sql = 'INSERT INTO continent(name, description) VALUES (?,?);';
     
-    return await conn.query(sql, values);
-}
+//     return await conn.query(sql, values);
+// }
 
-module.exports = {
-    insertContinent, 
-    // updateContinent,
-    // deleteContinent,
-    // selectContinent, 
-}
+// module.exports = {
+//     insertContinent, 
+//     // updateContinent,
+//     // deleteContinent,
+//     // selectContinent, 
+// }
 
 
 
