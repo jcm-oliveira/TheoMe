@@ -1,13 +1,19 @@
+console.log("chamou!");
 const Continent = require("../model/continent");
-
 
 module.exports = {
 
+    show(continent) {
+    console.log(continent)
+    },
+
+    // LOAD PAGE
     create(req, res) {        
         console.log("Louding Create Page...")
         return res.render("../views/cms/cms-Continent-C")            
     },
 
+    // SAVE (INSERT)
     async save(req,res) {
         
         await Continent.create( {
@@ -19,6 +25,19 @@ module.exports = {
        
         return res.redirect('/cms-Continent-Q')
     },
+
+    // SHOW (LIST REGISTERS)
+    async show(req, res) {
+                
+        const continents = await Continent.get()
+
+        const Continent = continents.findAll()
+
+        console.log("Continent")
+
+        return res.render({ Continent })
+    },
+
 }
 
 

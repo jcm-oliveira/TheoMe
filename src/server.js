@@ -11,6 +11,7 @@ server.set('views', path.join(__dirname, 'views'))
 
 //habilitar arquivos statics
 server.use(express.static("public"))
+server.use(express.static("src"))
 
 //usar o req.body
 server.use(express.urlencoded({extened:true}))

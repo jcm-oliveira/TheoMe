@@ -2,25 +2,41 @@ const mysql = require("../db/config");
 
 module.exports = {
 
-//CREATE
-async create(newContinent) {
+    //CREATE
+    async create(newContinent) {
+            
+        console.log("Database conecting...");
+        const conn = await mysql.connect();
+
+        await conn.query(`INSERT INTO continent (
+            name,
+            description,
+            status
+            ) VALUES (            
+                "${newContinent.continentName}",
+                "${newContinent.continentDescription}",
+                "${newContinent.continentStatus}"
+            )`)
+        console.log("Data inserted in database.")
+
+        // await db.close()
+    },
+
+    //SHOW
+    async get(){
+        const conn = await mysql.connect();
         
-    console.log("Database conecting...");
-    const conn = await mysql.connect();
+        const continents = await conn.all(`SELECT * FROM continent`)
 
-    await conn.query(`INSERT INTO continent (
-        name,
-        description,
-        status
-        ) VALUES (            
-            "${newContinent.continentName}",
-            "${newContinent.continentDescription}",
-            "${newContinent.continentStatus}"
-        )`)
-    console.log("Data inserted in database.")
+        // await db.close()
 
-    // await mysql.close()        
-},
+        return continents.map((continent) => ({
+            id: continent.id,
+            name: continent.name,
+            description: continent.description,
+            status: continent.status
+        }));
+    },
 }
 
 
