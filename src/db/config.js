@@ -12,8 +12,6 @@ async function connect(){
     return connection;
 }
 
-connect();
-
 module.exports = {
     connect,
 }

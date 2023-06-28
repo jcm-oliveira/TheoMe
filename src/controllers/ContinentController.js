@@ -1,20 +1,31 @@
-console.log("chamou!");
+console.log("Entrou no script ContinentController!");
 const Continent = require("../model/continent");
 
 module.exports = {
 
-    show(continent) {
-    console.log(continent)
+     // LOAD PAGES
+     async loadShowPage(req, res) {        
+        console.log("Louding Show Page...")
+
+        const continents = await Continent.get()
+        console.log("Result:",continents)
+
+        // continents.findAll().then(continents => {
+        
+        // return res.render("../views/cms/cms-Continent-Q",{continents:continents});               
+        // })
+
+        return res.render("../views/cms/cms-Continent-Q",{continents});
     },
 
-    // LOAD PAGE
-    create(req, res) {        
+
+    loadInsertPage(req, res) {        
         console.log("Louding Create Page...")
         return res.render("../views/cms/cms-Continent-C")            
     },
 
-    // SAVE (INSERT)
-    async save(req,res) {
+    // SAVE (CREATE)
+    async create(req,res) {
         
         await Continent.create( {
             continentStatus: req.body.continentStatus,
@@ -26,17 +37,6 @@ module.exports = {
         return res.redirect('/cms-Continent-Q')
     },
 
-    // SHOW (LIST REGISTERS)
-    async show(req, res) {
-                
-        const continents = await Continent.get()
-
-        const Continent = continents.findAll()
-
-        console.log("Continent")
-
-        return res.render({ Continent })
-    },
 
 }
 

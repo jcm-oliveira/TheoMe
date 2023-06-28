@@ -17,27 +17,37 @@ module.exports = {
                 "${newContinent.continentDescription}",
                 "${newContinent.continentStatus}"
             )`)
-        console.log("Data inserted in database.")
+        console.log("Data created in database.")
 
         // await db.close()
     },
 
     //SHOW
     async get(){
+
+        console.log("Database conecting...");
         const conn = await mysql.connect();
         
-        const continents = await conn.all(`SELECT * FROM continent`)
+        const continents = await conn.query(`SELECT * FROM continent` )
 
-        // await db.close()
+        console.log("Query Result", continents)
 
-        return continents.map((continent) => ({
+        return continents.map (continent => ({
             id: continent.id,
-            name: continent.name,
+            name: "texto",
             description: continent.description,
-            status: continent.status
+            status: continent.status,
+            excluded: continent.excluded,
+            datetime: continent.datetime
         }));
     },
 }
+
+
+
+
+
+
 
 
 
