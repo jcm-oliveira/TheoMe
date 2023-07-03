@@ -3,37 +3,40 @@ const Continent = require("../model/continent");
 
 module.exports = {
 
-     // LOAD PAGES
+     //-------- LOAD PAGES---------
+
      async loadShowPage(req, res) {        
         console.log("Louding Show Page...")
 
-        const continents = await Continent.get()
-        console.log("Result:",continents)
+        var continents = Continent.get()
+        console.log("Result from get function:", continents)
 
-        // continents.findAll().then(continents => {
+        // recebe()
         
-        // return res.render("../views/cms/cms-Continent-Q",{continents:continents});               
-        // })
+        // function recebe() {
+        // var continents = Continent.get()
+        //     display(continents)
+        // }
+        
+        // function display(continents){
+        //     console.log("Result from get function:", continents)
+        // }
 
         return res.render("../views/cms/cms-Continent-Q",{continents});
     },
-
 
     loadInsertPage(req, res) {        
         console.log("Louding Create Page...")
         return res.render("../views/cms/cms-Continent-C")            
     },
 
-    // SAVE (CREATE)
-    async create(req,res) {
-        
+    //-------SAVE (CREATE)---------
+
+    async create(req,res) {        
         await Continent.create( {
             continentStatus: req.body.continentStatus,
             continentName: req.body.continentName,
-            continentDescription: req.body.continentDescription,     
-        }
-       );      
-       
+            continentDescription: req.body.continentDescription,});      
         return res.redirect('/cms-Continent-Q')
     },
 

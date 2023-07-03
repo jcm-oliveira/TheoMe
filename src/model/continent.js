@@ -1,45 +1,54 @@
-const mysql = require("../db/config");
+// const mysql = require("../db/config");
+
+var mysql = require('mysql');
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "theome"
+});
+
 
 module.exports = {
 
-    //CREATE
+    //---------------CREATE----------------
     async create(newContinent) {
-            
-        console.log("Database conecting...");
-        const conn = await mysql.connect();
-
-        await conn.query(`INSERT INTO continent (
-            name,
-            description,
-            status
-            ) VALUES (            
-                "${newContinent.continentName}",
-                "${newContinent.continentDescription}",
-                "${newContinent.continentStatus}"
-            )`)
-        console.log("Data created in database.")
-
-        // await db.close()
+            console.log("Connected!");
+            var sql = `INSERT INTO continent (
+                    name,
+                    description,
+                    status
+                    ) VALUES (            
+                        "${newContinent.continentName}",
+                        "${newContinent.continentDescription}",
+                        "${newContinent.continentStatus}"
+                    )`;
+            con.query(sql, function (err, result) {
+              if (err) throw err;
+              console.log("1 record inserted");
+            });
     },
 
-    //SHOW
-    async get(){
-
-        console.log("Database conecting...");
-        const conn = await mysql.connect();
-        
-        const continents = await conn.query(`SELECT * FROM continent` )
-
-        console.log("Query Result", continents)
-
-        return continents.map (continent => ({
+    //---------------SHOW------------------
+   async get(){
+        console.log("Connected!");
+            var sql = "SELECT * FROM continent";
+            con.query(sql, function (err, result, fields) {
+            // if any error while executing above query, throw error
+        if (err) throw err;
+            // if there is no error, you have the result
+            console.log("Query Result:", result);
+            console.log(result[3].name)
+                    
+        return result.map (continent => ({
             id: continent.id,
             name: "texto",
             description: continent.description,
             status: continent.status,
             excluded: continent.excluded,
             datetime: continent.datetime
-        }));
+             }))
+        });
     },
 }
 
@@ -48,9 +57,36 @@ module.exports = {
 
 
 
+// _________________________________________________________________________________
 
+// CREATE
+        // console.log("Database conecting...");
+        // // con.connect();
+        // con.query(`INSERT INTO continent (
+        //     name,
+        //     description,
+        //     status
+        //     ) VALUES (            
+        //         "${newContinent.continentName}",
+        //         "${newContinent.continentDescription}",
+        //         "${newContinent.continentStatus}"
+        //     )`)
+        // console.log("Data created in database.")
 
+//SHOW
 
+        // const conn = await mysql.connect();        
+        // const continents = await conn.query(`SELECT * FROM continent WHERE ID=1` )
+        // console.log("Query Result", continents)
+        // console.log(continents[0].name)
+        // return continents.map (continent => ({
+        //     id: continent.id,
+        //     name: "texto",
+        //     description: continent.description,
+        //     status: continent.status,
+        //     excluded: continent.excluded,
+        //     datetime: continent.datetime
+        // }));
 
 // __________________________________________________________________________
 // async function insertContinent(continent){
