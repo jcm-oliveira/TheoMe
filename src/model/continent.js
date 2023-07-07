@@ -1,20 +1,21 @@
-// const mysql = require("../db/config");
-
-var mysql = require('mysql');
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "theome"
-});
+const db = require("../db/config");
+console.log("Model file starts...")
 
 
-module.exports = {
+    //---------------SELECT------------------
 
-    //---------------CREATE----------------
-    async create(newContinent) {
-            console.log("Connected!");
-            var sql = `INSERT INTO continent (
+   async function selectContinents(){
+        const conn = await db.connect();
+        var sql = "SELECT * FROM continent;";
+        const result = conn.query(sql)
+        return result  
+        };    
+
+    
+    //---------------INSERT----------------
+    async function insertContinents(newContinent) {
+        const conn = await db.connect();
+        var sql = `INSERT INTO continent (
                     name,
                     description,
                     status
@@ -23,34 +24,19 @@ module.exports = {
                         "${newContinent.continentDescription}",
                         "${newContinent.continentStatus}"
                     )`;
-            con.query(sql, function (err, result) {
-              if (err) throw err;
-              console.log("1 record inserted");
-            });
-    },
+        const result = conn.query(sql)
+        return result
+    }
 
-    //---------------SHOW------------------
-   async get(){
-        console.log("Connected!");
-            var sql = "SELECT * FROM continent";
-            con.query(sql, function (err, result, fields) {
-            // if any error while executing above query, throw error
-        if (err) throw err;
-            // if there is no error, you have the result
-            console.log("Query Result:", result);
-            console.log(result[3].name)
-                    
-        return result.map (continent => ({
-            id: continent.id,
-            name: "texto",
-            description: continent.description,
-            status: continent.status,
-            excluded: continent.excluded,
-            datetime: continent.datetime
-             }))
-        });
-    },
-}
+    module.exports = {selectContinents, insertContinents}
+
+
+
+
+
+
+
+
 
 
 
@@ -58,6 +44,80 @@ module.exports = {
 
 
 // _________________________________________________________________________________
+
+// const mysql = require("mysql");
+// const db = mysql.createConnection("mysql://root:@localhost:3306/theome");
+// console.log("MySQL Connected!");
+
+
+    //---------------CREATE----------------
+    // async create(newContinent) {
+    //         console.log("Connected!");
+    //         console.log(con)
+    //         var sql = `INSERT INTO continent (
+    //                 name,
+    //                 description,
+    //                 status
+    //                 ) VALUES (            
+    //                     "${newContinent.continentName}",
+    //                     "${newContinent.continentDescription}",
+    //                     "${newContinent.continentStatus}"
+    //                 )`;
+    //         await con.query(sql, function (err, result) {
+    //           if (err) throw err;
+    //           console.log("1 record inserted");
+    //         });
+    // },
+
+
+
+// --------------GET-------------------
+
+       // var sql = "SELECT * FROM continent";
+
+        // db.query(sql, function (err, result, fields) {
+        //     // if any error while executing above query, throw error
+        //     if (err) throw err;
+        //     // if there is no error, you have the result
+        //     console.log("Query Result:", result);
+            
+        //     const teste = result[3].name
+        //     console.log(teste)
+
+        //     return result            
+                    
+        // return result.map ((continent) => ({
+        //     id: continent.id,
+        //     name: "texto",
+        //     description: continent.description,
+        //     status: continent.status,
+        //     excluded: continent.excluded,
+        //     datetime: continent.datetime
+        //      }));
+        // });
+
+//---------------CONECTION-------------------
+
+// const mysql = require("mysql");
+// const db = mysql.createConnection("mysql://root:@localhost:3306/theome");
+// console.log("MySQL Connected!");
+
+
+// var mysql = require('mysql');
+// var con = mysql.createConnection({
+//   host: "localhost",
+//   user: "root",
+//   password: "",
+//   database: "theome"
+// });
+
+
+          // return new Promise((resolve,reject) => {
+            //     con.query(sql, function (err, result) => {
+            //     if(err) return reject('Not found...')
+            //     else return resolve(result)
+            // });
+
 
 // CREATE
         // console.log("Database conecting...");
@@ -108,13 +168,6 @@ module.exports = {
 //     // deleteContinent,
 //     // selectContinent, 
 // }
-
-
-
-
-
-
-
 
 
 

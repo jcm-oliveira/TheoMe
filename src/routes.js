@@ -77,7 +77,7 @@ routes.get('/cms-Continent-Q', ContinentController.loadShowPage)
 // routes.get('/cms-Continent-Q', ContinentController.show)
 
 routes.get('/cms-Continent-C', ContinentController.loadInsertPage)
-routes.post('/cms-Continent-C', ContinentController.create)
+routes.post('/cms-Continent-C', ContinentController.insertContinentPage)
 
 // ___________________________________________________________________
 

@@ -1,5 +1,5 @@
-console.log("Entrou no script ContinentController!");
 const Continent = require("../model/continent");
+console.log("ContinentController file starts...");
 
 module.exports = {
 
@@ -7,47 +7,49 @@ module.exports = {
 
      async loadShowPage(req, res) {        
         console.log("Louding Show Page...")
-
-        var continents = Continent.get()
+        const continents = await Continent.selectContinents()
         console.log("Result from get function:", continents)
-
-        // recebe()
-        
-        // function recebe() {
-        // var continents = Continent.get()
-        //     display(continents)
-        // }
-        
-        // function display(continents){
-        //     console.log("Result from get function:", continents)
-        // }
-
         return res.render("../views/cms/cms-Continent-Q",{continents});
     },
 
-    loadInsertPage(req, res) {        
+    async loadInsertPage(req, res) {        
         console.log("Louding Create Page...")
         return res.render("../views/cms/cms-Continent-C")            
     },
 
-    //-------SAVE (CREATE)---------
+    //-------INSERT ---------
 
-    async create(req,res) {        
-        await Continent.create( {
+    async insertContinentPage(req,res) {        
+        await Continent.insertContinents( {
             continentStatus: req.body.continentStatus,
             continentName: req.body.continentName,
             continentDescription: req.body.continentDescription,});      
         return res.redirect('/cms-Continent-Q')
     },
-
-
 }
 
 
 
 
 
+
+
+
+
+
+
+
+
+
 // __________________________________________________________________________
+
+// setTimeout(display, 3000);
+
+      // function display(continents) {
+        // console.log("Result from get function:", continents)
+        // }
+
+
 // (async () => {
 
 //     //INSERT
