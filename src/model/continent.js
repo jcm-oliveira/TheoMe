@@ -5,30 +5,34 @@ console.log("Model file starts...")
     //---------------SELECT------------------
 
    async function selectContinents(){
-        const conn = await db.connect();
-        var sql = "SELECT * FROM continent;";
+        const conn = await db.connect()
+        var sql = "SELECT * FROM continent"
         const result = conn.query(sql)
         return result  
-        };    
+    }
 
     
-    //---------------INSERT----------------
+    //---------------INSERT-------------------
     async function insertContinents(newContinent) {
-        const conn = await db.connect();
-        var sql = `INSERT INTO continent (
-                    name,
-                    description,
-                    status
-                    ) VALUES (            
-                        "${newContinent.continentName}",
-                        "${newContinent.continentDescription}",
-                        "${newContinent.continentStatus}"
-                    )`;
-        const result = conn.query(sql)
+        const conn = await db.connect()
+        const sql = "INSERT INTO continent(name, description,status) VALUES (?, ?, ?)"
+        const values = [newContinent.continentName, newContinent.continentDescription, newContinent.continentStatus]
+        const result = conn.query(sql, values)
         return "Data inserted successfully"
     }
 
-    module.exports = {selectContinents, insertContinents}
+    //---------------UPDATE-------------------
+
+    async function updateContinents(id, continent) {
+        const conn = await db.connect()
+        const sql = "UPDATE continent SET  status = ?, name = ?, description = ? WHERE id = ?"
+        const values = [continent.continentStatus,continent.continentName, continent.continentDescription, id]
+        const result = conn.query(sql, values)
+        return "Data updated successfully"
+  
+    }
+
+    module.exports = {selectContinents, insertContinents, updateContinents}
 
 
 
@@ -44,6 +48,16 @@ console.log("Model file starts...")
 
 
 // _________________________________________________________________________________
+
+        // var sql = `INSERT INTO continent (
+        //             name,
+        //             description,
+        //             status
+        //             ) VALUES (            
+        //                 "${newContinent.continentName}",
+        //                 "${newContinent.continentDescription}",
+        //                 "${newContinent.continentStatus}"
+        //             )`;
 
 // const mysql = require("mysql");
 // const db = mysql.createConnection("mysql://root:@localhost:3306/theome");

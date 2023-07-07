@@ -1,12 +1,22 @@
+//---------------------------------------------------
+//               EXPRESS CONFIGURATIONS
+//---------------------------------------------------
+
 express = require('express');
 const routes = express.Router()
-
 const views = __dirname + "/views/"
+
+//---------------------------------------------------
+//                      FILES
+//---------------------------------------------------
 
 const ContinentController = require('./controllers/ContinentController.js')
 
 
-// ROUTES
+
+//---------------------------------------------------
+//                      ROUTES
+//---------------------------------------------------
 
 routes.get('/', (req,res) => res.render(views + "index"));
 
@@ -74,10 +84,10 @@ routes.get('/cms-Period-C', (req,res) => res.render(views + "cms/cms-Period-C"))
 // ___________________________________________________________________
 
 routes.get('/cms-Continent-Q', ContinentController.loadShowPage)
-// routes.get('/cms-Continent-Q', ContinentController.show)
-
 routes.get('/cms-Continent-C', ContinentController.loadInsertPage)
+routes.get('/cms-Continent-C/:id', ContinentController.loadUpdatePage)
 routes.post('/cms-Continent-C', ContinentController.insertContinentPage)
+routes.post('/cms-Continent-U/:id', ContinentController.updateContinentPage)
 
 // ___________________________________________________________________
 

@@ -16,6 +16,17 @@ module.exports = {
         return res.render("../views/cms/cms-Continent-C")            
     },
 
+    async loadUpdatePage(req, res) {        
+        console.log("Louding Update Page...")
+        const continentId = req.params.id
+        const [continents] = await Continent.selectContinents()
+        const continent = continents.find(job => Number(job.id) === Number(continentId))
+            if (!continent) {
+                return res.send('Continente não encontrado')
+            }
+        return res.render("../views/cms/cms-Continent-U", {continent})     
+    },
+
     //-------INSERT ---------
 
     async insertContinentPage(req,res) {        
@@ -25,6 +36,23 @@ module.exports = {
             continentDescription: req.body.continentDescription,});
         console.log(insert)
         return res.redirect('/cms-Continent-Q')
+    },
+
+    //-------UPDATE ---------
+
+    async updateContinentPage(req,res) {  
+        
+        const continentId = req.params.id
+       
+        const updatedContinent = {
+            continentStatus: req.body.continentStatus,
+            continentName: req.body.continentName,
+            continentDescription: req.body.continentDescription,
+        }
+
+        await Continent.updateContinents(continentId,updatedContinent)
+
+        res.redirect('/cms-Continent-Q')
     },
 }
 
