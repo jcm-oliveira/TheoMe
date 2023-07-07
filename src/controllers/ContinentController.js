@@ -7,8 +7,9 @@ module.exports = {
 
      async loadShowPage(req, res) {        
         console.log("Louding Show Page...")
-        const continents = await Continent.selectContinents()
+        const [continents] = await Continent.selectContinents()
         console.log("Result from get function:", continents)
+        console.log(continents[4].name)
         return res.render("../views/cms/cms-Continent-Q",{continents});
     },
 
