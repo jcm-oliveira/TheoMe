@@ -25,7 +25,7 @@ console.log("Model file starts...")
                         "${newContinent.continentStatus}"
                     )`;
         const result = conn.query(sql)
-        return result
+        return "Data inserted successfully"
     }
 
     module.exports = {selectContinents, insertContinents}

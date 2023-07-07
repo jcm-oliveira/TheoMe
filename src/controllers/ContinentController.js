@@ -13,17 +13,18 @@ module.exports = {
     },
 
     async loadInsertPage(req, res) {        
-        console.log("Louding Create Page...")
+        console.log("Louding Insert Page...")
         return res.render("../views/cms/cms-Continent-C")            
     },
 
     //-------INSERT ---------
 
     async insertContinentPage(req,res) {        
-        await Continent.insertContinents( {
+        const insert = await Continent.insertContinents( {
             continentStatus: req.body.continentStatus,
             continentName: req.body.continentName,
-            continentDescription: req.body.continentDescription,});      
+            continentDescription: req.body.continentDescription,});
+        console.log(insert)
         return res.redirect('/cms-Continent-Q')
     },
 }
