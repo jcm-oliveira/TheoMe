@@ -7,7 +7,7 @@ const routes = express.Router()
 const views = __dirname + "/views/"
 
 //---------------------------------------------------
-//                      FILES
+//                  REQUIRED FILES
 //---------------------------------------------------
 
 const ContinentController = require('./controllers/ContinentController.js')
@@ -15,7 +15,7 @@ const ContinentController = require('./controllers/ContinentController.js')
 
 
 //---------------------------------------------------
-//                      ROUTES
+//                  PORTAL ROUTES
 //---------------------------------------------------
 
 routes.get('/', (req,res) => res.render(views + "index"));
@@ -28,7 +28,6 @@ routes.get('/ReadingChronologicalPage', (req,res) => res.render(views + "tools/R
 routes.get('/ChronologicalEvents', (req,res) => res.render(views + "tools/ChronologicalEvents"));
 routes.get('/Timeline', (req,res) => res.render(views + "tools/Timeline"));
 routes.get('/Timeline-IframeBar.ejs', (req,res) => res.render(views + "tools/Timeline-IframeBar.ejs", { Period }));
-
 routes.get('/T-BookSummary', (req,res) => res.render(views + "tools/T-BookSummary"));
 routes.get('/T-BookData', (req,res) => res.render(views + "tools/T-BookData"));
 routes.get('/T-BookSchemaOfContent', (req,res) => res.render(views + "tools/T-BookSchemaOfContent"));
@@ -46,6 +45,10 @@ routes.get('/Community-MainPage', (req,res) => res.render(views + "community/Com
 // ABOUT
 routes.get('/WhoWeAre', (req,res) => res.render(views + "about/WhoWeAre"));
 routes.get('/Collaboration', (req,res) => res.render(views + "about/Collaboration"));
+
+//---------------------------------------------------
+//                  CMS ROUTES
+//---------------------------------------------------
 
 // CMS - Content Management System - B4
 routes.get('/cms-LoginPage', (req,res) => res.render(views + "cms/cms-LoginPage"));
@@ -81,7 +84,7 @@ routes.get('/cms-PeriodType-C', (req,res) => res.render(views + "cms/cms-PeriodT
 routes.get('/cms-Period-Q', (req,res) => res.render(views + "cms/cms-Period-Q"));
 routes.get('/cms-Period-C', (req,res) => res.render(views + "cms/cms-Period-C"));
 
-// ___________________________________________________________________
+//___________________Continent________________________
 
 routes.get('/cms-Continent-Q', ContinentController.loadShowPage)
 routes.get('/cms-Continent-C', ContinentController.loadInsertPage)
@@ -89,8 +92,7 @@ routes.get('/cms-Continent-C/:id', ContinentController.loadUpdatePage)
 routes.post('/cms-Continent-C', ContinentController.insertContinentPage)
 routes.post('/cms-Continent-U/:id', ContinentController.updateContinentPage)
 
-// ___________________________________________________________________
-
+//_____________________Country_________________________
 
 routes.get('/cms-Country-Q', (req,res) => res.render(views + "cms/cms-Country-Q"));
 routes.get('/cms-Country-C', (req,res) => res.render(views + "cms/cms-Country-C"));

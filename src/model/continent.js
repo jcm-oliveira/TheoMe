@@ -43,6 +43,12 @@ console.log("Model file starts...")
 //                    DELETE
 //------------------------------------------------
 
+async function deleteContinents() {
+
+}
+
+
+
     module.exports = {selectContinents, insertContinents, updateContinents}
 
 
