@@ -3,7 +3,9 @@ console.log("ContinentController file starts...");
 
 module.exports = {
 
-     //-------- LOAD PAGES---------
+//------------------------------------------------
+//                    LOAD PAGES
+//------------------------------------------------
 
      async loadShowPage(req, res) {        
         console.log("Louding Show Page...")
@@ -27,7 +29,9 @@ module.exports = {
         return res.render("../views/cms/cms-Continent-U", {continent})     
     },
 
-    //-------INSERT ---------
+//------------------------------------------------
+//                   INSERT
+//------------------------------------------------
 
     async insertContinentPage(req,res) {        
         const insert = await Continent.insertContinents( {
@@ -38,22 +42,26 @@ module.exports = {
         return res.redirect('/cms-Continent-Q')
     },
 
-    //-------UPDATE ---------
+//------------------------------------------------
+//                    UPDATE
+//------------------------------------------------
 
-    async updateContinentPage(req,res) {  
-        
+    async updateContinentPage(req,res) {
         const continentId = req.params.id
-       
         const updatedContinent = {
             continentStatus: req.body.continentStatus,
             continentName: req.body.continentName,
-            continentDescription: req.body.continentDescription,
-        }
-
-        await Continent.updateContinents(continentId,updatedContinent)
-
+            continentDescription: req.body.continentDescription,}
+        const update = await Continent.updateContinents(continentId,updatedContinent)
+        console.log(update)
         res.redirect('/cms-Continent-Q')
     },
+
+//------------------------------------------------
+//                    DELETE
+//------------------------------------------------
+
+
 }
 
 

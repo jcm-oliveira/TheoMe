@@ -2,7 +2,9 @@ const db = require("../db/config");
 console.log("Model file starts...")
 
 
-    //---------------SELECT------------------
+//--------------------------------------------
+//                  SELECT
+//--------------------------------------------
 
    async function selectContinents(){
         const conn = await db.connect()
@@ -12,7 +14,10 @@ console.log("Model file starts...")
     }
 
     
-    //---------------INSERT-------------------
+//---------------------------------------------
+//                   INSERT
+//---------------------------------------------
+
     async function insertContinents(newContinent) {
         const conn = await db.connect()
         const sql = "INSERT INTO continent(name, description,status) VALUES (?, ?, ?)"
@@ -21,7 +26,9 @@ console.log("Model file starts...")
         return "Data inserted successfully"
     }
 
-    //---------------UPDATE-------------------
+//----------------------------------------------
+//                     UPDATE
+//----------------------------------------------
 
     async function updateContinents(id, continent) {
         const conn = await db.connect()
@@ -31,6 +38,10 @@ console.log("Model file starts...")
         return "Data updated successfully"
   
     }
+
+//------------------------------------------------
+//                    DELETE
+//------------------------------------------------
 
     module.exports = {selectContinents, insertContinents, updateContinents}
 
