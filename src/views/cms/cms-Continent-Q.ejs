@@ -93,10 +93,10 @@
                                 <td><%-continent.name%></td>
                                 <td>
                                     <% if( continent.status=== '1' ) { %>
-                                        Ativo
+                                        <div class="statusActive">Ativo</div>
                                     <% } else { %>
-                                      Inativo
-                                      <% } %>
+                                        <div class="statusInative">Inativo</div>
+                                    <% } %>
                                 </td>
                                 <td class="item-option">
                                     <a href="/cms-Continent-C/<%= continent.id %>"><i class="fas fa-pen"></i></a>

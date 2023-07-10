@@ -8,7 +8,7 @@ console.log("Model file starts...")
 
    async function selectContinents(){
         const conn = await db.connect()
-        var sql = "SELECT * FROM continent"
+        var sql = "SELECT * FROM continent WHERE excluded = 0"
         const result = conn.query(sql)
         return result  
     }
@@ -43,13 +43,16 @@ console.log("Model file starts...")
 //                    DELETE
 //------------------------------------------------
 
-async function deleteContinents() {
-
+async function deleteContinents(id) {
+        const conn = await db.connect()
+        const sql = "UPDATE continent SET excluded = ? WHERE id = ?"
+        const values = [1, id]
+        const result = conn.query(sql, values)
+        return "Data deleted successfully"
 }
 
 
-
-    module.exports = {selectContinents, insertContinents, updateContinents}
+    module.exports = {selectContinents, insertContinents, updateContinents,deleteContinents}
 
 
 

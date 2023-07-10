@@ -91,6 +91,8 @@ routes.get('/cms-Continent-C', ContinentController.loadInsertPage)
 routes.get('/cms-Continent-C/:id', ContinentController.loadUpdatePage)
 routes.post('/cms-Continent-C', ContinentController.insertContinentPage)
 routes.post('/cms-Continent-U/:id', ContinentController.updateContinentPage)
+routes.post('/cms-Continent-D/:id', ContinentController.deleteContinentPage)
+
 
 //_____________________Country_________________________
 

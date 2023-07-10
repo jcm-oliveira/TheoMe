@@ -79,6 +79,7 @@
                     </fieldset>
                 </form>
 
+ 
                 <!-- BUTTON AREA -->
 
                 <div class="button-area">
@@ -88,27 +89,31 @@
                                 title="Save data">Salvar</button>
                     </a>
                 </div>
-                </a>
-                <a href="#">
-                    <div class="button-frame">
-                        <button class="btn btn-success" form="form-continent" type="submit" title="Save data">Salvar e
-                            Novo</button>
-                    </div>
-                </a>
+
                 <a href="/cms-Continent-Q">
                     <div class="button-frame">
                         <button class="btn btn-secondary">Cancelar</button>
                     </div>
                 </a>
+
                 <a href="#">
                     <div class="button-frame">
-                        <button class="btn btn-danger">Excluir</button>
+                        <button class="btn btn-danger" data-toggle="modal" data-target="#DeleteModal">Excluir</button>
                     </div>
                 </a>
-                </div>
+                
 
             </main>
 
             <%- include('../parts/footer') %>
+
+
+                <!-- TRIGGER MODAL DELETE POPUP -->
+                <div class="modal fade" id="DeleteModal" aria-hidden="true">
+                    <div class="modal-dialog modal-md">
+                        <%- include('../cms/cms-delete-I') %>
+                    </div>
+                </div>
+                <!-- END MODAL -->
 
 </body>

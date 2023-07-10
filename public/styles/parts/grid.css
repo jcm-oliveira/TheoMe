@@ -1,5 +1,4 @@
 
-
  /* STANDARD GRID TO FORMS */
 
 .item-option {
@@ -22,6 +21,20 @@
 .item-option:hover {
     box-shadow: none;  
     transition: 0.2s ease-in;    
+}
+
+.statusActive{
+    background-color: #259970;
+    color:white;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.statusInative{
+    background-color: #717976;
+    color:white;
+    text-align: center;
+    border-radius: 20px;
 }
 
 /* GRID TO BIBLE READING VIEW*/

@@ -22,7 +22,7 @@ module.exports = {
         console.log("Louding Update Page...")
         const continentId = req.params.id
         const [continents] = await Continent.selectContinents()
-        const continent = continents.find(job => Number(job.id) === Number(continentId))
+        const continent = continents.find(continent => Number(continent.id) === Number(continentId))
             if (!continent) {
                 return res.send('Continente não encontrado')
             }
@@ -61,9 +61,11 @@ module.exports = {
 //                    DELETE
 //------------------------------------------------
 async deleteContinentPage(req,res) {
-    
-},
-
+        const continentId = req.params.id
+        const deleted = await Continent.deleteContinents(continentId)
+        console.log(deleted)
+        res.redirect('/cms-Continent-Q')
+    },
 }
 
 
