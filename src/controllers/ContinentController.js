@@ -9,7 +9,10 @@ module.exports = {
 
      async loadShowPage(req, res) {        
         console.log("Louding Show Page...")
-        const [continents] = await Continent.selectContinents()
+        const filterStatus = {
+            continentStatus:1
+        }
+        const [continents] = await Continent.selectContinents(filterStatus)
         return res.render("../views/cms/cms-Continent-Q",{continents});
     },
 
@@ -21,7 +24,10 @@ module.exports = {
     async loadUpdatePage(req, res) {        
         console.log("Louding Update Page...")
         const continentId = req.params.id
-        const [continents] = await Continent.selectContinents()
+        const filterStatus = {
+            continentStatus:1
+        }
+        const [continents] = await Continent.selectContinents(filterStatus)
         const continent = continents.find(continent => Number(continent.id) === Number(continentId))
             if (!continent) {
                 return res.send('Continente não encontrado')
@@ -66,52 +72,20 @@ async deleteContinentPage(req,res) {
         console.log(deleted)
         res.redirect('/cms-Continent-Q')
     },
+
+
+//------------------------------------------------
+//                    FILTER
+//------------------------------------------------
+async filterContinentPage(req,res) {
+    const filterStatus = {
+        continentStatus:Number(req.body.filterStatus),
+    }
+    const [continents] = await Continent.selectContinents(filterStatus)
+    return res.render("../views/cms/cms-Continent-Q",{continents});
+    }
 }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-// __________________________________________________________________________
-
-// setTimeout(display, 3000);
-
-      // function display(continents) {
-        // console.log("Result from get function:", continents)
-        // }
-
-
-// (async () => {
-
-//     //INSERT
-//     console.log("Starting insert command...");
-//     const result = await db.insertContinent({name: "Asia", description: "xyz xyz xyz"});   
-//     console.log (result);  
-//     console.log("Register inserted!");
-
-// })();
-
-// __________________________________________________________________________
-    // //UPDATE
-    // console.log("update done!");
-    // const result3 = await db.updateAssociation_type(1, {name: "aquele update básico"}); 
-    // console.log (result3);
-
-    // //DELETE
-    // console.log('Delete done!');
-    // const result4 = await db.deleteAssociation_type(2);
-    // console.log(result4);
-
-    // //SELECT
-    // console.log("select done!");
-    // const result5 = await db.selectAssociation_type();
-    // console.log (result5);

@@ -39,21 +39,15 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form id="form-filter" method="post" action="/cms-Continent-F">
           <div class="form-group">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <label for="" form-label>Status</label>
-                    <select name="status" class="form-control">
-                        <option value="">Ativo</option>
-                        <option value="">Inativo</option>
-                    </select>
-                </div>
-                <div class="col-md-6">
-                    <label for="" form-label>Idioma</label>
-                    <select name="status" class="form-control">
-                        <option value="">Português</option>
-                        <option value="">Inglês</option>
+                    <select class="form-control" id="filterStatus" name="filterStatus">
+                        <option value="2">*Todos*</option>
+                        <option value="1">Ativo</option>
+                        <option value="0">Inativo</option>
                     </select>
                 </div>
             </div>
@@ -62,7 +56,12 @@
       </div>
       
       <div class="modal-footer">
-        <button type="button" class="btn btn-success">Filtrar</button>
+        <a href="#">
+          <div class="button-frame">
+              <button class="btn btn-success" type="submit" form="form-filter">Filtrar</button>
+          </div>
+      </a>
+
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>        
       </div>
     </div>

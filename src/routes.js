@@ -92,7 +92,7 @@ routes.get('/cms-Continent-C/:id', ContinentController.loadUpdatePage)
 routes.post('/cms-Continent-C', ContinentController.insertContinentPage)
 routes.post('/cms-Continent-U/:id', ContinentController.updateContinentPage)
 routes.post('/cms-Continent-D/:id', ContinentController.deleteContinentPage)
-
+routes.post('/cms-Continent-F', ContinentController.filterContinentPage)
 
 //_____________________Country_________________________
 
