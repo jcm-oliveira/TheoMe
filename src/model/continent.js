@@ -8,6 +8,11 @@ console.log("Model file starts...")
 
    async function selectContinents(filterStatus){
 
+    // filterStatus
+    //0 - Inative
+    //1 - Active    
+    //2 - All
+
     console.log(filterStatus)
 
     const conn = await db.connect()
