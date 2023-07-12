@@ -28,6 +28,7 @@ routes.get('/ReadingChronologicalPage', (req,res) => res.render(views + "tools/R
 routes.get('/ChronologicalEvents', (req,res) => res.render(views + "tools/ChronologicalEvents"));
 routes.get('/Timeline', (req,res) => res.render(views + "tools/Timeline"));
 routes.get('/Timeline-IframeBar.ejs', (req,res) => res.render(views + "tools/Timeline-IframeBar.ejs", { Period }));
+routes.get('/T-BookIndex', (req,res) => res.render(views + "tools/T-BookIndex"));
 routes.get('/T-BookSummary', (req,res) => res.render(views + "tools/T-BookSummary"));
 routes.get('/T-BookData', (req,res) => res.render(views + "tools/T-BookData"));
 routes.get('/T-BookSchemaOfContent', (req,res) => res.render(views + "tools/T-BookSchemaOfContent"));

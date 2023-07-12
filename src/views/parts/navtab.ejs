@@ -60,77 +60,85 @@
     </div>
 
     <!-- NAV TABS -->
-
-
     <div class="libraryiconbar">
       <ul class="nav">
-        <li class="nav-item">
+        <li class="nav-item" onclick="activate(this)">
           <a href="/T-BookSummary" onclick="tabSelection('tabBookSummary')" id="linkBookSummary" title="Resumo"><i
               class="fas fa-search"></i></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" onclick="activate(this)">
           <a href="/T-BookData" onclick="tabSelection('tabBookData')" id="linkBookData" title="Dados"><i
               class="fas fa-chart-bar"></i></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" onclick="activate(this)">
           <a href="/T-BookSchemaOfContent" onclick="tabSelection('tabBookSchemaOfContent')"
             id="linkBookSchemaOfContent" title="Esquema de Conteúdo"><i class="fas fa-list-ul"></i></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" onclick="activate(this)">
           <a href="/T-BookReadingPage" onclick="tabSelection('tabBookReadingPage')" id="linkBookReadingPage"
             title="Texto Bíblico"><i class="fas fa-book-reader"></i></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" onclick="activate(this)">
           <a href="#" onclick="tabSelection('tabBookPerson')" id="linkBookPerson" title="Personagens"><i
               class="fas fa-user-friends"></i></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" onclick="activate(this)">
           <a href="#" onclick="tabSelection('tabBookMap')" id="linkBookMap" title="Mapas"><i
               class="fas fa-map-marked-alt"></i></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" onclick="activate(this)">
           <a href="#" onclick="tabSelection('tabBookScene')" id="linkBookScene" title="Cenários"><i
               class="fas fa-landmark"></i></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" onclick="activate(this)">
           <a href="#" onclick="tabSelection('tabBookInfographic')" id="linkBookInfographic"
             title="Infográficos"><i class="fas fa-swatchbook"></i></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" onclick="activate(this)">
           <a href="#" onclick="tabSelection('tabBookLawCeremony')" id="linkBookLawCeremony"
             title="Leis e Cerimônias"><i class="fas fa-balance-scale-right"></i></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" onclick="activate(this)">
           <a href="#" onclick="tabSelection('tabBookUtensil')" id="linkBookUtensil"
             title="Utensílios, Armas e Ferramentas"><i class="fas fa-hammer"></i></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" onclick="activate(this)">
           <a href="#" onclick="tabSelection('tabBookMores')" id="linkBookMores"
             title="Costumes e Cultura"><i class="fas fa-wine-glass-alt"></i></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" onclick="activate(this)">
           <a href="#" onclick="tabSelection('tabBookSymbol')" id="linkBookSymbol" title="Símbolos"><i
               class="fas fa-menorah"></i></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" onclick="activate(this)">
           <a href="#" onclick="tabSelection('tabBookProphecy')" id="linkBookProphecy"
             title="Profecias"><i class="fas fa-sun"></i></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" onclick="activate(this)">
           <a href="#" onclick="tabSelection('tabBookHighlighter')" id="linkBookHighlighter"
             title="Passagens mais conhecidas"><i class="fas fa-highlighter"></i></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" onclick="activate(this)">
           <a href="#" onclick="tabSelection('tabBookPraise')" id="linkBookPraise" title="Louvores"><i
               class="fas fa-music"></i></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" onclick="activate(this)">
           <a href="#" onclick="tabSelection('tabBookGlossary')" id="linkBookGlossary"
             title="Glossário"><i class="fas fa-spell-check"></i></a>
         </li>
       </ul>
     </div>
   </div>
+
+  <script>
+    const activate=(element)=>{
+        let itens = document.getElementsByClassName("page-item");
+        for(i=0; i<itens.length; i++) {
+            itens[i].classList.remove("page-active");    
+        }
+        element.classList.add("page-active");
+    }
+  </script>
 
   <!-- MODAL TRIGGERS -->
 

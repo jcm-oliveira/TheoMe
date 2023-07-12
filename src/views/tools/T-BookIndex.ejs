@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+  <title>TheoMe</title>
+  <link rel="icon" type="image/png" href="/images/logo_aba.png" />
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <!-- font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <!-- icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+
+  <!-- bootstrap customization -->
+  <link rel="stylesheet" href="/styles/pages/index.css" />
+  <link rel="stylesheet" href="/styles/parts/main.css" />
+  <link rel="stylesheet" href="/styles/parts/header.css" />
+  <link rel="stylesheet" href="/styles/parts/footer.css" />
+  <link rel="stylesheet" href="/styles/parts/navbar.css" />
+  <link rel="stylesheet" href="/styles/parts/button.css" />
+  <link rel="stylesheet" href="/styles/parts/grid.css" />
+
+</head>
+
+<body>
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+    <script src="/scripts/tools-HolyBible.js"></script>
+
+  <!-- HEADER -->
+  <%- include('../parts/header') %>
+
+    <!-- MENU -->
+    <%- include('../parts/menu') %>
+
+      <main>
+
+        <!-- BREADCRUMB -->
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Bíblia Sagrada</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="#">Estilo literário</a></li>
+          </ol>
+        </nav>
+
+        <div class="readingbar">
+
+          <!-- BUTTONS -->
+
+          <div class="barbutton">
+            <a href="#">
+              <div class="button-frame" data-toggle="tooltip" title="Menu anterior">
+                <button class="btn btn-primary"><i class="fas fa-arrow-left"></i></button>
+              </div>
+            </a>
+            <a href="#">
+              <div class="button-frame" data-toggle="tooltip" title="Modo de leitura">
+                <button class="btn btn-secondary"><i class="fas fa-expand"></i></button>
+              </div>
+            </a>
+            <a href="#" data-toggle="modal" data-target="#Tools-BibleBookSelectionModal">
+              <div class="button-frame" data-toggle="tooltip" title="Selecionar Livro e Capítulo">
+                <button class="btn btn-secondary"><i class="fas fa-book"></i></button>
+              </div>
+            </a>
+            <a href="#" data-toggle="modal" data-target="#Tools-BibleTranslationModal">
+              <div class="button-frame" data-toggle="tooltip" title="Selecionar/Comparar Versões">
+                <button class="btn btn-secondary" data-toggle="modal" data-target="#"><i
+                    class="fas fa-copy"></i></button>
+              </div>
+            </a>
+          </div>
+
+          <!-- NAVTAB LIBRARY -->
+          <div class="libraryiconbar">
+            <ul class="nav">
+              <li class="nav-item" onclick="activate(this)">
+                <a href="#" onclick="tabSelection('T-BookSummary')" id="linkBookSummary" title="Resumo"><i
+                    class="fas fa-search"></i></a>
+              </li>
+              <li class="nav-item" onclick="activate(this)">
+                <a href="/T-BookData" onclick="tabSelection('tabBookData')" id="linkBookData" title="Dados"><i
+                    class="fas fa-chart-bar"></i></a>
+              </li>
+              <li class="nav-item" onclick="activate(this)">
+                <a href="/T-BookSchemaOfContent" onclick="tabSelection('tabBookSchemaOfContent')"
+                  id="linkBookSchemaOfContent" title="Esquema de Conteúdo"><i class="fas fa-list-ul"></i></a>
+              </li>
+              <li class="nav-item" onclick="activate(this)">
+                <a href="/T-BookReadingPage" onclick="tabSelection('tabBookReadingPage')" id="linkBookReadingPage"
+                  title="Texto Bíblico"><i class="fas fa-book-reader"></i></a>
+              </li>
+              <li class="nav-item" onclick="activate(this)">
+                <a href="#" onclick="tabSelection('tabBookPerson')" id="linkBookPerson" title="Personagens"><i
+                    class="fas fa-user-friends"></i></a>
+              </li>
+              <li class="nav-item" onclick="activate(this)">
+                <a href="#" onclick="tabSelection('tabBookMap')" id="linkBookMap" title="Mapas"><i
+                    class="fas fa-map-marked-alt"></i></a>
+              </li>
+              <li class="nav-item" onclick="activate(this)">
+                <a href="#" onclick="tabSelection('tabBookScene')" id="linkBookScene" title="Cenários"><i
+                    class="fas fa-landmark"></i></a>
+              </li>
+              <li class="nav-item" onclick="activate(this)">
+                <a href="#" onclick="tabSelection('tabBookInfographic')" id="linkBookInfographic"
+                  title="Infográficos"><i class="fas fa-swatchbook"></i></a>
+              </li>
+              <li class="nav-item" onclick="activate(this)">
+                <a href="#" onclick="tabSelection('tabBookLawCeremony')" id="linkBookLawCeremony"
+                  title="Leis e Cerimônias"><i class="fas fa-balance-scale-right"></i></a>
+              </li>
+              <li class="nav-item" onclick="activate(this)">
+                <a href="#" onclick="tabSelection('tabBookUtensil')" id="linkBookUtensil"
+                  title="Utensílios, Armas e Ferramentas"><i class="fas fa-hammer"></i></a>
+              </li>
+              <li class="nav-item" onclick="activate(this)">
+                <a href="#" onclick="tabSelection('tabBookMores')" id="linkBookMores" title="Costumes e Cultura"><i
+                    class="fas fa-wine-glass-alt"></i></a>
+              </li>
+              <li class="nav-item" onclick="activate(this)">
+                <a href="#" onclick="tabSelection('tabBookSymbol')" id="linkBookSymbol" title="Símbolos"><i
+                    class="fas fa-menorah"></i></a>
+              </li>
+              <li class="nav-item" onclick="activate(this)">
+                <a href="#" onclick="tabSelection('tabBookProphecy')" id="linkBookProphecy" title="Profecias"><i
+                    class="fas fa-sun"></i></a>
+              </li>
+              <li class="nav-item" onclick="activate(this)">
+                <a href="#" onclick="tabSelection('tabBookHighlighter')" id="linkBookHighlighter"
+                  title="Passagens mais conhecidas"><i class="fas fa-highlighter"></i></a>
+              </li>
+              <li class="nav-item" onclick="activate(this)">
+                <a href="#" onclick="tabSelection('tabBookPraise')" id="linkBookPraise" title="Louvores"><i
+                    class="fas fa-music"></i></a>
+              </li>
+              <li class="nav-item" onclick="activate(this)">
+                <a href="#" onclick="tabSelection('tabBookGlossary')" id="linkBookGlossary" title="Glossário"><i
+                    class="fas fa-spell-check"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        </div>
+
+        <script>
+          const activate = (element) => {
+            let itens = document.getElementsByClassName("page-item");
+            for (i = 0; i < itens.length; i++) {
+              itens[i].classList.remove("page-active");
+            }
+            element.classList.add("page-active");
+          }
+        </script>
+
+
+        <!-- CONTENT -->
+        <%- include('../tools/T-BookSummary') %>
+
+      </main>
+
+      <!-- FOOTER -->
+      <%- include('../parts/footer') %>
+
+        <!-- MODAL TRIGGERS -->
+
+        <!-- Bible Book Selection -->
+
+        <div class="modal fade" id="Tools-BibleBookSelectionModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <%- include('../tools/Tools-BibleBookSelection-I') %>
+          </div>
+        </div>
+
+        <!-- Bible Translation -->
+
+        <div class="modal fade" id="Tools-BibleTranslationModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <%- include('../tools/Tools-BibleTranslationSelection-I') %>
+          </div>
+        </div>
+
+        <!-- Item Description -->
+
+        <div class="modal fade" id="Tools-ItemDescriptionModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <%- include('../tools/Tools-ItemDescription-I') %>
+          </div>
+        </div>
+
+</body>

@@ -45,14 +45,8 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-    <!-- <script type="module">
-    const db = require("/src/controllers/ContinentController.js")
-    const showContinents = db.continents;
-    console.log("dentro do HTML:", showContinents);
 
- </script> -->
-
-    <%- include('../parts/header') %>
+        <%- include('../parts/header') %>
 
         <%- include('../parts/navbar') %>
 
@@ -82,10 +76,10 @@
                 <div class="routine-table">
                     <table class="table table-bordered table-striped table-sm table-hover">
                         <tr>
-                            <th>Cod.</th>
+                            <th class="col-md-1">Cod.</th>
                             <th>Continente</th>
-                            <th>Status</th>
-                            <th>Opções</th>
+                            <th class="col-md-1">Status</th>
+                            <th class="col-md-1">Opções</th>
                         </tr>
                         <% continents.forEach((continent)=> { %>
                             <tr>
@@ -106,6 +100,27 @@
                     </table>
                 </div>
 
+                <!-- PAGINATION -->
+                <nav class="page-navigation" aria-label="page-navigation">
+                    <ul class="pagination">
+                      <li class="page-item" onclick="activate(this)"><a class="page-link" href="#">Anterior</a></li>
+                      <li class="page-item page-active" onclick="activate(this)"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item" onclick="activate(this)"><a class="page-link" href="#">2</a></li>
+                      <li class="page-item" onclick="activate(this)"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item" onclick="activate(this)"><a class="page-link" href="#">Próximo</a></li>
+                    </ul>
+                </nav>
+
+                  <script>
+                    const activate=(element)=>{
+                        let itens = document.getElementsByClassName("page-item");
+                        for(i=0; i<itens.length; i++) {
+                            itens[i].classList.remove("page-active");    
+                        }
+                        element.classList.add("page-active");
+                    }
+                  </script>
+
                 <!-- TRIGGER MODAL FILTER -->
                 <div class="modal fade" id="FilterContinentModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
@@ -113,7 +128,7 @@
                         <%- include('cms-Continent-F') %>
                     </div>
                 </div>
-                <!-- END MODAL -->
+
 
             </main>
 

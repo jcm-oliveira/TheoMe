@@ -64,3 +64,16 @@ p.ReadingBibleVersion i {
     font-weight: bold;
     font-size: 18px;
 }
+
+/* PAGE NAVIGATION */
+
+.page-navigation {
+    display: flex;
+    justify-content: center;
+    padding: 16px;
+}
+
+.page-active {
+    background-color: #4F768B;
+    color: white;
+}
