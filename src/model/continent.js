@@ -16,13 +16,14 @@ console.log("Model file starts...")
     console.log(filterStatus)
 
     const conn = await db.connect()
-
+    
         if (filterStatus.continentStatus === Number(2)) {
             var sql = "SELECT * FROM continent WHERE excluded = ?"
-        } else {      
+        } else {
             var sql = "SELECT * FROM continent WHERE excluded = ? AND status = ?"
         }
-        const values = [0, filterStatus.continentStatus]
+
+        const values = [0, filterStatus.continentStatus, filterStatus.continentName]
         const result = conn.query(sql,values)
         return result  
     }

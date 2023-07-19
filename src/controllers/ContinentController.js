@@ -25,7 +25,7 @@ module.exports = {
         console.log("Louding Update Page...")
         const continentId = req.params.id
         const filterStatus = {
-            continentStatus:2
+            continentStatus:2,
         }
         const [continents] = await Continent.selectContinents(filterStatus)
         const continent = continents.find(continent => Number(continent.id) === Number(continentId))
@@ -79,8 +79,15 @@ async deleteContinentPage(req,res) {
 //------------------------------------------------
 async filterContinentPage(req,res) {
     const filterStatus = {
-        continentStatus:Number(req.body.filterStatus),
+        continentStatus: Number(req.body.filterStatus),
+        continentName: req.body.filterName,
     }
+    
+    // if (filterStatus.continentName === "") {
+
+
+
+
     const [continents] = await Continent.selectContinents(filterStatus)
     return res.render("../views/cms/cms-Continent-Q",{continents});
     }

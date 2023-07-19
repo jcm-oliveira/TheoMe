@@ -46,7 +46,7 @@
         crossorigin="anonymous"></script>
 
 
-        <%- include('../parts/header') %>
+    <%- include('../parts/header') %>
 
         <%- include('../parts/navbar') %>
 
@@ -86,40 +86,49 @@
                                 <td><%-continent.id%></td>
                                 <td><%-continent.name%></td>
                                 <td>
-                                    <% if( continent.status=== '1' ) { %>
+                                    <% if( continent.status==='1' ) { %>
                                         <div class="statusActive">Ativo</div>
-                                    <% } else { %>
-                                        <div class="statusInative">Inativo</div>
-                                    <% } %>
+                                        <% } else { %>
+                                            <div class="statusInative">Inativo</div>
+                                            <% } %>
                                 </td>
                                 <td class="item-option">
                                     <a href="/cms-Continent-C/<%= continent.id %>"><i class="fas fa-pen"></i></a>
                                 </td>
                             </tr>
-                        <% }) %>
+                            <% }) %>
                     </table>
                 </div>
 
                 <!-- PAGINATION -->
-                <nav class="page-navigation" aria-label="page-navigation">
-                    <ul class="pagination">
-                      <li class="page-item" onclick="activate(this)"><a class="page-link" href="#">Anterior</a></li>
-                      <li class="page-item page-active" onclick="activate(this)"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item" onclick="activate(this)"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item" onclick="activate(this)"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item" onclick="activate(this)"><a class="page-link" href="#">Próximo</a></li>
-                    </ul>
-                </nav>
 
-                  <script>
-                    const activate=(element)=>{
+                <div class="pagination-bar">
+                    <div>
+                        <spam>Mostrando de <b>1</b> até <b>50</b> de <b>10.817</b> registros</spam>
+                    </div>
+                    <nav class="page-navigation" aria-label="page-navigation">
+                        <ul class="pagination">
+                            <li class="page-item" onclick="activate(this)"><a class="page-link" href="#">Anterior</a>
+                            </li>
+                            <li class="page-item page-active" onclick="activate(this)"><a class="page-link"
+                                    href="#">1</a></li>
+                            <li class="page-item" onclick="activate(this)"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item" onclick="activate(this)"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item" onclick="activate(this)"><a class="page-link" href="#">Próximo</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <script>
+                    const activate = (element) => {
                         let itens = document.getElementsByClassName("page-item");
-                        for(i=0; i<itens.length; i++) {
-                            itens[i].classList.remove("page-active");    
+                        for (i = 0; i < itens.length; i++) {
+                            itens[i].classList.remove("page-active");
                         }
                         element.classList.add("page-active");
                     }
-                  </script>
+                </script>
 
                 <!-- TRIGGER MODAL FILTER -->
                 <div class="modal fade" id="FilterContinentModal" tabindex="-1" aria-labelledby="exampleModalLabel"

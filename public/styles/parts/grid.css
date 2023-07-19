@@ -70,10 +70,24 @@ p.ReadingBibleVersion i {
 .page-navigation {
     display: flex;
     justify-content: center;
-    padding: 16px;
+    align-items: center;
+    vertical-align: middle;
 }
 
 .page-active {
-    background-color: #4F768B;
+    background-color: #717976;
     color: white;
+    font-weight: 600;
+}
+
+.pagination-bar {
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    justify-content: space-between;
+    padding: 16px 0px;
+}
+
+ul.pagination {
+    margin: 0px;
 }
