@@ -7,7 +7,7 @@ module.exports = {
 //                    LOAD PAGES
 //------------------------------------------------
 
-     async loadShowPage(req, res) {        
+    async loadShowPage(req, res) {        
         console.log("Louding Show Page...")
         const filterStatus = {
             continentStatus:1,
@@ -67,17 +67,18 @@ module.exports = {
 //------------------------------------------------
 //                    DELETE
 //------------------------------------------------
-async deleteContinentPage(req,res) {
+
+    async deleteContinentPage(req,res) {
         const continentId = req.params.id
         const deleted = await Continent.deleteContinents(continentId)
         console.log(deleted)
         res.redirect('/cms-Continent-Q')
     },
 
-
 //------------------------------------------------
 //                    FILTER
 //------------------------------------------------
+
 async filterContinentPage(req,res) {
     const filterStatus = {
         continentStatus: Number(req.body.filterStatus),
