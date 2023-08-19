@@ -4,7 +4,7 @@ console.log("ContinentController file starts...");
 module.exports = {
 
 //------------------------------------------------
-//                    LOAD PAGES
+//                SHOW PAGE ROTINE
 //------------------------------------------------
 
     async loadShowPage(req, res) {        
@@ -17,10 +17,27 @@ module.exports = {
         return res.render("../views/cms/cms-Continent-Q",{continents});
     },
 
+//------------------------------------------------
+//                 INSERT ROTINE
+//------------------------------------------------
+
     async loadInsertPage(req, res) {        
         console.log("Louding Insert Page...")
         return res.render("../views/cms/cms-Continent-C")            
     },
+
+    async insertContinentPage(req,res) {        
+        const insert = await Continent.insertContinents( {
+            continentStatus: req.body.continentStatus,
+            continentName: req.body.continentName,
+            continentDescription: req.body.continentDescription,});
+        console.log(insert)
+        return res.redirect('/cms-Continent-Q')
+    },
+
+//------------------------------------------------
+//                 UPDATE ROTINE
+//------------------------------------------------
 
     async loadUpdatePage(req, res) {        
         console.log("Louding Update Page...")
@@ -37,23 +54,6 @@ module.exports = {
         return res.render("../views/cms/cms-Continent-U", {continent})     
     },
 
-//------------------------------------------------
-//                   INSERT
-//------------------------------------------------
-
-    async insertContinentPage(req,res) {        
-        const insert = await Continent.insertContinents( {
-            continentStatus: req.body.continentStatus,
-            continentName: req.body.continentName,
-            continentDescription: req.body.continentDescription,});
-        console.log(insert)
-        return res.redirect('/cms-Continent-Q')
-    },
-
-//------------------------------------------------
-//                    UPDATE
-//------------------------------------------------
-
     async updateContinentPage(req,res) {
         const continentId = req.params.id
         const updatedContinent = {
@@ -66,7 +66,7 @@ module.exports = {
     },
 
 //------------------------------------------------
-//                    DELETE
+//                DELETE ROTINE
 //------------------------------------------------
 
     async deleteContinentPage(req,res) {
@@ -77,7 +77,7 @@ module.exports = {
     },
 
 //------------------------------------------------
-//                    FILTER
+//               FILTER ROUTINE
 //------------------------------------------------
 
 async filterContinentPage(req,res) {
@@ -98,7 +98,4 @@ async filterContinentPage(req,res) {
     }
 }
 
-//------------------------------------------------
-//                    PAGINATION
-//------------------------------------------------
 
