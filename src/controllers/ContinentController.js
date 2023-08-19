@@ -84,18 +84,13 @@ async filterContinentPage(req,res) {
         continentName: req.body.filterName,
     }
     
-    if (filterStatus.continentName === "") {
-        filterStatus.continentName = '%'
-    }
+        if (filterStatus.continentName === "") {
+            filterStatus.continentName = '%'
+        }
 
-    // filterStatus
-    //0 - Inative
-    //1 - Active    
-    //2 - All
-    
-    if (filterStatus.continentStatus === Number(2)) {
-        filterStatus.continentStatus = '%'
-    }
+        if (filterStatus.continentStatus === Number(2)) {
+            filterStatus.continentStatus = '%'
+        }
 
     const [continents] = await Continent.selectContinents(filterStatus)
     return res.render("../views/cms/cms-Continent-Q",{continents});
