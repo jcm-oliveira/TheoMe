@@ -1,4 +1,4 @@
-const Continent = require("../model/continent");
+const Continent = require("../model/ContinentModel");
 console.log("ContinentController file starts...");
 
 module.exports = {
@@ -26,7 +26,8 @@ module.exports = {
         console.log("Louding Update Page...")
         const continentId = req.params.id
         const filterStatus = {
-            continentStatus:2,
+            continentStatus:'%',
+            continentSearch:'%'
         }
         const [continents] = await Continent.selectContinents(filterStatus)
         const continent = continents.find(continent => Number(continent.id) === Number(continentId))
