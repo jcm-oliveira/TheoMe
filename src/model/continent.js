@@ -9,7 +9,7 @@ console.log("Model file starts...")
 async function selectContinents(filterStatus){
     const conn = await db.connect()
     var sql = "SELECT * FROM continent WHERE excluded = ? AND status LIKE ? AND name LIKE ?"
-    const values = [0, filterStatus.continentStatus, filterStatus.continentName]
+    const values = [0, filterStatus.continentStatus, "%" + filterStatus.continentSearch + "%"]
     const result = conn.query(sql,values)
     return result  
 }

@@ -11,7 +11,7 @@ module.exports = {
         console.log("Louding Show Page...")
         const filterStatus = {
             continentStatus:1,
-            continentName:'%'
+            continentSearch:'%'
         }
         const [continents] = await Continent.selectContinents(filterStatus)
         return res.render("../views/cms/cms-Continent-Q",{continents});
@@ -81,13 +81,12 @@ async deleteContinentPage(req,res) {
 async filterContinentPage(req,res) {
     const filterStatus = {
         continentStatus: Number(req.body.filterStatus),
-        continentName: req.body.filterName,
+        continentSearch: req.body.filterSearch,
     }
     
-        if (filterStatus.continentName === "") {
-            filterStatus.continentName = '%'
+        if (filterStatus.continentSearch === "") {
+            filterStatus.continentSearch = '%'
         }
-
         if (filterStatus.continentStatus === Number(2)) {
             filterStatus.continentStatus = '%'
         }
