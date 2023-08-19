@@ -8,24 +8,11 @@ console.log("Model file starts...")
 
    async function selectContinents(filterStatus){
 
-    // filterStatus
-    //0 - Inative
-    //1 - Active    
-    //2 - All
-
-    console.log(filterStatus)
-
     const conn = await db.connect()
-    
-        if (filterStatus.continentStatus === Number(2)) {
-            var sql = "SELECT * FROM continent WHERE excluded = ?"
-        } else {
-            var sql = "SELECT * FROM continent WHERE excluded = ? AND status = ?"
-        }
-
-        const values = [0, filterStatus.continentStatus, filterStatus.continentName]
-        const result = conn.query(sql,values)
-        return result  
+    var sql = "SELECT * FROM continent WHERE excluded = ? AND status LIKE ? AND name LIKE ?"
+    const values = [0, filterStatus.continentStatus, filterStatus.continentName]
+    const result = conn.query(sql,values)
+    return result  
     }
 
     

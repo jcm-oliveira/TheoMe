@@ -10,7 +10,8 @@ module.exports = {
      async loadShowPage(req, res) {        
         console.log("Louding Show Page...")
         const filterStatus = {
-            continentStatus:1
+            continentStatus:1,
+            continentName:'%'
         }
         const [continents] = await Continent.selectContinents(filterStatus)
         return res.render("../views/cms/cms-Continent-Q",{continents});
@@ -83,10 +84,18 @@ async filterContinentPage(req,res) {
         continentName: req.body.filterName,
     }
     
-    // if (filterStatus.continentName === "") {
+    if (filterStatus.continentName === "") {
+        filterStatus.continentName = '%'
+    }
 
-
-
+    // filterStatus
+    //0 - Inative
+    //1 - Active    
+    //2 - All
+    
+    if (filterStatus.continentStatus === Number(2)) {
+        filterStatus.continentStatus = '%'
+    }
 
     const [continents] = await Continent.selectContinents(filterStatus)
     return res.render("../views/cms/cms-Continent-Q",{continents});
