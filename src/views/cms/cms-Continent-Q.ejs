@@ -104,31 +104,16 @@
 
                 <div class="pagination-bar">
                     <div>
-                        <spam>Mostrando de <b>1</b> até <b>50</b> de <b>10.817</b> registros</spam>
+                        <spam>Foram encontrados <b>10.817</b> registros.</spam>
                     </div>
                     <nav class="page-navigation" aria-label="page-navigation">
                         <ul class="pagination">
-                            <li class="page-item" onclick="activate(this)"><a class="page-link" href="#">Anterior</a>
-                            </li>
-                            <li class="page-item page-active" onclick="activate(this)"><a class="page-link"
-                                    href="#">1</a></li>
-                            <li class="page-item" onclick="activate(this)"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item" onclick="activate(this)"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item" onclick="activate(this)"><a class="page-link" href="#">Próximo</a>
-                            </li>
+                            <li class="page-item"><a class="page-link" href="#"><i class="fas fa-arrow-left"></i></a></li>
+                            <li class="page-item"><a class="page-link" href="#">Página 1 de 10</a></li>
+                            <li class="page-item"><a class="page-link" href="#"><i class="fas fa-arrow-right"></i></a></li>
                         </ul>
                     </nav>
                 </div>
-
-                <script>
-                    const activate = (element) => {
-                        let itens = document.getElementsByClassName("page-item");
-                        for (i = 0; i < itens.length; i++) {
-                            itens[i].classList.remove("page-active");
-                        }
-                        element.classList.add("page-active");
-                    }
-                </script>
 
                 <!-- TRIGGER MODAL FILTER -->
                 <div class="modal fade" id="FilterContinentModal" tabindex="-1" aria-labelledby="exampleModalLabel"
