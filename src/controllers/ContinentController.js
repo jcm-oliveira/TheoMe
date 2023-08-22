@@ -9,10 +9,24 @@ module.exports = {
 
     async loadShowPage(req, res) {        
         console.log("Louding Show Page...")
+
+        // const prevBtn = req.body.previousButton
+        // const nextBtn = req.body.nextButton
+
+        // console.log(prevBtn)
+        // console.log(nextBtn)
+
         const filterStatus = {
             continentStatus:1,
-            continentSearch:'%'
+            continentSearch:'%',
+            itemsPerPage:Number(3),
+            pageStartItem:1
         }
+
+
+        // console.log(filterStatus)
+
+
         const [continents] = await Continent.selectContinents(filterStatus)
         return res.render("../views/cms/cms-Continent-Q",{continents});
     },
