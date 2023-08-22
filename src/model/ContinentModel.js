@@ -8,15 +8,6 @@ console.log("Model file starts...")
 
     async function selectContinents(filterStatus){
         const conn = await db.connect()
-
-        // console.log(filterStatus)
-
-        // console.log(filterStatus.continentStatus)
-        // console.log(filterStatus.continentSearch)
-        // console.log(filterStatus.itemsPerPage)
-        // console.log(filterStatus.pageStartItem)
-
-
         var sql = "SELECT * FROM continent WHERE excluded = ? AND status LIKE ? AND (name LIKE ? OR id LIKE ?) LIMIT ? OFFSET ?"
         const values = [0,filterStatus.continentStatus, "%"+filterStatus.continentSearch+"%", "%"+filterStatus.continentSearch+"%", filterStatus.itemsPerPage, filterStatus.pageStartItem]
         const result = conn.query(sql,values)

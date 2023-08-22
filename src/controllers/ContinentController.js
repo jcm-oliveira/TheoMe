@@ -10,22 +10,21 @@ module.exports = {
     async loadShowPage(req, res) {        
         console.log("Louding Show Page...")
 
-        // const prevBtn = req.body.previousButton
-        // const nextBtn = req.body.nextButton
-
-        // console.log(prevBtn)
-        // console.log(nextBtn)
-
         const filterStatus = {
             continentStatus:1,
             continentSearch:'%',
+            prevBtn: req.body.previousButton,
+            nextBtn: req.body.nextButton,
             itemsPerPage:Number(3),
             pageStartItem:1
         }
 
-
-        // console.log(filterStatus)
-
+        if (filterStatus.prevBtn === "prevBtnClicked") {
+            console.log("PREVIOUS Button clicked")
+        }
+        if (filterStatus.nextBtn === "nextBtnClicked") {
+            console.log("NEXT Button clicked")
+        }
 
         const [continents] = await Continent.selectContinents(filterStatus)
         return res.render("../views/cms/cms-Continent-Q",{continents});
@@ -58,7 +57,9 @@ module.exports = {
         const continentId = req.params.id
         const filterStatus = {
             continentStatus:'%',
-            continentSearch:'%'
+            continentSearch:'%',
+            itemsPerPage:Number(3),
+            pageStartItem:1
         }
         const [continents] = await Continent.selectContinents(filterStatus)
         const continent = continents.find(continent => Number(continent.id) === Number(continentId))
