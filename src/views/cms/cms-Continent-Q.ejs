@@ -102,13 +102,22 @@
 
                 <!-- PAGINATION -->
                 
-            <div class="">
+            <div class="pagination-bar">
                 <div>
                     <form id="paginationPrevious" method="post" action="/cms-Continent-Q/">
-                        <input type="text" id="previousButton" name="previousButton" value="prevBtnClicked" style="display:none">
+                        <input type="text" id="previousButton" name="previousButton" value="prevBtnClicked" >
+                        <input type="text" id="pageNumber" name="pageNumber" value="<%= filterStatus.currentPage%>">
+                        <input type="text" id="itemsPerPag" name="itemsPerPag" value="<%= filterStatus.itemsPerPage%>">
+                        
+                        <input type="text" id="pageStartItem" name="pageStartItem" value="<%= filterStatus.pageStartItem%>">
                     </form>
+
                     <form id="paginationNext" method="post" action="/cms-Continent-Q/">
-                        <input type="text" id="nextButton" name="nextButton" value="nextBtnClicked" style="display:none">
+                        <input type="text" id="nextButton" name="nextButton" value="nextBtnClicked" >
+                        <input type="text" id="pageNumber" name="pageNumber" value="<%= filterStatus.currentPage%>">
+
+                        <input type="text" id="itemsPerPag" name="itemsPerPag" value="<%= filterStatus.itemsPerPage%>">
+                        <input type="text" id="pageStartItem" name="pageStartItem" value="<%= filterStatus.pageStartItem%>">
                     </form>
                 </div>
                 <div>
@@ -116,20 +125,6 @@
                     <button form="paginationNext" type="submit" title="Next"><i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
-
-
-                <!-- <div class="pagination-bar">
-                    <div>
-                        <spam>Foram encontrados <b>10.817</b> registros.</spam>
-                    </div>
-                    <nav class="page-navigation" aria-label="page-navigation">
-                        <ul class="pagination">
-                            <li class="page-item" id="previousButton"><a class="page-link" href="#"><i class="fas fa-arrow-left"></i></a></li>
-                            <li class="page-item"><a class="page-link" href="#">Página 1 de 10</a></li>
-                            <li class="page-item" id="nextButton"><a class="page-link" href="#"><i class="fas fa-arrow-right"></i></a></li>
-                        </ul>
-                    </nav>
-                </div> -->
 
                 <!-- TRIGGER MODAL FILTER -->
                 <div class="modal fade" id="FilterContinentModal" tabindex="-1" aria-labelledby="exampleModalLabel"

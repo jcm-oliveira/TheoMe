@@ -13,22 +13,48 @@ module.exports = {
         const filterStatus = {
             continentStatus:1,
             continentSearch:'%',
-            prevBtn: req.body.previousButton,
-            nextBtn: req.body.nextButton,
+            currentPage:Number(2),
             itemsPerPage:Number(3),
-            pageStartItem:1
+            pageStartItem:Number(1),
         }
-
-        if (filterStatus.prevBtn === "prevBtnClicked") {
-            console.log("PREVIOUS Button clicked")
-        }
-        if (filterStatus.nextBtn === "nextBtnClicked") {
-            console.log("NEXT Button clicked")
-        }
+        console.log("Página " + filterStatus.currentPage)
 
         const [continents] = await Continent.selectContinents(filterStatus)
-        return res.render("../views/cms/cms-Continent-Q",{continents});
+        return res.render("../views/cms/cms-Continent-Q",{continents, filterStatus});
     },
+
+//------------------------------------------------
+//              PAGINATION CONTROL
+//------------------------------------------------
+
+async paginationView(req, res) {        
+    console.log("Louding Pagination View...")
+
+    const filterStatus = {
+        continentStatus:1,
+        continentSearch:'%',
+        prevBtn: req.body.previousButton,
+        nextBtn: req.body.nextButton,
+        currentPage: Number(req.body.pageNumber),
+        itemsPerPage: Number(req.body.pageNumber),
+        pageStartItem: Number(req.body.pageNumber),
+    }
+    console.log("Página atual " + filterStatus.currentPage)
+
+    if (filterStatus.prevBtn === "prevBtnClicked") {
+        console.log("PREVIOUS Button clicked")
+        filterStatus.currentPage--
+        console.log(filterStatus.currentPage)
+    }
+    if (filterStatus.nextBtn === "nextBtnClicked") {
+        console.log("NEXT Button clicked")
+        filterStatus.currentPage++
+        console.log(filterStatus.currentPage)
+    }
+
+    const [continents] = await Continent.selectContinents(filterStatus)
+    return res.render("../views/cms/cms-Continent-Q",{continents, filterStatus});
+},
 
 //------------------------------------------------
 //                 INSERT ROTINE
