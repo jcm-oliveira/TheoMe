@@ -106,15 +106,15 @@
                 <div>
                     <form id="paginationPrevious" method="post" action="/cms-Continent-Q/">
                         <input type="text" id="previousButton" name="previousButton" value="prevBtnClicked" >
-                        <input type="text" id="pageNumber" name="pageNumber" value="<%= filterStatus.currentPage%>">
+                        <input type="text" id="currentPage" name="currentPage" value="<%= filterStatus.currentPage%>">
                         <input type="text" id="itemsPerPag" name="itemsPerPag" value="<%= filterStatus.itemsPerPage%>">
-                        
+
                         <input type="text" id="pageStartItem" name="pageStartItem" value="<%= filterStatus.pageStartItem%>">
                     </form>
 
                     <form id="paginationNext" method="post" action="/cms-Continent-Q/">
                         <input type="text" id="nextButton" name="nextButton" value="nextBtnClicked" >
-                        <input type="text" id="pageNumber" name="pageNumber" value="<%= filterStatus.currentPage%>">
+                        <input type="text" id="currentPage" name="currentPage" value="<%= filterStatus.currentPage%>">
 
                         <input type="text" id="itemsPerPag" name="itemsPerPag" value="<%= filterStatus.itemsPerPage%>">
                         <input type="text" id="pageStartItem" name="pageStartItem" value="<%= filterStatus.pageStartItem%>">

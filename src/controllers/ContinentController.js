@@ -35,9 +35,9 @@ async paginationView(req, res) {
         continentSearch:'%',
         prevBtn: req.body.previousButton,
         nextBtn: req.body.nextButton,
-        currentPage: Number(req.body.pageNumber),
-        itemsPerPage: Number(req.body.pageNumber),
-        pageStartItem: Number(req.body.pageNumber),
+        currentPage: Number(req.body.currentPage),
+        itemsPerPage: Number(req.body.itemsPerPag),
+        pageStartItem: Number(req.body.pageStartItem),
     }
     console.log("Página atual " + filterStatus.currentPage)
 
