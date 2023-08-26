@@ -14,7 +14,7 @@ module.exports = {
             continentStatus:1,
             continentSearch:'%',
             currentPage:Number(2),
-            itemsPerPage:Number(3),
+            itemsPerPage:Number(10),
             pageStartItem:Number(1),
         }
         console.log("Página " + filterStatus.currentPage)
@@ -33,11 +33,11 @@ async paginationView(req, res) {
     const filterStatus = {
         continentStatus:1,
         continentSearch:'%',
-        prevBtn: req.body.previousButton,
-        nextBtn: req.body.nextButton,
         currentPage: Number(req.body.currentPage),
         itemsPerPage: Number(req.body.itemsPerPag),
         pageStartItem: Number(req.body.pageStartItem),
+        prevBtn: req.body.previousButton,
+        nextBtn: req.body.nextButton,
     }
     console.log("Página atual " + filterStatus.currentPage)
 
@@ -125,6 +125,9 @@ async filterContinentPage(req,res) {
     const filterStatus = {
         continentStatus: Number(req.body.filterStatus),
         continentSearch: req.body.filterSearch,
+        currentPage:Number(2),
+        itemsPerPage:Number(10),
+        pageStartItem:Number(1),
     }
     
         if (filterStatus.continentSearch === "") {
@@ -135,7 +138,7 @@ async filterContinentPage(req,res) {
         }
 
     const [continents] = await Continent.selectContinents(filterStatus)
-    return res.render("../views/cms/cms-Continent-Q",{continents});
+    return res.render("../views/cms/cms-Continent-Q",{continents, filterStatus});
     }
 }
 
