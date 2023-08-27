@@ -13,7 +13,7 @@ module.exports = {
         const filterStatus = {
             continentStatus:1,
             continentSearch:'%',
-            currentPage:Number(2),
+            currentPage:Number(1),
             itemsPerPage:Number(10),
             pageStartItem:Number(1),
         }
@@ -31,8 +31,8 @@ async paginationView(req, res) {
     console.log("Louding Pagination View...")
 
     const filterStatus = {
-        continentStatus:1,
-        continentSearch:'%',
+        continentStatus: req.body.continentStatus,
+        continentSearch: req.body.continentSearch,
         currentPage: Number(req.body.currentPage),
         itemsPerPage: Number(req.body.itemsPerPag),
         pageStartItem: Number(req.body.pageStartItem),
@@ -125,7 +125,7 @@ async filterContinentPage(req,res) {
     const filterStatus = {
         continentStatus: Number(req.body.filterStatus),
         continentSearch: req.body.filterSearch,
-        currentPage:Number(2),
+        currentPage:Number(1),
         itemsPerPage:Number(10),
         pageStartItem:Number(1),
     }
