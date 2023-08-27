@@ -27,7 +27,7 @@ console.log("Model file starts...")
     }
 
 //----------------------------------------------
-//                     UPDATE
+//                  UPDATE
 //----------------------------------------------
 
     async function updateContinents(id, continent) {

@@ -14,8 +14,8 @@ module.exports = {
             continentStatus:1,
             continentSearch:'%',
             currentPage:Number(1),
-            itemsPerPage:Number(5),
-            pageStartItem:Number(1),
+            itemsPerPage:Number(10),
+            pageStartItem:Number(0),
         }
         console.log("Página " + filterStatus.currentPage)
 
@@ -89,7 +89,7 @@ async paginationView(req, res) {
             continentStatus:'%',
             continentSearch:'%',
             currentPage:Number(1),
-            itemsPerPage:Number(5),
+            itemsPerPage:Number(10),
             pageStartItem:Number(1),
         }
         const [continents] = await Continent.selectContinents(filterStatus)
@@ -131,7 +131,7 @@ async filterContinentPage(req,res) {
         continentStatus: Number(req.body.filterStatus),
         continentSearch: req.body.filterSearch,
         currentPage:Number(1),
-        itemsPerPage:Number(5),
+        itemsPerPage:Number(10),
         pageStartItem:Number(1),
     }
     

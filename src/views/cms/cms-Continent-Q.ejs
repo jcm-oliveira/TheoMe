@@ -105,27 +105,37 @@
             <div class="pagination-bar">
                 <div>
                     <form id="paginationPrevious" method="post" action="/cms-Continent-Q/">
-                        <input type="text" id="previousButton" name="previousButton" value="prevBtnClicked" >
-                        <input type="text" id="currentPage" name="currentPage" value="<%= filterStatus.currentPage%>">
-                        <input type="text" id="itemsPerPag" name="itemsPerPag" value="<%= filterStatus.itemsPerPage%>">
-                        <input type="text" id="pageStartItem" name="pageStartItem" value="<%= filterStatus.pageStartItem%>">
-                        <input type="text" id="continentStatus" name="continentStatus" value="<%= filterStatus.continentStatus%>">
-                        <input type="text" id="continentSearch" name="continentSearch" value="<%= filterStatus.continentSearch%>">
+                        <input type="text" id="previousButton" name="previousButton" value="prevBtnClicked" style="display:none" >
+                        <input type="text" id="currentPage" name="currentPage" value="<%= filterStatus.currentPage%>" style="display:none">
+                        <input type="text" id="itemsPerPag" name="itemsPerPag" value="<%= filterStatus.itemsPerPage%>" style="display:none">
+                        <input type="text" id="pageStartItem" name="pageStartItem" value="<%= filterStatus.pageStartItem%>" style="display:none">
+                        <input type="text" id="continentStatus" name="continentStatus" value="<%= filterStatus.continentStatus%>" style="display:none">
+                        <input type="text" id="continentSearch" name="continentSearch" value="<%= filterStatus.continentSearch%>" style="display:none">
                     </form>
 
                     <form id="paginationNext" method="post" action="/cms-Continent-Q/">
-                        <input type="text" id="nextButton" name="nextButton" value="nextBtnClicked" >
-                        <input type="text" id="currentPage" name="currentPage" value="<%= filterStatus.currentPage%>">
-                        <input type="text" id="itemsPerPag" name="itemsPerPag" value="<%= filterStatus.itemsPerPage%>">
-                        <input type="text" id="pageStartItem" name="pageStartItem" value="<%= filterStatus.pageStartItem%>">
-                        <input type="text" id="continentStatus" name="continentStatus" value="<%= filterStatus.continentStatus%>">
-                        <input type="text" id="continentSearch" name="continentSearch" value="<%= filterStatus.continentSearch%>">
+                        <input type="text" id="nextButton" name="nextButton" value="nextBtnClicked" style="display:none">
+                        <input type="text" id="currentPage" name="currentPage" value="<%= filterStatus.currentPage%>" style="display:none">
+                        <input type="text" id="itemsPerPag" name="itemsPerPag" value="<%= filterStatus.itemsPerPage%>" style="display:none">
+                        <input type="text" id="pageStartItem" name="pageStartItem" value="<%= filterStatus.pageStartItem%>" style="display:none">
+                        <input type="text" id="continentStatus" name="continentStatus" value="<%= filterStatus.continentStatus%>" style="display:none">
+                        <input type="text" id="continentSearch" name="continentSearch" value="<%= filterStatus.continentSearch%>" style="display:none">
                     </form>
                 </div>
                 <div>
                     <button form="paginationPrevious" type="submit" title="Previous"><i class="fas fa-arrow-left"></i></button>
+                    <span>Página <%= filterStatus.currentPage%></span>
                     <button form="paginationNext" type="submit" title="Next"><i class="fas fa-arrow-right"></i></button>
+
+                    <p>Registros por Página: <%= filterStatus.itemsPerPage%></p>
+                    <p>Inicia a partir do registro: <%= filterStatus.pageStartItem%></p>
+                    <p>Filtro Status: <%= filterStatus.continentStatus%></p>
+                    <p>Filtro Pesquisa: <%= filterStatus.continentSearch%></p>
                 </div>
+
+                <script>
+
+                </script>
             </div>
 
                 <!-- TRIGGER MODAL FILTER -->
