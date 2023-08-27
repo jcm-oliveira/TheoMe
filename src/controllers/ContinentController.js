@@ -14,7 +14,7 @@ module.exports = {
             continentStatus:1,
             continentSearch:'%',
             currentPage:Number(1),
-            itemsPerPage:Number(10),
+            itemsPerPage:Number(5),
             pageStartItem:Number(1),
         }
         console.log("Página " + filterStatus.currentPage)
@@ -39,18 +39,22 @@ async paginationView(req, res) {
         prevBtn: req.body.previousButton,
         nextBtn: req.body.nextButton,
     }
-    console.log("Página atual " + filterStatus.currentPage)
+    
+        if (filterStatus.prevBtn === "prevBtnClicked") {
+            console.log("PREVIOUS Button clicked")
+            if (filterStatus.currentPage > 1) {
+                filterStatus.currentPage--
+                filterStatus.pageStartItem = filterStatus.pageStartItem - filterStatus.itemsPerPage 
+            }
+            console.log("Página atual " + filterStatus.currentPage)
+        }
 
-    if (filterStatus.prevBtn === "prevBtnClicked") {
-        console.log("PREVIOUS Button clicked")
-        filterStatus.currentPage--
-        console.log(filterStatus.currentPage)
-    }
-    if (filterStatus.nextBtn === "nextBtnClicked") {
-        console.log("NEXT Button clicked")
-        filterStatus.currentPage++
-        console.log(filterStatus.currentPage)
-    }
+        if (filterStatus.nextBtn === "nextBtnClicked") {
+            console.log("NEXT Button clicked")
+                filterStatus.currentPage++
+                filterStatus.pageStartItem = filterStatus.pageStartItem + filterStatus.itemsPerPage
+            console.log("Página atual " + filterStatus.currentPage)
+        }      
 
     const [continents] = await Continent.selectContinents(filterStatus)
     return res.render("../views/cms/cms-Continent-Q",{continents, filterStatus});
@@ -84,8 +88,9 @@ async paginationView(req, res) {
         const filterStatus = {
             continentStatus:'%',
             continentSearch:'%',
-            itemsPerPage:Number(3),
-            pageStartItem:1
+            currentPage:Number(1),
+            itemsPerPage:Number(5),
+            pageStartItem:Number(1),
         }
         const [continents] = await Continent.selectContinents(filterStatus)
         const continent = continents.find(continent => Number(continent.id) === Number(continentId))
@@ -126,16 +131,17 @@ async filterContinentPage(req,res) {
         continentStatus: Number(req.body.filterStatus),
         continentSearch: req.body.filterSearch,
         currentPage:Number(1),
-        itemsPerPage:Number(10),
+        itemsPerPage:Number(5),
         pageStartItem:Number(1),
     }
     
+        if (filterStatus.continentStatus === Number(2)) {
+        filterStatus.continentStatus = '%'
+    }
         if (filterStatus.continentSearch === "") {
             filterStatus.continentSearch = '%'
         }
-        if (filterStatus.continentStatus === Number(2)) {
-            filterStatus.continentStatus = '%'
-        }
+
 
     const [continents] = await Continent.selectContinents(filterStatus)
     return res.render("../views/cms/cms-Continent-Q",{continents, filterStatus});
