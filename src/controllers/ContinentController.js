@@ -15,7 +15,7 @@ module.exports = {
             continentSearch:'%',
             currentPage:Number(1),
             itemsPerPage:Number(10),
-            pageStartItem:Number(0),
+            pageStartItem:Number(1),
         }
         console.log("Página " + filterStatus.currentPage)
 
