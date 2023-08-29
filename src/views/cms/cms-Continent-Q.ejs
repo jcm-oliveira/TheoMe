@@ -107,7 +107,7 @@
                     <form id="paginationPrevious" method="post" action="/cms-Continent-Q/">
                         <input type="text" id="previousButton" name="previousButton" value="prevBtnClicked" style="display:none" >
                         <input type="text" id="currentPage" name="currentPage" value="<%= filterStatus.currentPage%>" style="display:none">
-                        <input type="text" id="itemsPerPag" name="itemsPerPag" value="<%= filterStatus.itemsPerPage%>" style="display:none">
+                        <input type="text" id="itemsPerPage" name="itemsPerPage" value="<%= filterStatus.itemsPerPage%>" style="display:none">
                         <input type="text" id="pageStartItem" name="pageStartItem" value="<%= filterStatus.pageStartItem%>" style="display:none">
                         <input type="text" id="continentStatus" name="continentStatus" value="<%= filterStatus.continentStatus%>" style="display:none">
                         <input type="text" id="continentSearch" name="continentSearch" value="<%= filterStatus.continentSearch%>" style="display:none">
@@ -116,35 +116,35 @@
                     <form id="paginationNext" method="post" action="/cms-Continent-Q/">
                         <input type="text" id="nextButton" name="nextButton" value="nextBtnClicked" style="display:none">
                         <input type="text" id="currentPage" name="currentPage" value="<%= filterStatus.currentPage%>" style="display:none">
-                        <input type="text" id="itemsPerPag" name="itemsPerPag" value="<%= filterStatus.itemsPerPage%>" style="display:none">
+                        <input type="text" id="itemsPerPage" name="itemsPerPage" value="<%= filterStatus.itemsPerPage%>" style="display:none">
                         <input type="text" id="pageStartItem" name="pageStartItem" value="<%= filterStatus.pageStartItem%>" style="display:none">
                         <input type="text" id="continentStatus" name="continentStatus" value="<%= filterStatus.continentStatus%>" style="display:none">
                         <input type="text" id="continentSearch" name="continentSearch" value="<%= filterStatus.continentSearch%>" style="display:none">
                     </form>
                 </div>
                 <div>
-                    <button form="paginationPrevious" type="submit" title="Previous"><i class="fas fa-arrow-left"></i></button>
-                    <span>Página <%= filterStatus.currentPage%></span>
-                    <button form="paginationNext" type="submit" title="Next"><i class="fas fa-arrow-right"></i></button>
-
-                    <p>Registros por Página: <%= filterStatus.itemsPerPage%></p>
-                    <p>Inicia a partir do registro: <%= filterStatus.pageStartItem%></p>
-                    <p>Filtro Status: <%= filterStatus.continentStatus%></p>
-                    <p>Filtro Pesquisa: <%= filterStatus.continentSearch%></p>
+                    <button class="btn btn-secondary" form="paginationPrevious" type="submit" title="Previous"><i class="fas fa-arrow-left"></i></button>
+                    <span> Página <%= filterStatus.currentPage%> </span>
+                    <button class="btn btn-secondary" form="paginationNext" type="submit" title="Next"><i class="fas fa-arrow-right"></i></button>
                 </div>
-
-                <script>
-
-                </script>
             </div>
 
-                <!-- TRIGGER MODAL FILTER -->
-                <div class="modal fade" id="FilterContinentModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <%- include('cms-Continent-F') %>
-                    </div>
+             <!-- FILTER OPTIONS DISPLAY -->
+
+            <div>
+                <span style="font-size: 12px; color: gray;">Registros por página: <b><%= filterStatus.itemsPerPage%></b></span><br>
+                <span style="font-size: 12px; color: gray;">Inicia a partir do registro: <b><%= filterStatus.pageStartItem%></b></span><br>
+                <span style="font-size: 12px; color: gray;">Filtro Status: <b><%= filterStatus.continentStatus%></b></span><br>
+                <span style="font-size: 12px; color: gray;">Filtro Pesquisa: <b><%= filterStatus.continentSearch%></b></span>
+            </div>
+
+            <!-- TRIGGER MODAL FILTER -->
+            <div class="modal fade" id="FilterContinentModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <%- include('cms-Continent-F') %>
                 </div>
+            </div>
 
 
             </main>

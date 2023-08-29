@@ -10,6 +10,7 @@ console.log("Model file starts...")
         const conn = await db.connect()
         var sql = "SELECT * FROM continent WHERE excluded = ? AND status LIKE ? AND (name LIKE ? OR id LIKE ?) LIMIT ? OFFSET ?"
         const values = [0,filterStatus.continentStatus, "%"+filterStatus.continentSearch+"%", "%"+filterStatus.continentSearch+"%", filterStatus.itemsPerPage, filterStatus.pageStartItem]
+        console.log(values)
         const result = conn.query(sql,values)
         return result  
     }
