@@ -11,13 +11,14 @@ module.exports = {
         console.log("Louding Show Page...")
 
         const filterStatus = {
-            continentStatus:1,
+            continentStatus:Number(1),
             continentSearch:'%',
             currentPage:Number(1),
             itemsPerPage:Number(10),
             pageStartItem:Number(1),
         }
         console.log("Página " + filterStatus.currentPage)
+        console.log("Status: " + filterStatus.continentStatus)
 
         const [continents] = await Continent.selectContinents(filterStatus)
         return res.render("../views/cms/cms-Continent-Q",{continents, filterStatus});

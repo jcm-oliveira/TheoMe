@@ -134,8 +134,23 @@
             <div>
                 <span style="font-size: 12px; color: gray;">Registros por página: <b><%= filterStatus.itemsPerPage%></b></span><br>
                 <span style="font-size: 12px; color: gray;">Inicia a partir do registro: <b><%= filterStatus.pageStartItem%></b></span><br>
-                <span style="font-size: 12px; color: gray;">Filtro Status: <b><%= filterStatus.continentStatus%></b></span><br>
-                <span style="font-size: 12px; color: gray;">Filtro Pesquisa: <b><%= filterStatus.continentSearch%></b></span>
+                <span style="font-size: 12px; color: gray;">Filtro Status:<b>
+                    <% if(filterStatus.continentStatus ===1) { %>
+                        Ativo
+                        <% } else if (filterStatus.continentStatus === 0){ %>
+                            Inativo
+                            <% } else { %>
+                                Todos
+                                <% } %>
+                </b></span><br>
+                <span style="font-size: 12px; color: gray;">Filtro Pesquisa:<b>
+                    <% filterStatus.continentSearch %>
+                    <% if(filterStatus.continentSearch ==='%') { %>
+                        Não informado
+                        <% } else { %>
+                            <%=filterStatus.continentSearch %>
+                            <% } %>
+                </b></span>
             </div>
 
             <!-- TRIGGER MODAL FILTER -->
