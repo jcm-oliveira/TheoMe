@@ -15,7 +15,7 @@ module.exports = {
             continentSearch:'%',
             currentPage:Number(1),
             itemsPerPage:Number(10),
-            pageStartItem:Number(1),
+            pageStartItem:Number(0),
         }
 
         const [continents] = await Continent.selectContinents(filterStatus)
@@ -134,7 +134,7 @@ async filterContinentPage(req,res) {
         continentSearch: req.body.filterSearch,
         currentPage:Number(1),
         itemsPerPage:Number(req.body.itemsPerPageFilter),
-        pageStartItem:Number(1),
+        pageStartItem:Number(0),
     }
     
         if (filterStatus.continentStatus === Number(2)) {

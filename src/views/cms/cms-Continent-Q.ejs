@@ -123,9 +123,11 @@
                         <input type="text" id="continentSearch" name="continentSearch" value="<%= filterStatus.continentSearch%>" style="display:none">
                     </form>
                 </div>
-                <div>
+                <div class="pagination-direction">
                     <button class="btn btn-secondary" form="paginationPrevious" type="submit" title="Previous"><i class="fas fa-arrow-left"></i></button>
-                    <span> Página <%= filterStatus.currentPage%> </span>
+                    <div class="current-page">
+                        <span> &nbsp Página <%= filterStatus.currentPage%> &nbsp </span>
+                    </div> 
                     <button class="btn btn-secondary" form="paginationNext" type="submit" title="Next"><i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>

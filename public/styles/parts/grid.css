@@ -91,3 +91,15 @@ p.ReadingBibleVersion i {
 ul.pagination {
     margin: 0px;
 }
+
+.pagination-direction {
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    justify-content:space-between;
+}
+
+/* .current-page {
+    background-color: #cccecd;
+    border: #717976;
+} */
