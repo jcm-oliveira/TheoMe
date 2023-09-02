@@ -13,6 +13,14 @@ console.log("Model file starts...")
         const result = conn.query(sql,values)
         return result  
     }
+
+    async function countSelect(filterStatus){
+        const conn = await db.connect()
+        var sql = "SELECT COUNT (*) AS totalRegister FROM continent WHERE excluded = ? AND status LIKE ? AND (name LIKE ? OR id LIKE ?)"
+        const values = [0,filterStatus.continentStatus, "%"+filterStatus.continentSearch+"%", "%"+filterStatus.continentSearch+"%", filterStatus.itemsPerPage, filterStatus.pageStartItem]
+        const result = conn.query(sql,values)
+        return result  
+    }
     
 //---------------------------------------------
 //                   INSERT
@@ -51,5 +59,5 @@ console.log("Model file starts...")
     }
 
 
-module.exports = {selectContinents, insertContinents, updateContinents,deleteContinents}
+module.exports = {selectContinents, insertContinents, updateContinents, deleteContinents, countSelect}
 

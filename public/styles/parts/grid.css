@@ -84,7 +84,7 @@ p.ReadingBibleVersion i {
     display: flex;
     align-items: center;
     vertical-align: middle;
-    justify-content: center;
+    justify-content:space-between;
     padding: 16px 0px;
 }
 

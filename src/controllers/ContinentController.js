@@ -17,11 +17,10 @@ module.exports = {
             itemsPerPage:Number(10),
             pageStartItem:Number(1),
         }
-        console.log("Página " + filterStatus.currentPage)
-        console.log("Status: " + filterStatus.continentStatus)
 
         const [continents] = await Continent.selectContinents(filterStatus)
-        return res.render("../views/cms/cms-Continent-Q",{continents, filterStatus});
+        const [countSelect] = await Continent.countSelect(filterStatus)
+        return res.render("../views/cms/cms-Continent-Q",{continents, filterStatus, countSelect});
     },
 
 //------------------------------------------------
@@ -58,7 +57,9 @@ async paginationView(req, res) {
         }      
 
     const [continents] = await Continent.selectContinents(filterStatus)
-    return res.render("../views/cms/cms-Continent-Q",{continents, filterStatus});
+    const [countSelect] = await Continent.countSelect(filterStatus)
+
+    return res.render("../views/cms/cms-Continent-Q",{continents, filterStatus, countSelect});
 },
 
 //------------------------------------------------
@@ -144,8 +145,8 @@ async filterContinentPage(req,res) {
         }
 
     const [continents] = await Continent.selectContinents(filterStatus)
-    console.log(continents)
-    return res.render("../views/cms/cms-Continent-Q",{continents, filterStatus});
+    const [countSelect] = await Continent.countSelect(filterStatus)
+    return res.render("../views/cms/cms-Continent-Q",{continents, filterStatus, countSelect});
     }
 }
 

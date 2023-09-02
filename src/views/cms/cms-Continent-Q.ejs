@@ -103,6 +103,7 @@
                 <!-- PAGINATION -->
                 
             <div class="pagination-bar">
+                <span>Foram encontrados <b><%-countSelect[0].totalRegister%></b> registros.</span>
                 <div>
                     <form id="paginationPrevious" method="post" action="/cms-Continent-Q/">
                         <input type="text" id="previousButton" name="previousButton" value="prevBtnClicked" style="display:none" >
@@ -150,7 +151,10 @@
                         <% } else { %>
                             <%=filterStatus.continentSearch %>
                             <% } %>
-                </b></span>
+                </b></span><br>
+                
+                
+
             </div>
 
             <!-- TRIGGER MODAL FILTER -->
