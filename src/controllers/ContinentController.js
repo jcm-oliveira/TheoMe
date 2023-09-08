@@ -51,8 +51,10 @@ async paginationView(req, res) {
 
         if (filterStatus.nextBtn === "nextBtnClicked") {
             console.log("NEXT Button clicked")
+            // if ((filterStatus.pageStartItem + filterStatus.itemsPerPage) < countSelect[0].totalRegister) {
                 filterStatus.currentPage++
                 filterStatus.pageStartItem = filterStatus.pageStartItem + filterStatus.itemsPerPage
+            // }
             console.log("Página atual " + filterStatus.currentPage)
         }      
 

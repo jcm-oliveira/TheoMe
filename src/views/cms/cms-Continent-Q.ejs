@@ -101,7 +101,16 @@
                 <!-- PAGINATION -->
                 
             <div class="pagination-bar">
-                <span>Foram encontrados <b><%-countSelect[0].totalRegister%></b> registros.</span>
+                <span>
+                    Mostrando de <b> <%= filterStatus.pageStartItem + 1 %></b> até
+                    <% if ((filterStatus.pageStartItem + filterStatus.itemsPerPage) < countSelect[0].totalRegister) { %>
+                        <b><%= filterStatus.pageStartItem + filterStatus.itemsPerPage %></b>
+                    <% } else { %>
+                        <b><%= countSelect[0].totalRegister %></b>
+                    <% } %>
+                    (de um total de <b><%-countSelect[0].totalRegister%></b> registros)
+                </span>
+
                 <div>
                     <form id="paginationPrevious" method="post" action="/cms-Continent-Q/">
                         <input type="text" id="previousButton" name="previousButton" value="prevBtnClicked" style="display:none" >
@@ -133,9 +142,9 @@
              <!-- FILTER OPTIONS DISPLAY -->
 
             <div>
-                <span style="font-size: 12px; color: gray;">Registros por página: <b><%= filterStatus.itemsPerPage%></b></span><br>
-                <span style="font-size: 12px; color: gray;">Inicia a partir do registro: <b><%= filterStatus.pageStartItem%></b></span><br>
-                <span style="font-size: 12px; color: gray;">Filtro Status:<b>
+                <span style="font-size: 12px; color: gray;"><b>Filtros:</b></span><br>
+                <span style="font-size: 12px; color: gray;">Registros por página:<%= filterStatus.itemsPerPage%></span><br>
+                <span style="font-size: 12px; color: gray;">Status:
                     <% if(filterStatus.continentStatus ===1) { %>
                         Ativo
                         <% } else if (filterStatus.continentStatus === 0){ %>
@@ -143,15 +152,15 @@
                             <% } else { %>
                                 Todos
                                 <% } %>
-                </b></span><br>
-                <span style="font-size: 12px; color: gray;">Filtro Pesquisa:<b>
+                </span><br>
+                <span style="font-size: 12px; color: gray;">Pesquisa:
                     <% filterStatus.continentSearch %>
                     <% if(filterStatus.continentSearch ==='%') { %>
                         Não informado
                         <% } else { %>
                             <%=filterStatus.continentSearch %>
                             <% } %>
-                </b></span><br>
+                </span><br>
             </div>
 
             <!-- TRIGGER MODAL FILTER -->
