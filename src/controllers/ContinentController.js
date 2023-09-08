@@ -103,6 +103,7 @@ async paginationView(req, res) {
     },
 
     async updateContinentPage(req,res) {
+ 
         const continentId = req.params.id
         const updatedContinent = {
             continentStatus: req.body.continentStatus,
@@ -110,6 +111,7 @@ async paginationView(req, res) {
             continentDescription: req.body.continentDescription,}
         const update = await Continent.updateContinents(continentId,updatedContinent)
         console.log(update)
+
         res.redirect('/cms-Continent-Q')
     },
 
