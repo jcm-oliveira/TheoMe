@@ -72,11 +72,11 @@ async paginationView(req, res) {
     },
 
     async insertContinentPage(req,res) {        
-        const insert = await Continent.insertContinents( {
+        const insert = await Continent.insertContinents({
             continentStatus: req.body.continentStatus,
             continentName: req.body.continentName,
             continentDescription: req.body.continentDescription,});
-        console.log(insert)
+            console.log(insert)
         return res.redirect('/cms-Continent-Q')
     },
 
@@ -92,12 +92,12 @@ async paginationView(req, res) {
             continentSearch:'%',
             currentPage:Number(1),
             itemsPerPage:100,
-            pageStartItem:Number(1),
+            pageStartItem:Number(0),
         }
         const [continents] = await Continent.selectContinents(filterStatus)
         const continent = continents.find(continent => Number(continent.id) === Number(continentId))
             if (!continent) {
-                return res.send('Continente não encontrado')
+                return res.send('Continent not found')
             }
         return res.render("../views/cms/cms-Continent-U", {continent})     
     },

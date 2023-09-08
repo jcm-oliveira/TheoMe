@@ -8,7 +8,7 @@ console.log("Model file starts...")
 
     async function selectContinents(filterStatus){
         const conn = await db.connect()
-        var sql = "SELECT * FROM continent WHERE excluded = ? AND status LIKE ? AND (name LIKE ? OR id LIKE ?) LIMIT ? OFFSET ?"
+        var sql = "SELECT * FROM continent WHERE excluded = ? AND status LIKE ? AND (name LIKE ? OR id LIKE ?) ORDER BY id DESC LIMIT ? OFFSET ?"
         const values = [0,filterStatus.continentStatus, "%"+filterStatus.continentSearch+"%", "%"+filterStatus.continentSearch+"%", filterStatus.itemsPerPage, filterStatus.pageStartItem]
         const result = conn.query(sql,values)
         return result  
@@ -28,10 +28,15 @@ console.log("Model file starts...")
 
     async function insertContinents(newContinent) {
         const conn = await db.connect()
-        const sql = "INSERT INTO continent(name, description,status) VALUES (?, ?, ?)"
-        const values = [newContinent.continentName, newContinent.continentDescription, newContinent.continentStatus]
-        const result = conn.query(sql, values)
-        return "Data inserted successfully"
+        try {  
+            const sql = "INSERT INTO continent(name, description,status) VALUES (?, ?, ?)"
+            const values = [newContinent.continentName, newContinent.continentDescription, newContinent.continentStatus]    
+            const [result] = await conn.query(sql, values)
+            return ("Register n°: " + result.insertId + " inserted successfully.")
+        } catch (err) {
+            console.log(err)
+            return ("Error found. Operation canceled.")
+        }        
     }
 
 //----------------------------------------------
@@ -40,10 +45,15 @@ console.log("Model file starts...")
 
     async function updateContinents(id, continent) {
         const conn = await db.connect()
-        const sql = "UPDATE continent SET  status = ?, name = ?, description = ? WHERE id = ?"
-        const values = [continent.continentStatus,continent.continentName, continent.continentDescription, id]
-        const result = conn.query(sql, values)
-        return "Data updated successfully"
+        try { 
+            const sql = "UPDATE continent SET  status = ?, name = ?, description = ? WHERE id = ?"
+            const values = [continent.continentStatus,continent.continentName, continent.continentDescription, id]
+            const [result] = await conn.query(sql, values)
+            return (result.affectedRows + " register updated successfully.")
+        } catch (err) {
+            console.log(err)
+            return ("Error found. Operation canceled.")
+        } 
     }
 
 //------------------------------------------------
@@ -54,8 +64,8 @@ console.log("Model file starts...")
         const conn = await db.connect()
         const sql = "UPDATE continent SET excluded = ? WHERE id = ?"
         const values = [1, id]
-        const result = conn.query(sql, values)
-        return "Data deleted successfully"
+        conn.query(sql, values)
+        return ("Register n° " + id + " deleted successfully")
     }
 
 
