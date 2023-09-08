@@ -8,7 +8,6 @@ module.exports = {
 //------------------------------------------------
 
     async loadShowPage(req, res) {        
-        console.log("Louding Show Page...")
 
         const filterStatus = {
             continentStatus:Number(1),
@@ -20,7 +19,13 @@ module.exports = {
 
         const [continents] = await Continent.selectContinents(filterStatus)
         const [countSelect] = await Continent.countSelect(filterStatus)
-        return res.render("../views/cms/cms-Continent-Q",{continents, filterStatus, countSelect});
+
+        const messages = {
+            display:"d-none",
+            alert: "Página inicial de consulta carregada.",
+        }
+
+        return res.render("../views/cms/cms-Continent-Q",{continents, filterStatus, countSelect,messages});
     },
 
 //------------------------------------------------
@@ -28,7 +33,6 @@ module.exports = {
 //------------------------------------------------
 
 async paginationView(req, res) {        
-    console.log("Louding Pagination View...")
 
     const filterStatus = {
         continentStatus: req.body.continentStatus,
@@ -46,22 +50,26 @@ async paginationView(req, res) {
                 filterStatus.currentPage--
                 filterStatus.pageStartItem = filterStatus.pageStartItem - filterStatus.itemsPerPage 
             }
-            console.log("Página atual " + filterStatus.currentPage)
         }
+
+    const [countSelect] = await Continent.countSelect(filterStatus)
 
         if (filterStatus.nextBtn === "nextBtnClicked") {
             console.log("NEXT Button clicked")
-            // if ((filterStatus.pageStartItem + filterStatus.itemsPerPage) < countSelect[0].totalRegister) {
+            if ((filterStatus.pageStartItem + filterStatus.itemsPerPage) < countSelect[0].totalRegister) {
                 filterStatus.currentPage++
                 filterStatus.pageStartItem = filterStatus.pageStartItem + filterStatus.itemsPerPage
-            // }
-            console.log("Página atual " + filterStatus.currentPage)
+            }
         }      
 
     const [continents] = await Continent.selectContinents(filterStatus)
-    const [countSelect] = await Continent.countSelect(filterStatus)
 
-    return res.render("../views/cms/cms-Continent-Q",{continents, filterStatus, countSelect});
+    const messages = {
+        display:"d-none",
+        alert: ("Página " + filterStatus.currentPage + " selecionada."),
+    }
+
+    return res.render("../views/cms/cms-Continent-Q",{continents, filterStatus, countSelect, messages});
 },
 
 //------------------------------------------------
@@ -69,17 +77,33 @@ async paginationView(req, res) {
 //------------------------------------------------
 
     async loadInsertPage(req, res) {        
-        console.log("Louding Insert Page...")
-        return res.render("../views/cms/cms-Continent-C")            
+        const messages = {
+            display:"d-none",
+            alert: "Página inserir carregada.",
+        }
+        return res.render("../views/cms/cms-Continent-C", {messages})            
     },
 
-    async insertContinentPage(req,res) {        
+    async insertContinentPage(req,res) {
+        const filterStatus = {
+            continentStatus:Number(1),
+            continentSearch:'%',
+            currentPage:Number(1),
+            itemsPerPage:Number(10),
+            pageStartItem:Number(0),
+        }     
         const insert = await Continent.insertContinents({
             continentStatus: req.body.continentStatus,
             continentName: req.body.continentName,
             continentDescription: req.body.continentDescription,});
-            console.log(insert)
-        return res.redirect('/cms-Continent-Q')
+        const messages = {
+            display:"",
+            alert: insert,
+        }
+
+        const [continents] = await Continent.selectContinents(filterStatus)
+        const [countSelect] = await Continent.countSelect(filterStatus)
+        return res.render('../views/cms/cms-Continent-Q', {continents,filterStatus,countSelect,messages})
     },
 
 //------------------------------------------------
@@ -105,16 +129,27 @@ async paginationView(req, res) {
     },
 
     async updateContinentPage(req,res) {
- 
+        const filterStatus = {
+            continentStatus:'%',
+            continentSearch:'%',
+            currentPage:Number(1),
+            itemsPerPage:100,
+            pageStartItem:Number(0),
+        } 
         const continentId = req.params.id
         const updatedContinent = {
             continentStatus: req.body.continentStatus,
             continentName: req.body.continentName,
             continentDescription: req.body.continentDescription,}
         const update = await Continent.updateContinents(continentId,updatedContinent)
-        console.log(update)
+        const messages = {
+            display:"",
+            alert: update,
+        }
 
-        res.redirect('/cms-Continent-Q')
+        const [continents] = await Continent.selectContinents(filterStatus)
+        const [countSelect] = await Continent.countSelect(filterStatus)
+        return res.render('../views/cms/cms-Continent-Q', {continents,filterStatus,countSelect,messages})
     },
 
 //------------------------------------------------
@@ -122,10 +157,23 @@ async paginationView(req, res) {
 //------------------------------------------------
 
     async deleteContinentPage(req,res) {
+        const filterStatus = {
+            continentStatus:'%',
+            continentSearch:'%',
+            currentPage:Number(1),
+            itemsPerPage:100,
+            pageStartItem:Number(0),
+        } 
         const continentId = req.params.id
         const deleted = await Continent.deleteContinents(continentId)
-        console.log(deleted)
-        res.redirect('/cms-Continent-Q')
+        const messages = {
+            display:"",
+            alert: deleted,
+        }
+
+        const [continents] = await Continent.selectContinents(filterStatus)
+        const [countSelect] = await Continent.countSelect(filterStatus)
+        return res.render('../views/cms/cms-Continent-Q', {continents,filterStatus,countSelect,messages})
     },
 
 //------------------------------------------------
@@ -148,9 +196,14 @@ async filterContinentPage(req,res) {
             filterStatus.continentSearch = '%'
         }
 
+    const messages = {
+        display:"d-none",
+        alert: "Filtro aplicado na tela de consulta.",
+    }
+
     const [continents] = await Continent.selectContinents(filterStatus)
     const [countSelect] = await Continent.countSelect(filterStatus)
-    return res.render("../views/cms/cms-Continent-Q",{continents, filterStatus, countSelect});
+    return res.render("../views/cms/cms-Continent-Q",{continents, filterStatus, countSelect,messages});
     }
 }
 

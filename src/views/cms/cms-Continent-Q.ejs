@@ -52,6 +52,12 @@
             <main>
                 <h1>Consultar - Continente</h1>
 
+                <!-- POP-UP MESSAGE DISPLAY -->
+                <div class="alert alert-success <%-messages.display%>" id="mensagemSucesso" role="alert">
+                    <strong>Sucesso!</strong> Sua ação foi realizada com êxito.
+                </div>
+
+                <!-- BAR BUTTON -->
                 <div class="barbutton">
                     <a href="/cms-Continent-C">
                         <div class="button-frame">
@@ -69,6 +75,7 @@
                             <button class="btn btn-secondary"><i class="fas fa-print"></i></button>
                         </div>
                     </a>
+                    <input type="text" id="message" name="message" value="<%= messages.alert%>" >
                 </div>
 
                 <div class="routine-table">
@@ -98,8 +105,7 @@
                     </table>
                 </div>
 
-                <!-- PAGINATION -->
-                
+                <!-- PAGINATION -->                
             <div class="pagination-bar">
                 <span>
                     Mostrando de <b> <%= filterStatus.pageStartItem + 1 %></b> até
@@ -140,7 +146,6 @@
             </div>
 
              <!-- FILTER OPTIONS DISPLAY -->
-
             <div>
                 <span style="font-size: 12px; color: gray;"><b>Filtros:</b></span><br>
                 <span style="font-size: 12px; color: gray;">Registros por página:<%= filterStatus.itemsPerPage%></span><br>
@@ -161,6 +166,7 @@
                             <%=filterStatus.continentSearch %>
                             <% } %>
                 </span><br>
+                <span style="font-size: 12px; color: gray;">Log: <%= messages.alert%></span><br>
             </div>
 
             <!-- TRIGGER MODAL FILTER -->
