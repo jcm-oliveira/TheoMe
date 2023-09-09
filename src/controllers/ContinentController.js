@@ -18,8 +18,8 @@ module.exports = {
         const [countSelect] = await Continent.countSelect(filterStatus)
         const messages = {
             display:"d-none",
-            type:"",
-            alert: "Página inicial de consulta carregada.",
+            alertType:"",
+            textMessage: "Página inicial de consulta carregada.",
         }
         return res.render("../views/cms/cms-Continent-Q",{continents, filterStatus, countSelect,messages});
     },
@@ -55,8 +55,8 @@ async paginationView(req, res) {
     const [continents] = await Continent.selectContinents(filterStatus)
     const messages = {
         display:"d-none",
-        type:"",
-        alert: ("Página " + filterStatus.currentPage + " selecionada."),
+        alertType:"",
+        textMessage: ("Página " + filterStatus.currentPage + " selecionada."),
     }
     return res.render("../views/cms/cms-Continent-Q",{continents, filterStatus, countSelect, messages});
 },
@@ -68,8 +68,8 @@ async paginationView(req, res) {
     async loadInsertPage(req, res) {        
         const messages = {
             display:"d-none",
-            type:"alert-success",
-            alert: "Página inserir carregada.",
+            alertType:"",
+            textMessage: "Página inserir carregada.",
         }
         return res.render("../views/cms/cms-Continent-C", {messages})            
     },
@@ -88,8 +88,8 @@ async paginationView(req, res) {
             continentDescription: req.body.continentDescription,});
         const messages = {
             display:"",
-            type:"alert-success",
-            alert: insert,
+            alertType:insert.alertTypeResult,
+            textMessage: insert.textResult,
         }
         const [continents] = await Continent.selectContinents(filterStatus)
         const [countSelect] = await Continent.countSelect(filterStatus)
@@ -133,8 +133,8 @@ async paginationView(req, res) {
         const update = await Continent.updateContinents(continentId,updatedContinent)
         const messages = {
             display:"",
-            type:"alert-success",
-            alert: update,
+            alertType:update.alertTypeResult,
+            textMessage: update.textResult,
         }
         const [continents] = await Continent.selectContinents(filterStatus)
         const [countSelect] = await Continent.countSelect(filterStatus)
@@ -157,10 +157,9 @@ async paginationView(req, res) {
         const deleted = await Continent.deleteContinents(continentId)
         const messages = {
             display:"",
-            type:"alert-warning",
-            alert: deleted,
+            alertType:deleted.alertTypeResult,
+            textMessage: deleted.textResult,
         }
-
         const [continents] = await Continent.selectContinents(filterStatus)
         const [countSelect] = await Continent.countSelect(filterStatus)
         return res.render('../views/cms/cms-Continent-Q', {continents,filterStatus,countSelect,messages})
@@ -181,15 +180,15 @@ async filterContinentPage(req,res) {
     
         if (filterStatus.continentStatus === Number(2)) {
         filterStatus.continentStatus = '%'
-    }
+        }
         if (filterStatus.continentSearch === "") {
             filterStatus.continentSearch = '%'
         }
 
     const messages = {
         display:"d-none",
-        type:"",
-        alert: "Filtro aplicado na tela de consulta.",
+        alertType:"",
+        textMessage: "Filtro aplicado na tela de consulta.",
     }
 
     const [continents] = await Continent.selectContinents(filterStatus)

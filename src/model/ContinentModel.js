@@ -30,11 +30,19 @@ console.log("Model file starts...")
         try {  
             const sql = "INSERT INTO continent(name, description,status) VALUES (?, ?, ?)"
             const values = [newContinent.continentName, newContinent.continentDescription, newContinent.continentStatus]    
-            const [result] = await conn.query(sql, values)
-            return ("Registro n°: " + result.insertId +  " inserido com sucesso.")
+            const [queryResult] = await conn.query(sql, values)
+            const result = {
+                alertTypeResult: "alert-success",
+                textResult: ("Registro n° " + queryResult.insertId +  " inserido com sucesso."),
+            };
+            return result
         } catch (err) {
             console.log(err)
-            return ("Um erro ocorreu durante a tentativa de inserção. O registro não foi inserido.")
+            const result = {
+                alertTypeResult: "alert-danger",
+                textResult: ("Um erro ocorreu durante a tentativa de inserção. O registro não foi inserido."),
+            };
+            return result
         }        
     }
 
@@ -47,11 +55,19 @@ console.log("Model file starts...")
         try { 
             const sql = "UPDATE continent SET  status = ?, name = ?, description = ? WHERE id = ?"
             const values = [continent.continentStatus,continent.continentName, continent.continentDescription, id]
-            const [result] = await conn.query(sql, values)
-            return ("Registro " + id + " alterado com sucesso. Ocorreu " + result.affectedRows + " alteração no Banco de Dados.")
+            const [queryResult] = await conn.query(sql, values)
+            const result = {
+                alertTypeResult: "alert-success",
+                textResult: ("Registro " + id + " alterado com sucesso. Ocorreu " + queryResult.affectedRows + " alteração no Banco de Dados."),
+            };
+            return result
         } catch (err) {
             console.log(err)
-            return ("Um erro ocorreu durante a tentativa de alteração. O registro não foi alterado.")
+            const result = {
+                alertTypeResult: "alert-danger",
+                textResult: ("Um erro ocorreu durante a tentativa de inserção. O registro não foi inserido."),
+            };
+            return result
         } 
     }
 
@@ -61,10 +77,22 @@ console.log("Model file starts...")
 
     async function deleteContinents(id) {
         const conn = await db.connect()
-        const sql = "UPDATE continent SET excluded = ? WHERE id = ?"
-        const values = [1, id]
-        conn.query(sql, values)
-        return ("Registro n° " + id + " apagado com sucesso.")
+        try {
+            const sql = "UPDATE continent SET excluded = ? WHERE id = ?"
+            const values = [1, id]
+            conn.query(sql, values)
+            const result = {
+                alertTypeResult: "alert-warning",
+                textResult: ("Registro n° " + id + " apagado com sucesso."),
+            };
+            return result
+        } catch {
+            const result = {
+                alertTypeResult: "alert-danger",
+                textResult: ("Um erro ocorreu durante a tentativa de inserção. O registro não foi inserido."),
+            };
+            return result
+        }
     }
 
 
