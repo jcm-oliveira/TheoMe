@@ -7,14 +7,14 @@ module.exports = {
 //                SHOW PAGE ROTINE
 //------------------------------------------------
 
-    async loadShowPage(req, res) {        
+    async loadShowPage(req, res) {
 
         const filterStatus = {
-            continentStatus:Number(1),
+            continentStatus:1,
             continentSearch:'%',
-            currentPage:Number(1),
-            itemsPerPage:Number(10),
-            pageStartItem:Number(0),
+            currentPage:1,
+            itemsPerPage:10,
+            pageStartItem:0,
         }
 
         const [continents] = await Continent.selectContinents(filterStatus)
@@ -22,6 +22,7 @@ module.exports = {
 
         const messages = {
             display:"d-none",
+            type:"",
             alert: "Página inicial de consulta carregada.",
         }
 
@@ -66,6 +67,7 @@ async paginationView(req, res) {
 
     const messages = {
         display:"d-none",
+        type:"",
         alert: ("Página " + filterStatus.currentPage + " selecionada."),
     }
 
@@ -79,6 +81,7 @@ async paginationView(req, res) {
     async loadInsertPage(req, res) {        
         const messages = {
             display:"d-none",
+            type:"alert-success",
             alert: "Página inserir carregada.",
         }
         return res.render("../views/cms/cms-Continent-C", {messages})            
@@ -86,11 +89,11 @@ async paginationView(req, res) {
 
     async insertContinentPage(req,res) {
         const filterStatus = {
-            continentStatus:Number(1),
+            continentStatus:1,
             continentSearch:'%',
-            currentPage:Number(1),
-            itemsPerPage:Number(10),
-            pageStartItem:Number(0),
+            currentPage:1,
+            itemsPerPage:10,
+            pageStartItem:0,
         }     
         const insert = await Continent.insertContinents({
             continentStatus: req.body.continentStatus,
@@ -98,6 +101,7 @@ async paginationView(req, res) {
             continentDescription: req.body.continentDescription,});
         const messages = {
             display:"",
+            type:"alert-success",
             alert: insert,
         }
 
@@ -111,14 +115,13 @@ async paginationView(req, res) {
 //------------------------------------------------
 
     async loadUpdatePage(req, res) {        
-        console.log("Louding Update Page...")
         const continentId = req.params.id
         const filterStatus = {
             continentStatus:'%',
             continentSearch:'%',
-            currentPage:Number(1),
+            currentPage:1,
             itemsPerPage:100,
-            pageStartItem:Number(0),
+            pageStartItem:0,
         }
         const [continents] = await Continent.selectContinents(filterStatus)
         const continent = continents.find(continent => Number(continent.id) === Number(continentId))
@@ -132,9 +135,9 @@ async paginationView(req, res) {
         const filterStatus = {
             continentStatus:'%',
             continentSearch:'%',
-            currentPage:Number(1),
-            itemsPerPage:100,
-            pageStartItem:Number(0),
+            currentPage:1,
+            itemsPerPage:10,
+            pageStartItem:0,
         } 
         const continentId = req.params.id
         const updatedContinent = {
@@ -144,6 +147,7 @@ async paginationView(req, res) {
         const update = await Continent.updateContinents(continentId,updatedContinent)
         const messages = {
             display:"",
+            type:"alert-success",
             alert: update,
         }
 
@@ -160,14 +164,15 @@ async paginationView(req, res) {
         const filterStatus = {
             continentStatus:'%',
             continentSearch:'%',
-            currentPage:Number(1),
-            itemsPerPage:100,
-            pageStartItem:Number(0),
+            currentPage:1,
+            itemsPerPage:10,
+            pageStartItem:0,
         } 
         const continentId = req.params.id
         const deleted = await Continent.deleteContinents(continentId)
         const messages = {
             display:"",
+            type:"alert-warning",
             alert: deleted,
         }
 
@@ -184,9 +189,9 @@ async filterContinentPage(req,res) {
     const filterStatus = {
         continentStatus: Number(req.body.filterStatus),
         continentSearch: req.body.filterSearch,
-        currentPage:Number(1),
+        currentPage:1,
         itemsPerPage:Number(req.body.itemsPerPageFilter),
-        pageStartItem:Number(0),
+        pageStartItem:0,
     }
     
         if (filterStatus.continentStatus === Number(2)) {
@@ -198,6 +203,7 @@ async filterContinentPage(req,res) {
 
     const messages = {
         display:"d-none",
+        type:"",
         alert: "Filtro aplicado na tela de consulta.",
     }
 

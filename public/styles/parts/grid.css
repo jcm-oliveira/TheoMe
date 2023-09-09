@@ -99,7 +99,11 @@ ul.pagination {
     justify-content:space-between;
 }
 
-/* .current-page {
-    background-color: #cccecd;
-    border: #717976;
-} */
+/* ALERT MESSAGE */
+
+.inputAlertMessage {
+    border:none;
+    background-color: transparent;
+    color: #8b8d8c;
+    width: 100%;
+}

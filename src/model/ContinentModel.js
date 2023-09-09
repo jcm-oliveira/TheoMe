@@ -49,7 +49,7 @@ console.log("Model file starts...")
             const sql = "UPDATE continent SET  status = ?, name = ?, description = ? WHERE id = ?"
             const values = [continent.continentStatus,continent.continentName, continent.continentDescription, id]
             const [result] = await conn.query(sql, values)
-            return ("O registro " + id + " foi alterado com sucesso. Ocorreu" + result.affectedRows + " alteração no Banco de Dados.")
+            return ("Registro " + id + " alterado com sucesso. Ocorreu " + result.affectedRows + " alteração no Banco de Dados.")
         } catch (err) {
             console.log(err)
             return ("Um erro ocorreu durante a tentativa de alteração. O registro não foi alterado.")
@@ -65,7 +65,7 @@ console.log("Model file starts...")
         const sql = "UPDATE continent SET excluded = ? WHERE id = ?"
         const values = [1, id]
         conn.query(sql, values)
-        return ("O registro n° " + id + " foi apagado com sucesso.")
+        return ("Registro n° " + id + " apagado com sucesso.")
     }
 
 

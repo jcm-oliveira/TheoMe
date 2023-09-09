@@ -21,8 +21,6 @@
     <!-- icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 
-
-
     <!-- bootstrap customization -->
     <link rel="stylesheet" href="/styles/parts/main.css" />
     <link rel="stylesheet" href="/styles/parts/header.css" />
@@ -53,8 +51,8 @@
                 <h1>Consultar - Continente</h1>
 
                 <!-- POP-UP MESSAGE DISPLAY -->
-                <div class="alert alert-success <%-messages.display%>" id="mensagemSucesso" role="alert">
-                    <strong>Sucesso!</strong> Sua ação foi realizada com êxito.
+                <div class="alert <%-messages.type%> <%-messages.display%>" id="mensagemSucesso" role="alert">
+                    <input class="inputAlertMessage" id="message" name="message" value="<%= messages.alert%>">
                 </div>
 
                 <!-- BAR BUTTON -->
@@ -75,7 +73,6 @@
                             <button class="btn btn-secondary"><i class="fas fa-print"></i></button>
                         </div>
                     </a>
-                    <input type="text" id="message" name="message" value="<%= messages.alert%>" >
                 </div>
 
                 <div class="routine-table">
@@ -148,7 +145,7 @@
              <!-- FILTER OPTIONS DISPLAY -->
             <div>
                 <span style="font-size: 12px; color: gray;"><b>Filtros:</b></span><br>
-                <span style="font-size: 12px; color: gray;">Registros por página:<%= filterStatus.itemsPerPage%></span><br>
+                <span style="font-size: 12px; color: gray;">Registros por página: <%= filterStatus.itemsPerPage%></span><br>
                 <span style="font-size: 12px; color: gray;">Status:
                     <% if(filterStatus.continentStatus ===1) { %>
                         Ativo
