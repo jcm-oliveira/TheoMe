@@ -101,9 +101,17 @@ ul.pagination {
 
 /* ALERT MESSAGE */
 
+.alertPosition {
+    display: flex;
+}
+
 .inputAlertMessage {
     border:none;
     background-color: transparent;
     color: #8b8d8c;
     width: 100%;
+}
+
+.closeAlertMessage {
+    color: #8b8d8c;
 }

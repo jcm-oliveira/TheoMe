@@ -1,6 +1,5 @@
 const Continent = require("../model/ContinentModel");
 console.log("ContinentController file starts...");
-
 module.exports = {
 
 //------------------------------------------------
@@ -8,7 +7,6 @@ module.exports = {
 //------------------------------------------------
 
     async loadShowPage(req, res) {
-
         const filterStatus = {
             continentStatus:1,
             continentSearch:'%',
@@ -16,16 +14,13 @@ module.exports = {
             itemsPerPage:10,
             pageStartItem:0,
         }
-
         const [continents] = await Continent.selectContinents(filterStatus)
         const [countSelect] = await Continent.countSelect(filterStatus)
-
         const messages = {
             display:"d-none",
             type:"",
             alert: "Página inicial de consulta carregada.",
         }
-
         return res.render("../views/cms/cms-Continent-Q",{continents, filterStatus, countSelect,messages});
     },
 
@@ -33,8 +28,7 @@ module.exports = {
 //              PAGINATION CONTROL
 //------------------------------------------------
 
-async paginationView(req, res) {        
-
+async paginationView(req, res) { 
     const filterStatus = {
         continentStatus: req.body.continentStatus,
         continentSearch: req.body.continentSearch,
@@ -44,33 +38,26 @@ async paginationView(req, res) {
         prevBtn: req.body.previousButton,
         nextBtn: req.body.nextButton,
     }
-    
         if (filterStatus.prevBtn === "prevBtnClicked") {
-            console.log("PREVIOUS Button clicked")
             if (filterStatus.currentPage > 1) {
                 filterStatus.currentPage--
                 filterStatus.pageStartItem = filterStatus.pageStartItem - filterStatus.itemsPerPage 
             }
         }
-
     const [countSelect] = await Continent.countSelect(filterStatus)
 
         if (filterStatus.nextBtn === "nextBtnClicked") {
-            console.log("NEXT Button clicked")
             if ((filterStatus.pageStartItem + filterStatus.itemsPerPage) < countSelect[0].totalRegister) {
                 filterStatus.currentPage++
                 filterStatus.pageStartItem = filterStatus.pageStartItem + filterStatus.itemsPerPage
             }
         }      
-
     const [continents] = await Continent.selectContinents(filterStatus)
-
     const messages = {
         display:"d-none",
         type:"",
         alert: ("Página " + filterStatus.currentPage + " selecionada."),
     }
-
     return res.render("../views/cms/cms-Continent-Q",{continents, filterStatus, countSelect, messages});
 },
 
@@ -104,7 +91,6 @@ async paginationView(req, res) {
             type:"alert-success",
             alert: insert,
         }
-
         const [continents] = await Continent.selectContinents(filterStatus)
         const [countSelect] = await Continent.countSelect(filterStatus)
         return res.render('../views/cms/cms-Continent-Q', {continents,filterStatus,countSelect,messages})
@@ -150,7 +136,6 @@ async paginationView(req, res) {
             type:"alert-success",
             alert: update,
         }
-
         const [continents] = await Continent.selectContinents(filterStatus)
         const [countSelect] = await Continent.countSelect(filterStatus)
         return res.render('../views/cms/cms-Continent-Q', {continents,filterStatus,countSelect,messages})
