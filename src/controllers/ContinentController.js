@@ -28,38 +28,37 @@ module.exports = {
 //              PAGINATION CONTROL
 //------------------------------------------------
 
-async paginationView(req, res) { 
-    const filterStatus = {
-        continentStatus: req.body.continentStatus,
-        continentSearch: req.body.continentSearch,
-        currentPage: Number(req.body.currentPage),
-        itemsPerPage: Number(req.body.itemsPerPage),
-        pageStartItem: Number(req.body.pageStartItem),
-        prevBtn: req.body.previousButton,
-        nextBtn: req.body.nextButton,
-    }
-        if (filterStatus.prevBtn === "prevBtnClicked") {
-            if (filterStatus.currentPage > 1) {
-                filterStatus.currentPage--
-                filterStatus.pageStartItem = filterStatus.pageStartItem - filterStatus.itemsPerPage 
-            }
+    async paginationView(req, res) { 
+        const filterStatus = {
+            continentStatus: req.body.continentStatus,
+            continentSearch: req.body.continentSearch,
+            currentPage: Number(req.body.currentPage),
+            itemsPerPage: Number(req.body.itemsPerPage),
+            pageStartItem: Number(req.body.pageStartItem),
+            prevBtn: req.body.previousButton,
+            nextBtn: req.body.nextButton,
         }
-    const [countSelect] = await Continent.countSelect(filterStatus)
-
-        if (filterStatus.nextBtn === "nextBtnClicked") {
-            if ((filterStatus.pageStartItem + filterStatus.itemsPerPage) < countSelect[0].totalRegister) {
-                filterStatus.currentPage++
-                filterStatus.pageStartItem = filterStatus.pageStartItem + filterStatus.itemsPerPage
+            if (filterStatus.prevBtn === "prevBtnClicked") {
+                if (filterStatus.currentPage > 1) {
+                    filterStatus.currentPage--
+                    filterStatus.pageStartItem = filterStatus.pageStartItem - filterStatus.itemsPerPage 
+                }
             }
-        }      
-    const [continents] = await Continent.selectContinents(filterStatus)
-    const messages = {
-        display:"d-none",
-        alertType:"",
-        textMessage: ("Página " + filterStatus.currentPage + " selecionada."),
-    }
-    return res.render("../views/cms/cms-Continent-Q",{continents, filterStatus, countSelect, messages});
-},
+        const [countSelect] = await Continent.countSelect(filterStatus)
+            if (filterStatus.nextBtn === "nextBtnClicked") {
+                if ((filterStatus.pageStartItem + filterStatus.itemsPerPage) < countSelect[0].totalRegister) {
+                    filterStatus.currentPage++
+                    filterStatus.pageStartItem = filterStatus.pageStartItem + filterStatus.itemsPerPage
+                }
+            }      
+        const [continents] = await Continent.selectContinents(filterStatus)
+        const messages = {
+            display:"d-none",
+            alertType:"",
+            textMessage: ("Página " + filterStatus.currentPage + " selecionada."),
+        }
+        return res.render("../views/cms/cms-Continent-Q",{continents, filterStatus, countSelect, messages});
+    },
 
 //------------------------------------------------
 //                 INSERT ROTINE
@@ -169,32 +168,29 @@ async paginationView(req, res) {
 //               FILTER ROUTINE
 //------------------------------------------------
 
-async filterContinentPage(req,res) {
-    const filterStatus = {
-        continentStatus: Number(req.body.filterStatus),
-        continentSearch: req.body.filterSearch,
-        currentPage:1,
-        itemsPerPage:Number(req.body.itemsPerPageFilter),
-        pageStartItem:0,
-    }
-    
-        if (filterStatus.continentStatus === Number(2)) {
-        filterStatus.continentStatus = '%'
+    async filterContinentPage(req,res) {
+        const filterStatus = {
+            continentStatus: Number(req.body.filterStatus),
+            continentSearch: req.body.filterSearch,
+            currentPage:1,
+            itemsPerPage:Number(req.body.itemsPerPageFilter),
+            pageStartItem:0,
+        }        
+            if (filterStatus.continentStatus === Number(2)) {
+            filterStatus.continentStatus = '%'
+            }
+            if (filterStatus.continentSearch === "") {
+                filterStatus.continentSearch = '%'
+            }
+        const messages = {
+            display:"d-none",
+            alertType:"",
+            textMessage: "Filtro aplicado na tela de consulta.",
         }
-        if (filterStatus.continentSearch === "") {
-            filterStatus.continentSearch = '%'
+        const [continents] = await Continent.selectContinents(filterStatus)
+        const [countSelect] = await Continent.countSelect(filterStatus)
+        return res.render("../views/cms/cms-Continent-Q",{continents, filterStatus, countSelect,messages});
         }
-
-    const messages = {
-        display:"d-none",
-        alertType:"",
-        textMessage: "Filtro aplicado na tela de consulta.",
     }
-
-    const [continents] = await Continent.selectContinents(filterStatus)
-    const [countSelect] = await Continent.countSelect(filterStatus)
-    return res.render("../views/cms/cms-Continent-Q",{continents, filterStatus, countSelect,messages});
-    }
-}
 
 

@@ -50,6 +50,15 @@
             <main>
                 <h1>Consultar - Continente</h1>
 
+                <!-- BREADCRUMB -->
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Cadastros</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Continentes</li>
+                    </ol>
+                </nav>
+
                 <!-- POP-UP MESSAGE DISPLAY -->
                 <div class="alert <%-messages.alertType%> <%-messages.display%> alertPosition" id="mensagemSucesso" role="alert">
                     <input class="inputAlertMessage" id="message" name="message" value="<%= messages.textMessage%>" disabled>
@@ -145,7 +154,6 @@
 
              <!-- FILTER OPTIONS DISPLAY -->
             <div>
-                <span style="font-size: 12px; color: gray;"><b>Filtros:</b></span><br>
                 <span style="font-size: 12px; color: gray;">Registros por página: <%= filterStatus.itemsPerPage%></span><br>
                 <span style="font-size: 12px; color: gray;">Status:
                     <% if(filterStatus.continentStatus ===1) { %>
@@ -164,7 +172,7 @@
                             <%=filterStatus.continentSearch %>
                             <% } %>
                 </span><br>
-                <span style="font-size: 12px; color: gray;">Log: <%= messages.alert%></span><br>
+                <span style="font-size: 12px; color: gray;">Ultima ação: <%= messages.textMessage%></span><br>
             </div>
 
             <!-- TRIGGER MODAL FILTER -->

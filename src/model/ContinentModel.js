@@ -80,7 +80,7 @@ console.log("Model file starts...")
         try {
             const sql = "UPDATE continent SET excluded = ? WHERE id = ?"
             const values = [1, id]
-            conn.query(sql, values)
+            const [queryResult] = await conn.query(sql, values)
             const result = {
                 alertTypeResult: "alert-warning",
                 textResult: ("Registro n° " + id + " apagado com sucesso."),
@@ -94,7 +94,6 @@ console.log("Model file starts...")
             return result
         }
     }
-
 
 module.exports = {selectContinents, insertContinents, updateContinents, deleteContinents, countSelect}
 
