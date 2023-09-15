@@ -53,139 +53,162 @@
                 <!-- BREADCRUMB -->
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Cadastros</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Continentes</li>
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Cadastros</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Continente</li>
                     </ol>
-                </nav>
 
-                <!-- POP-UP MESSAGE DISPLAY -->
-                <div class="alert <%-messages.alertType%> <%-messages.display%> alertPosition" id="mensagemSucesso" role="alert">
-                    <input class="inputAlertMessage" id="message" name="message" value="<%= messages.textMessage%>" disabled>
-                    <a href="/cms-Continent-Q/"><i class="fas fa-times closeAlertMessage"></i></a>
-                </div>
+                    <!-- POP-UP MESSAGE DISPLAY -->
+                    <div class="alert <%-messages.alertType%> <%-messages.display%> alertPosition" id="mensagemSucesso"
+                        role="alert">
+                        <input class="inputAlertMessage" id="message" name="message" value="<%= messages.textMessage%>"
+                            disabled>
+                        <a href="/cms-Continent-Q/"><i class="fas fa-times closeAlertMessage"></i></a>
+                    </div>
 
-                <!-- BAR BUTTON -->
-                <div class="barbutton">
-                    <a href="/cms-Continent-C">
-                        <div class="button-frame">
-                            <button class="btn btn-success"><i class="fas fa-plus"></i></button>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="button-frame">
-                            <button class="btn btn-secondary" data-toggle="modal" data-target="#FilterContinentModal"><i
-                                    class="fas fa-filter"></i></button>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="button-frame">
-                            <button class="btn btn-secondary"><i class="fas fa-print"></i></button>
-                        </div>
-                    </a>
-                </div>
+                    <!-- BAR BUTTON -->
+                    <div class="barbutton">
+                        <a href="/cms-Continent-C">
+                            <div class="button-frame">
+                                <button class="btn btn-success"><i class="fas fa-plus"></i></button>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="button-frame">
+                                <button class="btn btn-secondary" data-toggle="modal"
+                                    data-target="#FilterContinentModal"><i class="fas fa-filter"></i></button>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="button-frame">
+                                <button class="btn btn-secondary"><i class="fas fa-print"></i></button>
+                            </div>
+                        </a>
+                    </div>
 
-                <div class="routine-table">
-                    <table class="table table-bordered table-striped table-sm table-hover">
-                        <tr>
-                            <th class="col-md-1">Cod.</th>
-                            <th>Continente</th>
-                            <th class="col-md-1">Status</th>
-                            <th class="col-md-1">Opções</th>
-                        </tr>
-                        <% continents.forEach((continent)=> { %>
+                    <!-- CONTENT -->
+                    <div class="routine-table">
+                        <table class="table table-bordered table-striped table-sm table-hover">
                             <tr>
-                                <td><%-continent.id%></td>
-                                <td><%-continent.name%></td>
-                                <td>
-                                    <% if( continent.status==='1' ) { %>
-                                        <div class="statusActive">Ativo</div>
-                                        <% } else { %>
-                                            <div class="statusInative">Inativo</div>
-                                            <% } %>
-                                </td>
-                                <td class="item-option">
-                                    <a href="/cms-Continent-C/<%= continent.id %>"><i class="fas fa-pen"></i></a>
-                                </td>
+                                <th class="col-md-1">Cod.</th>
+                                <th>Continente</th>
+                                <th class="col-md-1">Status</th>
+                                <th class="col-md-1">Opções</th>
                             </tr>
-                            <% }) %>
-                    </table>
-                </div>
+                            <% continents.forEach((continent)=> { %>
+                                <tr>
+                                    <td><%-continent.id%></td>
+                                    <td><%-continent.name%></td>
+                                    <td>
+                                        <% if( continent.status==='1' ) { %>
+                                            <div class="statusActive">Ativo</div>
+                                            <% } else { %>
+                                                <div class="statusInative">Inativo</div>
+                                                <% } %>
+                                    </td>
+                                    <td class="item-option">
+                                        <a href="/cms-Continent-C/<%= continent.id %>"><i class="fas fa-pen"></i></a>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                        </table>
+                    </div>
 
-                <!-- PAGINATION -->                
-            <div class="pagination-bar">
-                <span>
-                    Mostrando de <b> <%= filterStatus.pageStartItem + 1 %></b> até
-                    <% if ((filterStatus.pageStartItem + filterStatus.itemsPerPage) < countSelect[0].totalRegister) { %>
-                        <b><%= filterStatus.pageStartItem + filterStatus.itemsPerPage %></b>
-                    <% } else { %>
-                        <b><%= countSelect[0].totalRegister %></b>
-                    <% } %>
-                    (de um total de <b><%-countSelect[0].totalRegister%></b> registros)
-                </span>
+                    <!-- PAGINATION -->
+                    <div class="pagination-bar">
+                        <span>
+                            Mostrando de <b>
+                                <%= filterStatus.pageStartItem + 1 %>
+                            </b> até
+                            <% if ((filterStatus.pageStartItem + filterStatus.itemsPerPage) <
+                                countSelect[0].totalRegister) { %>
+                                <b>
+                                    <%= filterStatus.pageStartItem + filterStatus.itemsPerPage %>
+                                </b>
+                                <% } else { %>
+                                    <b>
+                                        <%= countSelect[0].totalRegister %>
+                                    </b>
+                                    <% } %>
+                                        (de um total de <b><%-countSelect[0].totalRegister%></b> registros)
+                        </span>
 
-                <div>
-                    <form id="paginationPrevious" method="post" action="/cms-Continent-Q/">
-                        <input type="text" id="previousButton" name="previousButton" value="prevBtnClicked" style="display:none" >
-                        <input type="text" id="currentPage" name="currentPage" value="<%= filterStatus.currentPage%>" style="display:none">
-                        <input type="text" id="itemsPerPage" name="itemsPerPage" value="<%= filterStatus.itemsPerPage%>" style="display:none">
-                        <input type="text" id="pageStartItem" name="pageStartItem" value="<%= filterStatus.pageStartItem%>" style="display:none">
-                        <input type="text" id="continentStatus" name="continentStatus" value="<%= filterStatus.continentStatus%>" style="display:none">
-                        <input type="text" id="continentSearch" name="continentSearch" value="<%= filterStatus.continentSearch%>" style="display:none">
-                    </form>
+                        <div>
+                            <form id="paginationPrevious" method="post" action="/cms-Continent-Q/">
+                                <input type="text" id="previousButton" name="previousButton" value="prevBtnClicked"
+                                    style="display:none">
+                                <input type="text" id="currentPage" name="currentPage"
+                                    value="<%= filterStatus.currentPage%>" style="display:none">
+                                <input type="text" id="itemsPerPage" name="itemsPerPage"
+                                    value="<%= filterStatus.itemsPerPage%>" style="display:none">
+                                <input type="text" id="pageStartItem" name="pageStartItem"
+                                    value="<%= filterStatus.pageStartItem%>" style="display:none">
+                                <input type="text" id="continentStatus" name="continentStatus"
+                                    value="<%= filterStatus.continentStatus%>" style="display:none">
+                                <input type="text" id="continentSearch" name="continentSearch"
+                                    value="<%= filterStatus.continentSearch%>" style="display:none">
+                            </form>
 
-                    <form id="paginationNext" method="post" action="/cms-Continent-Q/">
-                        <input type="text" id="nextButton" name="nextButton" value="nextBtnClicked" style="display:none">
-                        <input type="text" id="currentPage" name="currentPage" value="<%= filterStatus.currentPage%>" style="display:none">
-                        <input type="text" id="itemsPerPage" name="itemsPerPage" value="<%= filterStatus.itemsPerPage%>" style="display:none">
-                        <input type="text" id="pageStartItem" name="pageStartItem" value="<%= filterStatus.pageStartItem%>" style="display:none">
-                        <input type="text" id="continentStatus" name="continentStatus" value="<%= filterStatus.continentStatus%>" style="display:none">
-                        <input type="text" id="continentSearch" name="continentSearch" value="<%= filterStatus.continentSearch%>" style="display:none">
-                    </form>
-                </div>
-                <div class="pagination-direction">
-                    <button class="btn btn-secondary" form="paginationPrevious" type="submit" title="Previous"><i class="fas fa-arrow-left"></i></button>
-                    <div class="current-page">
-                        <span> &nbsp Página <%= filterStatus.currentPage%> &nbsp </span>
-                    </div> 
-                    <button class="btn btn-secondary" form="paginationNext" type="submit" title="Next"><i class="fas fa-arrow-right"></i></button>
-                </div>
-            </div>
+                            <form id="paginationNext" method="post" action="/cms-Continent-Q/">
+                                <input type="text" id="nextButton" name="nextButton" value="nextBtnClicked"
+                                    style="display:none">
+                                <input type="text" id="currentPage" name="currentPage"
+                                    value="<%= filterStatus.currentPage%>" style="display:none">
+                                <input type="text" id="itemsPerPage" name="itemsPerPage"
+                                    value="<%= filterStatus.itemsPerPage%>" style="display:none">
+                                <input type="text" id="pageStartItem" name="pageStartItem"
+                                    value="<%= filterStatus.pageStartItem%>" style="display:none">
+                                <input type="text" id="continentStatus" name="continentStatus"
+                                    value="<%= filterStatus.continentStatus%>" style="display:none">
+                                <input type="text" id="continentSearch" name="continentSearch"
+                                    value="<%= filterStatus.continentSearch%>" style="display:none">
+                            </form>
+                        </div>
+                        <div class="pagination-direction">
+                            <button class="btn btn-secondary" form="paginationPrevious" type="submit"
+                                title="Previous"><i class="fas fa-arrow-left"></i></button>
+                            <div class="current-page">
+                                <span> &nbsp Página <%= filterStatus.currentPage%> &nbsp </span>
+                            </div>
+                            <button class="btn btn-secondary" form="paginationNext" type="submit" title="Next"><i
+                                    class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
 
-             <!-- FILTER OPTIONS DISPLAY -->
-            <div>
-                <span style="font-size: 12px; color: gray;">Registros por página: <%= filterStatus.itemsPerPage%></span><br>
-                <span style="font-size: 12px; color: gray;">Status:
-                    <% if(filterStatus.continentStatus ===1) { %>
-                        Ativo
-                        <% } else if (filterStatus.continentStatus === 0){ %>
-                            Inativo
-                            <% } else { %>
-                                Todos
-                                <% } %>
-                </span><br>
-                <span style="font-size: 12px; color: gray;">Pesquisa:
-                    <% filterStatus.continentSearch %>
-                    <% if(filterStatus.continentSearch ==='%') { %>
-                        Não informado
-                        <% } else { %>
-                            <%=filterStatus.continentSearch %>
-                            <% } %>
-                </span><br>
-                <span style="font-size: 12px; color: gray;">Ultima ação: <%= messages.textMessage%></span><br>
-            </div>
-
-            <!-- TRIGGER MODAL FILTER -->
-            <div class="modal fade" id="FilterContinentModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <%- include('cms-Continent-F') %>
-                </div>
-            </div>
-
-
+                    <!-- TRIGGER MODAL FILTER -->
+                    <div class="modal fade" id="FilterContinentModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <%- include('cms-Continent-F') %>
+                        </div>
+                    </div>
             </main>
 
-            <%- include('../parts/footer') %>
+            <!-- FOOTER -->
+            <footer>
+                <div class="card-body">
+                    <span>Registros por página: <%= filterStatus.itemsPerPage%></span><br>
+                    <span>Status:
+                        <% if(filterStatus.continentStatus===1) { %>
+                            Ativo
+                            <% } else if (filterStatus.continentStatus===0){ %>
+                                Inativo
+                                <% } else { %>
+                                    Todos
+                                    <% } %>
+                    </span><br>
+                    <span>Pesquisa:
+                        <% filterStatus.continentSearch %>
+                            <% if(filterStatus.continentSearch==='%' ) { %>
+                                Não informado
+                                <% } else { %>
+                                    <%=filterStatus.continentSearch %>
+                                        <% } %>
+                    </span><br>
+                    <span>Ultima ação: <%= messages.textMessage%></span><br>
+                </div>
+            </footer>
+
+            <%- include('../parts/copyright') %>
 
 </body>
