@@ -28,7 +28,8 @@ module.exports = {
 //              PAGINATION CONTROL
 //------------------------------------------------
 
-    async paginationView(req, res) { 
+    async paginationView(req, res) {
+
         const filterStatus = {
             continentStatus: req.body.continentStatus,
             continentSearch: req.body.continentSearch,
@@ -38,6 +39,7 @@ module.exports = {
             prevBtn: req.body.previousButton,
             nextBtn: req.body.nextButton,
         }
+        console.log(filterStatus)        
             if (filterStatus.prevBtn === "prevBtnClicked") {
                 if (filterStatus.currentPage > 1) {
                     filterStatus.currentPage--
@@ -118,7 +120,7 @@ module.exports = {
 
     async updateContinentPage(req,res) {
         const filterStatus = {
-            continentStatus:'%',
+            continentStatus:1,
             continentSearch:'%',
             currentPage:1,
             itemsPerPage:10,
