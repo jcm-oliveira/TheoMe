@@ -38,8 +38,7 @@ module.exports = {
             pageStartItem: Number(req.body.pageStartItem),
             prevBtn: req.body.previousButton,
             nextBtn: req.body.nextButton,
-        }
-        console.log(filterStatus)        
+        }     
             if (filterStatus.prevBtn === "prevBtnClicked") {
                 if (filterStatus.currentPage > 1) {
                     filterStatus.currentPage--

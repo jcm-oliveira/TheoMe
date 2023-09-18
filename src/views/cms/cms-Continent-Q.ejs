@@ -118,19 +118,19 @@
                 <!-- PAGINATION -->
                 <div class="pagination-bar">
                     <span>
-                        Mostrando de <b>
-                            <%= filterStatus.pageStartItem + 1 %>
-                        </b> até
-                        <% if ((filterStatus.pageStartItem + filterStatus.itemsPerPage) < countSelect[0].totalRegister) { %>
-                            <b>
-                                <%= filterStatus.pageStartItem + filterStatus.itemsPerPage %>
-                            </b>
-                            <% } else { %>
-                                <b>
-                                    <%= countSelect[0].totalRegister %>
-                                </b>
+                        <% if (countSelect[0].totalRegister == 0 ) { %>
+                                    Nenhum resultado encontrado.
+                                <% } else { %>
+                            Mostrando de <b>
+                                <%= filterStatus.pageStartItem + 1 %>
+                            </b> até
+                            <% if ((filterStatus.pageStartItem + filterStatus.itemsPerPage) < countSelect[0].totalRegister) { %>
+                                <b><%= filterStatus.pageStartItem + filterStatus.itemsPerPage %></b>
+                                <% } else { %>
+                                    <b><%= countSelect[0].totalRegister %></b>
                                 <% } %>
                                     (de um total de <b><%=countSelect[0].totalRegister%></b> registros)
+                        <% } %>
                     </span>
                     <div>
                         <form id="paginationPrevious" method="post" action="/cms-Continent-Q/">
