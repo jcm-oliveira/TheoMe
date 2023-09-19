@@ -28,8 +28,8 @@ console.log("CountryModel file starts...")
     async function insertCountries(newCountry) {
         const conn = await db.connect()
         try {  
-            const sql = "INSERT INTO country(id_continent, name, description, status) VALUES (?, ?, ?, ?)"
-            const values = [newCountry.id_Continent,newCountry.countryName, newCountry.countryDescription, newCountry.countryStatus]    
+            const sql = "INSERT INTO country(status, id_continent, name, description) VALUES (?, ?, ?, ?)"
+            const values = [newCountry.countryStatus, newCountry.id_Continent,newCountry.countryName, newCountry.countryDescription]    
             const [queryResult] = await conn.query(sql, values)
             const result = {
                 alertTypeResult: "alert-success",
