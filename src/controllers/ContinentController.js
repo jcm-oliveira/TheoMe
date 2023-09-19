@@ -147,7 +147,7 @@ module.exports = {
 
     async deleteContinentPage(req,res) {
         const filterStatus = {
-            continentStatus:'%',
+            continentStatus:'1',
             continentSearch:'%',
             currentPage:1,
             itemsPerPage:10,
