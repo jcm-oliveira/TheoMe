@@ -11,7 +11,7 @@ const views = __dirname + "/views/"
 //---------------------------------------------------
 
 const ContinentController = require('./controllers/ContinentController.js')
-
+const CountryController = require('./controllers/CountryController.js')
 
 
 //---------------------------------------------------
@@ -28,7 +28,6 @@ routes.get('/ReadingChronologicalPage', (req,res) => res.render(views + "tools/R
 routes.get('/ChronologicalEvents', (req,res) => res.render(views + "tools/ChronologicalEvents"));
 routes.get('/Timeline', (req,res) => res.render(views + "tools/Timeline"));
 routes.get('/Timeline-IframeBar.ejs', (req,res) => res.render(views + "tools/Timeline-IframeBar.ejs", { Period }));
-// routes.get('/T-BookIndex', (req,res) => res.render(views + "tools/T-BookIndex"));
 routes.get('/T-BookSummary', (req,res) => res.render(views + "tools/T-BookSummary"));
 routes.get('/T-BookData', (req,res) => res.render(views + "tools/T-BookData"));
 routes.get('/T-BookSchemaOfContent', (req,res) => res.render(views + "tools/T-BookSchemaOfContent"));
@@ -98,23 +97,30 @@ routes.post('/cms-Continent-F', ContinentController.filterContinentPage)
 
 //_____________________Country_________________________
 
-routes.get('/cms-Country-Q', (req,res) => res.render(views + "cms/cms-Country-Q"));
-routes.get('/cms-Country-C', (req,res) => res.render(views + "cms/cms-Country-C"));
+routes.get('/cms-Country-Q', CountryController.loadShowPage)
+routes.get('/cms-Country-C', CountryController.loadInsertPage)
+routes.get('/cms-Country-C/:id', CountryController.loadUpdatePage)
+routes.post('/cms-Country-Q', CountryController.paginationView)
+routes.post('/cms-Country-C', CountryController.insertCountryPage)
+routes.post('/cms-Country-U/:id', CountryController.updateCountryPage)
+routes.post('/cms-Country-D/:id', CountryController.deleteCountryPage)
+routes.post('/cms-Country-F', CountryController.filterCountryPage)
 
-routes.get('/cms-Region-Q', (req,res) => res.render(views + "cms/cms-Region-Q"));
-routes.get('/cms-Region-C', (req,res) => res.render(views + "cms/cms-Region-C"));
 
-routes.get('/cms-State-Q', (req,res) => res.render(views + "cms/cms-State-Q"));
-routes.get('/cms-State-C', (req,res) => res.render(views + "cms/cms-State-C"));
 
-routes.get('/cms-City-Q', (req,res) => res.render(views + "cms/cms-City-Q"));
-routes.get('/cms-City-C', (req,res) => res.render(views + "cms/cms-City-C"));
 
-routes.get('/cms-BibliographicReference-Q', (req,res) => res.render(views + "cms/cms-BibliographicReference-Q"));
-routes.get('/cms-BibliographicReference-C', (req,res) => res.render(views + "cms/cms-BibliographicReference-C"));
+// routes.get('/cms-Region-Q', (req,res) => res.render(views + "cms/cms-Region-Q"));
+// routes.get('/cms-Region-C', (req,res) => res.render(views + "cms/cms-Region-C"));
+// routes.get('/cms-State-Q', (req,res) => res.render(views + "cms/cms-State-Q"));
+// routes.get('/cms-State-C', (req,res) => res.render(views + "cms/cms-State-C"));
+// routes.get('/cms-City-Q', (req,res) => res.render(views + "cms/cms-City-Q"));
+// routes.get('/cms-City-C', (req,res) => res.render(views + "cms/cms-City-C"));
+// routes.get('/cms-BibliographicReference-Q', (req,res) => res.render(views + "cms/cms-BibliographicReference-Q"));
+// routes.get('/cms-BibliographicReference-C', (req,res) => res.render(views + "cms/cms-BibliographicReference-C"));
+// routes.get('/cms-Publisher-Q', (req,res) => res.render(views + "cms/cms-Publisher-Q"));
+// routes.get('/cms-Publisher-C', (req,res) => res.render(views + "cms/cms-Publisher-C"));
 
-routes.get('/cms-Publisher-Q', (req,res) => res.render(views + "cms/cms-Publisher-Q"));
-routes.get('/cms-Publisher-C', (req,res) => res.render(views + "cms/cms-Publisher-C"));
+
 
 //SYSTEM
 routes.get('/cms-User-Q', (req,res) => res.render(views + "cms/cms-User-Q"));
