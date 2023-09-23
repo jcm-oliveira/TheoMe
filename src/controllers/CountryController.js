@@ -15,6 +15,7 @@ module.exports = {
             pageStartItem:0,
         }
         const [countries] = await Country.selectCountries(filterStatus)
+        console.log(countries)
         const [countSelect] = await Country.countSelect(filterStatus)
         const messages = {
             display:"d-none",
@@ -31,7 +32,7 @@ module.exports = {
     async paginationView(req, res) {
 
         const filterStatus = {
-            countryStatus: req.body.countryStatus,
+            countryStatus: Number(req.body.countryStatus),
             countrySearch: req.body.countrySearch,
             currentPage: Number(req.body.currentPage),
             itemsPerPage: Number(req.body.itemsPerPage),
@@ -58,6 +59,7 @@ module.exports = {
             alertType:"",
             textMessage: ("Página " + filterStatus.currentPage + " selecionada."),
         }
+        console.log(countries)
         return res.render("../views/cms/cms-Country-Q",{countries, filterStatus, countSelect, messages});
     },
 
@@ -190,6 +192,7 @@ module.exports = {
             textMessage: "Filtro aplicado na tela de consulta.",
         }
         const [countries] = await Country.selectCountries(filterStatus)
+        console.log(countries)
         const [countSelect] = await Country.countSelect(filterStatus)
         return res.render("../views/cms/cms-Country-Q",{countries, filterStatus, countSelect,messages});
         }
