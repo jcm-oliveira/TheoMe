@@ -7,7 +7,7 @@ console.log("CountryModel file starts...")
 
     async function selectCountries(filterStatus){
         const conn = await db.connect()
-        var sql = "SELECT country.id AS id, country.name AS name, continent.name AS continent, country.status AS status FROM country INNER JOIN continent ON country.id_continent = continent.id WHERE country.excluded = ? AND country.status = ? AND (country.name LIKE ? OR country.id = ?) ORDER BY country.id DESC LIMIT ? OFFSET ?"
+        var sql = "SELECT country.id AS id, country.name AS name, continent.name AS continent, country.status AS status FROM country INNER JOIN continent ON country.id_continent = continent.id WHERE country.excluded = ? AND country.status LIKE ? AND (country.name LIKE ? OR country.id LIKE ?) ORDER BY country.id DESC LIMIT ? OFFSET ?"
         const values = [0,filterStatus.countryStatus, "%"+filterStatus.countrySearch+"%", "%"+filterStatus.countrySearch+"%", filterStatus.itemsPerPage, filterStatus.pageStartItem]
         const result = conn.query(sql,values)
         return result  
@@ -15,7 +15,7 @@ console.log("CountryModel file starts...")
 
     async function countSelect(filterStatus){
         const conn = await db.connect()
-        var sql = "SELECT COUNT (*) AS totalRegister FROM country WHERE excluded = ? AND status = ? AND (country.name LIKE ? OR country.id = ?)"
+        var sql = "SELECT COUNT (*) AS totalRegister FROM country WHERE excluded = ? AND status LIKE ? AND (country.name LIKE ? OR country.id LIKE ?)"
         const values = [0,filterStatus.countryStatus, "%"+filterStatus.countrySearch+"%", "%"+filterStatus.countrySearch+"%", filterStatus.itemsPerPage, filterStatus.pageStartItem]
         const result = conn.query(sql,values)
         return result  
@@ -28,8 +28,8 @@ console.log("CountryModel file starts...")
     async function insertCountries(newCountry) {
         const conn = await db.connect()
         try {  
-            const sql = "INSERT INTO country(status, id_continent, name, description) VALUES (?, ?, ?, ?)"
-            const values = [newCountry.countryStatus, newCountry.id_Continent,newCountry.countryName, newCountry.countryDescription]    
+            const sql = "INSERT INTO country(name, description, id_continent, status) VALUES (?, ?, ?, ?)"
+            const values = [newCountry.countryName, newCountry.countryDescription, newCountry.countryIdContinent, newCountry.countryStatus]
             const [queryResult] = await conn.query(sql, values)
             const result = {
                 alertTypeResult: "alert-success",
@@ -53,8 +53,8 @@ console.log("CountryModel file starts...")
     async function updateCountries(id, country) {
         const conn = await db.connect()
         try { 
-            const sql = "UPDATE country SET  status = ?, name = ?, description = ? WHERE id = ?"
-            const values = [country.countryStatus,country.countryName, country.countryDescription, id]
+            const sql = "UPDATE country SET status = ?, name = ?, description = ?, id_continent = ? WHERE id = ?"
+            const values = [country.countryStatus,country.countryName, country.countryDescription, country.countryIdContinent, id]
             const [queryResult] = await conn.query(sql, values)
             const result = {
                 alertTypeResult: "alert-success",

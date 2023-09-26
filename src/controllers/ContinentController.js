@@ -8,7 +8,7 @@ module.exports = {
 
     async loadShowPage(req, res) {
         const filterStatus = {
-            continentStatus:1,
+            continentStatus:Number(1),
             continentSearch:'%',
             currentPage:1,
             itemsPerPage:10,
@@ -176,7 +176,8 @@ module.exports = {
             currentPage:1,
             itemsPerPage:Number(req.body.itemsPerPageFilter),
             pageStartItem:0,
-        }        
+        }
+        console.log(filterStatus);        
             if (filterStatus.continentStatus === Number(2)) {
             filterStatus.continentStatus = '%'
             }

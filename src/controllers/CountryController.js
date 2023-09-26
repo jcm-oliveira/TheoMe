@@ -15,7 +15,6 @@ module.exports = {
             pageStartItem:0,
         }
         const [countries] = await Country.selectCountries(filterStatus)
-        console.log(countries)
         const [countSelect] = await Country.countSelect(filterStatus)
         const messages = {
             display:"d-none",
@@ -59,7 +58,6 @@ module.exports = {
             alertType:"",
             textMessage: ("Página " + filterStatus.currentPage + " selecionada."),
         }
-        console.log(countries)
         return res.render("../views/cms/cms-Country-Q",{countries, filterStatus, countSelect, messages});
     },
 
@@ -83,12 +81,13 @@ module.exports = {
             currentPage:1,
             itemsPerPage:10,
             pageStartItem:0,
-        }     
+        }        
         const insert = await Country.insertCountries({
-            countryStatus: req.body.countryStatus,
-            id_Continent: req.body.id_Continent,
             countryName: req.body.countryName,
-            countryDescription: req.body.countryDescription,});
+            countryDescription: req.body.countryDescription,
+            countryIdContinent: req.body.id_Continent,
+            countryStatus: req.body.countryStatus,
+        });
         const messages = {
             display:"",
             alertType:insert.alertTypeResult,
@@ -132,7 +131,9 @@ module.exports = {
         const updatedCountry = {
             countryStatus: req.body.countryStatus,
             countryName: req.body.countryName,
-            countryDescription: req.body.countryDescription,}
+            countryDescription: req.body.countryDescription,
+            countryIdContinent: req.body.id_Continent,
+        }
         const update = await Country.updateCountries(countryId,updatedCountry)
         const messages = {
             display:"",
