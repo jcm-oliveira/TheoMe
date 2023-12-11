@@ -1,4 +1,5 @@
 const Country = require("../model/CountryModel");
+const Continent = require("../model/ContinentModel");
 console.log("CountryController file starts...");
 module.exports = {
 
@@ -65,13 +66,21 @@ module.exports = {
 //                 INSERT ROTINE
 //------------------------------------------------
 
-    async loadInsertPage(req, res) {        
+    async loadInsertPage(req, res) {  
+        const ContinentFilterStatus = {
+            continentStatus:1,
+            continentSearch:'%',
+            currentPage:1,
+            itemsPerPage:10,
+            pageStartItem:0,
+        }         
         const messages = {
             display:"d-none",
             alertType:"",
             textMessage: "Página inserir carregada.",
         }
-        return res.render("../views/cms/cms-Country-C", {messages})            
+        const [continents] = await Continent.selectContinents(ContinentFilterStatus)
+        return res.render("../views/cms/cms-Country-C", {messages,continents})            
     },
 
     async insertCountryPage(req,res) {

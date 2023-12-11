@@ -28,7 +28,7 @@ console.log("Model file starts...")
     async function insertContinents(newContinent) {
         const conn = await db.connect()
         try {  
-            const sql = "INSERT INTO continent(name, description,status) VALUES (?, ?, ?)"
+            const sql = "INSERT INTO continent(name, description, status) VALUES (?, ?, ?)"
             const values = [newContinent.continentName, newContinent.continentDescription, newContinent.continentStatus]    
             const [queryResult] = await conn.query(sql, values)
             const result = {

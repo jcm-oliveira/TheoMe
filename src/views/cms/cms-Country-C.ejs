@@ -68,10 +68,9 @@
                                 <label for="" form-label>Continente</label>
                                 <select class="form-control" id="id_Continent" name="id_Continent">
                                     <option value=""data-default disabled selected></option>
-                                    <option value="1">1</option>                
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>                              
+                                    <% continents.forEach((continent)=> { %>
+                                        <option value="<%-continent.id%>"><%-continent.name%></option> 
+                                    <% }) %>
                                 </select>
                             </div>
                         </div>
