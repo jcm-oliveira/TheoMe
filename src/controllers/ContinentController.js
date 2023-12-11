@@ -8,8 +8,8 @@ module.exports = {
 
     async loadShowPage(req, res) {
         const filterStatus = {
-            continentStatus:Number(1),
-            continentSearch:'%',
+            status:Number(1),
+            search:'%',
             currentPage:1,
             itemsPerPage:10,
             pageStartItem:0,
@@ -31,8 +31,8 @@ module.exports = {
     async paginationView(req, res) {
 
         const filterStatus = {
-            continentStatus: req.body.continentStatus,
-            continentSearch: req.body.continentSearch,
+            status: req.body.continentStatus,
+            search: req.body.continentSearch,
             currentPage: Number(req.body.currentPage),
             itemsPerPage: Number(req.body.itemsPerPage),
             pageStartItem: Number(req.body.pageStartItem),
@@ -76,8 +76,8 @@ module.exports = {
 
     async insertContinentPage(req,res) {
         const filterStatus = {
-            continentStatus:1,
-            continentSearch:'%',
+            status:1,
+            search:'%',
             currentPage:1,
             itemsPerPage:10,
             pageStartItem:0,
@@ -103,8 +103,8 @@ module.exports = {
     async loadUpdatePage(req, res) {        
         const continentId = req.params.id
         const filterStatus = {
-            continentStatus:'%',
-            continentSearch:'%',
+            status:'%',
+            search:'%',
             currentPage:1,
             itemsPerPage:100,
             pageStartItem:0,
@@ -119,8 +119,8 @@ module.exports = {
 
     async updateContinentPage(req,res) {
         const filterStatus = {
-            continentStatus:1,
-            continentSearch:'%',
+            status:1,
+            search:'%',
             currentPage:1,
             itemsPerPage:10,
             pageStartItem:0,
@@ -147,8 +147,8 @@ module.exports = {
 
     async deleteContinentPage(req,res) {
         const filterStatus = {
-            continentStatus:'1',
-            continentSearch:'%',
+            status:'1',
+            search:'%',
             currentPage:1,
             itemsPerPage:10,
             pageStartItem:0,
@@ -171,8 +171,8 @@ module.exports = {
 
     async filterContinentPage(req,res) {
         const filterStatus = {
-            continentStatus: Number(req.body.filterStatus),
-            continentSearch: req.body.filterSearch,
+            status: Number(req.body.filterStatus),
+            search: req.body.filterSearch,
             currentPage:1,
             itemsPerPage:Number(req.body.itemsPerPageFilter),
             pageStartItem:0,

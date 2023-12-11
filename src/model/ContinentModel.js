@@ -8,7 +8,7 @@ console.log("Model file starts...")
     async function selectContinents(filterStatus){
         const conn = await db.connect()
         var sql = "SELECT * FROM continent WHERE excluded = ? AND status LIKE ? AND (name LIKE ? OR id LIKE ?) ORDER BY id DESC LIMIT ? OFFSET ?"
-        const values = [0,filterStatus.continentStatus, "%"+filterStatus.continentSearch+"%", "%"+filterStatus.continentSearch+"%", filterStatus.itemsPerPage, filterStatus.pageStartItem]
+        const values = [0,filterStatus.status, "%"+filterStatus.search+"%", "%"+filterStatus.search+"%", filterStatus.itemsPerPage, filterStatus.pageStartItem]
         const result = conn.query(sql,values)
         return result  
     }
@@ -16,7 +16,7 @@ console.log("Model file starts...")
     async function countSelect(filterStatus){
         const conn = await db.connect()
         var sql = "SELECT COUNT (*) AS totalRegister FROM continent WHERE excluded = ? AND status LIKE ? AND (name LIKE ? OR id LIKE ?)"
-        const values = [0,filterStatus.continentStatus, "%"+filterStatus.continentSearch+"%", "%"+filterStatus.continentSearch+"%", filterStatus.itemsPerPage, filterStatus.pageStartItem]
+        const values = [0,filterStatus.status, "%"+filterStatus.search+"%", "%"+filterStatus.search+"%", filterStatus.itemsPerPage, filterStatus.pageStartItem]
         const result = conn.query(sql,values)
         return result  
     }

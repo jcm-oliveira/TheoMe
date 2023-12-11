@@ -9,8 +9,8 @@ module.exports = {
 
     async loadShowPage(req, res) {
         const filterStatus = {
-            countryStatus:1,
-            countrySearch:'%',
+            status:1,
+            search:'%',
             currentPage:1,
             itemsPerPage:10,
             pageStartItem:0,
@@ -32,8 +32,8 @@ module.exports = {
     async paginationView(req, res) {
 
         const filterStatus = {
-            countryStatus: Number(req.body.countryStatus),
-            countrySearch: req.body.countrySearch,
+            status: Number(req.body.countryStatus),
+            search: req.body.countrySearch,
             currentPage: Number(req.body.currentPage),
             itemsPerPage: Number(req.body.itemsPerPage),
             pageStartItem: Number(req.body.pageStartItem),
@@ -67,9 +67,9 @@ module.exports = {
 //------------------------------------------------
 
     async loadInsertPage(req, res) {  
-        const ContinentFilterStatus = {
-            continentStatus:1,
-            continentSearch:'%',
+        const filterStatus = {
+            status:1,
+            search:'%',
             currentPage:1,
             itemsPerPage:10,
             pageStartItem:0,
@@ -79,14 +79,14 @@ module.exports = {
             alertType:"",
             textMessage: "Página inserir carregada.",
         }
-        const [continents] = await Continent.selectContinents(ContinentFilterStatus)
+        const [continents] = await Continent.selectContinents(filterStatus)
         return res.render("../views/cms/cms-Country-C", {messages,continents})            
     },
 
     async insertCountryPage(req,res) {
         const filterStatus = {
-            countryStatus:1,
-            countrySearch:'%',
+            status:1,
+            search:'%',
             currentPage:1,
             itemsPerPage:10,
             pageStartItem:0,
@@ -114,8 +114,8 @@ module.exports = {
     async loadUpdatePage(req, res) {        
         const countryId = req.params.id
         const filterStatus = {
-            countryStatus:'%',
-            countrySearch:'%',
+            status:'%',
+            search:'%',
             currentPage:1,
             itemsPerPage:100,
             pageStartItem:0,
@@ -130,8 +130,8 @@ module.exports = {
 
     async updateCountryPage(req,res) {
         const filterStatus = {
-            countryStatus:1,
-            countrySearch:'%',
+            status:1,
+            search:'%',
             currentPage:1,
             itemsPerPage:10,
             pageStartItem:0,
@@ -160,8 +160,8 @@ module.exports = {
 
     async deleteCountryPage(req,res) {
         const filterStatus = {
-            countryStatus:'1',
-            countrySearch:'%',
+            status:'1',
+            search:'%',
             currentPage:1,
             itemsPerPage:10,
             pageStartItem:0,
@@ -184,8 +184,8 @@ module.exports = {
 
     async filterCountryPage(req,res) {
         const filterStatus = {
-            countryStatus: Number(req.body.filterStatus),
-            countrySearch: req.body.filterSearch,
+            status: Number(req.body.filterStatus),
+            search: req.body.filterSearch,
             currentPage:1,
             itemsPerPage:Number(req.body.itemsPerPageFilter),
             pageStartItem:0,

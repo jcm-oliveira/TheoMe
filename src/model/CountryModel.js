@@ -8,7 +8,7 @@ console.log("CountryModel file starts...")
     async function selectCountries(filterStatus){
         const conn = await db.connect()
         var sql = "SELECT country.id AS id, country.name AS name, continent.name AS continent, country.status AS status FROM country INNER JOIN continent ON country.id_continent = continent.id WHERE country.excluded = ? AND country.status LIKE ? AND (country.name LIKE ? OR country.id LIKE ?) ORDER BY country.id DESC LIMIT ? OFFSET ?"
-        const values = [0,filterStatus.countryStatus, "%"+filterStatus.countrySearch+"%", "%"+filterStatus.countrySearch+"%", filterStatus.itemsPerPage, filterStatus.pageStartItem]
+        const values = [0,filterStatus.status, "%"+filterStatus.search+"%", "%"+filterStatus.search+"%", filterStatus.itemsPerPage, filterStatus.pageStartItem]
         const result = conn.query(sql,values)
         return result  
     }
@@ -16,7 +16,7 @@ console.log("CountryModel file starts...")
     async function countSelect(filterStatus){
         const conn = await db.connect()
         var sql = "SELECT COUNT (*) AS totalRegister FROM country WHERE excluded = ? AND status LIKE ? AND (country.name LIKE ? OR country.id LIKE ?)"
-        const values = [0,filterStatus.countryStatus, "%"+filterStatus.countrySearch+"%", "%"+filterStatus.countrySearch+"%", filterStatus.itemsPerPage, filterStatus.pageStartItem]
+        const values = [0,filterStatus.status, "%"+filterStatus.search+"%", "%"+filterStatus.search+"%", filterStatus.itemsPerPage, filterStatus.pageStartItem]
         const result = conn.query(sql,values)
         return result  
     }
