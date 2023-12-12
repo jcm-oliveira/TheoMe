@@ -15,6 +15,7 @@ module.exports = {
             itemsPerPage:10,
             pageStartItem:0,
         }
+        const [continents] = await Continent.selectContinents(filterStatus)
         const [countries] = await Country.selectCountries(filterStatus)
         const [countSelect] = await Country.countSelect(filterStatus)
         const messages = {
@@ -22,7 +23,7 @@ module.exports = {
             alertType:"",
             textMessage: "Página inicial de consulta carregada.",
         }
-        return res.render("../views/cms/cms-Country-Q",{countries, filterStatus, countSelect,messages});
+        return res.render("../views/cms/cms-Country-Q",{countries, filterStatus, countSelect,messages,continents});
     },
 
 //------------------------------------------------
@@ -120,12 +121,13 @@ module.exports = {
             itemsPerPage:100,
             pageStartItem:0,
         }
+        const [continents] = await Continent.selectContinents(filterStatus)
         const [countries] = await Country.selectCountries(filterStatus)
         const country = countries.find(country => Number(country.id) === Number(countryId))
             if (!country) {
                 return res.send('Country not found')
             }
-        return res.render("../views/cms/cms-Country-U", {country})     
+        return res.render("../views/cms/cms-Country-U", {country, continents})     
     },
 
     async updateCountryPage(req,res) {
@@ -190,21 +192,22 @@ module.exports = {
             itemsPerPage:Number(req.body.itemsPerPageFilter),
             pageStartItem:0,
         }        
-            if (filterStatus.countryStatus === Number(2)) {
-            filterStatus.countryStatus = '%'
+            if (filterStatus.status === Number(2)) {
+            filterStatus.status = '%'
             }
-            if (filterStatus.countrySearch === "") {
-                filterStatus.countrySearch = '%'
+            if (filterStatus.search === "") {
+                filterStatus.search = '%'
             }
         const messages = {
             display:"d-none",
             alertType:"",
             textMessage: "Filtro aplicado na tela de consulta.",
         }
+        const [continents] = await Continent.selectContinents(filterStatus)
         const [countries] = await Country.selectCountries(filterStatus)
         console.log(countries)
         const [countSelect] = await Country.countSelect(filterStatus)
-        return res.render("../views/cms/cms-Country-Q",{countries, filterStatus, countSelect,messages});
+        return res.render("../views/cms/cms-Country-Q",{countries, filterStatus, countSelect,messages, continents});
         }
     }
 

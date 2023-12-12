@@ -69,10 +69,9 @@
                 <label for="" form-label>Continente</label>
                 <select name="dataFormat" class="form-control">
                     <option value=""data-default disabled selected></option>
-                    <option value="1">Ásia</option>                
-                    <option value="2">América do Sul</option>
-                    <option value="3">Europa</option>
-                    <option value="4">Oceania</option>                              
+                    <% continents.forEach((continent)=> { %>
+                      <option value="<%-continent.id%>"><%-continent.name%></option> 
+                    <% }) %>                               
                 </select>
             </div>         
           </div> 
