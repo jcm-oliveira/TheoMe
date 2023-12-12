@@ -178,11 +178,11 @@ module.exports = {
             pageStartItem:0,
         }
         console.log(filterStatus);        
-            if (filterStatus.continentStatus === Number(2)) {
-            filterStatus.continentStatus = '%'
+            if (filterStatus.status === Number(2)) {
+            filterStatus.status = '%'
             }
-            if (filterStatus.continentSearch === "") {
-                filterStatus.continentSearch = '%'
+            if (filterStatus.search === "") {
+                filterStatus.search = '%'
             }
         const messages = {
             display:"d-none",
