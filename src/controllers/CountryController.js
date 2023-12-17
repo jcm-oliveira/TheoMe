@@ -53,14 +53,15 @@ module.exports = {
                     filterStatus.currentPage++
                     filterStatus.pageStartItem = filterStatus.pageStartItem + filterStatus.itemsPerPage
                 }
-            }      
+            }
+        const [continents] = await Continent.selectContinents(filterStatus)     
         const [countries] = await Country.selectCountries(filterStatus)
         const messages = {
             display:"d-none",
             alertType:"",
             textMessage: ("Página " + filterStatus.currentPage + " selecionada."),
         }
-        return res.render("../views/cms/cms-Country-Q",{countries, filterStatus, countSelect, messages});
+        return res.render("../views/cms/cms-Country-Q",{countries, filterStatus, countSelect, messages, continents});
     },
 
 //------------------------------------------------
@@ -103,9 +104,10 @@ module.exports = {
             alertType:insert.alertTypeResult,
             textMessage: insert.textResult,
         }
+        const [continents] = await Continent.selectContinents(filterStatus)
         const [countries] = await Country.selectCountries(filterStatus)
         const [countSelect] = await Country.countSelect(filterStatus)
-        return res.render('../views/cms/cms-Country-Q', {countries,filterStatus,countSelect,messages})
+        return res.render('../views/cms/cms-Country-Q', {countries,filterStatus,countSelect,messages,continents})
     },
 
 //------------------------------------------------
@@ -127,6 +129,9 @@ module.exports = {
             if (!country) {
                 return res.send('Country not found')
             }
+        console.log(country)
+        console.log(country.id_content)
+        
         return res.render("../views/cms/cms-Country-U", {country, continents})     
     },
 
@@ -176,9 +181,10 @@ module.exports = {
             alertType:deleted.alertTypeResult,
             textMessage: deleted.textResult,
         }
+        const [continents] = await Continent.selectContinents(filterStatus)
         const [countries] = await Country.selectCountries(filterStatus)
         const [countSelect] = await Country.countSelect(filterStatus)
-        return res.render('../views/cms/cms-Country-Q', {countries,filterStatus,countSelect,messages})
+        return res.render('../views/cms/cms-Country-Q', {countries,filterStatus,countSelect,messages, continents})
     },
 
 //------------------------------------------------

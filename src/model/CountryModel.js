@@ -7,7 +7,7 @@ console.log("CountryModel file starts...")
 
     async function selectCountries(filterStatus){
         const conn = await db.connect()
-        var sql = "SELECT country.id AS id, country.name AS name, continent.name AS continent, country.status AS status FROM country INNER JOIN continent ON country.id_continent = continent.id WHERE country.excluded = ? AND country.status LIKE ? AND (country.name LIKE ? OR country.id LIKE ?) ORDER BY country.id DESC LIMIT ? OFFSET ?"
+        var sql = "SELECT country.id AS id, country.name AS name, continent.name AS continent, country.status AS status, country.description AS description, country.id_continent AS id_continent FROM country INNER JOIN continent ON country.id_continent = continent.id WHERE country.excluded = ? AND country.status LIKE ? AND (country.name LIKE ? OR country.id LIKE ?) ORDER BY country.id DESC LIMIT ? OFFSET ?"
         const values = [0,filterStatus.status, "%"+filterStatus.search+"%", "%"+filterStatus.search+"%", filterStatus.itemsPerPage, filterStatus.pageStartItem]
         const result = conn.query(sql,values)
         return result  

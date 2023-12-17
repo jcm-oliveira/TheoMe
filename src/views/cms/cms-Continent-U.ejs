@@ -59,8 +59,14 @@
                             </div>
                             <div class="col-md-3">
                                 <label for="" form-label>Status</label>
-                                <select class="form-control" type="text" id="continentStatus" name="continentStatus"
-                                    value="<%= continent.status%>">
+                                <select class="form-control" type="text" id="continentStatus" name="continentStatus">
+                                    <option value="<%= continent.status%>" selected>
+                                        <% if(continent.status===1) { %>
+                                            Ativo
+                                            <% } else { %>
+                                                Inativo
+                                                    <% } %>
+                                    </option>
                                     <option value="1">Ativo</option>
                                     <option value="0">Inativo</option>
                                 </select>
