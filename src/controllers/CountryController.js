@@ -33,8 +33,8 @@ module.exports = {
     async paginationView(req, res) {
 
         const filterStatus = {
-            status: Number(req.body.countryStatus),
-            search: req.body.countrySearch,
+            status: req.body.status,
+            search: req.body.search,
             currentPage: Number(req.body.currentPage),
             itemsPerPage: Number(req.body.itemsPerPage),
             pageStartItem: Number(req.body.pageStartItem),
