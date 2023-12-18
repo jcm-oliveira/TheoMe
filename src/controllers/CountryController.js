@@ -77,6 +77,7 @@ module.exports = {
             currentPage:1,
             itemsPerPage:10,
             pageStartItem:0,
+            continentFilter:'%',
         }         
         const messages = {
             display:"d-none",
@@ -94,6 +95,7 @@ module.exports = {
             currentPage:1,
             itemsPerPage:10,
             pageStartItem:0,
+            continentFilter:'%',
         }        
         const insert = await Country.insertCountries({
             countryName: req.body.countryName,
