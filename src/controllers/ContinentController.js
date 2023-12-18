@@ -177,7 +177,8 @@ module.exports = {
             itemsPerPage:Number(req.body.itemsPerPageFilter),
             pageStartItem:0,
         }
-        console.log(filterStatus);        
+        console.log(filterStatus);
+              
             if (filterStatus.status === Number(2)) {
             filterStatus.status = '%'
             }

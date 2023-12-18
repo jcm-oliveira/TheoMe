@@ -14,6 +14,7 @@ module.exports = {
             currentPage:1,
             itemsPerPage:10,
             pageStartItem:0,
+            continentFilter:'%',
         }
         const [continents] = await Continent.selectContinents(filterStatus)
         const [countries] = await Country.selectCountries(filterStatus)
@@ -40,6 +41,7 @@ module.exports = {
             pageStartItem: Number(req.body.pageStartItem),
             prevBtn: req.body.previousButton,
             nextBtn: req.body.nextButton,
+            continentFilter:'%',
         }     
             if (filterStatus.prevBtn === "prevBtnClicked") {
                 if (filterStatus.currentPage > 1) {
@@ -122,16 +124,14 @@ module.exports = {
             currentPage:1,
             itemsPerPage:100,
             pageStartItem:0,
+            continentFilter:'%',
         }
         const [continents] = await Continent.selectContinents(filterStatus)
         const [countries] = await Country.selectCountries(filterStatus)
         const country = countries.find(country => Number(country.id) === Number(countryId))
             if (!country) {
                 return res.send('Country not found')
-            }
-        console.log(country)
-        console.log(country.id_content)
-        
+            }     
         return res.render("../views/cms/cms-Country-U", {country, continents})     
     },
 
@@ -142,6 +142,7 @@ module.exports = {
             currentPage:1,
             itemsPerPage:10,
             pageStartItem:0,
+            continentFilter:'%',
         } 
         const countryId = req.params.id
         const updatedCountry = {
@@ -173,6 +174,7 @@ module.exports = {
             currentPage:1,
             itemsPerPage:10,
             pageStartItem:0,
+            continentFilter:'%',
         } 
         const countryId = req.params.id
         const deleted = await Country.deleteCountries(countryId)
@@ -198,21 +200,28 @@ module.exports = {
             currentPage:1,
             itemsPerPage:Number(req.body.itemsPerPageFilter),
             pageStartItem:0,
+            continentFilter:Number(req.body.continentFilter),
         }        
             if (filterStatus.status === Number(2)) {
-            filterStatus.status = '%'
+                filterStatus.status = '%'
             }
             if (filterStatus.search === "") {
                 filterStatus.search = '%'
+            }
+            if (filterStatus.continentFilter === Number(0)) {
+                filterStatus.continentFilter = '%'
             }
         const messages = {
             display:"d-none",
             alertType:"",
             textMessage: "Filtro aplicado na tela de consulta.",
         }
+
+        console.log(filterStatus.continentFilter)
+
+
         const [continents] = await Continent.selectContinents(filterStatus)
         const [countries] = await Country.selectCountries(filterStatus)
-        console.log(countries)
         const [countSelect] = await Country.countSelect(filterStatus)
         return res.render("../views/cms/cms-Country-Q",{countries, filterStatus, countSelect,messages, continents});
         }

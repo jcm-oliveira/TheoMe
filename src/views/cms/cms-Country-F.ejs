@@ -67,8 +67,8 @@
               <br><hr class="dropdown-divider">   
               <div class="col-md-14">
                 <label for="" form-label>Continente</label>
-                <select name="dataFormat" class="form-control">
-                    <option value=""data-default disabled selected></option>
+                <select  class="form-control" id="continentFilter" name="continentFilter">
+                    <option value="0" selected>Todos</option>
                     <% continents.forEach((continent)=> { %>
                       <option value="<%-continent.id%>"><%-continent.name%></option> 
                     <% }) %>                               

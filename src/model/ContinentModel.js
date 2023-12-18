@@ -7,15 +7,28 @@ console.log("Model file starts...")
 
     async function selectContinents(filterStatus){
         const conn = await db.connect()
-        var sql = "SELECT * FROM continent WHERE excluded = ? AND status LIKE ? AND (name LIKE ? OR id LIKE ?) ORDER BY id DESC LIMIT ? OFFSET ?"
-        const values = [0,filterStatus.status, "%"+filterStatus.search+"%", "%"+filterStatus.search+"%", filterStatus.itemsPerPage, filterStatus.pageStartItem]
+        var sql = `
+            SELECT * 
+            FROM continent 
+            WHERE excluded = ? 
+                AND status LIKE ? 
+                AND (name LIKE ? OR id LIKE ?) 
+            ORDER BY id DESC LIMIT ? OFFSET ?`
+        const values = [
+            0,
+            filterStatus.status, 
+            "%"+filterStatus.search+"%", 
+            "%"+filterStatus.search+"%", 
+            filterStatus.itemsPerPage, 
+            filterStatus.pageStartItem
+        ]
         const result = conn.query(sql,values)
         return result  
     }
 
     async function countSelect(filterStatus){
         const conn = await db.connect()
-        var sql = "SELECT COUNT (*) AS totalRegister FROM continent WHERE excluded = ? AND status LIKE ? AND (name LIKE ? OR id LIKE ?)"
+        var sql = `SELECT COUNT (*) AS totalRegister FROM continent WHERE excluded = ? AND status LIKE ? AND (name LIKE ? OR id LIKE ?)`
         const values = [0,filterStatus.status, "%"+filterStatus.search+"%", "%"+filterStatus.search+"%", filterStatus.itemsPerPage, filterStatus.pageStartItem]
         const result = conn.query(sql,values)
         return result  
@@ -28,7 +41,9 @@ console.log("Model file starts...")
     async function insertContinents(newContinent) {
         const conn = await db.connect()
         try {  
-            const sql = "INSERT INTO continent(name, description, status) VALUES (?, ?, ?)"
+            const sql = `
+                INSERT INTO continent(name, description, status) 
+                VALUES (?, ?, ?)`
             const values = [newContinent.continentName, newContinent.continentDescription, newContinent.continentStatus]    
             const [queryResult] = await conn.query(sql, values)
             const result = {
@@ -53,7 +68,10 @@ console.log("Model file starts...")
     async function updateContinents(id, continent) {
         const conn = await db.connect()
         try { 
-            const sql = "UPDATE continent SET  status = ?, name = ?, description = ? WHERE id = ?"
+            const sql = `
+                UPDATE continent 
+                SET status = ?, name = ?, description = ? 
+                WHERE id = ?`
             const values = [continent.continentStatus,continent.continentName, continent.continentDescription, id]
             const [queryResult] = await conn.query(sql, values)
             const result = {
@@ -78,7 +96,10 @@ console.log("Model file starts...")
     async function deleteContinents(id) {
         const conn = await db.connect()
         try {
-            const sql = "UPDATE continent SET excluded = ? WHERE id = ?"
+            const sql = `
+                UPDATE continent 
+                SET excluded = ? 
+                WHERE id = ?`
             const values = [1, id]
             const [queryResult] = await conn.query(sql, values)
             const result = {
