@@ -187,20 +187,20 @@
                 <div class="card-body">
                     <span>Registros por página: <%= filterStatus.itemsPerPage%></span><br>
                     <span>Status:
-                        <% if(filterStatus.continentStatus===1) { %>
+                        <% if(filterStatus.status===1) { %>
                             Ativo
-                            <% } else if (filterStatus.continentStatus===0){ %>
+                            <% } else if (filterStatus.status===0){ %>
                                 Inativo
                                 <% } else { %>
                                     Todos
                                     <% } %>
                     </span><br>
                     <span>Pesquisa:
-                        <% filterStatus.continentSearch %>
-                            <% if(filterStatus.continentSearch==='%' ) { %>
+                        <% filterStatus.search %>
+                            <% if(filterStatus.search==='%' ) { %>
                                 Não informado
                                 <% } else { %>
-                                    <%=filterStatus.continentSearch %>
+                                    <%=filterStatus.search %>
                                         <% } %>
                     </span><br>
                     <span>Ultima ação: <%= messages.textMessage%></span><br>

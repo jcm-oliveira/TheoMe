@@ -41,8 +41,8 @@ module.exports = {
             pageStartItem: Number(req.body.pageStartItem),
             prevBtn: req.body.previousButton,
             nextBtn: req.body.nextButton,
-            continentFilter:'%',
-        }     
+            continentFilter: req.body.continentFilter,
+        }
             if (filterStatus.prevBtn === "prevBtnClicked") {
                 if (filterStatus.currentPage > 1) {
                     filterStatus.currentPage--
@@ -202,7 +202,7 @@ module.exports = {
             currentPage:1,
             itemsPerPage:Number(req.body.itemsPerPageFilter),
             pageStartItem:0,
-            continentFilter:Number(req.body.continentFilter),
+            continentFilter:req.body.continentFilter,
         }        
             if (filterStatus.status === Number(2)) {
                 filterStatus.status = '%'
@@ -210,7 +210,7 @@ module.exports = {
             if (filterStatus.search === "") {
                 filterStatus.search = '%'
             }
-            if (filterStatus.continentFilter === Number(0)) {
+            if (filterStatus.continentFilter === '0') {
                 filterStatus.continentFilter = '%'
             }
         const messages = {
@@ -218,9 +218,6 @@ module.exports = {
             alertType:"",
             textMessage: "Filtro aplicado na tela de consulta.",
         }
-
-        console.log(filterStatus.continentFilter)
-
 
         const [continents] = await Continent.selectContinents(filterStatus)
         const [countries] = await Country.selectCountries(filterStatus)

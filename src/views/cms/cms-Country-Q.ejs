@@ -148,6 +148,8 @@
                                 value="<%= filterStatus.status%>" style="display:none">
                             <input type="text" id="search" name="search"
                                 value="<%= filterStatus.search%>" style="display:none">
+                            <input type="text" id="continentFilter" name="continentFilter"
+                                value="<%= filterStatus.continentFilter%>" style="display:none">
                         </form>
                         <form id="paginationNext" method="post" action="/cms-Country-Q/">
                             <input type="text" id="nextButton" name="nextButton" value="nextBtnClicked"
@@ -162,6 +164,8 @@
                                 value="<%= filterStatus.status%>" style="display:none">
                             <input type="text" id="search" name="search"
                                 value="<%= filterStatus.search%>" style="display:none">
+                            <input type="text" id="continentFilter" name="continentFilter"
+                                value="<%= filterStatus.continentFilter%>" style="display:none">
                         </form>
                     </div>
                     <div class="pagination-direction">
@@ -190,9 +194,9 @@
                 <div class="card-body">
                     <span>Registros por página: <%= filterStatus.itemsPerPage%></span><br>
                     <span>Status:
-                        <% if(filterStatus.countryStatus===1) { %>
+                        <% if(filterStatus.status===1) { %>
                             Ativo
-                            <% } else if (filterStatus.countryStatus===0){ %>
+                            <% } else if (filterStatus.status===0){ %>
                                 Inativo
                                 <% } else { %>
                                     Todos
@@ -200,13 +204,20 @@
                     </span><br>
                     <span>Pesquisa:
                         <% filterStatus.countrySearch %>
-                            <% if(filterStatus.countrySearch==='%' ) { %>
+                            <% if(filterStatus.search==='%' ) { %>
                                 Não informado
                                 <% } else { %>
-                                    <%=filterStatus.countrySearch %>
+                                    <%=filterStatus.search %>
                                         <% } %>
                     </span><br>
                     <span>Ultima ação: <%= messages.textMessage%></span><br>
+                    <span>Continente:
+                        <% if(filterStatus.continentFilter==='%' ) { %>
+                            Todos
+                            <% } else { %>
+                                <%=filterStatus.continentFilter %>
+                                    <% } %>                    
+                    </span><br>
                 </div>
             </footer>
 
