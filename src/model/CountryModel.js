@@ -38,9 +38,11 @@ console.log("CountryModel file starts...")
             SELECT COUNT (*) AS totalRegister 
             FROM country 
             WHERE excluded = ? 
-                AND status LIKE ? 
-                AND (country.name LIKE ? OR country.id LIKE ?)`
-        const values = [0,filterStatus.status, "%"+filterStatus.search+"%", "%"+filterStatus.search+"%", filterStatus.itemsPerPage, filterStatus.pageStartItem]
+                AND status LIKE ?
+                AND id_continent LIKE ?   
+                AND (country.name LIKE ? OR country.id LIKE ?)                           
+                `
+        const values = [0,filterStatus.status, filterStatus.continentFilter, "%"+filterStatus.search+"%", "%"+filterStatus.search+"%"]
         const result = conn.query(sql,values)
         return result  
     }

@@ -43,13 +43,16 @@ module.exports = {
             nextBtn: req.body.nextButton,
             continentFilter: req.body.continentFilter,
         }
+        
             if (filterStatus.prevBtn === "prevBtnClicked") {
                 if (filterStatus.currentPage > 1) {
                     filterStatus.currentPage--
                     filterStatus.pageStartItem = filterStatus.pageStartItem - filterStatus.itemsPerPage 
                 }
             }
+        
         const [countSelect] = await Country.countSelect(filterStatus)
+
             if (filterStatus.nextBtn === "nextBtnClicked") {
                 if ((filterStatus.pageStartItem + filterStatus.itemsPerPage) < countSelect[0].totalRegister) {
                     filterStatus.currentPage++
