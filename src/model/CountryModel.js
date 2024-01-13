@@ -63,7 +63,7 @@ console.log("CountryModel file starts...")
             ORDER BY name`
         const values = [
             0,
-            filterStatus.status,
+            1,
         ]
         const result = conn.query(sql,values)
         return result  

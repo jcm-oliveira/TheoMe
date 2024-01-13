@@ -1,5 +1,4 @@
 const Country = require("../model/CountryModel");
-// const Continent = require("../model/ContinentModel");
 console.log("CountryController file starts...");
 module.exports = {
 
@@ -60,9 +59,6 @@ module.exports = {
                 }
             }
         const [continents] = await Country.filterSelectContinents(filterStatus)
-
-console.log(filterStatus)        
-console.log(continents)
 
         const [countries] = await Country.selectCountries(filterStatus)
         const messages = {
