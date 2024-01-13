@@ -12,7 +12,7 @@ const views = __dirname + "/views/"
 
 const ContinentController = require('./controllers/ContinentController.js')
 const CountryController = require('./controllers/CountryController.js')
-
+const RegionController = require('./controllers/RegionController.js')
 
 //---------------------------------------------------
 //                  PORTAL ROUTES
@@ -106,21 +106,16 @@ routes.post('/cms-Country-U/:id', CountryController.updateCountryPage)
 routes.post('/cms-Country-D/:id', CountryController.deleteCountryPage)
 routes.post('/cms-Country-F', CountryController.filterCountryPage)
 
+//_____________________Region__________________________
 
-
-
-// routes.get('/cms-Region-Q', (req,res) => res.render(views + "cms/cms-Region-Q"));
-// routes.get('/cms-Region-C', (req,res) => res.render(views + "cms/cms-Region-C"));
-// routes.get('/cms-State-Q', (req,res) => res.render(views + "cms/cms-State-Q"));
-// routes.get('/cms-State-C', (req,res) => res.render(views + "cms/cms-State-C"));
-// routes.get('/cms-City-Q', (req,res) => res.render(views + "cms/cms-City-Q"));
-// routes.get('/cms-City-C', (req,res) => res.render(views + "cms/cms-City-C"));
-// routes.get('/cms-BibliographicReference-Q', (req,res) => res.render(views + "cms/cms-BibliographicReference-Q"));
-// routes.get('/cms-BibliographicReference-C', (req,res) => res.render(views + "cms/cms-BibliographicReference-C"));
-// routes.get('/cms-Publisher-Q', (req,res) => res.render(views + "cms/cms-Publisher-Q"));
-// routes.get('/cms-Publisher-C', (req,res) => res.render(views + "cms/cms-Publisher-C"));
-
-
+routes.get('/cms-Region-Q', RegionController.loadShowPage)
+routes.get('/cms-Region-C', RegionController.loadInsertPage)
+routes.get('/cms-Region-C/:id', RegionController.loadUpdatePage)
+routes.post('/cms-Region-Q', RegionController.paginationView)
+routes.post('/cms-Region-C', RegionController.insertCountryPage)
+routes.post('/cms-Region-U/:id', RegionController.updateCountryPage)
+routes.post('/cms-Region-D/:id', RegionController.deleteCountryPage)
+routes.post('/cms-Region-F', RegionController.filterCountryPage)
 
 //SYSTEM
 routes.get('/cms-User-Q', (req,res) => res.render(views + "cms/cms-User-Q"));
