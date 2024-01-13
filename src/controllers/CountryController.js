@@ -227,6 +227,7 @@ module.exports = {
         const [countSelect] = await Country.countSelect(filterStatus)
         return res.render("../views/cms/cms-Country-Q",{countries, filterStatus, countSelect,messages, continents});
         }
-    }
+    
+}
 
 

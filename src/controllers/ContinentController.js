@@ -194,6 +194,7 @@ module.exports = {
         const [countSelect] = await Continent.countSelect(filterStatus)
         return res.render("../views/cms/cms-Continent-Q",{continents, filterStatus, countSelect,messages});
         }
-    }
+
+}
 
 
