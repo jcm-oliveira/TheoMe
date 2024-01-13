@@ -1,5 +1,5 @@
 const Country = require("../model/CountryModel");
-const Continent = require("../model/ContinentModel");
+// const Continent = require("../model/ContinentModel");
 console.log("CountryController file starts...");
 module.exports = {
 
@@ -16,7 +16,7 @@ module.exports = {
             pageStartItem:0,
             continentFilter:'%',
         }
-        const [continents] = await Continent.selectContinents(filterStatus)
+        const [continents] = await Country.filterSelectContinents(filterStatus)
         const [countries] = await Country.selectCountries(filterStatus)
         const [countSelect] = await Country.countSelect(filterStatus)
         const messages = {
@@ -59,7 +59,11 @@ module.exports = {
                     filterStatus.pageStartItem = filterStatus.pageStartItem + filterStatus.itemsPerPage
                 }
             }
-        const [continents] = await Continent.selectContinents(filterStatus)     
+        const [continents] = await Country.filterSelectContinents(filterStatus)
+
+console.log(filterStatus)        
+console.log(continents)
+
         const [countries] = await Country.selectCountries(filterStatus)
         const messages = {
             display:"d-none",
@@ -87,7 +91,7 @@ module.exports = {
             alertType:"",
             textMessage: "Página inserir carregada.",
         }
-        const [continents] = await Continent.selectContinents(filterStatus)
+        const [continents] = await Country.filterSelectContinents(filterStatus)
         return res.render("../views/cms/cms-Country-C", {messages,continents})            
     },
 
@@ -111,7 +115,7 @@ module.exports = {
             alertType:insert.alertTypeResult,
             textMessage: insert.textResult,
         }
-        const [continents] = await Continent.selectContinents(filterStatus)
+        const [continents] = await Country.filterSelectContinents(filterStatus)
         const [countries] = await Country.selectCountries(filterStatus)
         const [countSelect] = await Country.countSelect(filterStatus)
         return res.render('../views/cms/cms-Country-Q', {countries,filterStatus,countSelect,messages,continents})
@@ -131,7 +135,7 @@ module.exports = {
             pageStartItem:0,
             continentFilter:'%',
         }
-        const [continents] = await Continent.selectContinents(filterStatus)
+        const [continents] = await Country.filterSelectContinents(filterStatus)
         const [countries] = await Country.selectCountries(filterStatus)
         const country = countries.find(country => Number(country.id) === Number(countryId))
             if (!country) {
@@ -162,7 +166,7 @@ module.exports = {
             alertType:update.alertTypeResult,
             textMessage: update.textResult,
         }
-        const [continents] = await Continent.selectContinents(filterStatus)
+        const [continents] = await Country.filterSelectContinents(filterStatus)
         const [countries] = await Country.selectCountries(filterStatus)
         const [countSelect] = await Country.countSelect(filterStatus)
         return res.render('../views/cms/cms-Country-Q', {countries,filterStatus,countSelect,messages,continents})
@@ -188,7 +192,7 @@ module.exports = {
             alertType:deleted.alertTypeResult,
             textMessage: deleted.textResult,
         }
-        const [continents] = await Continent.selectContinents(filterStatus)
+        const [continents] = await Country.filterSelectContinents(filterStatus)
         const [countries] = await Country.selectCountries(filterStatus)
         const [countSelect] = await Country.countSelect(filterStatus)
         return res.render('../views/cms/cms-Country-Q', {countries,filterStatus,countSelect,messages, continents})
@@ -222,7 +226,7 @@ module.exports = {
             textMessage: "Filtro aplicado na tela de consulta.",
         }
 
-        const [continents] = await Continent.selectContinents(filterStatus)
+        const [continents] = await Country.filterSelectContinents(filterStatus)
         const [countries] = await Country.selectCountries(filterStatus)
         const [countSelect] = await Country.countSelect(filterStatus)
         return res.render("../views/cms/cms-Country-Q",{countries, filterStatus, countSelect,messages, continents});

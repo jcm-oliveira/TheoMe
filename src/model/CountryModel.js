@@ -8,7 +8,7 @@ console.log("CountryModel file starts...")
     async function selectCountries(filterStatus){
         const conn = await db.connect()
         var sql =`
-            SELECT country.id AS id, country.name AS name, continent.name AS continent, country.status AS status, country.description AS description, country.id_continent AS id_continent 
+            SELECT country.id AS id, country.name AS    name, continent.name AS continent, country.status AS status, country.description AS description, country.id_continent AS id_continent 
             FROM country 
             INNER JOIN continent ON country.id_continent = continent.id 
             WHERE country.excluded = ? 
@@ -42,7 +42,29 @@ console.log("CountryModel file starts...")
                 AND id_continent LIKE ?   
                 AND (country.name LIKE ? OR country.id LIKE ?)                           
                 `
-        const values = [0,filterStatus.status, filterStatus.continentFilter, "%"+filterStatus.search+"%", "%"+filterStatus.search+"%"]
+        const values = [
+            0,
+            filterStatus.status, 
+            filterStatus.continentFilter, 
+            "%"+filterStatus.search+"%", 
+            "%"+filterStatus.search+"%"
+        ]
+        const result = conn.query(sql,values)
+        return result  
+    }
+
+    async function filterSelectContinents(filterStatus){
+        const conn = await db.connect()
+        var sql = `
+            SELECT * 
+            FROM continent 
+            WHERE excluded = ? 
+                AND status LIKE ? 
+            ORDER BY name`
+        const values = [
+            0,
+            filterStatus.status,
+        ]
         const result = conn.query(sql,values)
         return result  
     }
@@ -128,5 +150,12 @@ console.log("CountryModel file starts...")
         }
     }
 
-module.exports = {selectCountries, insertCountries, updateCountries, deleteCountries, countSelect}
+module.exports = {
+    selectCountries, 
+    insertCountries, 
+    updateCountries, 
+    deleteCountries, 
+    countSelect,
+    filterSelectContinents
+}
 

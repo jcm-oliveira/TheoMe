@@ -28,8 +28,20 @@ console.log("Model file starts...")
 
     async function countSelect(filterStatus){
         const conn = await db.connect()
-        var sql = `SELECT COUNT (*) AS totalRegister FROM continent WHERE excluded = ? AND status LIKE ? AND (name LIKE ? OR id LIKE ?)`
-        const values = [0,filterStatus.status, "%"+filterStatus.search+"%", "%"+filterStatus.search+"%", filterStatus.itemsPerPage, filterStatus.pageStartItem]
+        var sql = `
+            SELECT COUNT (*) AS totalRegister 
+            FROM continent 
+            WHERE excluded = ? 
+                AND status LIKE ? 
+                AND (name LIKE ? OR id LIKE ?)`
+        const values = [
+            0,
+            filterStatus.status, 
+            "%"+filterStatus.search+"%", 
+            "%"+filterStatus.search+"%", 
+            filterStatus.itemsPerPage, 
+            filterStatus.pageStartItem
+        ]
         const result = conn.query(sql,values)
         return result  
     }
@@ -116,5 +128,11 @@ console.log("Model file starts...")
         }
     }
 
-module.exports = {selectContinents, insertContinents, updateContinents, deleteContinents, countSelect}
+module.exports = {
+    selectContinents, 
+    insertContinents, 
+    updateContinents, 
+    deleteContinents, 
+    countSelect
+}
 
