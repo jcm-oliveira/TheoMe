@@ -16,10 +16,10 @@ module.exports = {
             continentFilter:'%',
             countryFilter:'%',
         }
-        const [continents] = await Country.filterSelectContinents(filterStatus)
-        const [countries] = await Country.selectCountries(filterStatus)
-        const [regions] = await Country.selectRegions(filterStatus)
-        const [countSelect] = await Country.countSelect(filterStatus)
+        const [continents] = await Region.filterSelectContinents(filterStatus)
+        const [countries] = await Region.filterSelectCountries(filterStatus)
+        const [regions] = await Region.selectRegions(filterStatus)
+        const [countSelect] = await Region.countSelect(filterStatus)
         const messages = {
             display:"d-none",
             alertType:"",
@@ -185,7 +185,7 @@ module.exports = {
 //                DELETE ROTINE
 //------------------------------------------------
 
-    async deleteCountryPage(req,res) {
+    async deleteRegionPage(req,res) {
         const filterStatus = {
             status:'1',
             search:'%',

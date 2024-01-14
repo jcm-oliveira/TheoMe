@@ -8,9 +8,17 @@ console.log("RegionModel file starts...")
     async function selectRegions(filterStatus){
         const conn = await db.connect()
         var sql =`
-            SELECT region.id AS id, region.name AS name, country.name AS country, region.status AS status, region.description AS description, region.id_country AS id_country
-            FROM country 
-            INNER JOIN country ON region.id_country = country.id 
+            SELECT 
+                region.id AS id, 
+                region.name AS name, 
+                country.name AS country,
+                continent.name AS continent, 
+                region.status AS status, 
+                region.description AS description, 
+                region.id_country AS id_country
+            FROM region 
+            INNER JOIN country ON region.id_country = country.id
+            INNER JOIN continent ON country.id_continent = continent.id 
             WHERE region.excluded = ? 
                 AND region.status LIKE ? 
                 AND (region.name LIKE ? OR region.id LIKE ?)

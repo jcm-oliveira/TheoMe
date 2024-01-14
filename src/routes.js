@@ -112,9 +112,9 @@ routes.get('/cms-Region-Q', RegionController.loadShowPage)
 routes.get('/cms-Region-C', RegionController.loadInsertPage)
 routes.get('/cms-Region-C/:id', RegionController.loadUpdatePage)
 routes.post('/cms-Region-Q', RegionController.paginationView)
-routes.post('/cms-Region-C', RegionController.insertCountryPage)
-routes.post('/cms-Region-U/:id', RegionController.updateCountryPage)
-routes.post('/cms-Region-D/:id', RegionController.deleteCountryPage)
+routes.post('/cms-Region-C', RegionController.insertRegionPage)
+routes.post('/cms-Region-U/:id', RegionController.updateRegionPage)
+routes.post('/cms-Region-D/:id', RegionController.deleteRegionPage)
 routes.post('/cms-Region-F', RegionController.filterCountryPage)
 
 //SYSTEM
