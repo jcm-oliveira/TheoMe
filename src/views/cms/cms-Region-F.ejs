@@ -39,7 +39,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form id="form-filter" method="post" action="/cms-Country-F">
+        <form id="form-filter" method="post" action="/cms-Region-F">
           <div class="form-group">
             <div class="row">
                 <div class="col-md-6">
@@ -73,7 +73,16 @@
                       <option value="<%-continent.id%>"><%-continent.name%></option> 
                     <% }) %>                               
                 </select>
-            </div>         
+            </div>
+            <div class="col-md-14">
+              <label for="" form-label>País</label>
+              <select  class="form-control" id="countryFilter" name="countryFilter">
+                  <option value="0" selected>Todos</option>
+                  <% countries.forEach((country)=> { %>
+                    <option value="<%-country.id%>"><%-country.name%></option> 
+                  <% }) %>                               
+              </select>
+          </div>             
           </div> 
         </form>
       </div>

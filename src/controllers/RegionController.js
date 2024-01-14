@@ -1,4 +1,4 @@
-const Country = require("../model/RegionModel");
+const Region = require("../model/RegionModel");
 console.log("RegionController file starts...");
 module.exports = {
 
@@ -14,16 +14,18 @@ module.exports = {
             itemsPerPage:10,
             pageStartItem:0,
             continentFilter:'%',
+            countryFilter:'%',
         }
         const [continents] = await Country.filterSelectContinents(filterStatus)
         const [countries] = await Country.selectCountries(filterStatus)
+        const [regions] = await Country.selectRegions(filterStatus)
         const [countSelect] = await Country.countSelect(filterStatus)
         const messages = {
             display:"d-none",
             alertType:"",
             textMessage: "Página inicial de consulta carregada.",
         }
-        return res.render("../views/cms/cms-Country-Q",{countries, filterStatus, countSelect,messages,continents});
+        return res.render("../views/cms/cms-Region-Q",{filterStatus, countSelect,messages,continents,countries,regions});
     },
 
 //------------------------------------------------
@@ -50,7 +52,7 @@ module.exports = {
                 }
             }
         
-        const [countSelect] = await Country.countSelect(filterStatus)
+        const [countSelect] = await Region.countSelect(filterStatus)
 
             if (filterStatus.nextBtn === "nextBtnClicked") {
                 if ((filterStatus.pageStartItem + filterStatus.itemsPerPage) < countSelect[0].totalRegister) {
@@ -58,15 +60,16 @@ module.exports = {
                     filterStatus.pageStartItem = filterStatus.pageStartItem + filterStatus.itemsPerPage
                 }
             }
-        const [continents] = await Country.filterSelectContinents(filterStatus)
+        const [continents] = await Region.filterSelectContinents(filterStatus)
+        const [countries] = await Region.filterSelectCountries(filterStatus)
 
-        const [countries] = await Country.selectCountries(filterStatus)
+        const [regions] = await Region.selectRegions(filterStatus)
         const messages = {
             display:"d-none",
             alertType:"",
             textMessage: ("Página " + filterStatus.currentPage + " selecionada."),
         }
-        return res.render("../views/cms/cms-Country-Q",{countries, filterStatus, countSelect, messages, continents});
+        return res.render("../views/cms/cms-Region-Q",{filterStatus, countSelect, messages, continents, countries, regions});
     },
 
 //------------------------------------------------
@@ -81,17 +84,19 @@ module.exports = {
             itemsPerPage:10,
             pageStartItem:0,
             continentFilter:'%',
+            countryFilter:'%',
         }         
         const messages = {
             display:"d-none",
             alertType:"",
             textMessage: "Página inserir carregada.",
         }
-        const [continents] = await Country.filterSelectContinents(filterStatus)
-        return res.render("../views/cms/cms-Country-C", {messages,continents})            
+        const [continents] = await Region.filterSelectContinents(filterStatus)
+        const [countries] = await Region.filterSelectCountries(filterStatus)
+        return res.render("../views/cms/cms-Region-C", {messages,continents,countries})            
     },
 
-    async insertCountryPage(req,res) {
+    async insertRegionPage(req,res) {
         const filterStatus = {
             status:1,
             search:'%',
@@ -99,22 +104,25 @@ module.exports = {
             itemsPerPage:10,
             pageStartItem:0,
             continentFilter:'%',
+            countryFilter:'%',
         }        
-        const insert = await Country.insertCountries({
-            countryName: req.body.countryName,
-            countryDescription: req.body.countryDescription,
-            countryIdContinent: req.body.id_Continent,
-            countryStatus: req.body.countryStatus,
+        const insert = await Region.insertRegions({
+            regionName: req.body.regionName,
+            regionDescription: req.body.regionDescription,
+            regionIdContinent: req.body.id_Continent,
+            regionIdCountry: req.body.id_Country,
+            regionStatus: req.body.regionStatus,
         });
         const messages = {
             display:"",
             alertType:insert.alertTypeResult,
             textMessage: insert.textResult,
         }
-        const [continents] = await Country.filterSelectContinents(filterStatus)
-        const [countries] = await Country.selectCountries(filterStatus)
-        const [countSelect] = await Country.countSelect(filterStatus)
-        return res.render('../views/cms/cms-Country-Q', {countries,filterStatus,countSelect,messages,continents})
+        const [continents] = await Region.filterSelectContinents(filterStatus)
+        const [countries] = await Region.filterSelectCountries(filterStatus)
+        const [regions] = await Region.selectRegions(filterStatus)
+        const [countSelect] = await Region.countSelect(filterStatus)
+        return res.render('../views/cms/cms-Region-Q', {filterStatus,countSelect,messages,continents,countries, regions})
     },
 
 //------------------------------------------------
@@ -122,7 +130,7 @@ module.exports = {
 //------------------------------------------------
 
     async loadUpdatePage(req, res) {        
-        const countryId = req.params.id
+        const regionId = req.params.id
         const filterStatus = {
             status:'%',
             search:'%',
@@ -130,17 +138,19 @@ module.exports = {
             itemsPerPage:100,
             pageStartItem:0,
             continentFilter:'%',
+            countryFilter:'%',
         }
-        const [continents] = await Country.filterSelectContinents(filterStatus)
-        const [countries] = await Country.selectCountries(filterStatus)
-        const country = countries.find(country => Number(country.id) === Number(countryId))
-            if (!country) {
+        const [continents] = await Region.filterSelectContinents(filterStatus)
+        const [countries] = await Region.filterSelectCountries(filterStatus)
+        const [regions] = await Region.selectRegions(filterStatus)
+        const region = regions.find(region => Number(region.id) === Number(regionId))
+            if (!region) {
                 return res.send('Country not found')
             }     
-        return res.render("../views/cms/cms-Country-U", {country, continents})     
+        return res.render("../views/cms/cms-Region-U", {region, continents, countries, regions})     
     },
 
-    async updateCountryPage(req,res) {
+    async updateRegionPage(req,res) {
         const filterStatus = {
             status:1,
             search:'%',
@@ -148,24 +158,27 @@ module.exports = {
             itemsPerPage:10,
             pageStartItem:0,
             continentFilter:'%',
+            countryFilter:'%',
         } 
-        const countryId = req.params.id
-        const updatedCountry = {
-            countryStatus: req.body.countryStatus,
-            countryName: req.body.countryName,
-            countryDescription: req.body.countryDescription,
-            countryIdContinent: req.body.id_Continent,
+        const regionId = req.params.id
+        const updatedRegion = {
+            regionStatus: req.body.regionStatus,
+            regionName: req.body.regionName,
+            regionDescription: req.body.regionDescription,
+            regionIdContinent: req.body.id_Continent,
+            regionIdCountry: req.body.id_Country,
         }
-        const update = await Country.updateCountries(countryId,updatedCountry)
+        const update = await Region.updateRegions(regionId,updatedRegion)
         const messages = {
             display:"",
             alertType:update.alertTypeResult,
             textMessage: update.textResult,
         }
-        const [continents] = await Country.filterSelectContinents(filterStatus)
-        const [countries] = await Country.selectCountries(filterStatus)
-        const [countSelect] = await Country.countSelect(filterStatus)
-        return res.render('../views/cms/cms-Country-Q', {countries,filterStatus,countSelect,messages,continents})
+        const [continents] = await Region.filterSelectContinents(filterStatus)
+        const [countries] = await Region.filterSelectCountries(filterStatus)
+        const [regions] = await Region.selectRegions(filterStatus)
+        const [countSelect] = await Region.countSelect(filterStatus)
+        return res.render('../views/cms/cms-Region-Q', {regions,filterStatus,countSelect,messages,continents, countries})
     },
 
 //------------------------------------------------
@@ -180,18 +193,20 @@ module.exports = {
             itemsPerPage:10,
             pageStartItem:0,
             continentFilter:'%',
+            countryFilter:'%',
         } 
-        const countryId = req.params.id
-        const deleted = await Country.deleteCountries(countryId)
+        const regionId = req.params.id
+        const deleted = await Region.deleteRegions(regionId)
         const messages = {
             display:"",
             alertType:deleted.alertTypeResult,
             textMessage: deleted.textResult,
         }
-        const [continents] = await Country.filterSelectContinents(filterStatus)
-        const [countries] = await Country.selectCountries(filterStatus)
-        const [countSelect] = await Country.countSelect(filterStatus)
-        return res.render('../views/cms/cms-Country-Q', {countries,filterStatus,countSelect,messages, continents})
+        const [continents] = await Region.filterSelectContinents(filterStatus)
+        const [countries] = await Region.filterSelectCountries(filterStatus)
+        const [regions] = await Region.selectRegions(filterStatus)
+        const [countSelect] = await Region.countSelect(filterStatus)
+        return res.render('../views/cms/cms-Region-Q', {filterStatus, countSelect, messages, continents, countries, regions})
     },
 
 //------------------------------------------------
@@ -206,6 +221,7 @@ module.exports = {
             itemsPerPage:Number(req.body.itemsPerPageFilter),
             pageStartItem:0,
             continentFilter:req.body.continentFilter,
+            countryFilter:req.body.countryFilter,
         }        
             if (filterStatus.status === Number(2)) {
                 filterStatus.status = '%'
@@ -216,16 +232,20 @@ module.exports = {
             if (filterStatus.continentFilter === '0') {
                 filterStatus.continentFilter = '%'
             }
+            if (filterStatus.countryFilter === '0') {
+                filterStatus.countryFilter = '%'
+            }
         const messages = {
             display:"d-none",
             alertType:"",
             textMessage: "Filtro aplicado na tela de consulta.",
         }
 
-        const [continents] = await Country.filterSelectContinents(filterStatus)
-        const [countries] = await Country.selectCountries(filterStatus)
-        const [countSelect] = await Country.countSelect(filterStatus)
-        return res.render("../views/cms/cms-Country-Q",{countries, filterStatus, countSelect,messages, continents});
+        const [continents] = await Region.filterSelectContinents(filterStatus)
+        const [countries] = await Region.filterSelectCountries(filterStatus)
+        const [regions] = await Region.selectRegions(filterStatus)
+        const [countSelect] = await Region.countSelect(filterStatus)
+        return res.render("../views/cms/cms-Region-Q",{filterStatus, countSelect, messages, continents, countries, regions});
         }
     
 }

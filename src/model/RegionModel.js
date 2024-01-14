@@ -5,17 +5,17 @@ console.log("RegionModel file starts...")
 //                  SELECT
 //--------------------------------------------
 
-    async function selectCountries(filterStatus){
+    async function selectRegions(filterStatus){
         const conn = await db.connect()
         var sql =`
-            SELECT country.id AS id, country.name AS    name, continent.name AS continent, country.status AS status, country.description AS description, country.id_continent AS id_continent 
+            SELECT region.id AS id, region.name AS name, country.name AS country, region.status AS status, region.description AS description, region.id_country AS id_country
             FROM country 
-            INNER JOIN continent ON country.id_continent = continent.id 
-            WHERE country.excluded = ? 
-                AND country.status LIKE ? 
-                AND (country.name LIKE ? OR country.id LIKE ?)
-                AND country.id_continent LIKE ?
-            ORDER BY country.id 
+            INNER JOIN country ON region.id_country = country.id 
+            WHERE region.excluded = ? 
+                AND region.status LIKE ? 
+                AND (region.name LIKE ? OR region.id LIKE ?)
+                AND region.id_country LIKE ?
+            ORDER BY region.id 
             DESC LIMIT ? 
             OFFSET ?
         `
@@ -24,7 +24,7 @@ console.log("RegionModel file starts...")
             filterStatus.status, 
             "%"+filterStatus.search+"%", 
             "%"+filterStatus.search+"%",
-            filterStatus.continentFilter, 
+            filterStatus.countryFilter, 
             filterStatus.itemsPerPage, 
             filterStatus.pageStartItem
         ]
@@ -36,16 +36,16 @@ console.log("RegionModel file starts...")
         const conn = await db.connect()
         var sql = `
             SELECT COUNT (*) AS totalRegister 
-            FROM country 
+            FROM region 
             WHERE excluded = ? 
                 AND status LIKE ?
-                AND id_continent LIKE ?   
-                AND (country.name LIKE ? OR country.id LIKE ?)                           
+                AND id_country LIKE ?   
+                AND (region.name LIKE ? OR region.id LIKE ?)                           
                 `
         const values = [
             0,
             filterStatus.status, 
-            filterStatus.continentFilter, 
+            filterStatus.countryFilter, 
             "%"+filterStatus.search+"%", 
             "%"+filterStatus.search+"%"
         ]
@@ -68,18 +68,34 @@ console.log("RegionModel file starts...")
         const result = conn.query(sql,values)
         return result  
     }
+
+    async function filterSelectCountries(filterStatus){
+        const conn = await db.connect()
+        var sql = `
+            SELECT * 
+            FROM country 
+            WHERE excluded = ? 
+                AND status LIKE ? 
+            ORDER BY name`
+        const values = [
+            0,
+            1,
+        ]
+        const result = conn.query(sql,values)
+        return result  
+    }
     
 //---------------------------------------------
 //                   INSERT
 //---------------------------------------------
 
-    async function insertCountries(newCountry) {
+    async function insertRegions(newRegion) {
         const conn = await db.connect()
         try {  
             const sql = `
-                INSERT INTO country(name, description, id_continent, status) 
+                INSERT INTO region(name, description, id_country, status) 
                 VALUES (?, ?, ?, ?)`
-            const values = [newCountry.countryName, newCountry.countryDescription, newCountry.countryIdContinent, newCountry.countryStatus]
+            const values = [newRegion.regionName, newRegion.regionDescription, newRegion.regionIdCountry, newRegion.regionStatus]
             const [queryResult] = await conn.query(sql, values)
             const result = {
                 alertTypeResult: "alert-success",
@@ -100,13 +116,13 @@ console.log("RegionModel file starts...")
 //                  UPDATE
 //----------------------------------------------
 
-    async function updateCountries(id, country) {
+    async function updateRegions(id, region) {
         const conn = await db.connect()
         try { 
             const sql = `
-                UPDATE country SET status = ?, name = ?, description = ?, id_continent = ? 
+                UPDATE region SET status = ?, name = ?, description = ?, id_country = ? 
                 WHERE id = ?`
-            const values = [country.countryStatus,country.countryName, country.countryDescription, country.countryIdContinent, id]
+            const values = [region.regionStatus,region.regionName, region.regionDescription, region.regionIdCountry, id]
             const [queryResult] = await conn.query(sql, values)
             const result = {
                 alertTypeResult: "alert-success",
@@ -127,11 +143,11 @@ console.log("RegionModel file starts...")
 //                    DELETE
 //------------------------------------------------
 
-    async function deleteCountries(id) {
+    async function deleteRegions(id) {
         const conn = await db.connect()
         try {
             const sql = `
-                UPDATE country 
+                UPDATE region 
                 SET excluded = ? 
                 WHERE id = ?`
             const values = [1, id]
@@ -151,11 +167,12 @@ console.log("RegionModel file starts...")
     }
 
 module.exports = {
-    selectCountries, 
-    insertCountries, 
-    updateCountries, 
-    deleteCountries, 
+    selectRegions, 
+    insertRegions, 
+    updateRegions, 
+    deleteRegions, 
     countSelect,
-    filterSelectContinents
+    filterSelectContinents,
+    filterSelectCountries,
 }
 

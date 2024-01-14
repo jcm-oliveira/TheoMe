@@ -49,21 +49,23 @@
             <main>
                 <h1>Cadastrar - Região</h1>
 
-                <form id="form-country" method="post" action="/cms-Country-C">
+                <form id="form-region" method="post" action="/cms-Region-C">
                     <fieldset class="flex">
                         <legend>Dados básicos</legend>
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <label for="" form-label>Código</label>
                                 <input type="text" class="form-control" disabled>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <label for="" form-label>Status</label>
-                                <select class="form-control" type="text" id="countryStatus" name="countryStatus">
+                                <select class="form-control" type="text" id="regionStatus" name="regionStatus">
                                     <option value="1">Ativo</option>
                                     <option value="0">Inativo</option>
                                 </select>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-6">
                                 <label for="" form-label>Continente</label>
                                 <select class="form-control" id="id_Continent" name="id_Continent">
@@ -73,16 +75,25 @@
                                     <% }) %>
                                 </select>
                             </div>
-                        </div>
+                            <div class="col-md-6">
+                                <label for="" form-label>País</label>
+                                <select class="form-control" id="id_Country" name="id_Country">
+                                    <option value=""data-default disabled selected></option>
+                                    <% countries.forEach((country)=> { %>
+                                        <option value="<%-country.id%>"><%-country.name%></option> 
+                                    <% }) %>
+                                </select>
+                            </div>
+                        </div>                        
                             <div class="col-md-14">
-                                <label for="" form-label>Nome do País</label>
-                                <input class="form-control" autofocus type="text" id="countryName"
-                                    name="countryName" required>
+                                <label for="" form-label>Nome da Região</label>
+                                <input class="form-control" autofocus type="text" id="regionName"
+                                    name="regionName" required>
                             </div>                        
                         <div class="col-md-14">
                             <label for="" class="form-label">Descrição</label>
-                            <textarea class="form-control" type="text" id="countryDescription"
-                                name="countryDescription"></textarea>
+                            <textarea class="form-control" type="text" id="regionDescription"
+                                name="regionDescription"></textarea>
                         </div>
                     </fieldset>
                 </form>
@@ -91,12 +102,12 @@
                 <div class="button-area">
                     <a href="#">
                         <div class="button-frame">
-                            <button class="btn btn-success" form="form-country" type="submit"
+                            <button class="btn btn-success" form="form-region" type="submit"
                                 title="Save data">Salvar</button>
                     </a>
                 </div>
                 </a>
-                <a href="/cms-Country-Q">
+                <a href="/cms-Region-Q">
                     <div class="button-frame">
                         <button class="btn btn-secondary">Cancelar</button>
                     </div>
