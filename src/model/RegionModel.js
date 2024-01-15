@@ -16,6 +16,9 @@ console.log("RegionModel file starts...")
                 region.status AS status, 
                 region.description AS description, 
                 region.id_country AS id_country
+
+                // country.id_continent AS id_continent
+                
             FROM region 
             INNER JOIN country ON region.id_country = country.id
             INNER JOIN continent ON country.id_continent = continent.id 
@@ -128,9 +131,20 @@ console.log("RegionModel file starts...")
         const conn = await db.connect()
         try { 
             const sql = `
-                UPDATE region SET status = ?, name = ?, description = ?, id_country = ? 
-                WHERE id = ?`
-            const values = [region.regionStatus,region.regionName, region.regionDescription, region.regionIdCountry, id]
+                UPDATE 
+                    region SET status = ?, 
+                    name = ?, 
+                    description = ?, 
+                    id_country = ? 
+                WHERE 
+                    id = ?`
+            const values = [
+                region.regionStatus,
+                region.regionName, 
+                region.regionDescription, 
+                region.regionIdCountry, 
+                id
+            ]
             const [queryResult] = await conn.query(sql, values)
             const result = {
                 alertTypeResult: "alert-success",
