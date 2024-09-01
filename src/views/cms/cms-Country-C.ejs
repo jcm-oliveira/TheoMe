@@ -66,7 +66,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="" form-label>Continente</label>
-                                <select class="form-control" id="id_Continent" name="id_Continent">
+                                <select class="form-control" id="id_Continent" name="id_Continent" autofocus>
                                     <option value=""data-default disabled selected></option>
                                     <% continents.forEach((continent)=> { %>
                                         <option value="<%-continent.id%>"><%-continent.name%></option> 
@@ -76,7 +76,7 @@
                         </div>
                             <div class="col-md-14">
                                 <label for="" form-label>Nome do País</label>
-                                <input class="form-control" autofocus type="text" id="countryName"
+                                <input class="form-control" type="text" id="countryName"
                                     name="countryName" required>
                             </div>                        
                         <div class="col-md-14">

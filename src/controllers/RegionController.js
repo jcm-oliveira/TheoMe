@@ -93,6 +93,7 @@ module.exports = {
         }
         const [continents] = await Region.filterSelectContinents(filterStatus)
         const [countries] = await Region.filterSelectCountries(filterStatus)
+
         return res.render("../views/cms/cms-Region-C", {messages,continents,countries})            
     },
 
