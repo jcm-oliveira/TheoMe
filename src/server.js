@@ -15,6 +15,7 @@ server.use(express.static("src"))
 
 //usar o req.body
 server.use(express.urlencoded({extened:true}))
+server.use(express.json());
     
 //routes para
 server.use(routes)

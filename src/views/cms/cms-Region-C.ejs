@@ -42,6 +42,8 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
+
+
     <%- include('../parts/header') %>
 
         <%- include('../parts/navbar') %>
@@ -69,11 +71,39 @@
                             <div class="col-md-6">
                                 <label for="" form-label>Continente</label>
                                 <select class="form-control" id="id_Continent" name="id_Continent">
-                                    <option value=""data-default disabled selected></option>
+                                    <option value="" data-default disabled selected autofocus></option>
                                     <% continents.forEach((continent)=> { %>
                                         <option value="<%-continent.id%>"><%-continent.name%></option> 
                                     <% }) %>
                                 </select>
+                                
+<!-- _________________________________________ -->
+    <script>
+        document.getElementById("id_Continent").addEventListener("change", function() {
+            let continentId = this.value;
+
+            console.log("Continente selecionado (frontend):", continentId); // DEBUG NO CLIENTE
+
+            fetch('/cms-Region-X', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ continentId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                let paisSelect = document.getElementById("id_Country");
+                paisSelect.innerHTML = '<option value="">Selecione um País</option>';
+                data.forEach(country => {
+                    let option = document.createElement("option");
+                    option.value = country.id;
+                    option.textContent = country.name;
+                    paisSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error("Erro ao carregar países:", error));
+        });
+        </script>
+<!--________________________________________________--> 
                             </div>
                             <div class="col-md-6">
                                 <label for="" form-label>País</label>
@@ -87,7 +117,7 @@
                         </div>                        
                             <div class="col-md-14">
                                 <label for="" form-label>Nome da Região</label>
-                                <input class="form-control" autofocus type="text" id="regionName"
+                                <input class="form-control" type="text" id="regionName"
                                     name="regionName" required>
                             </div>                        
                         <div class="col-md-14">

@@ -77,15 +77,13 @@ console.log("RegionModel file starts...")
         return result  
     }
 
-    async function filterSelectCountries(filterStatus, continents){
-        console.log(continents)
+    async function filterSelectCountries(filterStatus){
         const conn = await db.connect()
         var sql = `
             SELECT * 
             FROM country 
             WHERE excluded = ? 
                 AND status LIKE ?
-                
             ORDER BY name`
         const values = [
             0,
@@ -93,6 +91,17 @@ console.log("RegionModel file starts...")
         ]
         const result = conn.query(sql,values)
         return result  
+    }
+
+    async function getCountriesByContinent(continentId) {
+        const conn = await db.connect()
+        var sql = `
+            SELECT * 
+            FROM country 
+            WHERE id_continent = ?`
+        const values = [continentId.id]
+        const result = conn.query(sql,values)
+        return result
     }
     
 //---------------------------------------------
@@ -195,5 +204,6 @@ module.exports = {
     countSelect,
     filterSelectContinents,
     filterSelectCountries,
+    getCountriesByContinent,
 }
 

@@ -117,10 +117,14 @@ routes.post('/cms-Region-U/:id', RegionController.updateRegionPage)
 routes.post('/cms-Region-D/:id', RegionController.deleteRegionPage)
 routes.post('/cms-Region-F', RegionController.filterCountryPage)
 
+
+routes.post('/cms-Region-X', RegionController.continentListener)
+
+
+
 //SYSTEM
 routes.get('/cms-User-Q', (req,res) => res.render(views + "cms/cms-User-Q"));
 routes.get('/cms-User-C', (req,res) => res.render(views + "cms/cms-User-C"));
-
 routes.get('/cms-Language-Q', (req,res) => res.render(views + "cms/cms-Language-Q"));
 routes.get('/cms-Language-C', (req,res) => res.render(views + "cms/cms-Language-C"));
 

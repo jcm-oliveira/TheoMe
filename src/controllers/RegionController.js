@@ -2,6 +2,11 @@ const Region = require("../model/RegionModel");
 console.log("RegionController file starts...");
 module.exports = {
 
+
+
+
+
+
 //------------------------------------------------
 //                SHOW PAGE ROTINE
 //------------------------------------------------
@@ -77,6 +82,7 @@ module.exports = {
 //------------------------------------------------
 
     async loadInsertPage(req, res) {  
+        console.log("entrou no loadRegionPage")
         const filterStatus = {
             status:1,
             search:'%',
@@ -98,6 +104,8 @@ module.exports = {
     },
 
     async insertRegionPage(req,res) {
+
+        console.log("entrou no insertRegionPage")
         const filterStatus = {
             status:1,
             search:'%',
@@ -125,6 +133,20 @@ module.exports = {
         const [countSelect] = await Region.countSelect(filterStatus)
         return res.render('../views/cms/cms-Region-Q', {filterStatus,countSelect,messages,continents,countries, regions})
     },
+
+    async continentListener(req, res)  {
+
+        console.log("entrou no continentListener")
+        console.log("Dados recebidos no backend:", req.body);
+
+        const { continentId } = req.body;
+    
+        console.log("Continente selecionado:", continentId); 
+
+        const countries = await Region.getCountriesByContinent(continentId);
+        res.json(countries);  
+     },
+        
 
 //------------------------------------------------
 //                 UPDATE ROTINE
