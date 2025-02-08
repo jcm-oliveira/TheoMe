@@ -116,8 +116,6 @@ routes.post('/cms-Region-C', RegionController.insertRegionPage)
 routes.post('/cms-Region-U/:id', RegionController.updateRegionPage)
 routes.post('/cms-Region-D/:id', RegionController.deleteRegionPage)
 routes.post('/cms-Region-F', RegionController.filterCountryPage)
-
-
 routes.post('/cms-Region-X', RegionController.continentListener)
 
 
