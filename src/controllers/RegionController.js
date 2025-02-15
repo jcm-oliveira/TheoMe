@@ -136,19 +136,10 @@ module.exports = {
 
     async continentListener(req, res)  {
 
-        console.log("entrou no continentListener")
-        console.log("Dados recebidos no backend:", req.body);
-
         const { continentId } = req.body;
-    
-        console.log("Continente selecionado:", continentId); 
-
         const [countries] = await Region.getCountriesByContinent(continentId);
-
-        console.log("Resultado da query Countries:",countries)
         res.json(countries);  
      },
-        
 
 //------------------------------------------------
 //                 UPDATE ROTINE
