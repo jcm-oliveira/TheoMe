@@ -143,7 +143,9 @@ module.exports = {
     
         console.log("Continente selecionado:", continentId); 
 
-        const countries = await Region.getCountriesByContinent(continentId);
+        const [countries] = await Region.getCountriesByContinent(continentId);
+
+        console.log("Resultado da query Countries:",countries)
         res.json(countries);  
      },
         

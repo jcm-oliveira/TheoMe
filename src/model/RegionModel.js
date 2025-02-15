@@ -99,7 +99,7 @@ console.log("RegionModel file starts...")
             SELECT * 
             FROM country 
             WHERE id_continent = ?`
-        const values = [continentId.id]
+        const values = [continentId]
         const result = conn.query(sql,values)
         return result
     }
