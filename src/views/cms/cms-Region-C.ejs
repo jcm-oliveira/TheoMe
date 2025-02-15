@@ -75,35 +75,32 @@
                                     <% continents.forEach((continent)=> { %>
                                         <option value="<%-continent.id%>"><%-continent.name%></option> 
                                     <% }) %>
-                                </select>
-                                
-<!-- _________________________________________ -->
-    <script>
-        document.getElementById("id_Continent").addEventListener("change", function() {
-            let continentId = this.value;
+                                </select>                                
+                                <!------ SCRIPT ------>
+                                <script>
+                                     document.getElementById("id_Continent").addEventListener("change", function() {
+                                            let continentId = this.value;
 
-            console.log("Continente selecionado (frontend):", continentId); // DEBUG NO CLIENTE
-
-            fetch('/cms-Region-X', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ continentId })
-            })
-            .then(response => response.json())
-            .then(data => {
-                let paisSelect = document.getElementById("id_Country");
-                paisSelect.innerHTML = '<option value="">Selecione um País</option>';
-                data.forEach(country => {
-                    let option = document.createElement("option");
-                    option.value = country.id;
-                    option.textContent = country.name;
-                    paisSelect.appendChild(option);
-                });
-            })
-            .catch(error => console.error("Erro ao carregar países:", error));
-        });
-        </script>
-<!--________________________________________________--> 
+                                            fetch('/cms-Region-X', {
+                                                method: 'POST',
+                                                headers: { 'Content-Type': 'application/json' },
+                                                body: JSON.stringify({ continentId })
+                                            })
+                                            .then(response => response.json())
+                                            .then(data => {
+                                                let paisSelect = document.getElementById("id_Country");
+                                                paisSelect.innerHTML = '<option value=""></option>';
+                                                data.forEach(country => {
+                                                    let option = document.createElement("option");
+                                                    option.value = country.id;
+                                                    option.textContent = country.name;
+                                                    paisSelect.appendChild(option);
+                                                });
+                                            })
+                                            .catch(error => console.error("Erro ao carregar países:", error));
+                                        });
+                                </script>
+                                <!------ SCRIPT ------>
                             </div>
                             <div class="col-md-6">
                                 <label for="" form-label>País</label>
