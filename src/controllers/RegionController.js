@@ -82,7 +82,6 @@ module.exports = {
 //------------------------------------------------
 
     async loadInsertPage(req, res) {  
-        console.log("entrou no loadRegionPage")
         const filterStatus = {
             status:1,
             search:'%',
