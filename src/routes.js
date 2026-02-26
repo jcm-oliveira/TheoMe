@@ -13,6 +13,8 @@ const views = __dirname + "/views/"
 const ContinentController = require('./controllers/ContinentController.js')
 const CountryController = require('./controllers/CountryController.js')
 const RegionController = require('./controllers/RegionController.js')
+const StateController = require('./controllers/StateController.js')
+const CityController = require('./controllers/CityController.js')
 
 //---------------------------------------------------
 //                  PORTAL ROUTES
@@ -117,6 +119,33 @@ routes.post('/cms-Region-U/:id', RegionController.updateRegionPage)
 routes.post('/cms-Region-D/:id', RegionController.deleteRegionPage)
 routes.post('/cms-Region-F', RegionController.filterCountryPage)
 routes.post('/cms-Region-X', RegionController.continentListener)
+
+//_____________________State__________________________
+
+routes.get('/cms-State-Q', StateController.loadShowPage)
+routes.get('/cms-State-C', StateController.loadInsertPage)
+routes.get('/cms-State-C/:id', StateController.loadUpdatePage)
+routes.post('/cms-State-Q', StateController.paginationView)
+routes.post('/cms-State-C', StateController.insertStatePage)
+routes.post('/cms-State-U/:id', StateController.updateStatePage)
+routes.post('/cms-State-D/:id', StateController.deleteStatePage)
+routes.post('/cms-State-F', StateController.filterStatePage)
+routes.post('/cms-State-X-Continent', StateController.continentListener)
+routes.post('/cms-State-X-Country', StateController.countryListener)
+
+//_____________________City__________________________
+
+routes.get('/cms-City-Q', CityController.loadShowPage)
+routes.get('/cms-City-C', CityController.loadInsertPage)
+routes.get('/cms-City-C/:id', CityController.loadUpdatePage)
+routes.post('/cms-City-Q', CityController.paginationView)
+routes.post('/cms-City-C', CityController.insertCityPage)
+routes.post('/cms-City-U/:id', CityController.updateCityPage)
+routes.post('/cms-City-D/:id', CityController.deleteCityPage)
+routes.post('/cms-City-F', CityController.filterCityPage)
+routes.post('/cms-City-X-Continent', CityController.continentListener)
+routes.post('/cms-City-X-Country', CityController.countryListener)
+routes.post('/cms-City-X-Region', CityController.regionListener)
 
 
 
