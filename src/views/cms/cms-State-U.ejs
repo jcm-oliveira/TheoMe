@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+  <title>TheoMe</title>
+  <link rel="icon" type="image/png" href="/images/logo_aba.png"/>
+
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+   <!-- font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"/>
+   <!-- icons -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    
+    <!-- bootstrap customization -->
+      <link rel="stylesheet" href="/styles/parts/main.css" />
+      <link rel="stylesheet" href="/styles/parts/header.css" />
+      <link rel="stylesheet" href="/styles/parts/footer.css" />
+      <link rel="stylesheet" href="/styles/parts/button.css" />
+      <link rel="stylesheet" href="/styles/parts/form.css" />
+</head>
+
+<body>
+    
+ <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <%- include('../parts/header')  %>
+
+    <%- include('../parts/navbar')  %>    
+   
+    <main>
+        <h1>Editar - Estado</h1>
+        
+        <form id="form-state" method="post" action="/cms-State-U/<%= state.id %>">            
+            <fieldset class="flex">
+                <legend>Dados básicos</legend>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label form-label>Código</label>
+                        <input type="text" class="form-control" disabled value="<%= state.id %>">
+                    </div>
+                    <div class="col-md-4">
+                        <label form-label>Status</label>
+                        <select class="form-control" id="stateStatus" name="stateStatus">
+                            <option value="<%= state.status %>" selected>
+                                <% if (state.status === 1) { %>
+                                    Ativo
+                                <% } else { %>
+                                    Inativo
+                                <% } %>
+                            </option>
+                            <option value="1">Ativo</option>
+                            <option value="0">Inativo</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label form-label>Continente</label>
+                        <select class="form-control" id="id_Continent" name="id_Continent">
+                            <option value="<%= state.id_continent %>" selected><%= state.continent %></option>
+                            <% continents.forEach((continent)=> { %>
+                                <option value="<%-continent.id%>"><%-continent.name%></option> 
+                            <% }) %>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label form-label>País</label>
+                        <select class="form-control" id="id_Country" name="id_Country">
+                            <option value="<%= state.id_country %>" selected><%= state.country %></option>
+                            <% countries.forEach((country)=> { %>
+                                <option value="<%-country.id%>"><%-country.name%></option> 
+                            <% }) %>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label form-label>Região</label>
+                        <select class="form-control" id="id_Region" name="id_Region">
+                            <option value="<%= state.id_region %>" selected><%= state.region %></option>
+                            <% regions.forEach((region)=> { %>
+                                <option value="<%-region.id%>"><%-region.name%></option> 
+                            <% }) %>
+                        </select>
+                    </div>
+                </div>
+                    <div class="col-md-14">
+                        <label form-label>Nome do Estado</label>
+                        <input type="text" class="form-control" id="stateName" name="stateName" required value="<%= state.name %>">
+                    </div>
+
+                    <div class="col-md-14">
+                        <label class="form-label">Descrição</label>
+                        <textarea class="form-control" id="stateDescription" name="stateDescription"><%= state.description %></textarea>
+                    </div>
+            </fieldset>
+        </form>
+
+       <!-- BUTTON AREA -->
+       <div class="button-area">
+        <a href="#">
+            <div class="button-frame">
+                <button class="btn btn-success" form="form-state" type="submit">Salvar</button>
+            </div>
+        </a>
+        <a href="/cms-State-Q">
+            <div class="button-frame">
+                <button class="btn btn-secondary">Cancelar</button>
+            </div>
+        </a>
+        <a href="#">
+            <div class="button-frame">
+                <button class="btn btn-danger" data-toggle="modal" data-target="#DeleteModal">Excluir</button>
+            </div>
+        </a>
+    </div>
+
+    <!-- TRIGGER MODAL DELETE POPUP (reutilizar padrão de Country/Region) -->
+    <div class="modal fade" id="DeleteModal" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <%- include('../cms/cms-State-D') %>
+        </div>
+    </div>
+        
+    </main>
+
+    <%- include('../parts/footer')  %> 
+    
+</body>
+

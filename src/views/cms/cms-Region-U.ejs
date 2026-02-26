@@ -53,79 +53,69 @@
                         <legend>Dados básicos</legend>
                         <div class="row">
                             <div class="col-md-3">
-                                <label for="" form-label>Código</label>
+                                <label form-label>Código</label>
                                 <input type="text" class="form-control" disabled value="<%= region.id %>">
                             </div>
                             <div class="col-md-3">
-                                <label for="" form-label>Status</label>
-                                <select class="form-control" type="text" id="regionStatus" name="regionStatus">
-                                    <option value="<%= region.status%>" selected>
-                                        <% if(region.status===1) { %>
+                                <label form-label>Status</label>
+                                <select class="form-control" id="regionStatus" name="regionStatus">
+                                    <option value="<%= region.status %>" selected>
+                                        <% if(region.status === 1) { %>
                                             Ativo
-                                            <% } else { %>
-                                                Inativo
-                                                    <% } %>
+                                        <% } else { %>
+                                            Inativo
+                                        <% } %>
                                     </option>
                                     <option value="1">Ativo</option>
                                     <option value="0">Inativo</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label for="" form-label>Continente</label>
+                                <label form-label>País</label>
                                 <select class="form-control" id="id_Country" name="id_Country" required>
-                                    <option value="<%=country.id_continent%>" selected><%=continent.namet%></option>
-                                    <% continents.forEach((continent)=> { %>
-                                        <option value="<%-continent.id%>"><%-continent.name%></option> 
-                                    <% }) %>                   
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="" form-label>País</label>
-                                <select class="form-control" id="id_Country" name="id_Country" required>
-                                    <option value="<%=region.id_country%>" selected><%=region.country%></option>
+                                    <option value="<%= region.id_country %>" selected><%= region.country %></option>
                                     <% countries.forEach((country)=> { %>
                                         <option value="<%-country.id%>"><%-country.name%></option> 
                                     <% }) %>                   
                                 </select>
                             </div>
                         </div>
-                            <div class="col-md-14">
-                                <label for="" form-label>Nome da Região</label>
-                                <input class="form-control" autofocus type="text" id="regionName"
-                                    name="regionName" value="<%= region.name %>" required>
-                            </div>
-                       
                         <div class="col-md-14">
-                            <label for="" class="form-label">Descrição</label>
-                            <textarea class="form-control" type="text" id="regionDescription"
+                            <label form-label>Nome da Região</label>
+                            <input class="form-control" autofocus type="text" id="regionName"
+                                name="regionName" value="<%= region.name %>" required>
+                        </div>
+                        <div class="col-md-14">
+                            <label class="form-label">Descrição</label>
+                            <textarea class="form-control" id="regionDescription"
                                 name="regionDescription"><%= region.description %></textarea>
                         </div>
                     </fieldset>
                 </form>
 
- 
                 <!-- BUTTON AREA -->
-
                 <div class="button-area">
                     <a href="#">
                         <div class="button-frame">
                             <button class="btn btn-success" form="form-region" type="submit"
                                 title="Save data">Salvar</button>
+                        </div>
                     </a>
+
+                    <a href="/cms-Region-Q">
+                        <div class="button-frame">
+                            <button class="btn btn-secondary">Cancelar</button>
+                        </div>
+                    </a>
+
+                    <a href="#">
+                        <div class="button-frame">
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#DeleteModal">Excluir</button>
+                        </div>
+                    </a>                
+                
                 </div>
-
-                <a href="/cms-Region-Q">
-                    <div class="button-frame">
-                        <button class="btn btn-secondary">Cancelar</button>
-                    </div>
-                </a>
-
-                <a href="#">
-                    <div class="button-frame">
-                        <button class="btn btn-danger" data-toggle="modal" data-target="#DeleteModal">Excluir</button>
-                    </div>
-                </a>                
-
+                
             </main>
 
 
