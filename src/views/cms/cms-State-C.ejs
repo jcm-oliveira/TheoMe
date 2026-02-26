@@ -41,80 +41,70 @@
     <main>
         <h1>Cadastrar - Estado</h1>
         
-        <form action="">            
+        <form id="form-state" method="post" action="/cms-State-C">            
             <fieldset class="flex">
                 <legend>Dados básicos</legend>
 
                 <div class="row">
                     <div class="col-md-4">
-                        <label for="" form-label>Código</label>
+                        <label form-label>Código</label>
                         <input type="text" class="form-control" disabled>
                     </div>
                     <div class="col-md-4">
-                        <label for="" form-label>Status</label>
-                        <select name="status" class="form-control">
-                            <option value="">Ativo</option>
-                            <option value="">Inativo</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4">
-                        <label for="" form-label>Idioma</label>
-                        <select name="status" class="form-control">
-                            <option value="">Português</option>
-                            <option value="">Inglês</option>
+                        <label form-label>Status</label>
+                        <select class="form-control" id="stateStatus" name="stateStatus">
+                            <option value="1">Ativo</option>
+                            <option value="0">Inativo</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-4">
-                        <label for="" form-label>Continente</label>
-                        <select name="dataFormat" class="form-control">
-                            <option value=""data-default disabled selected></option>
-                            <option value="">Ásia</option>                
-                            <option value="">América do Sul</option>
-                            <option value="">Europa</option>
-                            <option value="">Oceania</option>                              
+                        <label form-label>Continente</label>
+                        <select class="form-control" id="id_Continent" name="id_Continent">
+                            <option value="" data-default disabled selected></option>
+                            <% continents.forEach((continent)=> { %>
+                                <option value="<%-continent.id%>"><%-continent.name%></option> 
+                            <% }) %>
                         </select>
                     </div>
                     <div class="col-md-4">
-                        <label for="" form-label>País</label>
-                        <select name="dataFormat" class="form-control">
-                            <option value=""data-default disabled selected></option>
-                            <option value="">Israel</option>                
-                            <option value="">Espanha</option>
-                            <option value="">Itália</option>
-                            <option value="">Brasil</option>                              
+                        <label form-label>País</label>
+                        <select class="form-control" id="id_Country" name="id_Country">
+                            <option value="" data-default disabled selected></option>
+                            <% countries.forEach((country)=> { %>
+                                <option value="<%-country.id%>"><%-country.name%></option> 
+                            <% }) %>
                         </select>
                     </div>
                     <div class="col-md-4">
-                        <label for="" form-label>Região</label>
-                        <select name="dataFormat" class="form-control">
-                            <option value=""data-default disabled selected></option>
-                            <option value="">Sul</option>                
-                            <option value="">Leste</option>
-                            <option value="">Sudeste</option>
-                            <option value="">Norte</option>                              
+                        <label form-label>Região</label>
+                        <select class="form-control" id="id_Region" name="id_Region">
+                            <option value="" data-default disabled selected></option>
+                            <% regions.forEach((region)=> { %>
+                                <option value="<%-region.id%>"><%-region.name%></option> 
+                            <% }) %>
                         </select>
                     </div>
                 </div>
                     <div class="col-md-14">
-                        <label for="" form-label>Nome do Estado</label>
-                        <input type="text" class="form-control" autofocus>
+                        <label form-label>Nome do Estado</label>
+                        <input type="text" class="form-control" id="stateName" name="stateName" required autofocus>
                     </div>
 
                     <div class="col-md-14">
-                        <label for="" class="form-label">Descrição</label>
-                        <textarea name="" id="" class="form-control"></textarea>
+                        <label class="form-label">Descrição</label>
+                        <textarea class="form-control" id="stateDescription" name="stateDescription"></textarea>
                     </div>
             </fieldset>
         </form>
 
        <!-- BUTTON AREA -->
        <div class="button-area">
-        <a href="/cms-State-Q">
+        <a href="#">
             <div class="button-frame">
-                <button class="btn btn-success">Salvar</button></a>
+                <button class="btn btn-success" form="form-state" type="submit">Salvar</button>
             </div>
         </a>
         <a href="/cms-State-C">
@@ -128,9 +118,56 @@
             </div>
         </a>
     </div>
+
+    <script>
+        document.getElementById("id_Continent").addEventListener("change", function() {
+            const continentId = this.value;
+            fetch('/cms-State-X-Continent', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ continentId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const countrySelect = document.getElementById("id_Country");
+                const regionSelect = document.getElementById("id_Region");
+                countrySelect.innerHTML = '<option value="" data-default disabled selected></option>';
+                regionSelect.innerHTML = '<option value="" data-default disabled selected></option>';
+                data.forEach(country => {
+                    const option = document.createElement("option");
+                    option.value = country.id;
+                    option.textContent = country.name;
+                    countrySelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error("Erro ao carregar países:", error));
+        });
+
+        document.getElementById("id_Country").addEventListener("change", function() {
+            const countryId = this.value;
+            fetch('/cms-State-X-Country', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ countryId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const regionSelect = document.getElementById("id_Region");
+                regionSelect.innerHTML = '<option value="" data-default disabled selected></option>';
+                data.forEach(region => {
+                    const option = document.createElement("option");
+                    option.value = region.id;
+                    option.textContent = region.name;
+                    regionSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error("Erro ao carregar regiões:", error));
+        });
+    </script>
         
     </main>
 
     <%- include('../parts/footer')  %> 
     
 </body>
+

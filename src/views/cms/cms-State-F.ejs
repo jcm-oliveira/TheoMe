@@ -39,57 +39,78 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form id="form-filter" method="post" action="/cms-State-F">
           <div class="form-group">
             <div class="row">
                 <div class="col-md-6">
-                    <label for="" form-label>Status</label>
-                    <select name="status" class="form-control">
-                        <option value="">Ativo</option>
-                        <option value="">Inativo</option>
+                    <label form-label>Status</label>
+                    <select class="form-control" id="filterStatus" name="filterStatus">
+                        <option value="1">Ativo</option>
+                        <option value="0">Inativo</option>
+                        <option value="2">Todos</option>
                     </select>
                 </div>
                 <div class="col-md-6">
-                    <label for="" form-label>Idioma</label>
-                    <select name="status" class="form-control">
-                        <option value="">Português</option>
-                        <option value="">Inglês</option>
-                    </select>
-                </div>
+                  <label form-label>Itens por Página</label>
+                  <select class="form-control" id="itemsPerPageFilter" name="itemsPerPageFilter">
+                      <option value="10">10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                  </select>
+              </div>
             </div>
 
-            <label for="recipient-name" class="col-form-label">Continente</label>
-            <select name="dataFormat" class="form-control">
-              <option value="">*TODOS*</option>
-              <option value="">America do Norte</option>
-              <option value="">Europa</option>   
-              <option value="">Africa</option>                         
-            </select>
-            
-            <label for="recipient-name" class="col-form-label">País</label>
-            <select name="dataFormat" class="form-control">
-              <option value="">*TODOS*</option>
-              <option value="">Brasil</option>
-              <option value="">EUA</option>   
-              <option value="">Israel</option>                         
-            </select>
+            <div class="col-md-14">
+                <label form-label>Pesquisar</label>
+                <input class="form-control" autofocus type="text" id="filterSearch" name="filterSearch">
+            </div>
 
-            <label for="recipient-name" class="col-form-label">Região</label>
-            <select name="dataFormat" class="form-control">
-              <option value="">*TODOS*</option>
-              <option value="">Norte</option>
-              <option value="">Sul</option>   
-              <option value="">Leste</option>                         
-            </select>
+            <br><hr class="dropdown-divider">   
 
+            <div class="col-md-14">
+                <label form-label>Continente</label>
+                <select class="form-control" id="continentFilter" name="continentFilter">
+                    <option value="0" selected>Todos</option>
+                    <% continents.forEach((continent)=> { %>
+                      <option value="<%-continent.id%>"><%-continent.name%></option> 
+                    <% }) %>                               
+                </select>
+            </div>
+
+            <div class="col-md-14">
+              <label form-label>País</label>
+              <select class="form-control" id="countryFilter" name="countryFilter">
+                  <option value="0" selected>Todos</option>
+                  <% countries.forEach((country)=> { %>
+                    <option value="<%-country.id%>"><%-country.name%></option> 
+                  <% }) %>                               
+              </select>
+          </div>  
+
+          <div class="col-md-14">
+            <label form-label>Região</label>
+            <select class="form-control" id="regionFilter" name="regionFilter">
+                <option value="0" selected>Todos</option>
+                <% regions.forEach((region)=> { %>
+                  <option value="<%-region.id%>"><%-region.name%></option> 
+                <% }) %>                               
+            </select>
+        </div>           
           </div> 
         </form>
       </div>
       
       <div class="modal-footer">
-        <button type="button" class="btn btn-success">Filtrar</button>
+        <a href="#">
+          <div class="button-frame">
+              <button class="btn btn-success" type="submit" form="form-filter">Filtrar</button>
+          </div>
+      </a>
+
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>        
       </div>
     </div>
     
 </body>
+

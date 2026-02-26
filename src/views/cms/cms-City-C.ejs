@@ -49,89 +49,79 @@
             <main>
                 <h1>Cadastrar - Cidade</h1>
 
-                <form action="">
+                <form id="form-city" method="post" action="/cms-City-C">
                     <fieldset class="flex">
                         <legend>Dados básicos</legend>
 
                         <div class="row">
                             <div class="col-md-4">
-                                <label for="" form-label>Código</label>
+                                <label form-label>Código</label>
                                 <input type="text" class="form-control" disabled>
                             </div>
                             <div class="col-md-4">
-                                <label for="" form-label>Status</label>
-                                <select name="status" class="form-control">
-                                    <option value="">Ativo</option>
-                                    <option value="">Inativo</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="" form-label>Idioma</label>
-                                <select name="status" class="form-control">
-                                    <option value="">Português</option>
-                                    <option value="">Inglês</option>
+                                <label form-label>Status</label>
+                                <select class="form-control" id="cityStatus" name="cityStatus">
+                                    <option value="1">Ativo</option>
+                                    <option value="0">Inativo</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-3">
-                                <label for="" form-label>Continente</label>
-                                <select name="dataFormat" class="form-control">
+                                <label form-label>Continente</label>
+                                <select class="form-control" id="id_Continent" name="id_Continent">
                                     <option value="" data-default disabled selected></option>
-                                    <option value="">Ásia</option>
-                                    <option value="">América do Sul</option>
-                                    <option value="">Europa</option>
-                                    <option value="">Oceania</option>
+                                    <% continents.forEach((continent)=> { %>
+                                        <option value="<%-continent.id%>"><%-continent.name%></option> 
+                                    <% }) %>
                                 </select>
                             </div>
                             <div class="col-md-3">
-                                <label for="" form-label>País</label>
-                                <select name="dataFormat" class="form-control">
+                                <label form-label>País</label>
+                                <select class="form-control" id="id_Country" name="id_Country">
                                     <option value="" data-default disabled selected></option>
-                                    <option value="">Israel</option>
-                                    <option value="">Espanha</option>
-                                    <option value="">Itália</option>
-                                    <option value="">Brasil</option>
+                                    <% countries.forEach((country)=> { %>
+                                        <option value="<%-country.id%>"><%-country.name%></option> 
+                                    <% }) %>
                                 </select>
                             </div>
                             <div class="col-md-3">
-                                <label for="" form-label>Região</label>
-                                <select name="dataFormat" class="form-control">
+                                <label form-label>Região</label>
+                                <select class="form-control" id="id_Region" name="id_Region">
                                     <option value="" data-default disabled selected></option>
-                                    <option value="">Sul</option>
-                                    <option value="">Leste</option>
-                                    <option value="">Sudeste</option>
-                                    <option value="">Norte</option>
+                                    <% regions.forEach((region)=> { %>
+                                        <option value="<%-region.id%>"><%-region.name%></option> 
+                                    <% }) %>
                                 </select>
                             </div>
                             <div class="col-md-3">
-                                <label for="" form-label>Estado</label>
-                                <select name="dataFormat" class="form-control">
+                                <label form-label>Estado</label>
+                                <select class="form-control" id="id_State" name="id_State">
                                     <option value="" data-default disabled selected></option>
-                                    <option value="">Santa Catarina</option>
-                                    <option value="">Málaga</option>
-                                    <option value="">Carmiel</option>
+                                    <% states.forEach((state)=> { %>
+                                        <option value="<%-state.id%>"><%-state.name%></option> 
+                                    <% }) %>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-14">
-                            <label for="" form-label>Nome da Cidade</label>
-                            <input type="text" class="form-control" autofocus>
+                            <label form-label>Nome da Cidade</label>
+                            <input type="text" class="form-control" id="cityName" name="cityName" autofocus required>
                         </div>
 
                         <div class="col-md-14">
-                            <label for="" class="form-label">Descrição</label>
-                            <textarea name="" id="" class="form-control"></textarea>
+                            <label class="form-label">Descrição</label>
+                            <textarea class="form-control" id="cityDescription" name="cityDescription"></textarea>
                         </div>
                     </fieldset>
                 </form>
 
                 <!-- BUTTON AREA -->
                 <div class="button-area">
-                    <a href="/cms-City-Q">
+                    <a href="#">
                         <div class="button-frame">
-                            <button class="btn btn-success">Salvar</button>
+                            <button class="btn btn-success" form="form-city" type="submit">Salvar</button>
                         </div>
                     </a>
                     <a href="/cms-City-C">
@@ -146,8 +136,79 @@
                     </a>
                 </div>
 
+                <script>
+                    const selContinent = document.getElementById("id_Continent");
+                    const selCountry = document.getElementById("id_Country");
+                    const selRegion = document.getElementById("id_Region");
+                    const selState = document.getElementById("id_State");
+
+                    selContinent.addEventListener("change", function () {
+                        const continentId = this.value;
+                        fetch("/cms-City-X-Continent", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ continentId }),
+                        })
+                            .then((r) => r.json())
+                            .then((countries) => {
+                                selCountry.innerHTML = '<option value="" data-default disabled selected></option>';
+                                selRegion.innerHTML = '<option value="" data-default disabled selected></option>';
+                                selState.innerHTML = '<option value="" data-default disabled selected></option>';
+                                countries.forEach((c) => {
+                                    const opt = document.createElement("option");
+                                    opt.value = c.id;
+                                    opt.textContent = c.name;
+                                    selCountry.appendChild(opt);
+                                });
+                            })
+                            .catch(error => console.error("Erro ao carregar países:", error));
+                    });
+
+                    selCountry.addEventListener("change", function () {
+                        const countryId = this.value;
+                        fetch("/cms-City-X-Country", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ countryId }),
+                        })
+                            .then((r) => r.json())
+                            .then((regions) => {
+                                selRegion.innerHTML = '<option value="" data-default disabled selected></option>';
+                                selState.innerHTML = '<option value="" data-default disabled selected></option>';
+                                regions.forEach((rItem) => {
+                                    const opt = document.createElement("option");
+                                    opt.value = rItem.id;
+                                    opt.textContent = rItem.name;
+                                    selRegion.appendChild(opt);
+                                });
+                            })
+                            .catch(error => console.error("Erro ao carregar regiões:", error));
+                    });
+
+                    selRegion.addEventListener("change", function () {
+                        const regionId = this.value;
+                        fetch("/cms-City-X-Region", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ regionId }),
+                        })
+                            .then((r) => r.json())
+                            .then((states) => {
+                                selState.innerHTML = '<option value="" data-default disabled selected></option>';
+                                states.forEach((s) => {
+                                    const opt = document.createElement("option");
+                                    opt.value = s.id;
+                                    opt.textContent = s.name;
+                                    selState.appendChild(opt);
+                                });
+                            })
+                            .catch(error => console.error("Erro ao carregar estados:", error));
+                    });
+                </script>
+
             </main>
 
             <%- include('../parts/footer') %>
 
 </body>
+

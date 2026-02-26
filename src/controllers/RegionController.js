@@ -48,6 +48,7 @@ module.exports = {
             prevBtn: req.body.previousButton,
             nextBtn: req.body.nextButton,
             continentFilter: req.body.continentFilter,
+            countryFilter: req.body.countryFilter,
         }
         
             if (filterStatus.prevBtn === "prevBtnClicked") {
