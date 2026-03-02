@@ -47,11 +47,11 @@
 
                 <div class="row">
                     <div class="col-md-4">
-                        <label form-label>Código</label>
+                        <label class="form-label">Código</label>
                         <input type="text" class="form-control" disabled value="<%= state.id %>">
                     </div>
                     <div class="col-md-4">
-                        <label form-label>Status</label>
+                        <label class="form-label">Status</label>
                         <select class="form-control" id="stateStatus" name="stateStatus">
                             <option value="<%= state.status %>" selected>
                                 <% if (state.status === 1) { %>
@@ -68,7 +68,7 @@
 
                 <div class="row">
                     <div class="col-md-4">
-                        <label form-label>Continente</label>
+                        <label class="form-label">Continente</label>
                         <select class="form-control" id="id_Continent" name="id_Continent">
                             <option value="<%= state.id_continent %>" selected><%= state.continent %></option>
                             <% continents.forEach((continent)=> { %>
@@ -77,7 +77,7 @@
                         </select>
                     </div>
                     <div class="col-md-4">
-                        <label form-label>País</label>
+                        <label class="form-label">País</label>
                         <select class="form-control" id="id_Country" name="id_Country">
                             <option value="<%= state.id_country %>" selected><%= state.country %></option>
                             <% countries.forEach((country)=> { %>
@@ -86,7 +86,7 @@
                         </select>
                     </div>
                     <div class="col-md-4">
-                        <label form-label>Região</label>
+                        <label class="form-label">Região</label>
                         <select class="form-control" id="id_Region" name="id_Region">
                             <option value="<%= state.id_region %>" selected><%= state.region %></option>
                             <% regions.forEach((region)=> { %>
@@ -95,15 +95,20 @@
                         </select>
                     </div>
                 </div>
-                    <div class="col-md-14">
-                        <label form-label>Nome do Estado</label>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="form-label">Nome do Estado</label>
                         <input type="text" class="form-control" id="stateName" name="stateName" required value="<%= state.name %>">
                     </div>
+                </div>
 
-                    <div class="col-md-14">
+                <div class="row">
+                    <div class="col-md-12">
                         <label class="form-label">Descrição</label>
                         <textarea class="form-control" id="stateDescription" name="stateDescription"><%= state.description %></textarea>
                     </div>
+                </div>
             </fieldset>
         </form>
 
