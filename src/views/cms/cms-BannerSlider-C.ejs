@@ -43,86 +43,104 @@
     <main>
         <h1>Cadastrar - Banner Slider</h1>
         
-        <form action="">            
+        <form id="form-banner" method="post" action="/cms-BannerSlider-C" enctype="multipart/form-data">            
             <fieldset class="flex">
                 <legend>Dados básicos</legend>
                 <div class="row">
                     <div class="col-md-4">
-                        <label for="" form-label>Código</label>
+                        <label class="form-label">Código</label>
                         <input type="text" class="form-control" disabled>
                     </div>
                     <div class="col-md-4">
-                        <label for="" form-label>Status</label>
-                        <select name="status" class="form-control">
-                            <option value="">Ativo</option>
-                            <option value="">Inativo</option>
+                        <label class="form-label">Status</label>
+                        <select name="bannerStatus" id="bannerStatus" class="form-control" required>
+                            <option value="1">Ativo</option>
+                            <option value="0">Inativo</option>
                         </select>
                     </div>
                     <div class="col-md-4">
-                        <label for="" form-label>Idioma</label>
-                        <select name="status" class="form-control">
-                            <option value="">Português</option>
-                            <option value="">Inglês</option>
+                        <label class="form-label">Idioma</label>
+                        <select name="bannerLanguage" id="bannerLanguage" class="form-control" required>
+                            <option value="pt">Português</option>
+                            <option value="en">Inglês</option>
+                            <option value="es">Espanhol</option>
                         </select>
                     </div>
                 </div>
             
-                <div class="col-md-14">
-                    <label for="" form-label>Título</label>
-                    <input type="text" class="form-control" autofocus>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="form-label">Título</label>
+                        <input type="text" class="form-control" id="bannerTitle" name="bannerTitle" required autofocus>
+                    </div>
                 </div>
             
-                <div class="col-md-14">
-                    <label for="" class="form-label">Descrição</label>
-                    <textarea name="" id="" class="form-control"></textarea>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="form-label">Descrição</label>
+                        <textarea name="bannerDescription" id="bannerDescription" class="form-control" rows="4"></textarea>
+                    </div>
                 </div>
             
-                <div class="cod-mb-12">
-                    <label for="formFile" class="form-label">Imagem</label>
-                    <input class="form-control" type="file" id="formFile">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="bannerImage" class="form-label">Imagem (upload)</label>
+                        <input class="form-control" type="file" id="bannerImage" name="bannerImage" accept="image/*">
+                        <input type="hidden" id="bannerImageUrl" name="bannerImageUrl" value="">
+                    </div>
                 </div>
             
-                <div class="mb-6 form-check">
-                    <input type="checkbox" class="form-check-input" id="CallToAction-Check" onclick="CallToActionCheck()">
-                    <label class="form-check-label" for="exampleCheck1">Incluir Botão 'Call To Action'</label>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="CallToAction-Check" onchange="CallToActionCheck()">
+                            <label class="form-check-label" for="CallToAction-Check">Incluir Botão 'Call To Action'</label>
+                        </div>
+                    </div>
                 </div>
             
                 <div class="row" id="CallToAction-Fields" style="display:none;">            
                     <div class="col-md-6">
-                        <label for="" form-label>Destino da chamada</label>
-                        <input type="text" class="form-control" placeholder="https://">
+                        <label class="form-label">URL de Destino</label>
+                        <input type="text" class="form-control" id="bannerCtaUrl" name="bannerCtaUrl" placeholder="https://">
                     </div>
             
                     <div class="col-md-6">
-                        <label for="" form-label>Texto do botão</label>
-                        <input type="text" class="form-control" placeholder="Saiba mais">
+                        <label class="form-label">Texto do Botão</label>
+                        <input type="text" class="form-control" id="bannerCtaText" name="bannerCtaText" placeholder="Saiba mais">
                     </div>
                 </div>
             
             </fieldset>
         </form>
 
-                <!-- BUTTON AREA -->
-                <div class="button-area">
-                    <a href="/cms-BannerSlider-Q">
-                        <div class="button-frame">
-                            <button class="btn btn-success">Salvar</button></a>
-                        </div>
-                    </a>
-                    <a href="/cms-BannerSlider-C">
-                        <div class="button-frame">
-                            <button class="btn btn-success">Salvar e Novo</button>
-                        </div>
-                    </a>
-                    <a href="/cms-BannerSlider-Q">
-                        <div class="button-frame">
-                            <button class="btn btn-secondary">Cancelar</button>
-                        </div>
-                    </a>
+        <!-- BUTTON AREA -->
+        <div class="button-area">
+            <a href="#">
+                <div class="button-frame">
+                    <button class="btn btn-success" form="form-banner" type="submit">Salvar</button>
                 </div>
+            </a>
+            <a href="/cms-BannerSlider-Q">
+                <div class="button-frame">
+                    <button class="btn btn-secondary">Cancelar</button>
+                </div>
+            </a>
+        </div>
         
     </main>
 
     <%- include('../parts/footer')  %> 
-    
+
+    <script>
+        function CallToActionCheck() {
+            const checkbox = document.getElementById('CallToAction-Check');
+            const ctaFields = document.getElementById('CallToAction-Fields');
+            if (checkbox.checked) {
+                ctaFields.style.display = 'flex';
+            } else {
+                ctaFields.style.display = 'none';
+            }
+        }
+    </script>
 </body>

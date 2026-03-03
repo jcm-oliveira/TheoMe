@@ -39,30 +39,43 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form id="form-filter" method="post" action="/cms-BannerSlider-F">
           <div class="form-group">
             <div class="row">
                 <div class="col-md-6">
-                    <label for="" form-label>Status</label>
-                    <select name="status" class="form-control">
-                        <option value="">Ativo</option>
-                        <option value="">Inativo</option>
+                    <label class="form-label">Status</label>
+                    <select class="form-control" id="filterStatus" name="filterStatus">
+                        <option value="1">Ativo</option>
+                        <option value="0">Inativo</option>
+                        <option value="2">Todos</option>
                     </select>
                 </div>
                 <div class="col-md-6">
-                    <label for="" form-label>Idioma</label>
-                    <select name="status" class="form-control">
-                        <option value="">Português</option>
-                        <option value="">Inglês</option>
-                    </select>
-                </div>
+                  <label class="form-label">Itens por Página</label>
+                  <select class="form-control" id="itemsPerPageFilter" name="itemsPerPageFilter">
+                      <option value="10">10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                  </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                  <label class="form-label">Pesquisar</label>
+                  <input class="form-control" autofocus type="text" id="filterSearch" name="filterSearch">
+              </div>            
             </div>
           </div> 
         </form>
       </div>
       
       <div class="modal-footer">
-        <button type="button" class="btn btn-success">Filtrar</button>
+        <a href="#">
+          <div class="button-frame">
+              <button class="btn btn-success" type="submit" form="form-filter">Filtrar</button>
+          </div>
+      </a>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>        
       </div>
     </div>

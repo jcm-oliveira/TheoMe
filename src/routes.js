@@ -15,12 +15,28 @@ const CountryController = require('./controllers/CountryController.js')
 const RegionController = require('./controllers/RegionController.js')
 const StateController = require('./controllers/StateController.js')
 const CityController = require('./controllers/CityController.js')
+const BannerSliderController = require('./controllers/BannerSliderController.js')
+const multer = require('multer')
+const path = require('path')
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, path.join(__dirname, '..', 'public', 'uploads', 'banners'))
+    },
+    filename: function (req, file, cb) {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+        const ext = path.extname(file.originalname)
+        cb(null, file.fieldname + '-' + uniqueSuffix + ext)
+    }
+})
+
+const upload = multer({ storage: storage })
 
 //---------------------------------------------------
 //                  PORTAL ROUTES
 //---------------------------------------------------
 
-routes.get('/', (req,res) => res.render(views + "index"));
+routes.get('/', BannerSliderController.loadHomePage);
 
 // TOOLS
 routes.get('/Tools-MainPage', (req,res) => res.render(views + "tools/Tools-MainPage"));
@@ -155,8 +171,14 @@ routes.get('/cms-User-C', (req,res) => res.render(views + "cms/cms-User-C"));
 routes.get('/cms-Language-Q', (req,res) => res.render(views + "cms/cms-Language-Q"));
 routes.get('/cms-Language-C', (req,res) => res.render(views + "cms/cms-Language-C"));
 
-routes.get('/cms-BannerSlider-Q', (req,res) => res.render(views + "cms/cms-BannerSlider-Q"));
-routes.get('/cms-BannerSlider-C', (req,res) => res.render(views + "cms/cms-BannerSlider-C"));
+routes.get('/cms-BannerSlider-Q', BannerSliderController.loadShowPage)
+routes.get('/cms-BannerSlider-C', BannerSliderController.loadInsertPage)
+routes.get('/cms-BannerSlider-C/:id', BannerSliderController.loadUpdatePage)
+routes.post('/cms-BannerSlider-Q', BannerSliderController.paginationView)
+routes.post('/cms-BannerSlider-C', upload.single('bannerImage'), BannerSliderController.insertBannerSliderPage)
+routes.post('/cms-BannerSlider-U/:id', upload.single('bannerImage'), BannerSliderController.updateBannerSliderPage)
+routes.post('/cms-BannerSlider-D/:id', BannerSliderController.deleteBannerSliderPage)
+routes.post('/cms-BannerSlider-F', BannerSliderController.filterBannerSliderPage)
 
 routes.get('/cms-InstitutionalVideo-C', (req,res) => res.render(views + "cms/cms-InstitutionalVideo-C"));
 

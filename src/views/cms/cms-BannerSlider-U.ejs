@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+  <title>TheoMe</title>
+  <link rel="icon" type="image/png" href="/images/logo_aba.png"/>
+
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+   <!-- font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"/>
+   <!-- icons -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    
+    <!-- bootstrap customization -->
+      <link rel="stylesheet" href="/styles/parts/main.css" />
+      <link rel="stylesheet" href="/styles/parts/header.css" />
+      <link rel="stylesheet" href="/styles/parts/footer.css" />
+      <link rel="stylesheet" href="/styles/parts/button.css" />
+      <link rel="stylesheet" href="/styles/parts/form.css" />
+</head>
+
+<body>
+    
+ <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <%- include('../parts/header')  %>
+
+    <%- include('../parts/navbar')  %>    
+   
+    <main>
+        <h1>Editar - Banner Slider</h1>
+        
+        <form id="form-banner" method="post" action="/cms-BannerSlider-U/<%= bannerSlider.id %>" enctype="multipart/form-data">            
+            <fieldset class="flex">
+                <legend>Dados básicos</legend>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Código</label>
+                        <input type="text" class="form-control" disabled value="<%= bannerSlider.id %>">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Status</label>
+                        <select class="form-control" id="bannerStatus" name="bannerStatus" required>
+                            <option value="<%= bannerSlider.status %>" selected>
+                                <% if (bannerSlider.status === 1) { %>
+                                    Ativo
+                                <% } else { %>
+                                    Inativo
+                                <% } %>
+                            </option>
+                            <option value="1">Ativo</option>
+                            <option value="0">Inativo</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Idioma</label>
+                        <select class="form-control" id="bannerLanguage" name="bannerLanguage" required>
+                            <option value="<%= bannerSlider.language %>" selected><%= bannerSlider.language %></option>
+                            <option value="pt">Português</option>
+                            <option value="en">Inglês</option>
+                            <option value="es">Espanhol</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="form-label">Título</label>
+                        <input type="text" class="form-control" id="bannerTitle" name="bannerTitle" required value="<%= bannerSlider.title %>">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="form-label">Descrição</label>
+                        <textarea class="form-control" id="bannerDescription" name="bannerDescription" rows="4"><%= bannerSlider.description %></textarea>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="form-label">Imagem (upload)</label>
+                        <input class="form-control" type="file" id="bannerImage" name="bannerImage" accept="image/*">
+                        <input type="hidden" id="bannerImageUrl" name="bannerImageUrl" value="<%= bannerSlider.image_url || '' %>">
+                        <% if (bannerSlider.image_url) { %>
+                            <div class="mt-2">Imagem atual: <img src="<%= bannerSlider.image_url %>" alt="banner" style="max-height:80px; display:block; margin-top:5px;"></div>
+                        <% } %>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="CallToAction-Check" onchange="CallToActionCheck()" <% if (bannerSlider.call_to_action_url) { %>checked<% } %>>
+                            <label class="form-check-label" for="CallToAction-Check">Incluir Botão 'Call To Action'</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" id="CallToAction-Fields" style="<% if (bannerSlider.call_to_action_url) { %>display:flex;<% } else { %>display:none;<% } %>">            
+                    <div class="col-md-6">
+                        <label class="form-label">URL de Destino</label>
+                        <input type="text" class="form-control" id="bannerCtaUrl" name="bannerCtaUrl" placeholder="https://" value="<%= bannerSlider.call_to_action_url || '' %>">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Texto do Botão</label>
+                        <input type="text" class="form-control" id="bannerCtaText" name="bannerCtaText" placeholder="Saiba mais" value="<%= bannerSlider.call_to_action_text || '' %>">
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+
+       <!-- BUTTON AREA -->
+       <div class="button-area">
+        <a href="#">
+            <div class="button-frame">
+                <button class="btn btn-success" form="form-banner" type="submit">Salvar</button>
+            </div>
+        </a>
+        <a href="/cms-BannerSlider-Q">
+            <div class="button-frame">
+                <button class="btn btn-secondary">Cancelar</button>
+            </div>
+        </a>
+        <a href="#">
+            <div class="button-frame">
+                <button class="btn btn-danger" data-toggle="modal" data-target="#DeleteModal">Excluir</button>
+            </div>
+        </a>
+    </div>
+
+    <!-- TRIGGER MODAL DELETE POPUP -->
+    <div class="modal fade" id="DeleteModal" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <%- include('../cms/cms-BannerSlider-D') %>
+        </div>
+    </div>
+        
+    </main>
+
+    <%- include('../parts/footer')  %> 
+
+    <script>
+        function CallToActionCheck() {
+            const checkbox = document.getElementById('CallToAction-Check');
+            const ctaFields = document.getElementById('CallToAction-Fields');
+            if (checkbox.checked) {
+                ctaFields.style.display = 'flex';
+            } else {
+                ctaFields.style.display = 'none';
+            }
+        }
+    </script>
+    
+</body>
+
+</html>
