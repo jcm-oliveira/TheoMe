@@ -16,6 +16,9 @@ const RegionController = require('./controllers/RegionController.js')
 const StateController = require('./controllers/StateController.js')
 const CityController = require('./controllers/CityController.js')
 const HistoricalPerspectiveController = require('./controllers/HistoricalPerspectiveController.js')
+const CategoryController = require('./controllers/CategoryController.js')
+const CategoryLevel2Controller = require('./controllers/CategoryLevel2Controller.js')
+const CategoryLevel3Controller = require('./controllers/CategoryLevel3Controller.js')
 const BannerSliderController = require('./controllers/BannerSliderController.js')
 const multer = require('multer')
 const path = require('path')
@@ -88,9 +91,6 @@ routes.get('/cms-Chapter-Q', (req,res) => res.render(views + "cms/cms-Chapter-Q"
 routes.get('/cms-Chapter-C', (req,res) => res.render(views + "cms/cms-Chapter-C"));
 
 // REGISTER
-routes.get('/cms-Category-Q', (req,res) => res.render(views + "cms/cms-Category-Q"));
-routes.get('/cms-Category-C', (req,res) => res.render(views + "cms/cms-Category-C"));
-
 routes.get('/cms-Timeline-Q', (req,res) => res.render(views + "cms/cms-Timeline-Q"));
 routes.get('/cms-Timeline-C', (req,res) => res.render(views + "cms/cms-Timeline-C"));
 
@@ -171,6 +171,42 @@ routes.post('/cms-HistoricalPerspective-C', HistoricalPerspectiveController.inse
 routes.post('/cms-HistoricalPerspective-U/:id', HistoricalPerspectiveController.updateHistoricalPerspectivePage)
 routes.post('/cms-HistoricalPerspective-D/:id', HistoricalPerspectiveController.deleteHistoricalPerspectivePage)
 routes.post('/cms-HistoricalPerspective-F', HistoricalPerspectiveController.filterHistoricalPerspectivePage)
+
+//_____________________Category__________________________
+
+routes.get('/cms-Category-Q', CategoryController.loadShowPage)
+routes.get('/cms-Category-C', CategoryController.loadInsertPage)
+routes.get('/cms-Category-C/:id', CategoryController.loadUpdatePage)
+routes.post('/cms-Category-Q', CategoryController.paginationView)
+routes.post('/cms-Category-C', CategoryController.insertCategoryPage)
+routes.post('/cms-Category-U/:id', CategoryController.updateCategoryPage)
+routes.post('/cms-Category-D/:id', CategoryController.deleteCategoryPage)
+routes.post('/cms-Category-F', CategoryController.filterCategoryPage)
+
+//___________________CategoryLevel2____________________
+
+routes.get('/cms-CategoryLevel2-Q', CategoryLevel2Controller.loadShowPage)
+routes.get('/cms-CategoryLevel2-C', CategoryLevel2Controller.loadInsertPage)
+routes.get('/cms-CategoryLevel2-C/:id', CategoryLevel2Controller.loadUpdatePage)
+routes.post('/cms-CategoryLevel2-Q', CategoryLevel2Controller.paginationView)
+routes.post('/cms-CategoryLevel2-C', CategoryLevel2Controller.insertCategoryLevel2Page)
+routes.post('/cms-CategoryLevel2-U/:id', CategoryLevel2Controller.updateCategoryLevel2Page)
+routes.post('/cms-CategoryLevel2-D/:id', CategoryLevel2Controller.deleteCategoryLevel2Page)
+routes.post('/cms-CategoryLevel2-F', CategoryLevel2Controller.filterCategoryLevel2Page)
+routes.post('/cms-CategoryLevel2-X-HistoricalPerspective', CategoryLevel2Controller.historicalPerspectiveListener)
+
+//___________________CategoryLevel3____________________
+
+routes.get('/cms-CategoryLevel3-Q', CategoryLevel3Controller.loadShowPage)
+routes.get('/cms-CategoryLevel3-C', CategoryLevel3Controller.loadInsertPage)
+routes.get('/cms-CategoryLevel3-C/:id', CategoryLevel3Controller.loadUpdatePage)
+routes.post('/cms-CategoryLevel3-Q', CategoryLevel3Controller.paginationView)
+routes.post('/cms-CategoryLevel3-C', CategoryLevel3Controller.insertCategoryLevel3Page)
+routes.post('/cms-CategoryLevel3-U/:id', CategoryLevel3Controller.updateCategoryLevel3Page)
+routes.post('/cms-CategoryLevel3-D/:id', CategoryLevel3Controller.deleteCategoryLevel3Page)
+routes.post('/cms-CategoryLevel3-F', CategoryLevel3Controller.filterCategoryLevel3Page)
+routes.post('/cms-CategoryLevel3-X-HistoricalPerspective', CategoryLevel3Controller.historicalPerspectiveListener)
+routes.post('/cms-CategoryLevel3-X-Level1', CategoryLevel3Controller.level1Listener)
 
 
 

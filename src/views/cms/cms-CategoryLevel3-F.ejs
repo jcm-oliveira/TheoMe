@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <title>TheoMe</title>
+  <link rel="icon" type="image/png" href="/images/logo_aba.png"/>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="/styles/parts/main.css" />
+  <link rel="stylesheet" href="/styles/parts/header.css" />
+  <link rel="stylesheet" href="/styles/parts/footer.css" />
+  <link rel="stylesheet" href="/styles/parts/button.css" />
+  <link rel="stylesheet" href="/styles/parts/form.css" />
+  <link rel="stylesheet" href="/styles/parts/modal.css" />
+</head>
+<body>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="FilterCategoryLevel3Modal">Filtrar - Categoria Nível 3</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <form id="form-filter" method="post" action="/cms-CategoryLevel3-F">
+          <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label form-label>Status</label>
+                    <select class="form-control" id="filterStatus" name="filterStatus">
+                        <option value="1">Ativo</option>
+                        <option value="0">Inativo</option>
+                        <option value="2">Todos</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label form-label>Itens por Página</label>
+                    <select class="form-control" id="itemsPerPageFilter" name="itemsPerPageFilter">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label form-label>Perspectiva Histórica</label>
+                <select class="form-control" id="historicalPerspectiveFilter" name="historicalPerspectiveFilter">
+                    <option value="0">Todos</option>
+                    <% historicalPerspectives.forEach((item)=> { %>
+                        <option value="<%-item.id%>"><%-item.name%></option>
+                    <% }) %>
+                </select>
+            </div>
+            <div class="col-md-12">
+                <label form-label>Categoria Nível 1</label>
+                <select class="form-control" id="categoryLevel1Filter" name="categoryLevel1Filter">
+                    <option value="0">Todos</option>
+                    <% categoryLevel1List.forEach((item)=> { %>
+                        <option value="<%-item.id%>"><%-item.name%></option>
+                    <% }) %>
+                </select>
+            </div>
+            <div class="col-md-12">
+                <label form-label>Categoria Nível 2</label>
+                <select class="form-control" id="categoryLevel2Filter" name="categoryLevel2Filter">
+                    <option value="0">Todos</option>
+                    <% categoryLevel2List.forEach((item)=> { %>
+                        <option value="<%-item.id%>"><%-item.name%></option>
+                    <% }) %>
+                </select>
+            </div>
+            <div class="col-md-12">
+                <label form-label>Pesquisar</label>
+                <input class="form-control" type="text" id="filterSearch" name="filterSearch">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#"><div class="button-frame"><button class="btn btn-success" type="submit" form="form-filter">Filtrar</button></div></a>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+
+    <script>
+        const filterHistoricalPerspective = document.getElementById("historicalPerspectiveFilter");
+        const filterLevel1 = document.getElementById("categoryLevel1Filter");
+        const filterLevel2 = document.getElementById("categoryLevel2Filter");
+
+        filterHistoricalPerspective.addEventListener("change", function () {
+            const historicalPerspectiveId = this.value;
+            if (historicalPerspectiveId === "0") {
+                return;
+            }
+            fetch("/cms-CategoryLevel3-X-HistoricalPerspective", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ historicalPerspectiveId }),
+            })
+                .then((r) => r.json())
+                .then((level1Items) => {
+                    filterLevel1.innerHTML = '<option value="0">Todos</option>';
+                    filterLevel2.innerHTML = '<option value="0">Todos</option>';
+                    level1Items.forEach((item) => {
+                        const opt = document.createElement("option");
+                        opt.value = item.id;
+                        opt.textContent = item.name;
+                        filterLevel1.appendChild(opt);
+                    });
+                })
+                .catch((error) => console.error("Erro ao carregar categorias nível 1:", error));
+        });
+
+        filterLevel1.addEventListener("change", function () {
+            const categoryLevel1Id = this.value;
+            if (categoryLevel1Id === "0") {
+                return;
+            }
+            fetch("/cms-CategoryLevel3-X-Level1", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ categoryLevel1Id }),
+            })
+                .then((r) => r.json())
+                .then((level2Items) => {
+                    filterLevel2.innerHTML = '<option value="0">Todos</option>';
+                    level2Items.forEach((item) => {
+                        const opt = document.createElement("option");
+                        opt.value = item.id;
+                        opt.textContent = item.name;
+                        filterLevel2.appendChild(opt);
+                    });
+                })
+                .catch((error) => console.error("Erro ao carregar categorias nível 2:", error));
+        });
+    </script>
+</body>

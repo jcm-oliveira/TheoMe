@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <title>TheoMe</title>
+  <link rel="icon" type="image/png" href="/images/logo_aba.png"/>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+  <link rel="stylesheet" href="/styles/parts/main.css" />
+  <link rel="stylesheet" href="/styles/parts/header.css" />
+  <link rel="stylesheet" href="/styles/parts/footer.css" />
+  <link rel="stylesheet" href="/styles/parts/button.css" />
+  <link rel="stylesheet" href="/styles/parts/form.css" />
+</head>
+<body>
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <%- include('../parts/header') %>
+    <%- include('../parts/navbar') %>
+
+    <main>
+        <h1>Cadastrar - Categoria Nível 2</h1>
+
+        <form id="form-categoryLevel2" method="post" action="/cms-CategoryLevel2-C">
+            <fieldset class="flex">
+                <legend>Dados básicos</legend>
+                <div class="row">
+                    <div class="col-md-2">
+                        <label form-label>Código</label>
+                        <input type="text" class="form-control" disabled>
+                    </div>
+                    <div class="col-md-2">
+                        <label form-label>Status</label>
+                        <select class="form-control" id="categoryLevel2Status" name="categoryLevel2Status">
+                            <option value="1">Ativo</option>
+                            <option value="0">Inativo</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label form-label>Perspectiva Histórica</label>
+                        <select class="form-control" id="id_HistoricalPerspective" name="id_HistoricalPerspective" required>
+                            <option value="" data-default disabled selected></option>
+                            <% historicalPerspectives.forEach((item)=> { %>
+                                <option value="<%-item.id%>"><%-item.name%></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label form-label>Categoria Nível 1</label>
+                        <select class="form-control" id="id_CategoryLevel1" name="id_CategoryLevel1" required>
+                            <option value="" data-default disabled selected></option>
+                            <% categoryLevel1List.forEach((item)=> { %>
+                                <option value="<%-item.id%>"><%-item.name%></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-14">
+                    <label form-label>Nome da Categoria Nível 2</label>
+                    <input class="form-control" type="text" id="categoryLevel2Name" name="categoryLevel2Name" autofocus required>
+                </div>
+
+                <div class="col-md-14">
+                    <label class="form-label">Descrição</label>
+                    <textarea class="form-control" id="categoryLevel2Description" name="categoryLevel2Description"></textarea>
+                </div>
+            </fieldset>
+        </form>
+
+        <div class="button-area">
+            <a href="#"><div class="button-frame"><button class="btn btn-success" form="form-categoryLevel2" type="submit">Salvar</button></div></a>
+            <a href="/cms-CategoryLevel2-Q"><div class="button-frame"><button class="btn btn-secondary">Cancelar</button></div></a>
+        </div>
+
+        <script>
+            const selHistoricalPerspective = document.getElementById("id_HistoricalPerspective");
+            const selCategoryLevel1 = document.getElementById("id_CategoryLevel1");
+
+            selHistoricalPerspective.addEventListener("change", function () {
+                const historicalPerspectiveId = this.value;
+                fetch("/cms-CategoryLevel2-X-HistoricalPerspective", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ historicalPerspectiveId }),
+                })
+                    .then((r) => r.json())
+                    .then((level1Items) => {
+                        selCategoryLevel1.innerHTML = '<option value="" data-default disabled selected></option>';
+                        level1Items.forEach((item) => {
+                            const opt = document.createElement("option");
+                            opt.value = item.id;
+                            opt.textContent = item.name;
+                            selCategoryLevel1.appendChild(opt);
+                        });
+                    })
+                    .catch((error) => console.error("Erro ao carregar categorias nível 1:", error));
+            });
+        </script>
+    </main>
+</body>
