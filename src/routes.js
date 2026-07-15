@@ -19,6 +19,7 @@ const HistoricalPerspectiveController = require('./controllers/HistoricalPerspec
 const CategoryController = require('./controllers/CategoryController.js')
 const CategoryLevel2Controller = require('./controllers/CategoryLevel2Controller.js')
 const CategoryLevel3Controller = require('./controllers/CategoryLevel3Controller.js')
+const TimelineController = require('./controllers/TimelineController.js')
 const BannerSliderController = require('./controllers/BannerSliderController.js')
 const multer = require('multer')
 const path = require('path')
@@ -91,9 +92,6 @@ routes.get('/cms-Chapter-Q', (req,res) => res.render(views + "cms/cms-Chapter-Q"
 routes.get('/cms-Chapter-C', (req,res) => res.render(views + "cms/cms-Chapter-C"));
 
 // REGISTER
-routes.get('/cms-Timeline-Q', (req,res) => res.render(views + "cms/cms-Timeline-Q"));
-routes.get('/cms-Timeline-C', (req,res) => res.render(views + "cms/cms-Timeline-C"));
-
 routes.get('/cms-PeriodType-Q', (req,res) => res.render(views + "cms/cms-PeriodType-Q"));
 routes.get('/cms-PeriodType-C', (req,res) => res.render(views + "cms/cms-PeriodType-C"));
 
@@ -171,6 +169,17 @@ routes.post('/cms-HistoricalPerspective-C', HistoricalPerspectiveController.inse
 routes.post('/cms-HistoricalPerspective-U/:id', HistoricalPerspectiveController.updateHistoricalPerspectivePage)
 routes.post('/cms-HistoricalPerspective-D/:id', HistoricalPerspectiveController.deleteHistoricalPerspectivePage)
 routes.post('/cms-HistoricalPerspective-F', HistoricalPerspectiveController.filterHistoricalPerspectivePage)
+
+//______________________Timeline________________________
+
+routes.get('/cms-Timeline-Q', TimelineController.loadShowPage)
+routes.get('/cms-Timeline-C', TimelineController.loadInsertPage)
+routes.get('/cms-Timeline-C/:id', TimelineController.loadUpdatePage)
+routes.post('/cms-Timeline-Q', TimelineController.paginationView)
+routes.post('/cms-Timeline-C', TimelineController.insertTimelinePage)
+routes.post('/cms-Timeline-U/:id', TimelineController.updateTimelinePage)
+routes.post('/cms-Timeline-D/:id', TimelineController.deleteTimelinePage)
+routes.post('/cms-Timeline-F', TimelineController.filterTimelinePage)
 
 //_____________________Category__________________________
 

@@ -40,8 +40,8 @@
    
     <main>
         <h1>Cadastrar - Linha temporal</h1>
-        
-        <form action="">            
+
+        <form id="form-timeline" method="post" action="/cms-Timeline-C">
             <fieldset class="flex">
                 <legend>Dados básicos</legend>
                 <div class="row">
@@ -51,50 +51,50 @@
                     </div>
                     <div class="col-md-3">
                         <label for="" form-label>Status</label>
-                        <select name="status" class="form-control">
-                            <option value="">Ativo</option>
-                            <option value="">Inativo</option>
+                        <select id="timelineStatus" name="timelineStatus" class="form-control">
+                            <option value="1">Ativo</option>
+                            <option value="0">Inativo</option>
                         </select>
                     </div>
-                    <div class="col-md-3">
-                        <label for="" form-label>Idioma</label>
-                        <select name="status" class="form-control">
-                            <option value="">Português</option>
-                            <option value="">Inglês</option>
+                    <div class="col-md-6">
+                        <label for="" form-label>Perspectiva Histórica</label>
+                        <select class="form-control" id="id_HistoricalPerspective" name="id_HistoricalPerspective" required>
+                            <option value="" data-default disabled selected></option>
+                            <% historicalPerspectives.forEach((item)=> { %>
+                                <option value="<%-item.id%>"><%-item.name%></option>
+                            <% }) %>
                         </select>
                     </div>
                     <div class="col-md-3">
                         <label for="" form-label>Visualização</label>
-                        <select name="dataFormat" class="form-control">
-                            <option value="" data-default disabled selected></option>
-                            <option value="">Contínuo (Em única linha)</option>
-                            <option value="">Expandido (Cascateado)</option>
+                        <select id="timelineVisualization" name="timelineVisualization" class="form-control">
+                            <option value="timeline-continuous">Contínuo (Em única linha)</option>
+                            <option value="timeline-expanded">Expandido (Cascateado)</option>
                         </select>
                     </div>
                 </div>
-            
-                </div>
+
                 <div class="col-md-14">
                     <label for="" form-label>Nome da linha temporal</label>
-                    <input type="text" class="form-control" autofocus>
+                    <input id="timelineName" name="timelineName" type="text" class="form-control" autofocus required>
                 </div>
 
                 <div class="row">            
             
                     <div class="col-md-6">
                         <label for="" form-label>Cor do fundo (HTML)</label>
-                        <input type="text" class="form-control" autofocus>
+                        <input id="timelineBackgroundColor" name="timelineBackgroundColor" type="text" class="form-control">
                     </div>
             
                     <div class="col-md-6">
-                        <label for="formFile" class="form-label">Ícone</label>
-                        <input class="form-control" type="file" id="formFile">
+                        <label for="timelineIcon" class="form-label">Ícone (URL)</label>
+                        <input class="form-control" type="text" id="timelineIcon" name="timelineIcon">
                     </div>
                 </div>
             
                 <div class="col-md-14">
                     <label for="" class="form-label">Descrição</label>
-                    <textarea name="" id="" class="form-control"></textarea>
+                    <textarea class="form-control" id="timelineDescription" name="timelineDescription"></textarea>
                 </div>
             
             
@@ -103,14 +103,9 @@
 
     <!-- BUTTON AREA -->
        <div class="button-area">
-        <a href="/cms-Timeline-Q">
+        <a href="#">
             <div class="button-frame">
-                <button class="btn btn-success">Salvar</button></a>
-            </div>
-        </a>
-        <a href="/cms-Timeline-C">
-            <div class="button-frame">
-                <button class="btn btn-success">Salvar e Novo</button>
+                <button class="btn btn-success" type="submit" form="form-timeline">Salvar</button>
             </div>
         </a>
         <a href="/cms-Timeline-Q">
