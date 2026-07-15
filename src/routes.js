@@ -15,6 +15,7 @@ const CountryController = require('./controllers/CountryController.js')
 const RegionController = require('./controllers/RegionController.js')
 const StateController = require('./controllers/StateController.js')
 const CityController = require('./controllers/CityController.js')
+const HistoricalPerspectiveController = require('./controllers/HistoricalPerspectiveController.js')
 const BannerSliderController = require('./controllers/BannerSliderController.js')
 const multer = require('multer')
 const path = require('path')
@@ -93,9 +94,6 @@ routes.get('/cms-Category-C', (req,res) => res.render(views + "cms/cms-Category-
 routes.get('/cms-Timeline-Q', (req,res) => res.render(views + "cms/cms-Timeline-Q"));
 routes.get('/cms-Timeline-C', (req,res) => res.render(views + "cms/cms-Timeline-C"));
 
-routes.get('/cms-HistoricalPerspective-Q', (req,res) => res.render(views + "cms/cms-HistoricalPerspective-Q"));
-routes.get('/cms-HistoricalPerspective-C', (req,res) => res.render(views + "cms/cms-HistoricalPerspective-C"));
-
 routes.get('/cms-PeriodType-Q', (req,res) => res.render(views + "cms/cms-PeriodType-Q"));
 routes.get('/cms-PeriodType-C', (req,res) => res.render(views + "cms/cms-PeriodType-C"));
 
@@ -162,6 +160,17 @@ routes.post('/cms-City-F', CityController.filterCityPage)
 routes.post('/cms-City-X-Continent', CityController.continentListener)
 routes.post('/cms-City-X-Country', CityController.countryListener)
 routes.post('/cms-City-X-Region', CityController.regionListener)
+
+//_________________HistoricalPerspective________________
+
+routes.get('/cms-HistoricalPerspective-Q', HistoricalPerspectiveController.loadShowPage)
+routes.get('/cms-HistoricalPerspective-C', HistoricalPerspectiveController.loadInsertPage)
+routes.get('/cms-HistoricalPerspective-C/:id', HistoricalPerspectiveController.loadUpdatePage)
+routes.post('/cms-HistoricalPerspective-Q', HistoricalPerspectiveController.paginationView)
+routes.post('/cms-HistoricalPerspective-C', HistoricalPerspectiveController.insertHistoricalPerspectivePage)
+routes.post('/cms-HistoricalPerspective-U/:id', HistoricalPerspectiveController.updateHistoricalPerspectivePage)
+routes.post('/cms-HistoricalPerspective-D/:id', HistoricalPerspectiveController.deleteHistoricalPerspectivePage)
+routes.post('/cms-HistoricalPerspective-F', HistoricalPerspectiveController.filterHistoricalPerspectivePage)
 
 
 
