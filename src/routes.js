@@ -91,6 +91,11 @@ routes.get('/cms-Book-C', (req,res) => res.render(views + "cms/cms-Book-C"));
 routes.get('/cms-Chapter-Q', (req,res) => res.render(views + "cms/cms-Chapter-Q"));
 routes.get('/cms-Chapter-C', (req,res) => res.render(views + "cms/cms-Chapter-C"));
 
+routes.get('/cms-BibliographicReference-Q', (req,res) => res.render(views + "cms/cms-BibliographicReference-Q"));
+routes.get('/cms-BibliographicReference-C', (req,res) => res.render(views + "cms/cms-BibliographicReference-C"));
+routes.get('/cms-Publisher-Q', (req,res) => res.render(views + "cms/cms-Publisher-Q"));
+routes.get('/cms-Publisher-C', (req,res) => res.render(views + "cms/cms-Publisher-C"));
+
 // REGISTER
 routes.get('/cms-PeriodType-Q', (req,res) => res.render(views + "cms/cms-PeriodType-Q"));
 routes.get('/cms-PeriodType-C', (req,res) => res.render(views + "cms/cms-PeriodType-C"));
