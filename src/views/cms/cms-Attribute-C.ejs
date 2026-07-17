@@ -39,9 +39,9 @@
     <%- include('../parts/navbar')  %>    
    
     <main>
-        <h1>Cadastrar - Período</h1>
+        <h1>Cadastrar - Atributo</h1>
         
-        <form action="">            
+        <form id="form-attribute" method="post" action="/cms-Attribute-C">
             <fieldset class="flex">
                 <legend>Dados básicos</legend>
                 <div class="row">
@@ -51,60 +51,48 @@
                     </div>
                     <div class="col-md-4">
                         <label for="" form-label>Status</label>
-                        <select name="status" class="form-control">
-                            <option value="">Ativo</option>
-                            <option value="">Inativo</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4">
-                        <label for="" form-label>Idioma</label>
-                        <select name="status" class="form-control">
-                            <option value="">Português</option>
-                            <option value="">Inglês</option>
+                        <select id="attributeStatus" name="attributeStatus" class="form-control">
+                            <option value="1">Ativo</option>
+                            <option value="0">Inativo</option>
                         </select>
                     </div>
                 </div>
 
                     <div class="col-md-14">
-                        <label for="" form-label>Tipo de Período</label>
-                        <select name="dataFormat" class="form-control">
+                        <label for="" form-label>Tipo de Atributo</label>
+                        <select class="form-control" id="id_AttributeType" name="id_AttributeType" required>
                             <option value=""data-default disabled selected></option>
-                            <option value="">Século</option>                
-                            <option value="">Idade Histórica</option>
-                            <option value="">Períodos teológicos</option>                              
+                            <% attributeTypes.forEach((attributeType)=> { %>
+                                <option value="<%-attributeType.id%>"><%-attributeType.name%></option>
+                            <% }) %>
                         </select>
                     </div>
 
                     <div class="col-md-14">
-                        <label for="" form-label>Nome do Período</label>
-                        <input type="text" class="form-control" autofocus>
+                        <label for="" form-label>Nome do Atributo</label>
+                        <input class="form-control" type="text" id="attributeName" name="attributeName" autofocus required>
                     </div>
 
                     <div class="col-md-14">
                         <label for="" class="form-label">Descrição</label>
-                        <textarea name="" id="" class="form-control"></textarea>
+                        <textarea class="form-control" id="attributeDescription" name="attributeDescription"></textarea>
                     </div>
 
                     <div class="col-md-14">
-                        <label for="formFile" class="form-label">Figura</label>
-                        <input class="form-control" type="file" id="formFile">
+                        <label for="attributeImage" class="form-label">Figura (URL)</label>
+                        <input class="form-control" type="text" id="attributeImage" name="attributeImage">
                     </div>
             </fieldset>
         </form>
 
                                 <!-- BUTTON AREA -->
                                 <div class="button-area">
-                                    <a href="/cms-Period-Q">
+                                    <a href="#">
                                         <div class="button-frame">
-                                            <button class="btn btn-success">Salvar</button></a>
+                                            <button class="btn btn-success" form="form-attribute" type="submit">Salvar</button>
                                         </div>
                                     </a>
-                                    <a href="/cms-Period-C">
-                                        <div class="button-frame">
-                                            <button class="btn btn-success">Salvar e Novo</button>
-                                        </div>
-                                    </a>
-                                    <a href="/cms-Period-Q">
+                                    <a href="/cms-Attribute-Q">
                                         <div class="button-frame">
                                             <button class="btn btn-secondary">Cancelar</button>
                                         </div>

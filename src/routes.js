@@ -20,6 +20,8 @@ const CategoryController = require('./controllers/CategoryController.js')
 const CategoryLevel2Controller = require('./controllers/CategoryLevel2Controller.js')
 const CategoryLevel3Controller = require('./controllers/CategoryLevel3Controller.js')
 const TimelineController = require('./controllers/TimelineController.js')
+const AttributeTypeController = require('./controllers/AttributeTypeController.js')
+const AttributeController = require('./controllers/AttributeController.js')
 const BannerSliderController = require('./controllers/BannerSliderController.js')
 const multer = require('multer')
 const path = require('path')
@@ -97,11 +99,29 @@ routes.get('/cms-Publisher-Q', (req,res) => res.render(views + "cms/cms-Publishe
 routes.get('/cms-Publisher-C', (req,res) => res.render(views + "cms/cms-Publisher-C"));
 
 // REGISTER
-routes.get('/cms-PeriodType-Q', (req,res) => res.render(views + "cms/cms-PeriodType-Q"));
-routes.get('/cms-PeriodType-C', (req,res) => res.render(views + "cms/cms-PeriodType-C"));
+routes.get('/cms-AttributeType-Q', AttributeTypeController.loadShowPage);
+routes.get('/cms-AttributeType-C', AttributeTypeController.loadInsertPage);
+routes.get('/cms-AttributeType-C/:id', AttributeTypeController.loadUpdatePage);
+routes.post('/cms-AttributeType-Q', AttributeTypeController.paginationView);
+routes.post('/cms-AttributeType-C', AttributeTypeController.insertAttributeTypePage);
+routes.post('/cms-AttributeType-U/:id', AttributeTypeController.updateAttributeTypePage);
+routes.post('/cms-AttributeType-D/:id', AttributeTypeController.deleteAttributeTypePage);
+routes.post('/cms-AttributeType-F', AttributeTypeController.filterAttributeTypePage);
 
-routes.get('/cms-Period-Q', (req,res) => res.render(views + "cms/cms-Period-Q"));
-routes.get('/cms-Period-C', (req,res) => res.render(views + "cms/cms-Period-C"));
+routes.get('/cms-Attribute-Q', AttributeController.loadShowPage);
+routes.get('/cms-Attribute-C', AttributeController.loadInsertPage);
+routes.get('/cms-Attribute-C/:id', AttributeController.loadUpdatePage);
+routes.post('/cms-Attribute-Q', AttributeController.paginationView);
+routes.post('/cms-Attribute-C', AttributeController.insertAttributePage);
+routes.post('/cms-Attribute-U/:id', AttributeController.updateAttributePage);
+routes.post('/cms-Attribute-D/:id', AttributeController.deleteAttributePage);
+routes.post('/cms-Attribute-F', AttributeController.filterAttributePage);
+
+// Backward compatibility routes (legacy names)
+routes.get('/cms-PeriodType-Q', (req,res) => res.redirect('/cms-AttributeType-Q'));
+routes.get('/cms-PeriodType-C', (req,res) => res.redirect('/cms-AttributeType-C'));
+routes.get('/cms-Period-Q', (req,res) => res.redirect('/cms-Attribute-Q'));
+routes.get('/cms-Period-C', (req,res) => res.redirect('/cms-Attribute-C'));
 
 //___________________Continent________________________
 

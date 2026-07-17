@@ -39,9 +39,9 @@
     <%- include('../parts/navbar')  %>    
    
     <main>
-        <h1>Cadastrar - Tipo de Período</h1>
+        <h1>Cadastrar - Tipo de Atributo</h1>
         
-        <form action="">            
+        <form id="form-attribute-type" method="post" action="/cms-AttributeType-C">
             <fieldset class="flex">
                 <legend>Dados básicos</legend>
                 <div class="row">
@@ -51,50 +51,38 @@
                     </div>
                     <div class="col-md-4">
                         <label for="" form-label>Status</label>
-                        <select name="status" class="form-control">
-                            <option value="">Ativo</option>
-                            <option value="">Inativo</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4">
-                        <label for="" form-label>Idioma</label>
-                        <select name="status" class="form-control">
-                            <option value="">Português</option>
-                            <option value="">Inglês</option>
+                        <select id="attributeTypeStatus" name="attributeTypeStatus" class="form-control">
+                            <option value="1">Ativo</option>
+                            <option value="0">Inativo</option>
                         </select>
                     </div>
                 </div>                       
                 
                     <div class="col-md-14">
-                        <label for="" form-label>Nome do Tipo de Período</label>
-                        <input type="text" class="form-control" autofocus>
+                        <label for="" form-label>Nome do Tipo de Atributo</label>
+                        <input class="form-control" type="text" id="attributeTypeName" name="attributeTypeName" autofocus required>
                     </div>
                 
                     <div class="col-md-14">
                         <label for="" class="form-label">Descrição</label>
-                        <textarea name="" id="" class="form-control"></textarea>
+                        <textarea class="form-control" id="attributeTypeDescription" name="attributeTypeDescription"></textarea>
                     </div>
 
-                    <div class="cod-mb-12">
-                        <label for="formFile" class="form-label">Figura</label>
-                        <input class="form-control" type="file" id="formFile">
+                    <div class="col-md-14">
+                        <label for="attributeTypeImage" class="form-label">Figura (URL)</label>
+                        <input class="form-control" type="text" id="attributeTypeImage" name="attributeTypeImage">
                     </div>
             </fieldset>
         </form>
 
                         <!-- BUTTON AREA -->
                         <div class="button-area">
-                            <a href="/cms-PeriodType-Q">
+                            <a href="#">
                                 <div class="button-frame">
-                                    <button class="btn btn-success">Salvar</button></a>
+                                    <button class="btn btn-success" form="form-attribute-type" type="submit">Salvar</button>
                                 </div>
                             </a>
-                            <a href="/cms-PeriodType-C">
-                                <div class="button-frame">
-                                    <button class="btn btn-success">Salvar e Novo</button>
-                                </div>
-                            </a>
-                            <a href="/cms-PeriodType-Q">
+                            <a href="/cms-AttributeType-Q">
                                 <div class="button-frame">
                                     <button class="btn btn-secondary">Cancelar</button>
                                 </div>
