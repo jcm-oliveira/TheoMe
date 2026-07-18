@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html> -->
+ <!-- <!DOCTYPE html> -->
 <html lang="pt-br">
 
 <head>
@@ -79,14 +79,43 @@
                     </div>
                 </div>
                 <div class="row">
-
-                    <div class="col-md-9">
+                    <div class="col-md-7">
                         <label for="" class="form-label">Nome do item de estudo</label>
                         <input type="text" class="form-control" autofocus>
+                    </div>                   
+                    <div class="col-md-5">
+                        <label for="" class="form-label">Perspectiva Histórica</label>
+                        <select name="dataFormat" class="form-control">
+                            <option value="" data-default disabled selected></option>
+                            <option value="">Evento histórico</option>
+                            <option value="">Assunto bíblico</option>
+                            <option value="">Personagem</option>
+                            <option value="">Mapa</option>
+                        </select>
                     </div>
-
-                    <div class="col-md-3">
-                        <label for="" class="form-label">Categoria</label>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="" class="form-label">Categoria Nível 1</label>
+                        <select name="dataFormat" class="form-control">
+                            <option value="" data-default disabled selected></option>
+                            <option value="">Evento histórico</option>
+                            <option value="">Assunto bíblico</option>
+                            <option value="">Personagem</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="" class="form-label">Categoria Nível 2</label>
+                        <select name="dataFormat" class="form-control">
+                            <option value="" data-default disabled selected></option>
+                            <option value="">Evento histórico</option>
+                            <option value="">Assunto bíblico</option>
+                            <option value="">Personagem</option>
+                            <option value="">Mapa</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="" class="form-label">Categoria Nível 3</label>
                         <select name="dataFormat" class="form-control">
                             <option value="" data-default disabled selected></option>
                             <option value="">Evento histórico</option>
@@ -102,28 +131,36 @@
                             <option value="">Glossário</option>
                         </select>
                     </div>
-
                 </div>
 
-                <div class="col-md-14">
-                    <label for="" class="form-label">Descrição</label>
-                    <textarea name="" id="" class="form-control"></textarea>
+<!-- Atributos -->
+
+                <legend><i class="fas fa-book">&nbsp&nbsp</i>Atributos</legend>
+                
+                <div class="button-space">
+                    <a href="#" data-toggle="modal" data-target="#AttributesModal">
+                        <button class="btn btn-success"><i class="fas fa-plus"></i></button>
+                    </a>
                 </div>
-                <div class="col-md-14">
-                    <label for="" class="form-label">Legado</label>
-                    <textarea name="" id="" class="form-control"></textarea>
+                
+                <div class="routine-table">
+                    <table class="table table-bordered table-sm table-hover">
+                        <tr>
+                            <th>Cod.</th>
+                            <th>Publicação</th>
+                            <th>Complemento</th>
+                            <th>Opções</th>
+                        </tr>
+                        <tr>
+                            <td>001</td>
+                            <td>OLIVEIRA, João Carlos, TheoMe, Brasil, 2022</td>
+                            <td>Cap. 3, Pag. 2</td>
+                            <td class="item-option"><i class="fas fa-trash-alt"></i></td>
+                        </tr>
+                    </table>
                 </div>
 
-                <div class="cod-mb-12">
-                    <label for="formFile" class="form-label">Figura</label>
-                    <input class="form-control" type="file" id="formFile">
-                </div>
 
-                <div class="col-md-14">
-                    <label for="" class="form-label">Vídeo (URL)</label>
-                    <input type="text" class="form-control">
-                </div>
-            
 <!-- Geographic Localization -->
 
                 <legend><i class="fas fa-globe">&nbsp&nbsp</i>Localização geográfica</legend>
@@ -175,7 +212,7 @@
                             <option value="">Santa Catarina</option>
                         </select>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-6">
                         <label for="" class="form-label">Cidade</label>
                         <select name="dataFormat" class="form-control">
                             <option value="" data-default disabled selected></option>
@@ -184,38 +221,11 @@
                             <option value="">New York</option>
                         </select>
                     </div>
+                    <div class="col-md-3">
+                        <label for="" class="form-label">Bairro, Vila ou Distrito</label>
+                        <input type="text" class="form-control">
+                    </div>   
                 </div>
-
-<!-- Contextualization -->
-
-                <legend><i class="fas fa-sliders-h">&nbsp&nbsp</i>Contextualização</legend>
-
-                <div class="button-space">
-                    <a href="#" data-toggle="modal" data-target="#ContextualizationModal">
-                        <button class="btn btn-success"><i class="fas fa-plus"></i></button>
-                    </a>
-                </div>
-
-                <div class="routine-table">
-                    <table class="table table-bordered  table-sm table-hover">
-                        <tr>
-                            <th>Cod.</th>
-                            <th>Perspectiva</th>
-                            <th>Opções</th>
-                        </tr>
-                        <tr>
-                            <td>001</td>
-                            <td>Geopolítica</td>
-                            <td class="item-option"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <td>002</td>
-                            <td>Bíblica</td>
-                            <td class="item-option"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                    </table>
-                </div>
-
 
 <!-- Chronology - Timeline Register -->
 
@@ -231,7 +241,7 @@
                     <table class="table table-bordered table-sm table-hover">
                         <tr>
                             <th>Cod.</th>
-                            <th>Linha temporal</th>
+                            <th>Linha Temporal</th>
                             <th>Tipo Registro</th>
                             <th>Período histórico</th>
                             <th>Início</th>
@@ -297,26 +307,38 @@
                     <table class="table table-bordered table-sm table-hover">
                         <tr>
                             <th>Cod.</th>
-                            <th>Categoria</th>
-                            <th>Associated Item</th>
+                            <th>Perspectiva Histórica</th>
+                            <th>Categoria Nível 1</th>
+                            <th>Categoria Nível 2</th>
+                            <th>Categoria Nível 3</th>
+                            <th>item Associado</th>
                             <th>Opções</th>
                         </tr>
                         <tr>
                             <td>001</td>
-                            <td>Mapas</td>
-                            <td>Mapa Egito</td>
+                            <td>Teologia</td>
+                            <td>Bíblia Sagrada</td>
+                            <td>Esquema de Conteúdo</td>
+                            <td>Gênesis</td>
+                            <td>-</td>
                             <td class="item-option"><i class="fas fa-trash-alt"></i></td>
                         </tr>
                         <tr>
                             <td>002</td>
-                            <td>Símbolos</td>
-                            <td>Castiçal</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
                             <td class="item-option"><i class="fas fa-trash-alt"></i></td>
                         </tr>
                         <tr>
-                            <td>002</td>
-                            <td>Personagens</td>
-                            <td>Adão</td>
+                            <td>003</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
                             <td class="item-option"><i class="fas fa-trash-alt"></i></td>
                         </tr>
                     </table>
@@ -361,32 +383,6 @@
                     </table>
                 </div>
 
-<!-- Bibliographic Reference -->
-
-                <legend><i class="fas fa-book">&nbsp&nbsp</i>Referência bibliográfica</legend>
-                
-                <div class="button-space">
-                    <a href="#" data-toggle="modal" data-target="#BibliographicModal">
-                        <button class="btn btn-success"><i class="fas fa-plus"></i></button>
-                    </a>
-                </div>
-                
-                <div class="routine-table">
-                    <table class="table table-bordered table-sm table-hover">
-                        <tr>
-                            <th>Cod.</th>
-                            <th>Publicação</th>
-                            <th>Complemento</th>
-                            <th>Opções</th>
-                        </tr>
-                        <tr>
-                            <td>001</td>
-                            <td>OLIVEIRA, João Carlos, TheoMe, Brasil, 2022</td>
-                            <td>Cap. 3, Pag. 2</td>
-                            <td class="item-option"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                    </table>
-                </div>
     </fieldset>
 </form>
 
@@ -464,11 +460,11 @@
             </div>
         </div>
 
-    <!-- Bibliographic Reference -->
-    <div class="modal fade" id="BibliographicModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Attributes -->
+    <div class="modal fade" id="AttributesModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
 
-            <%- include('cms-BibliographicReference-I') %>
+            <%- include('cms-Attributes-I') %>
 
         </div>
     </div>

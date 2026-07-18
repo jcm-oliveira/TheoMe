@@ -82,6 +82,8 @@ routes.get('/cms-MainPage', (req,res) => res.render(views + "cms/cms-MainPage"))
 // RESEARCH
 routes.get('/cms-StudyItem-Q', (req,res) => res.render(views + "cms/cms-StudyItem-Q"));
 routes.get('/cms-StudyItem-C', (req,res) => res.render(views + "cms/cms-StudyItem-C"));
+routes.get('/cms-StudyItemOld-Q', (req,res) => res.render(views + "cms/cms-StudyItemOld-Q"));
+routes.get('/cms-StudyItemOld-C', (req,res) => res.render(views + "cms/cms-StudyItemOld-C"));
 
 // BIBLE
 routes.get('/cms-BibleTranslation-Q', (req,res) => res.render(views + "cms/cms-BibleTranslation-Q"));
