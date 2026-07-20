@@ -19,6 +19,7 @@ const HistoricalPerspectiveController = require('./controllers/HistoricalPerspec
 const CategoryController = require('./controllers/CategoryController.js')
 const CategoryLevel2Controller = require('./controllers/CategoryLevel2Controller.js')
 const CategoryLevel3Controller = require('./controllers/CategoryLevel3Controller.js')
+const SectionController = require('./controllers/SectionController.js')
 const TimelineController = require('./controllers/TimelineController.js')
 const AttributeTypeController = require('./controllers/AttributeTypeController.js')
 const AttributeController = require('./controllers/AttributeController.js')
@@ -243,6 +244,20 @@ routes.post('/cms-CategoryLevel3-D/:id', CategoryLevel3Controller.deleteCategory
 routes.post('/cms-CategoryLevel3-F', CategoryLevel3Controller.filterCategoryLevel3Page)
 routes.post('/cms-CategoryLevel3-X-HistoricalPerspective', CategoryLevel3Controller.historicalPerspectiveListener)
 routes.post('/cms-CategoryLevel3-X-Level1', CategoryLevel3Controller.level1Listener)
+
+//_______________________Section_______________________
+
+routes.get('/cms-Section-Q', SectionController.loadShowPage)
+routes.get('/cms-Section-C', SectionController.loadInsertPage)
+routes.get('/cms-Section-C/:id', SectionController.loadUpdatePage)
+routes.post('/cms-Section-Q', SectionController.paginationView)
+routes.post('/cms-Section-C', SectionController.insertSectionPage)
+routes.post('/cms-Section-U/:id', SectionController.updateSectionPage)
+routes.post('/cms-Section-D/:id', SectionController.deleteSectionPage)
+routes.post('/cms-Section-F', SectionController.filterSectionPage)
+routes.post('/cms-Section-X-HistoricalPerspective', SectionController.historicalPerspectiveListener)
+routes.post('/cms-Section-X-Level1', SectionController.level1Listener)
+routes.post('/cms-Section-X-Level2', SectionController.level2Listener)
 
 
 
