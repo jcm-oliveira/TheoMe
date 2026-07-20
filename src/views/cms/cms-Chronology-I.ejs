@@ -48,21 +48,17 @@
                 <div class="row">                
                     <div class="col-md-6">
                         <label for="" class="form-label">Linha temporal</label>
-                        <select name="temporalyPerspective" class="form-control">
+                        <select id="chronologyTimeline" class="form-control">
                             <option value="" data-default disabled selected></option>
-                            <option value="">Cronologia Bíblica</option>
-                            <option value="">Governantes</option>
-                            <option value="">Guerras</option>
-                            <option value="">Impérios/Potências</option>
-                            <option value="">Livros da Bíblia</option>
-                            <option value="">Personagens Bíblicos</option>
-                            <option value="">Personagens Políticos</option>
+                            <% timelines.forEach((item)=> { %>
+                                <option value="<%-item.id%>"><%-item.name%></option>
+                            <% }) %>
                         </select>
                     </div>
                 
                     <div class="col-md-3">
                         <label for="" class="form-label">Tipo de registro</label>
-                        <select name="registerType" class="form-control" id="RegisterType" onclick="CheckRegisterType(), DataFormat()">
+                        <select class="form-control" id="RegisterType" onclick="CheckRegisterType(), DataFormat()">
                             <option value="" data-default disabled selected></option>
                             <option value="Marco">Marco</option>
                             <option value="Período">Período</option>
@@ -71,7 +67,7 @@
 
                     <div class="col-md-3">
                         <label for="" form-label>Cor da barra (HTML)</label>
-                        <input type="text" class="form-control" autofocus>
+                        <input type="text" class="form-control" id="chronologyBarColor" autofocus>
                     </div>
                 </div>
                 
@@ -80,13 +76,13 @@
                         <label for="" class="form-label">Formato data:</label>
                         <div class="btn-group btn-group">
                             <label class="btn">
-                                <input type="radio" name="options" id="option1" onclick="DataFormat()" checked> Data completa
+                                <input type="radio" name="chronologyDateFormat" id="option1" value="Data completa" onclick="DataFormat()" checked> Data completa
                             </label>
                             <label class="btn">
-                                <input type="radio" name="options" id="option2" onclick="DataFormat()"> Somente Mês e Ano
+                                <input type="radio" name="chronologyDateFormat" id="option2" value="Somente Mês e Ano" onclick="DataFormat()"> Somente Mês e Ano
                             </label>
                             <label class="btn">
-                                <input type="radio" name="options" id="option3" onclick="DataFormat()"> Somente Ano
+                                <input type="radio" name="chronologyDateFormat" id="option3" value="Somente Ano" onclick="DataFormat()"> Somente Ano
                             </label>
                         </div>
                     </div>
@@ -96,11 +92,11 @@
                     <label class="form-label" id="StartDate-legend" style="padding-left:16px">DATA DE INÍCIO</label>
                     <div class="col-md-2" id="start-day">
                         <label for="" class="form-label">Dia</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" id="chronologyStartDay">
                     </div>
                     <div class="col-md-3" id="start-month">
                         <label for="" class="form-label">Mês</label>
-                        <select name="christReference" class="form-control">
+                        <select class="form-control" id="chronologyStartMonth">
                             <option value="" data-default disabled selected></option>
                             <option value="Janeiro">Janeiro</option>
                             <option value="Fevereiro">Fevereiro</option>
@@ -118,11 +114,11 @@
                     </div>
                     <div class="col-md-3" id="start-year">
                         <label for="" class="form-label">Ano</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" id="chronologyStartYear">
                     </div>
                     <div class="col-md-2">
                         <label for="" class="form-label">Ref.</label>
-                        <select name="christReference" class="form-control">
+                        <select class="form-control" id="chronologyStartReference">
                             <option value="" data-default disabled selected></option>
                             <option value="a.C">a.C</option>
                             <option value="d.C">d.C</option>
@@ -136,11 +132,11 @@
                     <label class="form-label" id="EndDate-legend" style="padding-left:16px">DATA DE TÉRMINO</label>
                     <div class="col-md-2" id="end-day">
                         <label for="" class="form-label">Dia</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" id="chronologyEndDay">
                     </div>
                     <div class="col-md-3" id="end-month">
                         <label for="" class="form-label">Mês</label>
-                        <select name="christReference" class="form-control">
+                        <select class="form-control" id="chronologyEndMonth">
                             <option value="" data-default disabled selected></option>
                             <option value="Janeiro">Janeiro</option>
                             <option value="Fevereiro">Fevereiro</option>
@@ -158,11 +154,11 @@
                     </div>
                     <div class="col-md-3" id="edn-year">
                         <label for="" class="form-label">Ano</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" id="chronologyEndYear">
                     </div>
                     <div class="col-md-2">
                         <label for="">Ref.</label>
-                        <select class="form-control" id="RefEndDate">
+                        <select class="form-control" id="chronologyEndReference">
                             <option value="" data-default disabled selected></option>
                             <option value="a.C">a.C</option>
                             <option value="d.C">d.C</option>
@@ -172,7 +168,7 @@
                 </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success">Inserir</button>
+                    <button type="button" class="btn btn-success" id="btnInsertChronology">Inserir</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 
                 </div>

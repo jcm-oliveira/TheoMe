@@ -38,46 +38,71 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form id="form-attribute-modal" onsubmit="return false;">
         
           
             <div class="col-md-14">
               <label for="" class="form-label">Tipo de Atributo</label>
-              <select name="dataFormat" class="form-control">
+              <select id="modalAttributeType" class="form-control">
                 <option value="" data-default disabled selected></option>
-                <option value="">Contexto</option>
-                <option value="">Semântico</option>
+                <% attributeTypes.forEach((item)=> { %>
+                  <option value="<%-item.id%>"><%-item.name%></option>
+                <% }) %>
               </select>
             </div>        
          
             <div class="col-md-14">
               <label for="" class="form-label">Atributo</label>
-              <select name="dataFormat" class="form-control">
+              <select id="modalAttribute" class="form-control">
                 <option value="" data-default disabled selected></option>
-                <option value="">Descrição</option>
-                <option value="">Resumo</option>
+                <% attributes.forEach((item)=> { %>
+                  <option value="<%-item.id%>" data-attribute-type-id="<%-item.id_attribute_type%>"><%-item.name%></option>
+                <% }) %>
               </select>
             </div>        
 
             <div class="col-md-14">
                 <label for="" class="form-label">Descrição</label>
-                <textarea name="" id="" class="form-control"></textarea>
+              <textarea id="modalAttributeDescription" class="form-control"></textarea>
             </div>
 
             <div class="cod-mb-14">
-                <label for="formFile" class="form-label">Figura</label>
-                <input class="form-control" type="file" id="formFile">
+              <label for="modalAttributeImageFile" class="form-label">Figura</label>
+              <input class="form-control" type="file" id="modalAttributeImageFile" accept="image/*">
+              <input class="form-control mt-2" type="text" id="modalAttributeImage" readonly placeholder="Nenhuma imagem enviada">
+            </div>
+
+            <div class="col-md-14">
+              <label for="modalFigureLayout" class="form-label">Layout figura</label>
+              <select id="modalFigureLayout" class="form-control">
+                <option value="" data-default disabled selected></option>
+                <option value="Figura a esquerda e texto a direita">Figura a esquerda e texto a direita</option>
+                <option value="Figura a direita e texto a esquerda">Figura a direita e texto a esquerda</option>
+                <option value="Texto acima e figura abaixo">Texto acima e figura abaixo</option>
+                <option value="Figura acima e texto abaixo">Figura acima e texto abaixo</option>
+              </select>
             </div>
 
             <div class="col-md-14">
                 <label for="" class="form-label">Vídeo (URL)</label>
-                <input type="text" class="form-control">
+              <input type="text" id="modalAttributeVideo" class="form-control">
+            </div>
+
+            <div class="col-md-14">
+              <label for="modalVideoLayout" class="form-label">Layout vídeo</label>
+              <select id="modalVideoLayout" class="form-control">
+                <option value="" data-default disabled selected></option>
+                <option value="Vídeo a esquerda e texto a direita">Vídeo a esquerda e texto a direita</option>
+                <option value="Vídeo a direita e texto a esquerda">Vídeo a direita e texto a esquerda</option>
+                <option value="Texto acima e vídeo abaixo">Texto acima e vídeo abaixo</option>
+                <option value="Vídeo acima e texto abaixo">Vídeo acima e texto abaixo</option>
+              </select>
             </div>
         
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success">Inserir</button>
+        <button type="button" class="btn btn-success" id="btnInsertAttribute">Inserir</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         
       </div>

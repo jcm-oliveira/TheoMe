@@ -52,7 +52,11 @@
     <main>
         <h1>Cadastrar - Item de Estudo</h1>
 
-        <form action="">
+        <form id="form-study-item" method="post" action="/cms-StudyItem-C">
+            <input type="hidden" id="attributeItemsJson" name="attributeItemsJson" value="[]">
+            <input type="hidden" id="chronologyItemsJson" name="chronologyItemsJson" value="[]">
+            <input type="hidden" id="hierarchyItemsJson" name="hierarchyItemsJson" value="[]">
+            <input type="hidden" id="associationItemsJson" name="associationItemsJson" value="[]">
             <fieldset class="flex">
 
 <!-- Basic Data-->
@@ -61,84 +65,170 @@
                 <div class="row">
                     <div class="col-md-4">
                         <label for="" form-label>Código</label>
-                        <input type="text" class="form-control" disabled>
+                        <input type="text" class="form-control" value="<%= nextStudyItemCode %>" disabled>
                     </div>
                     <div class="col-md-4">
                         <label for="" form-label>Status</label>
-                        <select name="status" class="form-control">
-                            <option value="">Ativo</option>
-                            <option value="">Inativo</option>
+                        <select name="studyItemStatus" class="form-control" required>
+                            <option value="1">Ativo</option>
+                            <option value="0">Inativo</option>
                         </select>
                     </div>
                     <div class="col-md-4">
                         <label for="" form-label>Idioma</label>
-                        <select name="status" class="form-control">
-                            <option value="">Português</option>
-                            <option value="">Inglês</option>
+                        <select name="studyItemLanguage" class="form-control" required>
+                            <option value="pt-BR">Português</option>
+                            <option value="en-US">Inglês</option>
                         </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-7">
                         <label for="" class="form-label">Nome do item de estudo</label>
-                        <input type="text" class="form-control" autofocus>
+                        <input type="text" name="studyItemName" class="form-control" autofocus required>
                     </div>                   
                     <div class="col-md-5">
                         <label for="" class="form-label">Perspectiva Histórica</label>
-                        <select name="dataFormat" class="form-control">
+                        <select name="id_HistoricalPerspective" id="id_HistoricalPerspective" class="form-control" required>
                             <option value="" data-default disabled selected></option>
-                            <option value="">Evento histórico</option>
-                            <option value="">Assunto bíblico</option>
-                            <option value="">Personagem</option>
-                            <option value="">Mapa</option>
+                            <% historicalPerspectives.forEach((item)=> { %>
+                                <option value="<%-item.id%>"><%-item.name%></option>
+                            <% }) %>
                         </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
                         <label for="" class="form-label">Categoria Nível 1</label>
-                        <select name="dataFormat" class="form-control">
+                        <select name="id_CategoryLevel1" id="id_CategoryLevel1" class="form-control" required>
                             <option value="" data-default disabled selected></option>
-                            <option value="">Evento histórico</option>
-                            <option value="">Assunto bíblico</option>
-                            <option value="">Personagem</option>
+                            <% categoryLevel1List.forEach((item)=> { %>
+                                <option value="<%-item.id%>"><%-item.name%></option>
+                            <% }) %>
                         </select>
                     </div>
                     <div class="col-md-4">
                         <label for="" class="form-label">Categoria Nível 2</label>
-                        <select name="dataFormat" class="form-control">
+                        <select name="id_CategoryLevel2" id="id_CategoryLevel2" class="form-control" required>
                             <option value="" data-default disabled selected></option>
-                            <option value="">Evento histórico</option>
-                            <option value="">Assunto bíblico</option>
-                            <option value="">Personagem</option>
-                            <option value="">Mapa</option>
+                            <% categoryLevel2List.forEach((item)=> { %>
+                                <option value="<%-item.id%>"><%-item.name%></option>
+                            <% }) %>
                         </select>
                     </div>
                     <div class="col-md-4">
                         <label for="" class="form-label">Categoria Nível 3</label>
-                        <select name="dataFormat" class="form-control">
+                        <select name="id_CategoryLevel3" id="id_CategoryLevel3" class="form-control" required>
                             <option value="" data-default disabled selected></option>
-                            <option value="">Evento histórico</option>
-                            <option value="">Assunto bíblico</option>
-                            <option value="">Personagem</option>
-                            <option value="">Mapa</option>
-                            <option value="">Infográfico</option>
-                            <option value="">Genealogia</option>
-                            <option value="">Leis e Cerimônias</option>
-                            <option value="">Símbolos</option>
-                            <option value="">Profecias</option>
-                            <option value="">Louvores</option>
-                            <option value="">Glossário</option>
+                            <% categoryLevel3List.forEach((item)=> { %>
+                                <option value="<%-item.id%>"><%-item.name%></option>
+                            <% }) %>
                         </select>
                     </div>
                 </div>
                     <div class="col-md-14">
                         <label for="" class="form-label">Seção</label>
-                        <select name="dataFormat" class="form-control">
+                        <select name="id_Section" id="id_Section" class="form-control" required>
                             <option value="" data-default disabled selected></option>
-                            <option value="">Criação do Mundo</option>
+                            <% sectionList.forEach((item)=> { %>
+                                <option value="<%-item.id%>"><%-item.name%></option>
+                            <% }) %>
                         </select>
                     </div>
+
+                <script>
+                    const selHistoricalPerspective = document.getElementById("id_HistoricalPerspective");
+                    const selLevel1 = document.getElementById("id_CategoryLevel1");
+                    const selLevel2 = document.getElementById("id_CategoryLevel2");
+                    const selLevel3 = document.getElementById("id_CategoryLevel3");
+                    const selSection = document.getElementById("id_Section");
+
+                    selHistoricalPerspective.addEventListener("change", function () {
+                        const historicalPerspectiveId = this.value;
+                        fetch("/cms-StudyItem-X-HistoricalPerspective", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ historicalPerspectiveId }),
+                        })
+                            .then((r) => r.json())
+                            .then((level1Items) => {
+                                selLevel1.innerHTML = '<option value="" data-default disabled selected></option>';
+                                selLevel2.innerHTML = '<option value="" data-default disabled selected></option>';
+                                selLevel3.innerHTML = '<option value="" data-default disabled selected></option>';
+                                selSection.innerHTML = '<option value="" data-default disabled selected></option>';
+                                level1Items.forEach((item) => {
+                                    const opt = document.createElement("option");
+                                    opt.value = item.id;
+                                    opt.textContent = item.name;
+                                    selLevel1.appendChild(opt);
+                                });
+                            })
+                            .catch((error) => console.error("Erro ao carregar categorias nível 1:", error));
+                    });
+
+                    selLevel1.addEventListener("change", function () {
+                        const categoryLevel1Id = this.value;
+                        fetch("/cms-StudyItem-X-Level1", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ categoryLevel1Id }),
+                        })
+                            .then((r) => r.json())
+                            .then((level2Items) => {
+                                selLevel2.innerHTML = '<option value="" data-default disabled selected></option>';
+                                selLevel3.innerHTML = '<option value="" data-default disabled selected></option>';
+                                selSection.innerHTML = '<option value="" data-default disabled selected></option>';
+                                level2Items.forEach((item) => {
+                                    const opt = document.createElement("option");
+                                    opt.value = item.id;
+                                    opt.textContent = item.name;
+                                    selLevel2.appendChild(opt);
+                                });
+                            })
+                            .catch((error) => console.error("Erro ao carregar categorias nível 2:", error));
+                    });
+
+                    selLevel2.addEventListener("change", function () {
+                        const categoryLevel2Id = this.value;
+                        fetch("/cms-StudyItem-X-Level2", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ categoryLevel2Id }),
+                        })
+                            .then((r) => r.json())
+                            .then((level3Items) => {
+                                selLevel3.innerHTML = '<option value="" data-default disabled selected></option>';
+                                selSection.innerHTML = '<option value="" data-default disabled selected></option>';
+                                level3Items.forEach((item) => {
+                                    const opt = document.createElement("option");
+                                    opt.value = item.id;
+                                    opt.textContent = item.name;
+                                    selLevel3.appendChild(opt);
+                                });
+                            })
+                            .catch((error) => console.error("Erro ao carregar categorias nível 3:", error));
+                    });
+
+                    selLevel3.addEventListener("change", function () {
+                        const categoryLevel3Id = this.value;
+                        fetch("/cms-StudyItem-X-Level3", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ categoryLevel3Id }),
+                        })
+                            .then((r) => r.json())
+                            .then((sectionItems) => {
+                                selSection.innerHTML = '<option value="" data-default disabled selected></option>';
+                                sectionItems.forEach((item) => {
+                                    const opt = document.createElement("option");
+                                    opt.value = item.id;
+                                    opt.textContent = item.name;
+                                    selSection.appendChild(opt);
+                                });
+                            })
+                            .catch((error) => console.error("Erro ao carregar seções:", error));
+                    });
+                </script>
 
 <!-- Atributos -->
 
@@ -146,7 +236,7 @@
                 
                 <div class="button-space">
                     <a href="#" data-toggle="modal" data-target="#AttributesModal">
-                        <button class="btn btn-success"><i class="fas fa-plus"></i></button>
+                        <button class="btn btn-success" type="button"><i class="fas fa-plus"></i></button>
                     </a>
                 </div>
                 
@@ -159,15 +249,173 @@
                             <th>Descrição</th>
                             <th>Opções</th>
                         </tr>
-                        <tr>
-                            <td>001</td>
-                            <td>Contexto</td>
-                            <td>Lugares</td>
-                            <td>Deus cria o mundo e estabelece sua ordem e 6 dias e descansa no sétimo dia.</td>
-                            <td class="item-option"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
+                        <tbody id="studyItemAttributesTableBody"></tbody>
                     </table>
                 </div>
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const modalAttributeType = document.getElementById("modalAttributeType");
+                        const modalAttribute = document.getElementById("modalAttribute");
+                        const modalAttributeDescription = document.getElementById("modalAttributeDescription");
+                        const modalAttributeImageFile = document.getElementById("modalAttributeImageFile");
+                        const modalAttributeImage = document.getElementById("modalAttributeImage");
+                        const modalFigureLayout = document.getElementById("modalFigureLayout");
+                        const modalAttributeVideo = document.getElementById("modalAttributeVideo");
+                        const modalVideoLayout = document.getElementById("modalVideoLayout");
+                        const btnInsertAttribute = document.getElementById("btnInsertAttribute");
+                        const attributeItemsJsonInput = document.getElementById("attributeItemsJson");
+                        const studyItemAttributesTableBody = document.getElementById("studyItemAttributesTableBody");
+
+                        if (!modalAttributeType || !modalAttribute || !modalAttributeImageFile || !modalFigureLayout || !modalVideoLayout || !btnInsertAttribute) {
+                            return;
+                        }
+
+                        let attributeItems = [];
+                        let uploadedAttributeImagePath = null;
+                        let isUploadingAttributeImage = false;
+
+                        function updateAttributeItemsInput() {
+                            attributeItemsJsonInput.value = JSON.stringify(attributeItems);
+                        }
+
+                        function renderAttributeItems() {
+                            studyItemAttributesTableBody.innerHTML = "";
+
+                            attributeItems.forEach((item, index) => {
+                                const tr = document.createElement("tr");
+
+                                const tdCode = document.createElement("td");
+                                tdCode.textContent = String(index + 1).padStart(3, "0");
+                                tr.appendChild(tdCode);
+
+                                const tdType = document.createElement("td");
+                                tdType.textContent = item.attributeTypeName;
+                                tr.appendChild(tdType);
+
+                                const tdAttribute = document.createElement("td");
+                                tdAttribute.textContent = item.attributeName;
+                                tr.appendChild(tdAttribute);
+
+                                const tdDescription = document.createElement("td");
+                                tdDescription.textContent = item.description || "";
+                                tr.appendChild(tdDescription);
+
+                                const tdOptions = document.createElement("td");
+                                tdOptions.className = "item-option";
+                                const removeIcon = document.createElement("i");
+                                removeIcon.className = "fas fa-trash-alt";
+                                removeIcon.style.cursor = "pointer";
+                                removeIcon.addEventListener("click", function () {
+                                    attributeItems.splice(index, 1);
+                                    updateAttributeItemsInput();
+                                    renderAttributeItems();
+                                });
+                                tdOptions.appendChild(removeIcon);
+                                tr.appendChild(tdOptions);
+
+                                studyItemAttributesTableBody.appendChild(tr);
+                            });
+                        }
+
+                        modalAttributeType.addEventListener("change", function () {
+                            const attributeTypeId = this.value;
+                            fetch("/cms-StudyItem-X-AttributeType", {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({ attributeTypeId }),
+                            })
+                                .then((r) => r.json())
+                                .then((attributeItemsByType) => {
+                                    modalAttribute.innerHTML = '<option value="" data-default disabled selected></option>';
+                                    attributeItemsByType.forEach((item) => {
+                                        const opt = document.createElement("option");
+                                        opt.value = item.id;
+                                        opt.textContent = item.name;
+                                        modalAttribute.appendChild(opt);
+                                    });
+                                })
+                                .catch((error) => console.error("Erro ao carregar atributos:", error));
+                        });
+
+                        modalAttributeImageFile.addEventListener("change", function () {
+                            const selectedFile = modalAttributeImageFile.files && modalAttributeImageFile.files[0];
+                            if (!selectedFile) {
+                                uploadedAttributeImagePath = null;
+                                modalAttributeImage.value = "";
+                                return;
+                            }
+
+                            const formData = new FormData();
+                            formData.append("attributeImage", selectedFile);
+
+                            isUploadingAttributeImage = true;
+                            modalAttributeImage.value = "Enviando imagem...";
+
+                            fetch("/cms-StudyItem-Upload-Attribute-Image", {
+                                method: "POST",
+                                body: formData,
+                            })
+                                .then((r) => r.json())
+                                .then((uploadResult) => {
+                                    uploadedAttributeImagePath = uploadResult.imagePath || null;
+                                    modalAttributeImage.value = uploadedAttributeImagePath || "";
+                                })
+                                .catch(() => {
+                                    uploadedAttributeImagePath = null;
+                                    modalAttributeImage.value = "Erro no upload";
+                                })
+                                .finally(() => {
+                                    isUploadingAttributeImage = false;
+                                });
+                        });
+
+                        btnInsertAttribute.addEventListener("click", function () {
+                            if (isUploadingAttributeImage) {
+                                return;
+                            }
+
+                            if (!modalAttributeType.value || !modalAttribute.value) {
+                                return;
+                            }
+
+                            const selectedTypeOption = modalAttributeType.options[modalAttributeType.selectedIndex];
+                            const selectedAttributeOption = modalAttribute.options[modalAttribute.selectedIndex];
+
+                            attributeItems.push({
+                                idAttributeType: modalAttributeType.value,
+                                attributeTypeName: selectedTypeOption ? selectedTypeOption.textContent : "",
+                                idAttribute: modalAttribute.value,
+                                attributeName: selectedAttributeOption ? selectedAttributeOption.textContent : "",
+                                description: modalAttributeDescription.value || null,
+                                image: uploadedAttributeImagePath || null,
+                                figureLayout: modalFigureLayout.value || null,
+                                videoUrl: modalAttributeVideo.value || null,
+                                videoLayout: modalVideoLayout.value || null,
+                            });
+
+                            updateAttributeItemsInput();
+                            renderAttributeItems();
+
+                            modalAttributeType.value = "";
+                            modalAttribute.innerHTML = '<option value="" data-default disabled selected></option>';
+                            modalAttributeDescription.value = "";
+                            modalAttributeImageFile.value = "";
+                            modalAttributeImage.value = "";
+                            modalFigureLayout.value = "";
+                            modalAttributeVideo.value = "";
+                            modalVideoLayout.value = "";
+                            uploadedAttributeImagePath = null;
+
+                            if (window.jQuery) {
+                                window.jQuery("#AttributesModal").modal("hide");
+                            }
+                        });
+
+                        updateAttributeItemsInput();
+                        renderAttributeItems();
+                    });
+                </script>
 
 
 <!-- Geographic Localization -->
@@ -176,65 +424,150 @@
                 <div class="row">
                     <div class="col-md-3">
                         <label for="" class="form-label">Continente</label>
-                        <select name="continent" class="form-control">
+                        <select name="id_Continent" id="id_Continent" class="form-control">
                             <option value="" data-default disabled selected></option>
-                            <option value="">*NÃO INFORMADO*</option>
-                            <option value="">África</option>
-                            <option value="">América do Norte</option>
-                            <option value="">América do Sul</option>
-                            <option value="">Ásia</option>
-                            <option value="">Antárdida</option>
-                            <option value="">Europa</option>
+                            <% continents.forEach((item)=> { %>
+                                <option value="<%-item.id%>"><%-item.name%></option>
+                            <% }) %>
                         </select>
                     </div>
                     <div class="col-md-6">
                         <label for="" class="form-label">País</label>
-                        <select name="dataFormat" class="form-control">
+                        <select name="id_Country" id="id_Country" class="form-control">
                             <option value="" data-default disabled selected></option>
-                            <option value="">*NÃO INFORMADO*</option>
-                            <option value="">EUA</option>
-                            <option value="">Brasil</option>
+                            <% countries.forEach((item)=> { %>
+                                <option value="<%-item.id%>"><%-item.name%></option>
+                            <% }) %>
                         </select>
                     </div>
                     <div class="col-md-3">
                         <label for="" class="form-label">Região</label>
-                        <select name="region" class="form-control">
+                        <select name="id_Region" id="id_Region" class="form-control">
                             <option value="" data-default disabled selected></option>
-                            <option value="">*NÃO INFORMADO*</option>
-                            <option value="">Leste</option>
-                            <option value="">Norte</option>
-                            <option value="">Nordeste</option>
-                            <option value="">Oeste</option>
-                            <option value="">Centro-oeste</option>
-                            <option value="">Sul</option>
-                            <option value="">Sudeste</option>
+                            <% regions.forEach((item)=> { %>
+                                <option value="<%-item.id%>"><%-item.name%></option>
+                            <% }) %>
                         </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
                         <label for="" class="form-label">Estado</label>
-                        <select name="dataFormat" class="form-control">
+                        <select name="id_State" id="id_State" class="form-control">
                             <option value="" data-default disabled selected></option>
-                            <option value="">*NÃO INFORMADO*</option>
-                            <option value="">New York</option>
-                            <option value="">Santa Catarina</option>
+                            <% states.forEach((item)=> { %>
+                                <option value="<%-item.id%>"><%-item.name%></option>
+                            <% }) %>
                         </select>
                     </div>
                     <div class="col-md-6">
                         <label for="" class="form-label">Cidade</label>
-                        <select name="dataFormat" class="form-control">
+                        <select name="id_City" id="id_City" class="form-control">
                             <option value="" data-default disabled selected></option>
-                            <option value="">*NÃO INFORMADO*</option>
-                            <option value="">São Paulo</option>
-                            <option value="">New York</option>
+                            <% cities.forEach((item)=> { %>
+                                <option value="<%-item.id%>"><%-item.name%></option>
+                            <% }) %>
                         </select>
                     </div>
                     <div class="col-md-3">
                         <label for="" class="form-label">Bairro, Vila ou Distrito</label>
-                        <input type="text" class="form-control">
+                        <input type="text" name="district" class="form-control">
                     </div>   
                 </div>
+
+                <script>
+                    const selContinent = document.getElementById("id_Continent");
+                    const selCountry = document.getElementById("id_Country");
+                    const selRegion = document.getElementById("id_Region");
+                    const selState = document.getElementById("id_State");
+                    const selCity = document.getElementById("id_City");
+
+                    selContinent.addEventListener("change", function () {
+                        const continentId = this.value;
+                        fetch("/cms-StudyItem-X-Continent", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ continentId }),
+                        })
+                            .then((r) => r.json())
+                            .then((countryItems) => {
+                                selCountry.innerHTML = '<option value="" data-default disabled selected></option>';
+                                selRegion.innerHTML = '<option value="" data-default disabled selected></option>';
+                                selState.innerHTML = '<option value="" data-default disabled selected></option>';
+                                selCity.innerHTML = '<option value="" data-default disabled selected></option>';
+                                countryItems.forEach((item) => {
+                                    const opt = document.createElement("option");
+                                    opt.value = item.id;
+                                    opt.textContent = item.name;
+                                    selCountry.appendChild(opt);
+                                });
+                            })
+                            .catch((error) => console.error("Erro ao carregar países:", error));
+                    });
+
+                    selCountry.addEventListener("change", function () {
+                        const countryId = this.value;
+                        fetch("/cms-StudyItem-X-Country", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ countryId }),
+                        })
+                            .then((r) => r.json())
+                            .then((regionItems) => {
+                                selRegion.innerHTML = '<option value="" data-default disabled selected></option>';
+                                selState.innerHTML = '<option value="" data-default disabled selected></option>';
+                                selCity.innerHTML = '<option value="" data-default disabled selected></option>';
+                                regionItems.forEach((item) => {
+                                    const opt = document.createElement("option");
+                                    opt.value = item.id;
+                                    opt.textContent = item.name;
+                                    selRegion.appendChild(opt);
+                                });
+                            })
+                            .catch((error) => console.error("Erro ao carregar regiões:", error));
+                    });
+
+                    selRegion.addEventListener("change", function () {
+                        const regionId = this.value;
+                        fetch("/cms-StudyItem-X-Region", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ regionId }),
+                        })
+                            .then((r) => r.json())
+                            .then((stateItems) => {
+                                selState.innerHTML = '<option value="" data-default disabled selected></option>';
+                                selCity.innerHTML = '<option value="" data-default disabled selected></option>';
+                                stateItems.forEach((item) => {
+                                    const opt = document.createElement("option");
+                                    opt.value = item.id;
+                                    opt.textContent = item.name;
+                                    selState.appendChild(opt);
+                                });
+                            })
+                            .catch((error) => console.error("Erro ao carregar estados:", error));
+                    });
+
+                    selState.addEventListener("change", function () {
+                        const stateId = this.value;
+                        fetch("/cms-StudyItem-X-State", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ stateId }),
+                        })
+                            .then((r) => r.json())
+                            .then((cityItems) => {
+                                selCity.innerHTML = '<option value="" data-default disabled selected></option>';
+                                cityItems.forEach((item) => {
+                                    const opt = document.createElement("option");
+                                    opt.value = item.id;
+                                    opt.textContent = item.name;
+                                    selCity.appendChild(opt);
+                                });
+                            })
+                            .catch((error) => console.error("Erro ao carregar cidades:", error));
+                    });
+                </script>
 
 <!-- Chronology - Timeline Register -->
 
@@ -242,7 +575,7 @@
 
                 <div class="button-space">
                     <a href="#" data-toggle="modal" data-target="#ChronologyModal">
-                        <button class="btn btn-success"><i class="fas fa-plus"></i></button>
+                        <button class="btn btn-success" type="button"><i class="fas fa-plus"></i></button>
                     </a>
                 </div>
 
@@ -252,22 +585,180 @@
                             <th>Cod.</th>
                             <th>Linha Temporal</th>
                             <th>Tipo Registro</th>
-                            <th>Período histórico</th>
+                            <th>Cor da Barra</th>
                             <th>Início</th>
                             <th>Término</th>
                             <th>Opções</th>
                         </tr>
-                        <tr>
-                            <td>001</td>
-                            <td>Guerras</td>
-                            <td>Período</td>
-                            <td>Idade Média</td>
-                            <td>1800 a.C</td>
-                            <td>1500 a.C</td>
-                            <td class="item-option"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
+                        <tbody id="studyItemChronologyTableBody"></tbody>
                     </table>
                 </div>
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const chronologyItemsJsonInput = document.getElementById("chronologyItemsJson");
+                        const chronologyTableBody = document.getElementById("studyItemChronologyTableBody");
+                        const chronologyTimeline = document.getElementById("chronologyTimeline");
+                        const chronologyRegisterType = document.getElementById("RegisterType");
+                        const chronologyBarColor = document.getElementById("chronologyBarColor");
+                        const chronologyStartDay = document.getElementById("chronologyStartDay");
+                        const chronologyStartMonth = document.getElementById("chronologyStartMonth");
+                        const chronologyStartYear = document.getElementById("chronologyStartYear");
+                        const chronologyStartReference = document.getElementById("chronologyStartReference");
+                        const chronologyEndDay = document.getElementById("chronologyEndDay");
+                        const chronologyEndMonth = document.getElementById("chronologyEndMonth");
+                        const chronologyEndYear = document.getElementById("chronologyEndYear");
+                        const chronologyEndReference = document.getElementById("chronologyEndReference");
+                        const btnInsertChronology = document.getElementById("btnInsertChronology");
+
+                        if (!chronologyItemsJsonInput || !chronologyTableBody || !chronologyTimeline || !chronologyRegisterType || !btnInsertChronology) {
+                            return;
+                        }
+
+                        let chronologyItems = [];
+
+                        function getSelectedChronologyDateFormat() {
+                            const selected = document.querySelector('input[name="chronologyDateFormat"]:checked');
+                            return selected ? selected.value : "Data completa";
+                        }
+
+                        function formatChronologyDate(day, month, year, reference, dateFormat) {
+                            if (dateFormat === "Somente Ano") {
+                                return [year, reference].filter(Boolean).join(" ");
+                            }
+                            if (dateFormat === "Somente Mês e Ano") {
+                                return [month, year, reference].filter(Boolean).join(" ");
+                            }
+                            return [day, month, year, reference].filter(Boolean).join(" ");
+                        }
+
+                        function updateChronologyItemsInput() {
+                            chronologyItemsJsonInput.value = JSON.stringify(chronologyItems);
+                        }
+
+                        function renderChronologyItems() {
+                            chronologyTableBody.innerHTML = "";
+
+                            chronologyItems.forEach((item, index) => {
+                                const tr = document.createElement("tr");
+
+                                const tdCode = document.createElement("td");
+                                tdCode.textContent = String(index + 1).padStart(3, "0");
+                                tr.appendChild(tdCode);
+
+                                const tdTimeline = document.createElement("td");
+                                tdTimeline.textContent = item.timelineName;
+                                tr.appendChild(tdTimeline);
+
+                                const tdRegisterType = document.createElement("td");
+                                tdRegisterType.textContent = item.registerType;
+                                tr.appendChild(tdRegisterType);
+
+                                const tdBarColor = document.createElement("td");
+                                tdBarColor.textContent = item.barColor || "";
+                                tr.appendChild(tdBarColor);
+
+                                const tdStart = document.createElement("td");
+                                tdStart.textContent = item.startLabel;
+                                tr.appendChild(tdStart);
+
+                                const tdEnd = document.createElement("td");
+                                tdEnd.textContent = item.endLabel || "-";
+                                tr.appendChild(tdEnd);
+
+                                const tdOptions = document.createElement("td");
+                                tdOptions.className = "item-option";
+                                const removeIcon = document.createElement("i");
+                                removeIcon.className = "fas fa-trash-alt";
+                                removeIcon.style.cursor = "pointer";
+                                removeIcon.addEventListener("click", function () {
+                                    chronologyItems.splice(index, 1);
+                                    updateChronologyItemsInput();
+                                    renderChronologyItems();
+                                });
+                                tdOptions.appendChild(removeIcon);
+                                tr.appendChild(tdOptions);
+
+                                chronologyTableBody.appendChild(tr);
+                            });
+                        }
+
+                        btnInsertChronology.addEventListener("click", function () {
+                            if (!chronologyTimeline.value || !chronologyRegisterType.value) {
+                                return;
+                            }
+
+                            const dateFormat = getSelectedChronologyDateFormat();
+                            const selectedTimelineOption = chronologyTimeline.options[chronologyTimeline.selectedIndex];
+                            const startLabel = formatChronologyDate(
+                                chronologyStartDay.value,
+                                chronologyStartMonth.value,
+                                chronologyStartYear.value,
+                                chronologyStartReference.value,
+                                dateFormat
+                            );
+                            const endLabel = chronologyRegisterType.value === "Período"
+                                ? formatChronologyDate(
+                                    chronologyEndDay.value,
+                                    chronologyEndMonth.value,
+                                    chronologyEndYear.value,
+                                    chronologyEndReference.value,
+                                    dateFormat
+                                )
+                                : null;
+
+                            chronologyItems.push({
+                                idTimeline: chronologyTimeline.value,
+                                timelineName: selectedTimelineOption ? selectedTimelineOption.textContent : "",
+                                registerType: chronologyRegisterType.value,
+                                barColor: chronologyBarColor.value || null,
+                                dateFormat,
+                                startDay: chronologyStartDay.value || null,
+                                startMonth: chronologyStartMonth.value || null,
+                                startYear: chronologyStartYear.value || null,
+                                startReference: chronologyStartReference.value || null,
+                                endDay: chronologyRegisterType.value === "Período" ? (chronologyEndDay.value || null) : null,
+                                endMonth: chronologyRegisterType.value === "Período" ? (chronologyEndMonth.value || null) : null,
+                                endYear: chronologyRegisterType.value === "Período" ? (chronologyEndYear.value || null) : null,
+                                endReference: chronologyRegisterType.value === "Período" ? (chronologyEndReference.value || null) : null,
+                                startLabel,
+                                endLabel,
+                            });
+
+                            updateChronologyItemsInput();
+                            renderChronologyItems();
+
+                            chronologyTimeline.value = "";
+                            chronologyRegisterType.value = "";
+                            chronologyBarColor.value = "";
+                            chronologyStartDay.value = "";
+                            chronologyStartMonth.value = "";
+                            chronologyStartYear.value = "";
+                            chronologyStartReference.value = "";
+                            chronologyEndDay.value = "";
+                            chronologyEndMonth.value = "";
+                            chronologyEndYear.value = "";
+                            chronologyEndReference.value = "";
+                            const defaultDateFormat = document.getElementById("option1");
+                            if (defaultDateFormat) {
+                                defaultDateFormat.checked = true;
+                            }
+                            if (typeof CheckRegisterType === "function") {
+                                CheckRegisterType();
+                            }
+                            if (typeof DataFormat === "function") {
+                                DataFormat();
+                            }
+
+                            if (window.jQuery) {
+                                window.jQuery("#ChronologyModal").modal("hide");
+                            }
+                        });
+
+                        updateChronologyItemsInput();
+                        renderChronologyItems();
+                    });
+                </script>
 
 <!-- Hierarchy-->
 
@@ -275,7 +766,7 @@
 
                 <div class="button-space">
                     <a href="#" data-toggle="modal" data-target="#HierarchyModal">
-                        <button class="btn btn-success"><i class="fas fa-plus"></i></button>
+                        <button class="btn btn-success" type="button"><i class="fas fa-plus"></i></button>
                     </a>
                 </div>
 
@@ -290,17 +781,118 @@
                             <th>Posterior</th>
                             <th>Opções</th>
                         </tr>
-                        <tr>
-                            <td>001</td>
-                            <td>Jacó</td>
-                            <td>Isaque</td>
-                            <td>José</td>
-                            <td>Esaú</td>
-                            <td>-</td>
-                            <td class="item-option"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
+                        <tbody id="studyItemHierarchyTableBody"></tbody>
                     </table>
                 </div>
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const hierarchyItemsJsonInput = document.getElementById("hierarchyItemsJson");
+                        const hierarchyTableBody = document.getElementById("studyItemHierarchyTableBody");
+                        const hierarchyReferenceItem = document.getElementById("hierarchyReferenceItem");
+                        const hierarchySuperiorItem = document.getElementById("hierarchySuperiorItem");
+                        const hierarchyInferiorItem = document.getElementById("hierarchyInferiorItem");
+                        const hierarchyPreviousItem = document.getElementById("hierarchyPreviousItem");
+                        const hierarchyNextItem = document.getElementById("hierarchyNextItem");
+                        const btnInsertHierarchy = document.getElementById("btnInsertHierarchy");
+                        const studyItemNameInput = document.querySelector('input[name="studyItemName"]');
+
+                        if (!hierarchyItemsJsonInput || !hierarchyTableBody || !hierarchyReferenceItem || !hierarchySuperiorItem || !hierarchyInferiorItem || !hierarchyPreviousItem || !hierarchyNextItem || !btnInsertHierarchy || !studyItemNameInput) {
+                            return;
+                        }
+
+                        let hierarchyItems = [];
+
+                        function updateHierarchyReferenceItem() {
+                            hierarchyReferenceItem.value = studyItemNameInput.value || "";
+                        }
+
+                        function updateHierarchyItemsInput() {
+                            hierarchyItemsJsonInput.value = JSON.stringify(hierarchyItems);
+                        }
+
+                        function renderHierarchyItems() {
+                            hierarchyTableBody.innerHTML = "";
+                            hierarchyItems.forEach((item, index) => {
+                                const tr = document.createElement("tr");
+
+                                const tdCode = document.createElement("td");
+                                tdCode.textContent = String(index + 1).padStart(3, "0");
+                                tr.appendChild(tdCode);
+
+                                const tdItem = document.createElement("td");
+                                tdItem.textContent = item.referenceItemName || "";
+                                tr.appendChild(tdItem);
+
+                                const tdSuperior = document.createElement("td");
+                                tdSuperior.textContent = item.superiorStudyItemName || "-";
+                                tr.appendChild(tdSuperior);
+
+                                const tdInferior = document.createElement("td");
+                                tdInferior.textContent = item.inferiorStudyItemName || "-";
+                                tr.appendChild(tdInferior);
+
+                                const tdPrevious = document.createElement("td");
+                                tdPrevious.textContent = item.previousStudyItemName || "-";
+                                tr.appendChild(tdPrevious);
+
+                                const tdNext = document.createElement("td");
+                                tdNext.textContent = item.nextStudyItemName || "-";
+                                tr.appendChild(tdNext);
+
+                                const tdOptions = document.createElement("td");
+                                tdOptions.className = "item-option";
+                                const removeIcon = document.createElement("i");
+                                removeIcon.className = "fas fa-trash-alt";
+                                removeIcon.style.cursor = "pointer";
+                                removeIcon.addEventListener("click", function () {
+                                    hierarchyItems.splice(index, 1);
+                                    updateHierarchyItemsInput();
+                                    renderHierarchyItems();
+                                });
+                                tdOptions.appendChild(removeIcon);
+                                tr.appendChild(tdOptions);
+
+                                hierarchyTableBody.appendChild(tr);
+                            });
+                        }
+
+                        btnInsertHierarchy.addEventListener("click", function () {
+                            if (!studyItemNameInput.value) {
+                                return;
+                            }
+
+                            hierarchyItems.push({
+                                referenceItemName: studyItemNameInput.value,
+                                idSuperiorStudyItem: hierarchySuperiorItem.value || null,
+                                superiorStudyItemName: hierarchySuperiorItem.value ? hierarchySuperiorItem.options[hierarchySuperiorItem.selectedIndex].textContent : null,
+                                idInferiorStudyItem: hierarchyInferiorItem.value || null,
+                                inferiorStudyItemName: hierarchyInferiorItem.value ? hierarchyInferiorItem.options[hierarchyInferiorItem.selectedIndex].textContent : null,
+                                idPreviousStudyItem: hierarchyPreviousItem.value || null,
+                                previousStudyItemName: hierarchyPreviousItem.value ? hierarchyPreviousItem.options[hierarchyPreviousItem.selectedIndex].textContent : null,
+                                idNextStudyItem: hierarchyNextItem.value || null,
+                                nextStudyItemName: hierarchyNextItem.value ? hierarchyNextItem.options[hierarchyNextItem.selectedIndex].textContent : null,
+                            });
+
+                            updateHierarchyItemsInput();
+                            renderHierarchyItems();
+
+                            hierarchySuperiorItem.value = "";
+                            hierarchyInferiorItem.value = "";
+                            hierarchyPreviousItem.value = "";
+                            hierarchyNextItem.value = "";
+
+                            if (window.jQuery) {
+                                window.jQuery("#HierarchyModal").modal("hide");
+                            }
+                        });
+
+                        studyItemNameInput.addEventListener("input", updateHierarchyReferenceItem);
+                        updateHierarchyReferenceItem();
+                        updateHierarchyItemsInput();
+                        renderHierarchyItems();
+                    });
+                </script>
 
 <!-- Item Association-->
 
@@ -308,7 +900,7 @@
 
                 <div class="button-space">
                     <a href="#" data-toggle="modal" data-target="#ItemAssociationModal">
-                        <button class="btn btn-success"><i class="fas fa-plus"></i></button>
+                        <button class="btn btn-success" type="button"><i class="fas fa-plus"></i></button>
                     </a>
                 </div>
 
@@ -320,38 +912,230 @@
                             <th>Categoria Nível 1</th>
                             <th>Categoria Nível 2</th>
                             <th>Categoria Nível 3</th>
+                            <th>Seção</th>
                             <th>item Associado</th>
                             <th>Opções</th>
                         </tr>
-                        <tr>
-                            <td>001</td>
-                            <td>Teologia</td>
-                            <td>Bíblia Sagrada</td>
-                            <td>Esquema de Conteúdo</td>
-                            <td>Gênesis</td>
-                            <td>-</td>
-                            <td class="item-option"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <td>002</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td class="item-option"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <td>003</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td class="item-option"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
+                        <tbody id="studyItemAssociationTableBody"></tbody>
                     </table>
                 </div>
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const associationItemsJsonInput = document.getElementById("associationItemsJson");
+                        const associationTableBody = document.getElementById("studyItemAssociationTableBody");
+                        const associationHistoricalPerspective = document.getElementById("associationHistoricalPerspective");
+                        const associationCategoryLevel1 = document.getElementById("associationCategoryLevel1");
+                        const associationCategoryLevel2 = document.getElementById("associationCategoryLevel2");
+                        const associationCategoryLevel3 = document.getElementById("associationCategoryLevel3");
+                        const associationSection = document.getElementById("associationSection");
+                        const associationStudyItem = document.getElementById("associationStudyItem");
+                        const btnInsertAssociation = document.getElementById("btnInsertAssociation");
+
+                        if (!associationItemsJsonInput || !associationTableBody || !associationHistoricalPerspective || !associationCategoryLevel1 || !associationCategoryLevel2 || !associationCategoryLevel3 || !associationSection || !associationStudyItem || !btnInsertAssociation) {
+                            return;
+                        }
+
+                        let associationItems = [];
+
+                        function updateAssociationItemsInput() {
+                            associationItemsJsonInput.value = JSON.stringify(associationItems);
+                        }
+
+                        function renderAssociationItems() {
+                            associationTableBody.innerHTML = "";
+                            associationItems.forEach((item, index) => {
+                                const tr = document.createElement("tr");
+
+                                const tdCode = document.createElement("td");
+                                tdCode.textContent = String(index + 1).padStart(3, "0");
+                                tr.appendChild(tdCode);
+
+                                const tdHistorical = document.createElement("td");
+                                tdHistorical.textContent = item.historicalPerspectiveName;
+                                tr.appendChild(tdHistorical);
+
+                                const tdLevel1 = document.createElement("td");
+                                tdLevel1.textContent = item.categoryLevel1Name;
+                                tr.appendChild(tdLevel1);
+
+                                const tdLevel2 = document.createElement("td");
+                                tdLevel2.textContent = item.categoryLevel2Name;
+                                tr.appendChild(tdLevel2);
+
+                                const tdLevel3 = document.createElement("td");
+                                tdLevel3.textContent = item.categoryLevel3Name;
+                                tr.appendChild(tdLevel3);
+
+                                const tdSection = document.createElement("td");
+                                tdSection.textContent = item.sectionName;
+                                tr.appendChild(tdSection);
+
+                                const tdStudyItem = document.createElement("td");
+                                tdStudyItem.textContent = item.associatedStudyItemName;
+                                tr.appendChild(tdStudyItem);
+
+                                const tdOptions = document.createElement("td");
+                                tdOptions.className = "item-option";
+                                const removeIcon = document.createElement("i");
+                                removeIcon.className = "fas fa-trash-alt";
+                                removeIcon.style.cursor = "pointer";
+                                removeIcon.addEventListener("click", function () {
+                                    associationItems.splice(index, 1);
+                                    updateAssociationItemsInput();
+                                    renderAssociationItems();
+                                });
+                                tdOptions.appendChild(removeIcon);
+                                tr.appendChild(tdOptions);
+
+                                associationTableBody.appendChild(tr);
+                            });
+                        }
+
+                        associationHistoricalPerspective.addEventListener("change", function () {
+                            const historicalPerspectiveId = this.value;
+                            fetch("/cms-StudyItem-X-HistoricalPerspective", {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({ historicalPerspectiveId }),
+                            })
+                                .then((r) => r.json())
+                                .then((level1Items) => {
+                                    associationCategoryLevel1.innerHTML = '<option value="" data-default disabled selected></option>';
+                                    associationCategoryLevel2.innerHTML = '<option value="" data-default disabled selected></option>';
+                                    associationCategoryLevel3.innerHTML = '<option value="" data-default disabled selected></option>';
+                                    associationSection.innerHTML = '<option value="" data-default disabled selected></option>';
+                                    associationStudyItem.innerHTML = '<option value="" data-default disabled selected></option>';
+                                    level1Items.forEach((item) => {
+                                        const opt = document.createElement("option");
+                                        opt.value = item.id;
+                                        opt.textContent = item.name;
+                                        associationCategoryLevel1.appendChild(opt);
+                                    });
+                                });
+                        });
+
+                        associationCategoryLevel1.addEventListener("change", function () {
+                            const categoryLevel1Id = this.value;
+                            fetch("/cms-StudyItem-X-Level1", {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({ categoryLevel1Id }),
+                            })
+                                .then((r) => r.json())
+                                .then((level2Items) => {
+                                    associationCategoryLevel2.innerHTML = '<option value="" data-default disabled selected></option>';
+                                    associationCategoryLevel3.innerHTML = '<option value="" data-default disabled selected></option>';
+                                    associationSection.innerHTML = '<option value="" data-default disabled selected></option>';
+                                    associationStudyItem.innerHTML = '<option value="" data-default disabled selected></option>';
+                                    level2Items.forEach((item) => {
+                                        const opt = document.createElement("option");
+                                        opt.value = item.id;
+                                        opt.textContent = item.name;
+                                        associationCategoryLevel2.appendChild(opt);
+                                    });
+                                });
+                        });
+
+                        associationCategoryLevel2.addEventListener("change", function () {
+                            const categoryLevel2Id = this.value;
+                            fetch("/cms-StudyItem-X-Level2", {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({ categoryLevel2Id }),
+                            })
+                                .then((r) => r.json())
+                                .then((level3Items) => {
+                                    associationCategoryLevel3.innerHTML = '<option value="" data-default disabled selected></option>';
+                                    associationSection.innerHTML = '<option value="" data-default disabled selected></option>';
+                                    associationStudyItem.innerHTML = '<option value="" data-default disabled selected></option>';
+                                    level3Items.forEach((item) => {
+                                        const opt = document.createElement("option");
+                                        opt.value = item.id;
+                                        opt.textContent = item.name;
+                                        associationCategoryLevel3.appendChild(opt);
+                                    });
+                                });
+                        });
+
+                        associationCategoryLevel3.addEventListener("change", function () {
+                            const categoryLevel3Id = this.value;
+                            fetch("/cms-StudyItem-X-Level3", {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({ categoryLevel3Id }),
+                            })
+                                .then((r) => r.json())
+                                .then((sectionItems) => {
+                                    associationSection.innerHTML = '<option value="" data-default disabled selected></option>';
+                                    associationStudyItem.innerHTML = '<option value="" data-default disabled selected></option>';
+                                    sectionItems.forEach((item) => {
+                                        const opt = document.createElement("option");
+                                        opt.value = item.id;
+                                        opt.textContent = item.name;
+                                        associationSection.appendChild(opt);
+                                    });
+                                });
+                        });
+
+                        associationSection.addEventListener("change", function () {
+                            const sectionId = this.value;
+                            fetch("/cms-StudyItem-X-Association-Section", {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({ sectionId }),
+                            })
+                                .then((r) => r.json())
+                                .then((studyItems) => {
+                                    associationStudyItem.innerHTML = '<option value="" data-default disabled selected></option>';
+                                    studyItems.forEach((item) => {
+                                        const opt = document.createElement("option");
+                                        opt.value = item.id;
+                                        opt.textContent = item.name;
+                                        associationStudyItem.appendChild(opt);
+                                    });
+                                });
+                        });
+
+                        btnInsertAssociation.addEventListener("click", function () {
+                            if (!associationHistoricalPerspective.value || !associationCategoryLevel1.value || !associationCategoryLevel2.value || !associationCategoryLevel3.value || !associationSection.value || !associationStudyItem.value) {
+                                return;
+                            }
+
+                            associationItems.push({
+                                idHistoricalPerspective: associationHistoricalPerspective.value,
+                                historicalPerspectiveName: associationHistoricalPerspective.options[associationHistoricalPerspective.selectedIndex].textContent,
+                                idCategoryLevel1: associationCategoryLevel1.value,
+                                categoryLevel1Name: associationCategoryLevel1.options[associationCategoryLevel1.selectedIndex].textContent,
+                                idCategoryLevel2: associationCategoryLevel2.value,
+                                categoryLevel2Name: associationCategoryLevel2.options[associationCategoryLevel2.selectedIndex].textContent,
+                                idCategoryLevel3: associationCategoryLevel3.value,
+                                categoryLevel3Name: associationCategoryLevel3.options[associationCategoryLevel3.selectedIndex].textContent,
+                                idSection: associationSection.value,
+                                sectionName: associationSection.options[associationSection.selectedIndex].textContent,
+                                idAssociatedStudyItem: associationStudyItem.value,
+                                associatedStudyItemName: associationStudyItem.options[associationStudyItem.selectedIndex].textContent,
+                            });
+
+                            updateAssociationItemsInput();
+                            renderAssociationItems();
+
+                            associationHistoricalPerspective.value = "";
+                            associationCategoryLevel1.innerHTML = '<option value="" data-default disabled selected></option>';
+                            associationCategoryLevel2.innerHTML = '<option value="" data-default disabled selected></option>';
+                            associationCategoryLevel3.innerHTML = '<option value="" data-default disabled selected></option>';
+                            associationSection.innerHTML = '<option value="" data-default disabled selected></option>';
+                            associationStudyItem.innerHTML = '<option value="" data-default disabled selected></option>';
+
+                            if (window.jQuery) {
+                                window.jQuery("#ItemAssociationModal").modal("hide");
+                            }
+                        });
+
+                        updateAssociationItemsInput();
+                        renderAssociationItems();
+                    });
+                </script>
 
 <!-- Bible Markup -->
 
@@ -397,19 +1181,15 @@
 
 <!-- BUTTON AREA -->
         <div class="button-area">
+            <div class="button-frame">
+                <button class="btn btn-success" type="submit" form="form-study-item" name="submitAction" value="save">Salvar</button>
+            </div>
+            <div class="button-frame">
+                <button class="btn btn-success" type="submit" form="form-study-item" name="submitAction" value="saveNew">Salvar e Novo</button>
+            </div>
             <a href="/cms-StudyItem-Q">
                 <div class="button-frame">
-                    <button class="btn btn-success">Salvar</button>
-                </div>
-            </a>        
-            <a href="/cms-StudyItem-C">
-                <div class="button-frame">
-                    <button class="btn btn-success">Salvar e Novo</button>
-                </div>
-            </a>
-            <a href="/cms-StudyItem-Q">
-                <div class="button-frame">
-                    <button class="btn btn-secondary">Cancelar</button>
+                    <button class="btn btn-secondary" type="button">Cancelar</button>
                 </div>
             </a>
         </div>

@@ -20,6 +20,7 @@ const CategoryController = require('./controllers/CategoryController.js')
 const CategoryLevel2Controller = require('./controllers/CategoryLevel2Controller.js')
 const CategoryLevel3Controller = require('./controllers/CategoryLevel3Controller.js')
 const SectionController = require('./controllers/SectionController.js')
+const StudyItemController = require('./controllers/StudyItemController.js')
 const TimelineController = require('./controllers/TimelineController.js')
 const AttributeTypeController = require('./controllers/AttributeTypeController.js')
 const AttributeController = require('./controllers/AttributeController.js')
@@ -39,6 +40,19 @@ const storage = multer.diskStorage({
 })
 
 const upload = multer({ storage: storage })
+
+const storageStudyItemAttributeImage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, path.join(__dirname, '..', 'public', 'uploads', 'study-item-attributes'))
+    },
+    filename: function (req, file, cb) {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+        const ext = path.extname(file.originalname)
+        cb(null, 'attribute-image-' + uniqueSuffix + ext)
+    }
+})
+
+const uploadStudyItemAttributeImage = multer({ storage: storageStudyItemAttributeImage })
 
 //---------------------------------------------------
 //                  PORTAL ROUTES
@@ -82,7 +96,19 @@ routes.get('/cms-MainPage', (req,res) => res.render(views + "cms/cms-MainPage"))
 
 // RESEARCH
 routes.get('/cms-StudyItem-Q', (req,res) => res.render(views + "cms/cms-StudyItem-Q"));
-routes.get('/cms-StudyItem-C', (req,res) => res.render(views + "cms/cms-StudyItem-C"));
+routes.get('/cms-StudyItem-C', StudyItemController.loadInsertPage);
+routes.post('/cms-StudyItem-C', StudyItemController.insertStudyItemPage)
+routes.post('/cms-StudyItem-X-HistoricalPerspective', StudyItemController.historicalPerspectiveListener)
+routes.post('/cms-StudyItem-X-Level1', StudyItemController.level1Listener)
+routes.post('/cms-StudyItem-X-Level2', StudyItemController.level2Listener)
+routes.post('/cms-StudyItem-X-Level3', StudyItemController.level3Listener)
+routes.post('/cms-StudyItem-X-AttributeType', StudyItemController.attributeTypeListener)
+routes.post('/cms-StudyItem-X-Association-Section', StudyItemController.associationSectionListener)
+routes.post('/cms-StudyItem-Upload-Attribute-Image', uploadStudyItemAttributeImage.single('attributeImage'), StudyItemController.uploadAttributeImage)
+routes.post('/cms-StudyItem-X-Continent', StudyItemController.continentListener)
+routes.post('/cms-StudyItem-X-Country', StudyItemController.countryListener)
+routes.post('/cms-StudyItem-X-Region', StudyItemController.regionListener)
+routes.post('/cms-StudyItem-X-State', StudyItemController.stateListener)
 routes.get('/cms-StudyItemOld-Q', (req,res) => res.render(views + "cms/cms-StudyItemOld-Q"));
 routes.get('/cms-StudyItemOld-C', (req,res) => res.render(views + "cms/cms-StudyItemOld-C"));
 

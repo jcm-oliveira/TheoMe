@@ -43,51 +43,65 @@
         
            <div class="col-md-12">
               <label for="" class="form-label">Perspectiva Histórica</label>
-              <select name="dataFormat" class="form-control">
+              <select id="associationHistoricalPerspective" class="form-control">
                 <option value="" data-default disabled selected></option>
-                <option value="">Teologia</option>
-                <option value="">Psicologia</option>
-                <option value="">História</option>
+                <% historicalPerspectives.forEach((item)=> { %>
+                  <option value="<%-item.id%>"><%-item.name%></option>
+                <% }) %>
               </select>
             </div>
              <div class="col-md-12">
               <label for="" class="form-label">Categoria Nível 1</label>
-              <select name="dataFormat" class="form-control">
+              <select id="associationCategoryLevel1" class="form-control">
                 <option value="" data-default disabled selected></option>
-                <option value="">Teóricos</option>
-                <option value="">Abordagens</option>
-                <option value="">Bíblia Sagrada</option>
+                <% categoryLevel1List.forEach((item)=> { %>
+                  <option value="<%-item.id%>"><%-item.name%></option>
+                <% }) %>
               </select>
             </div>
              <div class="col-md-12">
               <label for="" class="form-label">Categoria Nível 2</label>
-              <select name="dataFormat" class="form-control">
+              <select id="associationCategoryLevel2" class="form-control">
                 <option value="" data-default disabled selected></option>
-                <option value="">Estruturalismo</option>
-                <option value="">Esquema de Conteúdo</option>
+                <% categoryLevel2List.forEach((item)=> { %>
+                  <option value="<%-item.id%>"><%-item.name%></option>
+                <% }) %>
               </select>
             </div>
             <div class="col-md-12">
               <label for="" class="form-label">Categoria Nível 3</label>
-              <select name="dataFormat" class="form-control">
+              <select id="associationCategoryLevel3" class="form-control">
                 <option value="" data-default disabled selected></option>
-                <option value="">Gênesis</option>
+                <% categoryLevel3List.forEach((item)=> { %>
+                  <option value="<%-item.id%>"><%-item.name%></option>
+                <% }) %>
+              </select>
+            </div>
+
+            <div class="col-md-12">
+              <label for="" class="form-label">Seção</label>
+              <select id="associationSection" class="form-control">
+                <option value="" data-default disabled selected></option>
+                <% sectionList.forEach((item)=> { %>
+                  <option value="<%-item.id%>"><%-item.name%></option>
+                <% }) %>
               </select>
             </div>
         
             <div class="col-md-12">
               <label for="" class="form-label">Item de Estudo Associado</label>
-              <select name="dataFormat" class="form-control">
+              <select id="associationStudyItem" class="form-control">
                 <option value="" data-default disabled selected></option>
-                <option value="">Item XYZ</option>
-                <option value="">Item ZAQ</option>
+                <% studyItems.forEach((item)=> { %>
+                  <option value="<%-item.id%>"><%-item.name%></option>
+                <% }) %>
               </select>
             </div>      
         
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success">Inserir</button>
+        <button type="button" class="btn btn-success" id="btnInsertAssociation">Inserir</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         
       </div>

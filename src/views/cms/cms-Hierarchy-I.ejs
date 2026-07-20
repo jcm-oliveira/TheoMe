@@ -45,10 +45,11 @@
             <div class="input-center">
               <div class="col-md-4">
                 <label for="" class="form-label">Item Superior &#8593</label>
-                <select name="dataFormat" class="form-control">
+                <select id="hierarchySuperiorItem" class="form-control">
                   <option value="" data-default disabled selected></option>
-                  <option value="">Item de estudo XYZ</option>
-                  <option value="">Item de estudo ABC</option>
+                  <% studyItems.forEach((item)=> { %>
+                    <option value="<%-item.id%>"><%-item.name%></option>
+                  <% }) %>
                 </select>
               </div>
             </div>
@@ -56,24 +57,26 @@
             <div class="row">
               <div class="col-md-4">
                 <label for="" class="form-label">&#8592 Item Anterior</label>
-                <select name="dataFormat" class="form-control">
+                <select id="hierarchyPreviousItem" class="form-control">
                   <option value="" data-default disabled selected></option>
-                  <option value="">Item de estudo XYZ</option>
-                  <option value="">Item de estudo ABC</option>
+                  <% studyItems.forEach((item)=> { %>
+                    <option value="<%-item.id%>"><%-item.name%></option>
+                  <% }) %>
                 </select>
               </div>
               
               <div class="col-md-4">
                 <label for="" form-label>Item referência</label>
-                <input type="text" class="form-control" placeholder="Jacó" disabled>
+                <input type="text" id="hierarchyReferenceItem" class="form-control" placeholder="Nome do Item de Estudo" disabled>
               </div>
 
               <div class="col-md-4">
                 <label for="" class="form-label">&#8594 Item Posterior</label>
-                <select name="dataFormat" class="form-control">
+                <select id="hierarchyNextItem" class="form-control">
                   <option value="" data-default disabled selected></option>
-                  <option value="">Item de estudo XYZ</option>
-                  <option value="">Item de estudo ABC</option>
+                  <% studyItems.forEach((item)=> { %>
+                    <option value="<%-item.id%>"><%-item.name%></option>
+                  <% }) %>
                 </select>
               </div>
             </div>
@@ -81,10 +84,11 @@
             <div class="input-center">
               <div class="col-md-4">
                 <label for="" class="form-label">Item Inferior &#8595</label>
-                <select name="dataFormat" class="form-control">
+                <select id="hierarchyInferiorItem" class="form-control">
                   <option value="" data-default disabled selected></option>
-                  <option value="">Item de estudo XYZ</option>
-                  <option value="">Item de estudo ABC</option>
+                  <% studyItems.forEach((item)=> { %>
+                    <option value="<%-item.id%>"><%-item.name%></option>
+                  <% }) %>
                 </select>
               </div>
             </div>
@@ -114,7 +118,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success">Inserir</button>
+        <button type="button" class="btn btn-success" id="btnInsertHierarchy">Inserir</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         
       </div>
