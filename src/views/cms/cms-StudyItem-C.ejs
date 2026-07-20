@@ -1101,6 +1101,7 @@
                             <th>Categoria Nível 2</th>
                             <th>Categoria Nível 3</th>
                             <th>Seção</th>
+                            <th>Tipo de Associação</th>
                             <th>item Associado</th>
                             <th>Opções</th>
                         </tr>
@@ -1117,10 +1118,11 @@
                         const associationCategoryLevel2 = document.getElementById("associationCategoryLevel2");
                         const associationCategoryLevel3 = document.getElementById("associationCategoryLevel3");
                         const associationSection = document.getElementById("associationSection");
+                        const associationType = document.getElementById("associationType");
                         const associationStudyItem = document.getElementById("associationStudyItem");
                         const btnInsertAssociation = document.getElementById("btnInsertAssociation");
 
-                        if (!associationItemsJsonInput || !associationTableBody || !associationHistoricalPerspective || !associationCategoryLevel1 || !associationCategoryLevel2 || !associationCategoryLevel3 || !associationSection || !associationStudyItem || !btnInsertAssociation) {
+                        if (!associationItemsJsonInput || !associationTableBody || !associationHistoricalPerspective || !associationCategoryLevel1 || !associationCategoryLevel2 || !associationCategoryLevel3 || !associationSection || !associationType || !associationStudyItem || !btnInsertAssociation) {
                             return;
                         }
 
@@ -1166,6 +1168,7 @@
                             associationCategoryLevel2.value = item.idCategoryLevel2 || "";
                             associationCategoryLevel3.value = item.idCategoryLevel3 || "";
                             associationSection.value = item.idSection || "";
+                            associationType.value = item.associationType || "";
                             associationStudyItem.value = item.idAssociatedStudyItem || "";
 
                             if (window.jQuery) {
@@ -1205,6 +1208,10 @@
                                 const tdSection = document.createElement("td");
                                 tdSection.textContent = item.sectionName;
                                 tr.appendChild(tdSection);
+
+                                const tdAssociationType = document.createElement("td");
+                                tdAssociationType.textContent = item.associationType || "";
+                                tr.appendChild(tdAssociationType);
 
                                 const tdStudyItem = document.createElement("td");
                                 tdStudyItem.textContent = item.associatedStudyItemName;
@@ -1343,7 +1350,7 @@
                         });
 
                         btnInsertAssociation.addEventListener("click", function () {
-                            if (!associationHistoricalPerspective.value || !associationCategoryLevel1.value || !associationCategoryLevel2.value || !associationCategoryLevel3.value || !associationSection.value || !associationStudyItem.value) {
+                            if (!associationHistoricalPerspective.value || !associationCategoryLevel1.value || !associationCategoryLevel2.value || !associationCategoryLevel3.value || !associationSection.value || !associationType.value.trim() || !associationStudyItem.value) {
                                 return;
                             }
 
@@ -1358,6 +1365,7 @@
                                 categoryLevel3Name: associationCategoryLevel3.options[associationCategoryLevel3.selectedIndex].textContent,
                                 idSection: associationSection.value,
                                 sectionName: associationSection.options[associationSection.selectedIndex].textContent,
+                                associationType: associationType.value.trim(),
                                 idAssociatedStudyItem: associationStudyItem.value,
                                 associatedStudyItemName: associationStudyItem.options[associationStudyItem.selectedIndex].textContent,
                             };
@@ -1376,6 +1384,7 @@
                             associationCategoryLevel2.innerHTML = '<option value="" data-default disabled selected></option>';
                             associationCategoryLevel3.innerHTML = '<option value="" data-default disabled selected></option>';
                             associationSection.innerHTML = '<option value="" data-default disabled selected></option>';
+                            associationType.value = "";
                             associationStudyItem.innerHTML = '<option value="" data-default disabled selected></option>';
                             editingAssociationIndex = null;
 

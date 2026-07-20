@@ -466,6 +466,7 @@ async function selectStudyItemAssociationItems(studyItemId) {
             cl3.name AS categoryLevel3Name,
             sia.id_section AS idSection,
             s.name AS sectionName,
+            sia.type_association AS associationType,
             sia.id_associated_study_item AS idAssociatedStudyItem,
             asi.name AS associatedStudyItemName
         FROM study_item_association sia
@@ -634,9 +635,10 @@ async function insertChildCollections(conn, studyItemId, item) {
                 id_category_level_2,
                 id_category_level_3,
                 id_section,
+                type_association,
                 id_associated_study_item
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         `;
 
         for (const associationItem of item.associationItems) {
@@ -647,6 +649,7 @@ async function insertChildCollections(conn, studyItemId, item) {
                 associationItem.idCategoryLevel2,
                 associationItem.idCategoryLevel3,
                 associationItem.idSection,
+                associationItem.associationType,
                 associationItem.idAssociatedStudyItem,
             ];
             await conn.query(sqlAssociationItem, associationValues);

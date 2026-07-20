@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS study_item_association (
     id_category_level_2 INT UNSIGNED NOT NULL,
     id_category_level_3 INT UNSIGNED NOT NULL,
     id_section INT UNSIGNED NOT NULL,
+    type_association VARCHAR(100) NOT NULL,
     id_associated_study_item INT UNSIGNED NOT NULL,
     excluded TINYINT(1) NOT NULL DEFAULT 0,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
