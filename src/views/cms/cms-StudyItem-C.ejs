@@ -50,60 +50,56 @@
     <%- include('../parts/navbar') %>
 
     <main>
-        <h1>Cadastrar - Item de Estudo</h1>
+        <h1><%= formMode === "update" ? "Editar - Item de Estudo" : "Cadastrar - Item de Estudo" %></h1>
 
-        <form id="form-study-item" method="post" action="/cms-StudyItem-C">
-            <input type="hidden" id="attributeItemsJson" name="attributeItemsJson" value="[]">
-            <input type="hidden" id="chronologyItemsJson" name="chronologyItemsJson" value="[]">
-            <input type="hidden" id="hierarchyItemsJson" name="hierarchyItemsJson" value="[]">
-            <input type="hidden" id="associationItemsJson" name="associationItemsJson" value="[]">
+        <form id="form-study-item" method="post" action="<%= formAction || '/cms-StudyItem-C' %>">
+            <input type="hidden" id="attributeItemsJson" name="attributeItemsJson" value='<%- JSON.stringify(initialAttributeItems || []) %>'>
+            <input type="hidden" id="chronologyItemsJson" name="chronologyItemsJson" value='<%- JSON.stringify(initialChronologyItems || []) %>'>
+            <input type="hidden" id="hierarchyItemsJson" name="hierarchyItemsJson" value='<%- JSON.stringify(initialHierarchyItems || []) %>'>
+            <input type="hidden" id="associationItemsJson" name="associationItemsJson" value='<%- JSON.stringify(initialAssociationItems || []) %>'>
+            <input type="hidden" id="bibleMarkupItemsJson" name="bibleMarkupItemsJson" value='<%- JSON.stringify(initialBibleMarkupItems || []) %>'>
             <fieldset class="flex">
 
 <!-- Basic Data-->
 
                 <legend><i class="fas fa-pen-nib">&nbsp&nbsp</i>Dados básicos</legend>
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <label for="" form-label>Código</label>
-                        <input type="text" class="form-control" value="<%= nextStudyItemCode %>" disabled>
+                        <input type="text" class="form-control" value="<%= studyItem ? studyItem.id : nextStudyItemCode %>" disabled>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <label for="" form-label>Status</label>
                         <select name="studyItemStatus" class="form-control" required>
-                            <option value="1">Ativo</option>
-                            <option value="0">Inativo</option>
+                            <option value="1" <%= studyItem && Number(studyItem.status) === 1 ? "selected" : "" %>>Ativo</option>
+                            <option value="0" <%= studyItem && Number(studyItem.status) === 0 ? "selected" : "" %>>Inativo</option>
                         </select>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <label for="" form-label>Idioma</label>
                         <select name="studyItemLanguage" class="form-control" required>
-                            <option value="pt-BR">Português</option>
-                            <option value="en-US">Inglês</option>
+                            <option value="pt-BR" <%= studyItem && studyItem.language === "pt-BR" ? "selected" : "" %>>Português</option>
+                            <option value="en-US" <%= studyItem && studyItem.language === "en-US" ? "selected" : "" %>>Inglês</option>
                         </select>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-7">
-                        <label for="" class="form-label">Nome do item de estudo</label>
-                        <input type="text" name="studyItemName" class="form-control" autofocus required>
-                    </div>                   
-                    <div class="col-md-5">
+                        <div class="col-md-6">
                         <label for="" class="form-label">Perspectiva Histórica</label>
                         <select name="id_HistoricalPerspective" id="id_HistoricalPerspective" class="form-control" required>
                             <option value="" data-default disabled selected></option>
                             <% historicalPerspectives.forEach((item)=> { %>
-                                <option value="<%-item.id%>"><%-item.name%></option>
+                                <option value="<%-item.id%>" <%= studyItem && Number(studyItem.id_historical_perspective) === Number(item.id) ? "selected" : "" %>><%-item.name%></option>
                             <% }) %>
                         </select>
                     </div>
                 </div>
+ 
                 <div class="row">
                     <div class="col-md-4">
                         <label for="" class="form-label">Categoria Nível 1</label>
                         <select name="id_CategoryLevel1" id="id_CategoryLevel1" class="form-control" required>
                             <option value="" data-default disabled selected></option>
                             <% categoryLevel1List.forEach((item)=> { %>
-                                <option value="<%-item.id%>"><%-item.name%></option>
+                                <option value="<%-item.id%>" <%= studyItem && Number(studyItem.id_category_level_1) === Number(item.id) ? "selected" : "" %>><%-item.name%></option>
                             <% }) %>
                         </select>
                     </div>
@@ -112,7 +108,7 @@
                         <select name="id_CategoryLevel2" id="id_CategoryLevel2" class="form-control" required>
                             <option value="" data-default disabled selected></option>
                             <% categoryLevel2List.forEach((item)=> { %>
-                                <option value="<%-item.id%>"><%-item.name%></option>
+                                <option value="<%-item.id%>" <%= studyItem && Number(studyItem.id_category_level_2) === Number(item.id) ? "selected" : "" %>><%-item.name%></option>
                             <% }) %>
                         </select>
                     </div>
@@ -121,7 +117,7 @@
                         <select name="id_CategoryLevel3" id="id_CategoryLevel3" class="form-control" required>
                             <option value="" data-default disabled selected></option>
                             <% categoryLevel3List.forEach((item)=> { %>
-                                <option value="<%-item.id%>"><%-item.name%></option>
+                                <option value="<%-item.id%>" <%= studyItem && Number(studyItem.id_category_level_3) === Number(item.id) ? "selected" : "" %>><%-item.name%></option>
                             <% }) %>
                         </select>
                     </div>
@@ -131,10 +127,14 @@
                         <select name="id_Section" id="id_Section" class="form-control" required>
                             <option value="" data-default disabled selected></option>
                             <% sectionList.forEach((item)=> { %>
-                                <option value="<%-item.id%>"><%-item.name%></option>
+                                <option value="<%-item.id%>" <%= studyItem && Number(studyItem.id_section) === Number(item.id) ? "selected" : "" %>><%-item.name%></option>
                             <% }) %>
                         </select>
                     </div>
+                        <div class="col-md-14">
+                        <label for="" class="form-label">Nome do item de estudo</label>
+                        <input type="text" name="studyItemName" class="form-control" value="<%= studyItem ? studyItem.name : '' %>" autofocus required>
+                    </div>  
 
                 <script>
                     const selHistoricalPerspective = document.getElementById("id_HistoricalPerspective");
@@ -272,8 +272,76 @@
                         }
 
                         let attributeItems = [];
+                        try {
+                            const parsedAttributeItems = JSON.parse(attributeItemsJsonInput.value || "[]");
+                            attributeItems = Array.isArray(parsedAttributeItems) ? parsedAttributeItems : [];
+                        } catch (error) {
+                            attributeItems = [];
+                        }
+                        let editingAttributeIndex = null;
                         let uploadedAttributeImagePath = null;
                         let isUploadingAttributeImage = false;
+
+                        function ensureSelectOption(selectElement, value, label) {
+                            if (value === null || value === undefined || value === "") {
+                                return;
+                            }
+                            const exists = Array.from(selectElement.options).some((opt) => String(opt.value) === String(value));
+                            if (!exists) {
+                                const opt = document.createElement("option");
+                                opt.value = value;
+                                opt.textContent = label || value;
+                                selectElement.appendChild(opt);
+                            }
+                        }
+
+                        function openAttributeModalForEdit(index) {
+                            const item = attributeItems[index];
+                            if (!item) {
+                                return;
+                            }
+
+                            editingAttributeIndex = index;
+                            uploadedAttributeImagePath = item.image || null;
+                            modalAttributeDescription.value = item.description || "";
+                            modalAttributeImage.value = item.image || "";
+                            modalFigureLayout.value = item.figureLayout || "";
+                            modalAttributeVideo.value = item.videoUrl || "";
+                            modalVideoLayout.value = item.videoLayout || "";
+                            modalAttributeImageFile.value = "";
+
+                            modalAttributeType.value = item.idAttributeType || "";
+
+                            if (modalAttributeType.value) {
+                                fetch("/cms-StudyItem-X-AttributeType", {
+                                    method: "POST",
+                                    headers: { "Content-Type": "application/json" },
+                                    body: JSON.stringify({ attributeTypeId: modalAttributeType.value }),
+                                })
+                                    .then((r) => r.json())
+                                    .then((attributeItemsByType) => {
+                                        modalAttribute.innerHTML = '<option value="" data-default disabled selected></option>';
+                                        attributeItemsByType.forEach((attributeOption) => {
+                                            const opt = document.createElement("option");
+                                            opt.value = attributeOption.id;
+                                            opt.textContent = attributeOption.name;
+                                            modalAttribute.appendChild(opt);
+                                        });
+
+                                        ensureSelectOption(modalAttribute, item.idAttribute, item.attributeName);
+                                        modalAttribute.value = item.idAttribute || "";
+                                    })
+                                    .catch(() => {
+                                        modalAttribute.innerHTML = '<option value="" data-default disabled selected></option>';
+                                        ensureSelectOption(modalAttribute, item.idAttribute, item.attributeName);
+                                        modalAttribute.value = item.idAttribute || "";
+                                    });
+                            }
+
+                            if (window.jQuery) {
+                                window.jQuery("#AttributesModal").modal("show");
+                            }
+                        }
 
                         function updateAttributeItemsInput() {
                             attributeItemsJsonInput.value = JSON.stringify(attributeItems);
@@ -303,6 +371,15 @@
 
                                 const tdOptions = document.createElement("td");
                                 tdOptions.className = "item-option";
+
+                                const editIcon = document.createElement("i");
+                                editIcon.className = "fas fa-pen";
+                                editIcon.style.cursor = "pointer";
+                                editIcon.style.marginRight = "10px";
+                                editIcon.addEventListener("click", function () {
+                                    openAttributeModalForEdit(index);
+                                });
+
                                 const removeIcon = document.createElement("i");
                                 removeIcon.className = "fas fa-trash-alt";
                                 removeIcon.style.cursor = "pointer";
@@ -311,6 +388,7 @@
                                     updateAttributeItemsInput();
                                     renderAttributeItems();
                                 });
+                                tdOptions.appendChild(editIcon);
                                 tdOptions.appendChild(removeIcon);
                                 tr.appendChild(tdOptions);
 
@@ -382,7 +460,7 @@
                             const selectedTypeOption = modalAttributeType.options[modalAttributeType.selectedIndex];
                             const selectedAttributeOption = modalAttribute.options[modalAttribute.selectedIndex];
 
-                            attributeItems.push({
+                            const upsertItem = {
                                 idAttributeType: modalAttributeType.value,
                                 attributeTypeName: selectedTypeOption ? selectedTypeOption.textContent : "",
                                 idAttribute: modalAttribute.value,
@@ -392,7 +470,13 @@
                                 figureLayout: modalFigureLayout.value || null,
                                 videoUrl: modalAttributeVideo.value || null,
                                 videoLayout: modalVideoLayout.value || null,
-                            });
+                            };
+
+                            if (editingAttributeIndex !== null) {
+                                attributeItems[editingAttributeIndex] = upsertItem;
+                            } else {
+                                attributeItems.push(upsertItem);
+                            }
 
                             updateAttributeItemsInput();
                             renderAttributeItems();
@@ -406,6 +490,7 @@
                             modalAttributeVideo.value = "";
                             modalVideoLayout.value = "";
                             uploadedAttributeImagePath = null;
+                            editingAttributeIndex = null;
 
                             if (window.jQuery) {
                                 window.jQuery("#AttributesModal").modal("hide");
@@ -427,7 +512,7 @@
                         <select name="id_Continent" id="id_Continent" class="form-control">
                             <option value="" data-default disabled selected></option>
                             <% continents.forEach((item)=> { %>
-                                <option value="<%-item.id%>"><%-item.name%></option>
+                                <option value="<%-item.id%>" <%= studyItem && Number(studyItem.id_continent) === Number(item.id) ? "selected" : "" %>><%-item.name%></option>
                             <% }) %>
                         </select>
                     </div>
@@ -436,7 +521,7 @@
                         <select name="id_Country" id="id_Country" class="form-control">
                             <option value="" data-default disabled selected></option>
                             <% countries.forEach((item)=> { %>
-                                <option value="<%-item.id%>"><%-item.name%></option>
+                                <option value="<%-item.id%>" <%= studyItem && Number(studyItem.id_country) === Number(item.id) ? "selected" : "" %>><%-item.name%></option>
                             <% }) %>
                         </select>
                     </div>
@@ -445,7 +530,7 @@
                         <select name="id_Region" id="id_Region" class="form-control">
                             <option value="" data-default disabled selected></option>
                             <% regions.forEach((item)=> { %>
-                                <option value="<%-item.id%>"><%-item.name%></option>
+                                <option value="<%-item.id%>" <%= studyItem && Number(studyItem.id_region) === Number(item.id) ? "selected" : "" %>><%-item.name%></option>
                             <% }) %>
                         </select>
                     </div>
@@ -456,7 +541,7 @@
                         <select name="id_State" id="id_State" class="form-control">
                             <option value="" data-default disabled selected></option>
                             <% states.forEach((item)=> { %>
-                                <option value="<%-item.id%>"><%-item.name%></option>
+                                <option value="<%-item.id%>" <%= studyItem && Number(studyItem.id_state) === Number(item.id) ? "selected" : "" %>><%-item.name%></option>
                             <% }) %>
                         </select>
                     </div>
@@ -465,13 +550,13 @@
                         <select name="id_City" id="id_City" class="form-control">
                             <option value="" data-default disabled selected></option>
                             <% cities.forEach((item)=> { %>
-                                <option value="<%-item.id%>"><%-item.name%></option>
+                                <option value="<%-item.id%>" <%= studyItem && Number(studyItem.id_city) === Number(item.id) ? "selected" : "" %>><%-item.name%></option>
                             <% }) %>
                         </select>
                     </div>
                     <div class="col-md-3">
                         <label for="" class="form-label">Bairro, Vila ou Distrito</label>
-                        <input type="text" name="district" class="form-control">
+                        <input type="text" name="district" class="form-control" value="<%= studyItem && studyItem.district ? studyItem.district : '' %>">
                     </div>   
                 </div>
 
@@ -616,6 +701,51 @@
                         }
 
                         let chronologyItems = [];
+                        try {
+                            const parsedChronologyItems = JSON.parse(chronologyItemsJsonInput.value || "[]");
+                            chronologyItems = Array.isArray(parsedChronologyItems) ? parsedChronologyItems : [];
+                        } catch (error) {
+                            chronologyItems = [];
+                        }
+                        let editingChronologyIndex = null;
+
+                        function openChronologyModalForEdit(index) {
+                            const item = chronologyItems[index];
+                            if (!item) {
+                                return;
+                            }
+
+                            editingChronologyIndex = index;
+                            chronologyTimeline.value = item.idTimeline || "";
+                            chronologyRegisterType.value = item.registerType || "";
+                            chronologyBarColor.value = item.barColor || "";
+                            chronologyStartDay.value = item.startDay || "";
+                            chronologyStartMonth.value = item.startMonth || "";
+                            chronologyStartYear.value = item.startYear || "";
+                            chronologyStartReference.value = item.startReference || "";
+                            chronologyEndDay.value = item.endDay || "";
+                            chronologyEndMonth.value = item.endMonth || "";
+                            chronologyEndYear.value = item.endYear || "";
+                            chronologyEndReference.value = item.endReference || "";
+
+                            if (item.dateFormat) {
+                                const dateFormatRadio = document.querySelector(`input[name="chronologyDateFormat"][value="${item.dateFormat}"]`);
+                                if (dateFormatRadio) {
+                                    dateFormatRadio.checked = true;
+                                }
+                            }
+
+                            if (typeof CheckRegisterType === "function") {
+                                CheckRegisterType();
+                            }
+                            if (typeof DataFormat === "function") {
+                                DataFormat();
+                            }
+
+                            if (window.jQuery) {
+                                window.jQuery("#ChronologyModal").modal("show");
+                            }
+                        }
 
                         function getSelectedChronologyDateFormat() {
                             const selected = document.querySelector('input[name="chronologyDateFormat"]:checked');
@@ -668,6 +798,15 @@
 
                                 const tdOptions = document.createElement("td");
                                 tdOptions.className = "item-option";
+
+                                const editIcon = document.createElement("i");
+                                editIcon.className = "fas fa-pen";
+                                editIcon.style.cursor = "pointer";
+                                editIcon.style.marginRight = "10px";
+                                editIcon.addEventListener("click", function () {
+                                    openChronologyModalForEdit(index);
+                                });
+
                                 const removeIcon = document.createElement("i");
                                 removeIcon.className = "fas fa-trash-alt";
                                 removeIcon.style.cursor = "pointer";
@@ -676,6 +815,7 @@
                                     updateChronologyItemsInput();
                                     renderChronologyItems();
                                 });
+                                tdOptions.appendChild(editIcon);
                                 tdOptions.appendChild(removeIcon);
                                 tr.appendChild(tdOptions);
 
@@ -707,7 +847,7 @@
                                 )
                                 : null;
 
-                            chronologyItems.push({
+                            const upsertItem = {
                                 idTimeline: chronologyTimeline.value,
                                 timelineName: selectedTimelineOption ? selectedTimelineOption.textContent : "",
                                 registerType: chronologyRegisterType.value,
@@ -723,7 +863,13 @@
                                 endReference: chronologyRegisterType.value === "Período" ? (chronologyEndReference.value || null) : null,
                                 startLabel,
                                 endLabel,
-                            });
+                            };
+
+                            if (editingChronologyIndex !== null) {
+                                chronologyItems[editingChronologyIndex] = upsertItem;
+                            } else {
+                                chronologyItems.push(upsertItem);
+                            }
 
                             updateChronologyItemsInput();
                             renderChronologyItems();
@@ -749,6 +895,7 @@
                             if (typeof DataFormat === "function") {
                                 DataFormat();
                             }
+                            editingChronologyIndex = null;
 
                             if (window.jQuery) {
                                 window.jQuery("#ChronologyModal").modal("hide");
@@ -802,6 +949,30 @@
                         }
 
                         let hierarchyItems = [];
+                        try {
+                            const parsedHierarchyItems = JSON.parse(hierarchyItemsJsonInput.value || "[]");
+                            hierarchyItems = Array.isArray(parsedHierarchyItems) ? parsedHierarchyItems : [];
+                        } catch (error) {
+                            hierarchyItems = [];
+                        }
+                        let editingHierarchyIndex = null;
+
+                        function openHierarchyModalForEdit(index) {
+                            const item = hierarchyItems[index];
+                            if (!item) {
+                                return;
+                            }
+
+                            editingHierarchyIndex = index;
+                            hierarchySuperiorItem.value = item.idSuperiorStudyItem || "";
+                            hierarchyInferiorItem.value = item.idInferiorStudyItem || "";
+                            hierarchyPreviousItem.value = item.idPreviousStudyItem || "";
+                            hierarchyNextItem.value = item.idNextStudyItem || "";
+
+                            if (window.jQuery) {
+                                window.jQuery("#HierarchyModal").modal("show");
+                            }
+                        }
 
                         function updateHierarchyReferenceItem() {
                             hierarchyReferenceItem.value = studyItemNameInput.value || "";
@@ -842,6 +1013,15 @@
 
                                 const tdOptions = document.createElement("td");
                                 tdOptions.className = "item-option";
+
+                                const editIcon = document.createElement("i");
+                                editIcon.className = "fas fa-pen";
+                                editIcon.style.cursor = "pointer";
+                                editIcon.style.marginRight = "10px";
+                                editIcon.addEventListener("click", function () {
+                                    openHierarchyModalForEdit(index);
+                                });
+
                                 const removeIcon = document.createElement("i");
                                 removeIcon.className = "fas fa-trash-alt";
                                 removeIcon.style.cursor = "pointer";
@@ -850,6 +1030,7 @@
                                     updateHierarchyItemsInput();
                                     renderHierarchyItems();
                                 });
+                                tdOptions.appendChild(editIcon);
                                 tdOptions.appendChild(removeIcon);
                                 tr.appendChild(tdOptions);
 
@@ -862,7 +1043,7 @@
                                 return;
                             }
 
-                            hierarchyItems.push({
+                            const upsertItem = {
                                 referenceItemName: studyItemNameInput.value,
                                 idSuperiorStudyItem: hierarchySuperiorItem.value || null,
                                 superiorStudyItemName: hierarchySuperiorItem.value ? hierarchySuperiorItem.options[hierarchySuperiorItem.selectedIndex].textContent : null,
@@ -872,7 +1053,13 @@
                                 previousStudyItemName: hierarchyPreviousItem.value ? hierarchyPreviousItem.options[hierarchyPreviousItem.selectedIndex].textContent : null,
                                 idNextStudyItem: hierarchyNextItem.value || null,
                                 nextStudyItemName: hierarchyNextItem.value ? hierarchyNextItem.options[hierarchyNextItem.selectedIndex].textContent : null,
-                            });
+                            };
+
+                            if (editingHierarchyIndex !== null) {
+                                hierarchyItems[editingHierarchyIndex] = upsertItem;
+                            } else {
+                                hierarchyItems.push(upsertItem);
+                            }
 
                             updateHierarchyItemsInput();
                             renderHierarchyItems();
@@ -881,6 +1068,7 @@
                             hierarchyInferiorItem.value = "";
                             hierarchyPreviousItem.value = "";
                             hierarchyNextItem.value = "";
+                            editingHierarchyIndex = null;
 
                             if (window.jQuery) {
                                 window.jQuery("#HierarchyModal").modal("hide");
@@ -937,6 +1125,53 @@
                         }
 
                         let associationItems = [];
+                        try {
+                            const parsedAssociationItems = JSON.parse(associationItemsJsonInput.value || "[]");
+                            associationItems = Array.isArray(parsedAssociationItems) ? parsedAssociationItems : [];
+                        } catch (error) {
+                            associationItems = [];
+                        }
+                        let editingAssociationIndex = null;
+
+                        function ensureSelectOption(selectElement, value, label) {
+                            if (value === null || value === undefined || value === "") {
+                                return;
+                            }
+                            const exists = Array.from(selectElement.options).some((opt) => String(opt.value) === String(value));
+                            if (!exists) {
+                                const opt = document.createElement("option");
+                                opt.value = value;
+                                opt.textContent = label || value;
+                                selectElement.appendChild(opt);
+                            }
+                        }
+
+                        function openAssociationModalForEdit(index) {
+                            const item = associationItems[index];
+                            if (!item) {
+                                return;
+                            }
+
+                            editingAssociationIndex = index;
+
+                            ensureSelectOption(associationHistoricalPerspective, item.idHistoricalPerspective, item.historicalPerspectiveName);
+                            ensureSelectOption(associationCategoryLevel1, item.idCategoryLevel1, item.categoryLevel1Name);
+                            ensureSelectOption(associationCategoryLevel2, item.idCategoryLevel2, item.categoryLevel2Name);
+                            ensureSelectOption(associationCategoryLevel3, item.idCategoryLevel3, item.categoryLevel3Name);
+                            ensureSelectOption(associationSection, item.idSection, item.sectionName);
+                            ensureSelectOption(associationStudyItem, item.idAssociatedStudyItem, item.associatedStudyItemName);
+
+                            associationHistoricalPerspective.value = item.idHistoricalPerspective || "";
+                            associationCategoryLevel1.value = item.idCategoryLevel1 || "";
+                            associationCategoryLevel2.value = item.idCategoryLevel2 || "";
+                            associationCategoryLevel3.value = item.idCategoryLevel3 || "";
+                            associationSection.value = item.idSection || "";
+                            associationStudyItem.value = item.idAssociatedStudyItem || "";
+
+                            if (window.jQuery) {
+                                window.jQuery("#ItemAssociationModal").modal("show");
+                            }
+                        }
 
                         function updateAssociationItemsInput() {
                             associationItemsJsonInput.value = JSON.stringify(associationItems);
@@ -977,6 +1212,15 @@
 
                                 const tdOptions = document.createElement("td");
                                 tdOptions.className = "item-option";
+
+                                const editIcon = document.createElement("i");
+                                editIcon.className = "fas fa-pen";
+                                editIcon.style.cursor = "pointer";
+                                editIcon.style.marginRight = "10px";
+                                editIcon.addEventListener("click", function () {
+                                    openAssociationModalForEdit(index);
+                                });
+
                                 const removeIcon = document.createElement("i");
                                 removeIcon.className = "fas fa-trash-alt";
                                 removeIcon.style.cursor = "pointer";
@@ -985,6 +1229,7 @@
                                     updateAssociationItemsInput();
                                     renderAssociationItems();
                                 });
+                                tdOptions.appendChild(editIcon);
                                 tdOptions.appendChild(removeIcon);
                                 tr.appendChild(tdOptions);
 
@@ -1102,7 +1347,7 @@
                                 return;
                             }
 
-                            associationItems.push({
+                            const upsertItem = {
                                 idHistoricalPerspective: associationHistoricalPerspective.value,
                                 historicalPerspectiveName: associationHistoricalPerspective.options[associationHistoricalPerspective.selectedIndex].textContent,
                                 idCategoryLevel1: associationCategoryLevel1.value,
@@ -1115,7 +1360,13 @@
                                 sectionName: associationSection.options[associationSection.selectedIndex].textContent,
                                 idAssociatedStudyItem: associationStudyItem.value,
                                 associatedStudyItemName: associationStudyItem.options[associationStudyItem.selectedIndex].textContent,
-                            });
+                            };
+
+                            if (editingAssociationIndex !== null) {
+                                associationItems[editingAssociationIndex] = upsertItem;
+                            } else {
+                                associationItems.push(upsertItem);
+                            }
 
                             updateAssociationItemsInput();
                             renderAssociationItems();
@@ -1126,6 +1377,7 @@
                             associationCategoryLevel3.innerHTML = '<option value="" data-default disabled selected></option>';
                             associationSection.innerHTML = '<option value="" data-default disabled selected></option>';
                             associationStudyItem.innerHTML = '<option value="" data-default disabled selected></option>';
+                            editingAssociationIndex = null;
 
                             if (window.jQuery) {
                                 window.jQuery("#ItemAssociationModal").modal("hide");
@@ -1143,7 +1395,7 @@
 
                 <div class="button-space">
                     <a href="#" data-toggle="modal" data-target="#BibleMarkupModal">
-                        <button class="btn btn-success"><i class="fas fa-plus"></i></button>
+                        <button class="btn btn-success" type="button"><i class="fas fa-plus"></i></button>
                     </a>
                 </div>
 
@@ -1157,24 +1409,157 @@
                             <th>Verso final</th>
                             <th>Opções</th>
                         </tr>
-                        <tr>
-                            <td>001</td>
-                            <td>Mateus</td>
-                            <td>23</td>
-                            <td>10</td>
-                            <td>14</td>
-                            <td class="item-option"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <td>002</td>
-                            <td>Gênesis</td>
-                            <td>12</td>
-                            <td>20</td>
-                            <td>27</td>
-                            <td class="item-option"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
+                        <tbody id="studyItemBibleMarkupTableBody"></tbody>
                     </table>
                 </div>
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const bibleMarkupItemsJsonInput = document.getElementById("bibleMarkupItemsJson");
+                        const bibleMarkupTableBody = document.getElementById("studyItemBibleMarkupTableBody");
+                        const bibleMarkupBook = document.getElementById("bibleMarkupBook");
+                        const bibleMarkupChapter = document.getElementById("bibleMarkupChapter");
+                        const bibleMarkupVerseStart = document.getElementById("bibleMarkupVerseStart");
+                        const bibleMarkupVerseEnd = document.getElementById("bibleMarkupVerseEnd");
+                        const btnInsertBibleMarkup = document.getElementById("btnInsertBibleMarkup");
+
+                        if (!bibleMarkupItemsJsonInput || !bibleMarkupTableBody || !bibleMarkupBook || !bibleMarkupChapter || !bibleMarkupVerseStart || !bibleMarkupVerseEnd || !btnInsertBibleMarkup) {
+                            return;
+                        }
+
+                        let bibleMarkupItems = [];
+                        try {
+                            const parsedBibleMarkupItems = JSON.parse(bibleMarkupItemsJsonInput.value || "[]");
+                            bibleMarkupItems = Array.isArray(parsedBibleMarkupItems) ? parsedBibleMarkupItems : [];
+                        } catch (error) {
+                            bibleMarkupItems = [];
+                        }
+                        let editingBibleMarkupIndex = null;
+
+                        function ensureSelectOption(selectElement, value, label) {
+                            if (value === null || value === undefined || value === "") {
+                                return;
+                            }
+                            const exists = Array.from(selectElement.options).some((opt) => String(opt.value) === String(value));
+                            if (!exists) {
+                                const opt = document.createElement("option");
+                                opt.value = value;
+                                opt.textContent = label || value;
+                                selectElement.appendChild(opt);
+                            }
+                        }
+
+                        function openBibleMarkupModalForEdit(index) {
+                            const item = bibleMarkupItems[index];
+                            if (!item) {
+                                return;
+                            }
+
+                            editingBibleMarkupIndex = index;
+                            ensureSelectOption(bibleMarkupBook, item.idBook, item.bookName);
+                            bibleMarkupBook.value = item.idBook || "";
+                            bibleMarkupChapter.value = item.chapter || "";
+                            bibleMarkupVerseStart.value = item.verseStart || "";
+                            bibleMarkupVerseEnd.value = item.verseEnd || "";
+
+                            if (window.jQuery) {
+                                window.jQuery("#BibleMarkupModal").modal("show");
+                            }
+                        }
+
+                        function updateBibleMarkupItemsInput() {
+                            bibleMarkupItemsJsonInput.value = JSON.stringify(bibleMarkupItems);
+                        }
+
+                        function renderBibleMarkupItems() {
+                            bibleMarkupTableBody.innerHTML = "";
+                            bibleMarkupItems.forEach((item, index) => {
+                                const tr = document.createElement("tr");
+
+                                const tdCode = document.createElement("td");
+                                tdCode.textContent = String(index + 1).padStart(3, "0");
+                                tr.appendChild(tdCode);
+
+                                const tdBook = document.createElement("td");
+                                tdBook.textContent = item.bookName;
+                                tr.appendChild(tdBook);
+
+                                const tdChapter = document.createElement("td");
+                                tdChapter.textContent = item.chapter;
+                                tr.appendChild(tdChapter);
+
+                                const tdVerseStart = document.createElement("td");
+                                tdVerseStart.textContent = item.verseStart;
+                                tr.appendChild(tdVerseStart);
+
+                                const tdVerseEnd = document.createElement("td");
+                                tdVerseEnd.textContent = item.verseEnd;
+                                tr.appendChild(tdVerseEnd);
+
+                                const tdOptions = document.createElement("td");
+                                tdOptions.className = "item-option";
+
+                                const editIcon = document.createElement("i");
+                                editIcon.className = "fas fa-pen";
+                                editIcon.style.cursor = "pointer";
+                                editIcon.style.marginRight = "10px";
+                                editIcon.addEventListener("click", function () {
+                                    openBibleMarkupModalForEdit(index);
+                                });
+
+                                const removeIcon = document.createElement("i");
+                                removeIcon.className = "fas fa-trash-alt";
+                                removeIcon.style.cursor = "pointer";
+                                removeIcon.addEventListener("click", function () {
+                                    bibleMarkupItems.splice(index, 1);
+                                    updateBibleMarkupItemsInput();
+                                    renderBibleMarkupItems();
+                                });
+                                tdOptions.appendChild(editIcon);
+                                tdOptions.appendChild(removeIcon);
+                                tr.appendChild(tdOptions);
+
+                                bibleMarkupTableBody.appendChild(tr);
+                            });
+                        }
+
+                        btnInsertBibleMarkup.addEventListener("click", function () {
+                            if (!bibleMarkupBook.value || !bibleMarkupChapter.value || !bibleMarkupVerseStart.value || !bibleMarkupVerseEnd.value) {
+                                return;
+                            }
+
+                            const upsertItem = {
+                                idBook: bibleMarkupBook.value,
+                                bookName: bibleMarkupBook.options[bibleMarkupBook.selectedIndex].textContent,
+                                chapter: bibleMarkupChapter.value,
+                                verseStart: bibleMarkupVerseStart.value,
+                                verseEnd: bibleMarkupVerseEnd.value,
+                            };
+
+                            if (editingBibleMarkupIndex !== null) {
+                                bibleMarkupItems[editingBibleMarkupIndex] = upsertItem;
+                            } else {
+                                bibleMarkupItems.push(upsertItem);
+                            }
+
+                            updateBibleMarkupItemsInput();
+                            renderBibleMarkupItems();
+
+                            bibleMarkupBook.value = "";
+                            bibleMarkupChapter.value = "";
+                            bibleMarkupVerseStart.value = "";
+                            bibleMarkupVerseEnd.value = "";
+                            editingBibleMarkupIndex = null;
+
+                            if (window.jQuery) {
+                                window.jQuery("#BibleMarkupModal").modal("hide");
+                            }
+                        });
+
+                        updateBibleMarkupItemsInput();
+                        renderBibleMarkupItems();
+                    });
+                </script>
 
     </fieldset>
 </form>

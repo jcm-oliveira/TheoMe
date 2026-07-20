@@ -95,9 +95,13 @@ routes.get('/cms-LoginPage', (req,res) => res.render(views + "cms/cms-LoginPage"
 routes.get('/cms-MainPage', (req,res) => res.render(views + "cms/cms-MainPage"));
 
 // RESEARCH
-routes.get('/cms-StudyItem-Q', (req,res) => res.render(views + "cms/cms-StudyItem-Q"));
+routes.get('/cms-StudyItem-Q', StudyItemController.loadShowPage);
+routes.post('/cms-StudyItem-F', StudyItemController.filterStudyItemPage)
 routes.get('/cms-StudyItem-C', StudyItemController.loadInsertPage);
+routes.get('/cms-StudyItem-C/:id', StudyItemController.loadUpdatePage);
 routes.post('/cms-StudyItem-C', StudyItemController.insertStudyItemPage)
+routes.post('/cms-StudyItem-U/:id', StudyItemController.updateStudyItemPage)
+routes.post('/cms-StudyItem-D/:id', StudyItemController.deleteStudyItemPage)
 routes.post('/cms-StudyItem-X-HistoricalPerspective', StudyItemController.historicalPerspectiveListener)
 routes.post('/cms-StudyItem-X-Level1', StudyItemController.level1Listener)
 routes.post('/cms-StudyItem-X-Level2', StudyItemController.level2Listener)

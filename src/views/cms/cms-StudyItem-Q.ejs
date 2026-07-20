@@ -78,36 +78,31 @@
                             <th>Ítem de estudo</th>
                             <th>Opções</th>
                         </tr>
-                        <tr>
-                            <td>001</td>
-                            <td>Teologia</td>
-                            <td>Bíblia Sagrada</td>
-                            <td>Esquema de Conteúdo</td>
-                            <td>Gênesis</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td class="item-option"><i class="fas fa-pen"></i></td>
-                        </tr>
-                        <tr>
-                            <td>002</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td class="item-option"><i class="fas fa-pen"></i></td>
-                        </tr>
-                        <tr>
-                            <td>003</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td class="item-option"><i class="fas fa-pen"></i></td>
-                        </tr>
+                        <% if (studyItemList.length === 0) { %>
+                            <tr>
+                                <td colspan="8" class="text-center">Nenhum item de estudo encontrado para o filtro informado.</td>
+                            </tr>
+                        <% } %>
+                        <% studyItemList.forEach((item)=> { %>
+                            <tr>
+                                <td><%-item.id%></td>
+                                <td><%-item.historical_perspective%></td>
+                                <td><%-item.category_level_1%></td>
+                                <td><%-item.category_level_2%></td>
+                                <td><%-item.category_level_3%></td>
+                                <td><%-item.section%></td>
+                                <td><%-item.name%></td>
+                                <td class="item-option">
+                                    <a href="/cms-StudyItem-C/<%= item.id %>"><i class="fas fa-pen"></i></a>
+                                    &nbsp;
+                                    <form method="post" action="/cms-StudyItem-D/<%= item.id %>" style="display:inline;">
+                                        <button type="submit" style="border:0;background:transparent;padding:0;cursor:pointer;" title="Excluir" onclick="return confirm('Deseja excluir este item de estudo?');">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <% }) %>
                     </table>
         </div>
 

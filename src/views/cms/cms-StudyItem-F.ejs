@@ -39,143 +39,352 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form id="studyItemFilterForm" method="post" action="/cms-StudyItem-F">
           <div class="form-group">
             <div class="row">
                 <div class="col-md-6">
                     <label for="" form-label>Status</label>
-                    <select name="status" class="form-control">
-                        <option value="">Ativo</option>
-                        <option value="">Inativo</option>
+                    <select name="filterStatus" class="form-control">
+                        <option value="2" <%= filterStatus && String(filterStatus.status) === "%" ? "selected" : "" %>>*TODOS*</option>
+                        <option value="1" <%= filterStatus && String(filterStatus.status) === "1" ? "selected" : "" %>>Ativo</option>
+                        <option value="0" <%= filterStatus && String(filterStatus.status) === "0" ? "selected" : "" %>>Inativo</option>
                     </select>
                 </div>
                 <div class="col-md-6">
                     <label for="" form-label>Idioma</label>
-                    <select name="status" class="form-control">
-                        <option value="">Português</option>
-                        <option value="">Inglês</option>
+                    <select name="filterLanguage" class="form-control">
+                        <option value="" <%= filterStatus && String(filterStatus.language) === "%" ? "selected" : "" %>>*TODOS*</option>
+                        <option value="pt-BR" <%= filterStatus && String(filterStatus.language) === "pt-BR" ? "selected" : "" %>>Português</option>
+                        <option value="en-US" <%= filterStatus && String(filterStatus.language) === "en-US" ? "selected" : "" %>>Inglês</option>
                     </select>
                 </div>
             </div>
                 <div class="col-md-14">
                 <label form-label>Pesquisar</label>
-                <input class="form-control" autofocus type="text" id="filterSearch" name="filterSearch">
+                <input class="form-control" autofocus type="text" id="filterSearch" name="filterSearch" value="<%= filterStatus && filterStatus.search ? filterStatus.search : '' %>">
                 </div>            
           </div> 
 
           <div class="form-group">
 
           <label for="recipient-publication" class="col-form-label">Perspectiva histórica</label>
-            <select name="dataFormat" class="form-control">
-              <option value="">*TODAS*</option>
-              <option value="">Teológico</option>
-              <option value="">Político</option>                            
+            <select id="historicalPerspectiveFilter" name="historicalPerspectiveFilter" class="form-control">
+              <option value="0">*TODAS*</option>
+              <% historicalPerspectives.forEach((item)=> { %>
+                <option value="<%-item.id%>" <%= filterStatus && String(filterStatus.historicalPerspectiveFilter) === String(item.id) ? "selected" : "" %>><%-item.name%></option>
+              <% }) %>
             </select>
              
            <label for="recipient-name" class="col-form-label">Categoria Nível 1</label>
-            <select name="dataFormat" class="form-control">
+            <select id="categoryLevel1Filter" name="categoryLevel1Filter" class="form-control">
               <option value="">*TODOS*</option>
-              <option value="">Bíblia Sagrada</option>                          
-          </select>
+              <% categoryLevel1List.forEach((item)=> { %>
+                <option value="<%-item.id%>" <%= filterStatus && String(filterStatus.categoryLevel1Filter) === String(item.id) ? "selected" : "" %>><%-item.name%></option>
+              <% }) %>
+            </select>
 
           <label for="recipient-name" class="col-form-label">Categoria Nível 2</label>
-            <select name="dataFormat" class="form-control">
+            <select id="categoryLevel2Filter" name="categoryLevel2Filter" class="form-control">
               <option value="">*TODOS*</option>
-              <option value="">Esquema de Conteúdo</option>                         
-          </select>
+              <% categoryLevel2List.forEach((item)=> { %>
+                <option value="<%-item.id%>" <%= filterStatus && String(filterStatus.categoryLevel2Filter) === String(item.id) ? "selected" : "" %>><%-item.name%></option>
+              <% }) %>
+            </select>
 
           <label for="recipient-name" class="col-form-label">Categoria Nível 3</label>
-            <select name="dataFormat" class="form-control">
+            <select id="categoryLevel3Filter" name="categoryLevel3Filter" class="form-control">
               <option value="">*TODOS*</option>
-              <option value="">Gênesis</option>                           
-          </select>           
+              <% categoryLevel3List.forEach((item)=> { %>
+                <option value="<%-item.id%>" <%= filterStatus && String(filterStatus.categoryLevel3Filter) === String(item.id) ? "selected" : "" %>><%-item.name%></option>
+              <% }) %>
+            </select>
 
           <label for="recipient-name" class="col-form-label">Seção</label>
-            <select name="dataFormat" class="form-control">
+            <select id="sectionFilter" name="sectionFilter" class="form-control">
               <option value="">*TODOS*</option>
-              <option value="">A criação do Mundo</option>                         
-          </select>
-                      
-            <label for="recipient-name" class="col-form-label">Linha temporal</label>
-            <select name="dataFormat" class="form-control">
-              <option value="">*TODAS*</option>
-              <option value="">Vida dos personagem</option>
-              <option value="">Milagres e feitos dos espírito santo</option>                            
-            </select>
-                                  
-            <label for="recipient-name" class="col-form-label">Tipo de período</label>
-            <select name="dataFormat" class="form-control">
-              <option value="">*TODAS*</option>
-              <option value="">Século</option>
-              <option value="">Idade histórica</option>
-              <option value="">Períodos teológicos</option>                             
-            </select>
-
-            <label for="recipient-name" class="col-form-label">Período</label>
-            <select name="dataFormat" class="form-control">
-              <option value="">*TODAS*</option>
-              <option value="">VI</option>
-              <option value="">XX</option>
-              <option value="">Idade antiga</option>
-              <option value="">Idade Média</option>                           
-            </select>
-
-            <label for="recipient-name" class="col-form-label">Ano de início</label>
-            <select name="dataFormat" class="form-control">
-              <option value="">*TODAS*</option>
-              <option value="">1900</option>
-              <option value="">2000</option>                            
-            </select>
-
-            <label for="recipient-name" class="col-form-label">Ano de término</label>
-            <select name="dataFormat" class="form-control">
-              <option value="">*TODAS*</option>
-              <option value="">1900</option>
-              <option value="">2000</option>                          
+              <% sectionList.forEach((item)=> { %>
+                <option value="<%-item.id%>" <%= filterStatus && String(filterStatus.sectionFilter) === String(item.id) ? "selected" : "" %>><%-item.name%></option>
+              <% }) %>
             </select>
 
             <label for="recipient-name" class="col-form-label">Continente</label>
-            <select name="dataFormat" class="form-control">
+            <select id="continentFilter" name="continentFilter" class="form-control">
               <option value="">*TODOS*</option>
-              <option value="">Europa</option>
-              <option value="">América do Norte</option>                            
+              <% continents.forEach((item)=> { %>
+                <option value="<%-item.id%>" <%= filterStatus && String(filterStatus.continentFilter) === String(item.id) ? "selected" : "" %>><%-item.name%></option>
+              <% }) %>
             </select>
           
             <label for="recipient-name" class="col-form-label">País</label>
-            <select name="dataFormat" class="form-control">
+            <select id="countryFilter" name="countryFilter" class="form-control">
               <option value="">*TODOS*</option>
-              <option value="">EUA</option>
-              <option value="">Brasil</option>                            
+              <% countries.forEach((item)=> { %>
+                <option value="<%-item.id%>" <%= filterStatus && String(filterStatus.countryFilter) === String(item.id) ? "selected" : "" %>><%-item.name%></option>
+              <% }) %>
             </select>
 
             <label for="recipient-name" class="col-form-label">Região</label>
-            <select name="dataFormat" class="form-control">
+            <select id="regionFilter" name="regionFilter" class="form-control">
               <option value="">*TODAS*</option>
-              <option value="">Norte</option>
-              <option value="">Sudeste</option>                            
+              <% regions.forEach((item)=> { %>
+                <option value="<%-item.id%>" <%= filterStatus && String(filterStatus.regionFilter) === String(item.id) ? "selected" : "" %>><%-item.name%></option>
+              <% }) %>
             </select>
 
             <label for="recipient-name" class="col-form-label">Estado</label>
-            <select name="dataFormat" class="form-control">
+            <select id="stateFilter" name="stateFilter" class="form-control">
               <option value="">*TODOS*</option>
-              <option value="">New York</option>
-              <option value="">Santa Catarina</option>                            
+              <% states.forEach((item)=> { %>
+                <option value="<%-item.id%>" <%= filterStatus && String(filterStatus.stateFilter) === String(item.id) ? "selected" : "" %>><%-item.name%></option>
+              <% }) %>
             </select>
 
             <label for="recipient-name" class="col-form-label">Cidade</label>
-            <select name="dataFormat" class="form-control">
+            <select id="cityFilter" name="cityFilter" class="form-control">
               <option value="">*TODAS*</option>
-              <option value="">São Paulo</option>
-              <option value="">New York</option>                            
+              <% cities.forEach((item)=> { %>
+                <option value="<%-item.id%>" <%= filterStatus && String(filterStatus.cityFilter) === String(item.id) ? "selected" : "" %>><%-item.name%></option>
+              <% }) %>
             </select>
      
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success">Filtrar</button>
+        <button type="submit" form="studyItemFilterForm" class="btn btn-success">Filtrar</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>        
       </div>
     </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const selHistoricalPerspective = document.getElementById("historicalPerspectiveFilter");
+        const selLevel1 = document.getElementById("categoryLevel1Filter");
+        const selLevel2 = document.getElementById("categoryLevel2Filter");
+        const selLevel3 = document.getElementById("categoryLevel3Filter");
+        const selSection = document.getElementById("sectionFilter");
+
+        const selContinent = document.getElementById("continentFilter");
+        const selCountry = document.getElementById("countryFilter");
+        const selRegion = document.getElementById("regionFilter");
+        const selState = document.getElementById("stateFilter");
+        const selCity = document.getElementById("cityFilter");
+
+        if (!selHistoricalPerspective || !selLevel1 || !selLevel2 || !selLevel3 || !selSection || !selContinent || !selCountry || !selRegion || !selState || !selCity) {
+          return;
+        }
+
+        const initialFilters = {
+          historicalPerspectiveId: "<%= filterStatus && filterStatus.historicalPerspectiveFilter && String(filterStatus.historicalPerspectiveFilter) !== '%' ? filterStatus.historicalPerspectiveFilter : '' %>",
+          categoryLevel1Id: "<%= filterStatus && filterStatus.categoryLevel1Filter && String(filterStatus.categoryLevel1Filter) !== '%' ? filterStatus.categoryLevel1Filter : '' %>",
+          categoryLevel2Id: "<%= filterStatus && filterStatus.categoryLevel2Filter && String(filterStatus.categoryLevel2Filter) !== '%' ? filterStatus.categoryLevel2Filter : '' %>",
+          categoryLevel3Id: "<%= filterStatus && filterStatus.categoryLevel3Filter && String(filterStatus.categoryLevel3Filter) !== '%' ? filterStatus.categoryLevel3Filter : '' %>",
+          sectionId: "<%= filterStatus && filterStatus.sectionFilter && String(filterStatus.sectionFilter) !== '%' ? filterStatus.sectionFilter : '' %>",
+          continentId: "<%= filterStatus && filterStatus.continentFilter && String(filterStatus.continentFilter) !== '%' ? filterStatus.continentFilter : '' %>",
+          countryId: "<%= filterStatus && filterStatus.countryFilter && String(filterStatus.countryFilter) !== '%' ? filterStatus.countryFilter : '' %>",
+          regionId: "<%= filterStatus && filterStatus.regionFilter && String(filterStatus.regionFilter) !== '%' ? filterStatus.regionFilter : '' %>",
+          stateId: "<%= filterStatus && filterStatus.stateFilter && String(filterStatus.stateFilter) !== '%' ? filterStatus.stateFilter : '' %>",
+          cityId: "<%= filterStatus && filterStatus.cityFilter && String(filterStatus.cityFilter) !== '%' ? filterStatus.cityFilter : '' %>",
+        };
+
+        function resetSelect(selectElement, defaultLabel) {
+          selectElement.innerHTML = "";
+          const defaultOption = document.createElement("option");
+          defaultOption.value = "";
+          defaultOption.textContent = defaultLabel;
+          selectElement.appendChild(defaultOption);
+        }
+
+        function fillOptions(selectElement, items) {
+          items.forEach((item) => {
+            const option = document.createElement("option");
+            option.value = item.id;
+            option.textContent = item.name;
+            selectElement.appendChild(option);
+          });
+        }
+
+        function setSelectedValue(selectElement, selectedValue) {
+          if (!selectedValue) {
+            return;
+          }
+          const hasOption = Array.from(selectElement.options).some((opt) => String(opt.value) === String(selectedValue));
+          if (hasOption) {
+            selectElement.value = String(selectedValue);
+          }
+        }
+
+        async function requestItems(url, body) {
+          try {
+            const response = await fetch(url, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(body),
+            });
+            return await response.json();
+          } catch (error) {
+            return [];
+          }
+        }
+
+        async function loadLevel1(selectedValue) {
+          resetSelect(selLevel1, "*TODOS*");
+          resetSelect(selLevel2, "*TODOS*");
+          resetSelect(selLevel3, "*TODOS*");
+          resetSelect(selSection, "*TODOS*");
+          if (!selHistoricalPerspective.value) {
+            return;
+          }
+          const items = await requestItems("/cms-StudyItem-X-HistoricalPerspective", { historicalPerspectiveId: selHistoricalPerspective.value });
+          fillOptions(selLevel1, items);
+          setSelectedValue(selLevel1, selectedValue);
+        }
+
+        async function loadLevel2(selectedValue) {
+          resetSelect(selLevel2, "*TODOS*");
+          resetSelect(selLevel3, "*TODOS*");
+          resetSelect(selSection, "*TODOS*");
+          if (!selLevel1.value) {
+            return;
+          }
+          const items = await requestItems("/cms-StudyItem-X-Level1", { categoryLevel1Id: selLevel1.value });
+          fillOptions(selLevel2, items);
+          setSelectedValue(selLevel2, selectedValue);
+        }
+
+        async function loadLevel3(selectedValue) {
+          resetSelect(selLevel3, "*TODOS*");
+          resetSelect(selSection, "*TODOS*");
+          if (!selLevel2.value) {
+            return;
+          }
+          const items = await requestItems("/cms-StudyItem-X-Level2", { categoryLevel2Id: selLevel2.value });
+          fillOptions(selLevel3, items);
+          setSelectedValue(selLevel3, selectedValue);
+        }
+
+        async function loadSection(selectedValue) {
+          resetSelect(selSection, "*TODOS*");
+          if (!selLevel3.value) {
+            return;
+          }
+          const items = await requestItems("/cms-StudyItem-X-Level3", { categoryLevel3Id: selLevel3.value });
+          fillOptions(selSection, items);
+          setSelectedValue(selSection, selectedValue);
+        }
+
+        async function loadCountry(selectedValue) {
+          resetSelect(selCountry, "*TODOS*");
+          resetSelect(selRegion, "*TODAS*");
+          resetSelect(selState, "*TODOS*");
+          resetSelect(selCity, "*TODAS*");
+          if (!selContinent.value) {
+            return;
+          }
+          const items = await requestItems("/cms-StudyItem-X-Continent", { continentId: selContinent.value });
+          fillOptions(selCountry, items);
+          setSelectedValue(selCountry, selectedValue);
+        }
+
+        async function loadRegion(selectedValue) {
+          resetSelect(selRegion, "*TODAS*");
+          resetSelect(selState, "*TODOS*");
+          resetSelect(selCity, "*TODAS*");
+          if (!selCountry.value) {
+            return;
+          }
+          const items = await requestItems("/cms-StudyItem-X-Country", { countryId: selCountry.value });
+          fillOptions(selRegion, items);
+          setSelectedValue(selRegion, selectedValue);
+        }
+
+        async function loadState(selectedValue) {
+          resetSelect(selState, "*TODOS*");
+          resetSelect(selCity, "*TODAS*");
+          if (!selRegion.value) {
+            return;
+          }
+          const items = await requestItems("/cms-StudyItem-X-Region", { regionId: selRegion.value });
+          fillOptions(selState, items);
+          setSelectedValue(selState, selectedValue);
+        }
+
+        async function loadCity(selectedValue) {
+          resetSelect(selCity, "*TODAS*");
+          if (!selState.value) {
+            return;
+          }
+          const items = await requestItems("/cms-StudyItem-X-State", { stateId: selState.value });
+          fillOptions(selCity, items);
+          setSelectedValue(selCity, selectedValue);
+        }
+
+        selHistoricalPerspective.addEventListener("change", function () {
+          loadLevel1("");
+        });
+
+        selLevel1.addEventListener("change", function () {
+          loadLevel2("");
+        });
+
+        selLevel2.addEventListener("change", function () {
+          loadLevel3("");
+        });
+
+        selLevel3.addEventListener("change", function () {
+          loadSection("");
+        });
+
+        selContinent.addEventListener("change", function () {
+          loadCountry("");
+        });
+
+        selCountry.addEventListener("change", function () {
+          loadRegion("");
+        });
+
+        selRegion.addEventListener("change", function () {
+          loadState("");
+        });
+
+        selState.addEventListener("change", function () {
+          loadCity("");
+        });
+
+        async function initializeDependentFilters() {
+          if (initialFilters.historicalPerspectiveId) {
+            selHistoricalPerspective.value = initialFilters.historicalPerspectiveId;
+            await loadLevel1(initialFilters.categoryLevel1Id);
+
+            if (initialFilters.categoryLevel1Id) {
+              await loadLevel2(initialFilters.categoryLevel2Id);
+            }
+            if (initialFilters.categoryLevel2Id) {
+              await loadLevel3(initialFilters.categoryLevel3Id);
+            }
+            if (initialFilters.categoryLevel3Id) {
+              await loadSection(initialFilters.sectionId);
+            }
+          }
+
+          if (initialFilters.continentId) {
+            selContinent.value = initialFilters.continentId;
+            await loadCountry(initialFilters.countryId);
+
+            if (initialFilters.countryId) {
+              await loadRegion(initialFilters.regionId);
+            }
+            if (initialFilters.regionId) {
+              await loadState(initialFilters.stateId);
+            }
+            if (initialFilters.stateId) {
+              await loadCity(initialFilters.cityId);
+            }
+          }
+        }
+
+        initializeDependentFilters();
+      });
+    </script>
     
 </body>
