@@ -1,5 +1,4 @@
 const State = require("../model/StateModel");
-console.log("StateController file starts...");
 
 module.exports = {
     //------------------------------------------------

@@ -1,5 +1,4 @@
 const db = require("../db/config");
-console.log("RegionModel file starts...")
 
 //--------------------------------------------
 //                  SELECT

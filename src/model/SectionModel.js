@@ -1,5 +1,4 @@
 const db = require("../db/config");
-console.log("SectionModel file starts...");
 
 async function selectSections(filterStatus) {
     const conn = await db.connect();

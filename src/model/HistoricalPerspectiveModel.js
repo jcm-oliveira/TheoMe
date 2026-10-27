@@ -1,5 +1,4 @@
 const db = require("../db/config");
-console.log("HistoricalPerspectiveModel file starts...");
 
 //--------------------------------------------
 //                  SELECT

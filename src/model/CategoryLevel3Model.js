@@ -1,5 +1,4 @@
 const db = require("../db/config");
-console.log("CategoryLevel3Model file starts...");
 
 async function selectCategoryLevel3(filterStatus) {
     const conn = await db.connect();

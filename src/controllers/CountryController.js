@@ -1,5 +1,4 @@
 const Country = require("../model/CountryModel");
-console.log("CountryController file starts...");
 module.exports = {
 
 //------------------------------------------------

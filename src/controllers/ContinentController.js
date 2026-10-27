@@ -1,5 +1,4 @@
 const Continent = require("../model/ContinentModel");
-console.log("ContinentController file starts...");
 module.exports = {
 
 //------------------------------------------------

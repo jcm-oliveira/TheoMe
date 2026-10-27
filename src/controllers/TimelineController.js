@@ -1,5 +1,4 @@
 const Timeline = require("../model/TimelineModel");
-console.log("TimelineController file starts...");
 
 module.exports = {
     //------------------------------------------------

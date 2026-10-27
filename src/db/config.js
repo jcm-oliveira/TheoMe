@@ -2,8 +2,6 @@
 //credenciais lidas do arquivo .env (ver .env.example)
 require("dotenv").config({ quiet: true });
 
-console.log('DB config:', { host: process.env.DB_HOST, user: process.env.DB_USER, db: process.env.DB_NAME });
-
 async function connect(){
     //garantir que eu tenha apenas uma conexão por aplicação
     if(global.connection && global.connection.state !== 'disconnected')

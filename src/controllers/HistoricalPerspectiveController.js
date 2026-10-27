@@ -1,5 +1,4 @@
 const HistoricalPerspective = require("../model/HistoricalPerspectiveModel");
-console.log("HistoricalPerspectiveController file starts...");
 
 module.exports = {
     //------------------------------------------------

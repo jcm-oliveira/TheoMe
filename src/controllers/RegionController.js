@@ -1,5 +1,4 @@
 const Region = require("../model/RegionModel");
-console.log("RegionController file starts...");
 module.exports = {
 
 

@@ -1,5 +1,4 @@
 const City = require("../model/CityModel");
-console.log("CityController file starts...");
 
 module.exports = {
     //------------------------------------------------

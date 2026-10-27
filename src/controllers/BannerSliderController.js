@@ -1,5 +1,4 @@
 const BannerSlider = require("../model/BannerSliderModel");
-console.log("BannerSliderController file starts...");
 
 module.exports = {
 

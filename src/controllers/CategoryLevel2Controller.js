@@ -1,5 +1,4 @@
 const CategoryLevel2 = require("../model/CategoryLevel2Model");
-console.log("CategoryLevel2Controller file starts...");
 
 module.exports = {
     async loadShowPage(req, res) {

@@ -1,5 +1,4 @@
 const Section = require("../model/SectionModel");
-console.log("SectionController file starts...");
 
 module.exports = {
     async loadShowPage(req, res) {

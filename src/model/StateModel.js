@@ -1,5 +1,4 @@
 const db = require("../db/config");
-console.log("StateModel file starts...");
 
 //------------------------------------------------
 //                     SELECT

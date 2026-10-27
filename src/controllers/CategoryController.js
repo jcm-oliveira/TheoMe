@@ -1,5 +1,4 @@
 const Category = require("../model/CategoryModel");
-console.log("CategoryController file starts...");
 
 module.exports = {
     //------------------------------------------------

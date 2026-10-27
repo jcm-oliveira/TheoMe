@@ -1,5 +1,4 @@
 const db = require("../db/config");
-console.log("Model file starts...")
 
 //--------------------------------------------
 //                  SELECT

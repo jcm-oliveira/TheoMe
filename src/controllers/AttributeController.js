@@ -1,5 +1,4 @@
 const Attribute = require("../model/AttributeModel");
-console.log("AttributeController file starts...");
 
 module.exports = {
     //------------------------------------------------

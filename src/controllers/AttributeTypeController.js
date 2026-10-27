@@ -1,5 +1,4 @@
 const AttributeType = require("../model/AttributeTypeModel");
-console.log("AttributeTypeController file starts...");
 
 module.exports = {
     //------------------------------------------------
