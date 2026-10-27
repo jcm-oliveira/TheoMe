@@ -53,11 +53,11 @@
         <h1><%= formMode === "update" ? "Editar - Item de Estudo" : "Cadastrar - Item de Estudo" %></h1>
 
         <form id="form-study-item" method="post" action="<%= formAction || '/cms-StudyItem-C' %>">
-            <input type="hidden" id="attributeItemsJson" name="attributeItemsJson" value='<%- JSON.stringify(initialAttributeItems || []) %>'>
-            <input type="hidden" id="chronologyItemsJson" name="chronologyItemsJson" value='<%- JSON.stringify(initialChronologyItems || []) %>'>
-            <input type="hidden" id="hierarchyItemsJson" name="hierarchyItemsJson" value='<%- JSON.stringify(initialHierarchyItems || []) %>'>
-            <input type="hidden" id="associationItemsJson" name="associationItemsJson" value='<%- JSON.stringify(initialAssociationItems || []) %>'>
-            <input type="hidden" id="bibleMarkupItemsJson" name="bibleMarkupItemsJson" value='<%- JSON.stringify(initialBibleMarkupItems || []) %>'>
+            <input type="hidden" id="attributeItemsJson" name="attributeItemsJson" value="<%= JSON.stringify(initialAttributeItems || []) %>">
+            <input type="hidden" id="chronologyItemsJson" name="chronologyItemsJson" value="<%= JSON.stringify(initialChronologyItems || []) %>">
+            <input type="hidden" id="hierarchyItemsJson" name="hierarchyItemsJson" value="<%= JSON.stringify(initialHierarchyItems || []) %>">
+            <input type="hidden" id="associationItemsJson" name="associationItemsJson" value="<%= JSON.stringify(initialAssociationItems || []) %>">
+            <input type="hidden" id="bibleMarkupItemsJson" name="bibleMarkupItemsJson" value="<%= JSON.stringify(initialBibleMarkupItems || []) %>">
             <fieldset class="flex">
 
 <!-- Basic Data-->
