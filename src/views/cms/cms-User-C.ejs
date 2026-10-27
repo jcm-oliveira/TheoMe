@@ -20,11 +20,12 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     
     <!-- bootstrap customization -->
-      <link rel="stylesheet" href="/styles/parts/main-cmss" />
+      <link rel="stylesheet" href="/styles/parts/main.css" />
       <link rel="stylesheet" href="/styles/parts/header.css" />
       <link rel="stylesheet" href="/styles/parts/footer.css" />
       <link rel="stylesheet" href="/styles/parts/button.css" />
       <link rel="stylesheet" href="/styles/parts/form.css" />
+      <link rel="stylesheet" href="/styles/parts/grid.css" />
 </head>
 
 <body>
@@ -36,119 +37,94 @@
 
     <%- include('../parts/header')  %>
 
-    <%- include('../parts/navbar')  %>    
-   
+    <%- include('../parts/navbar')  %>
+
     <main>
         <h1>Cadastrar - Usuário</h1>
-        
-        <form action="">            
+
+        <div class="alert <%= messages.alertType %> <%= messages.display %> alertPosition" role="alert">
+            <input class="inputAlertMessage" value="<%= messages.textMessage %>" disabled>
+            <a href="#" data-dismiss="alert"><i class="fas fa-times closeAlertMessage"></i></a>
+        </div>
+
+        <form id="form-user" method="post" action="/cms-User-C" enctype="multipart/form-data" autocomplete="off">
             <fieldset class="flex">
-                <legend>Dados básicos</legend>
                 <div class="row">
                     <div class="col-md-4">
-                        <label for="" form-label>Código</label>
+                        <label form-label>Código</label>
                         <input type="text" class="form-control" disabled>
                     </div>
                     <div class="col-md-4">
-                        <label for="" form-label>Status</label>
-                        <select name="status" class="form-control">
-                            <option value="">Ativo</option>
-                            <option value="">Inativo</option>
+                        <label for="userStatus" form-label>Status</label>
+                        <select id="userStatus" name="userStatus" class="form-control">
+                            <option value="1" <%= user.userStatus === 1 ? "selected" : "" %>>Ativo</option>
+                            <option value="0" <%= user.userStatus === 0 ? "selected" : "" %>>Inativo</option>
                         </select>
                     </div>
-                    <div class="col-md-4">
-                        <label for="" form-label>Permissão de acesso</label>
-                        <select name="status" class="form-control">
-                            <option value=""data-default disabled selected></option>
-                            <option value="">Administrador</option>
-                            <option value="">Pesquisador</option>
-                            <option value="">Estudante</option>
-                        </select>
-                    </div>
-                </div>             
-                <div class="row">                 
+                </div>
+
+                <div class="row">
                     <div class="col-md-6">
-                        <label for="" form-label>Nome completo</label>
-                        <input type="text" class="form-control" autofocus>
+                        <label for="userName" form-label>Nome completo</label>
+                        <input class="form-control" type="text" id="userName" name="userName" maxlength="150" value="<%= user.userName %>" autofocus required>
                     </div>
                     <div class="col-md-6">
-                        <label for="" form-label>E-mail</label>
-                        <input type="text" class="form-control">
-                    </div>                    
+                        <label for="userEmail" form-label>E-mail (usado no login)</label>
+                        <input class="form-control" type="email" id="userEmail" name="userEmail" maxlength="254" value="<%= user.userEmail %>" required>
+                    </div>
                 </div>
 
-                <div class="row">            
-
-                    <div class="col-md-4">
-                        <label for="" form-label>WhatsApp ou Instagram (Opcional)</label>
-                        <input type="text" class="form-control">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="userPassword" form-label>Senha (mínimo 8 caracteres)</label>
+                        <input class="form-control" type="password" id="userPassword" name="userPassword" minlength="8" maxlength="72" autocomplete="new-password" required>
                     </div>
-                    <div class="col-md-4">
-                        <label for="" form-label>Ano em que nasceu</label>
-                        <select name="status" class="form-control">
-                            <option value=""data-default disabled selected></option>
-                            <option value="">1990</option>
-                            <option value="">1989</option>
-                            <option value="">1988</option>
-                            <option value="">1987</option>
-                            <option value="">1986</option>
-                            <option value="">1985</option>
-                            <option value="">1984</option>
-                            <option value="">1933</option>
-                        </select>
+                    <div class="col-md-6">
+                        <label for="userPasswordConfirm" form-label>Confirmar senha</label>
+                        <input class="form-control" type="password" id="userPasswordConfirm" name="userPasswordConfirm" minlength="8" maxlength="72" autocomplete="new-password" required>
                     </div>
-                    <div class="col-md-4">
-                        <label for="" form-label>Local de origem</label>
-                        <select name="status" class="form-control">
-                            <option value=""data-default disabled selected></option>
-                            <option value="">São Paulo/SP/Brasil</option>
-                            <option value="">New York/NY/EUA</option>
-                        </select>
-                    </div> 
                 </div>
-                
-                <div class="row">                  
-                    <div class="col-md-12">
-                        <label for="formFile" class="form-label">Foto ou avatar</label>
-                        <input class="form-control" type="file" id="formFile">
-                    </div>                 
+            </fieldset>
+
+            <%- include('cms-User-ProfileFields', { avatarUserId: null }) %>
+
+            <fieldset class="flex">
+                <legend>Permissões de acesso (área logada)</legend>
+                <% if (permissionOptions.length === 0) { %>
+                    <p>Nenhuma permissão cadastrada. <a href="/cms-Permission-C">Cadastrar permissão</a></p>
+                <% } %>
+                <div class="row">
+                    <% permissionOptions.forEach((permission) => { %>
+                        <div class="col-md-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="permissionIds" id="permission-<%= permission.id %>" value="<%= permission.id %>" <%= user.permissionIds.includes(permission.id) ? "checked" : "" %>>
+                                <label class="form-check-label" for="permission-<%= permission.id %>">
+                                    <%= permission.name %><% if (permission.status !== 1) { %> (inativa)<% } %>
+                                    <br><small class="text-muted"><%= permission.code %></small>
+                                </label>
+                            </div>
+                        </div>
+                    <% }) %>
                 </div>
-
-                
-                    <div class="col-md-14">
-                        <label for="" class="form-label">Descrição</label>
-                        <textarea name="" id="" class="form-control"></textarea>
-                    </div>
-
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" checked>
-                        <label class="form-check-label" for="exampleCheck1">Quero ficar por dentro das novidades da comunidade</label>
-                    </div>
-
             </fieldset>
         </form>
 
-    <!-- BUTTON AREA -->
-    <div class="button-area">
-        <a href="/cms-User-Q">
-            <div class="button-frame">
-                <button class="btn btn-success">Salvar</button></a>
-            </div>
-        </a>
-        <a href="/cms-User-C">
-            <div class="button-frame">
-                <button class="btn btn-success">Salvar e Novo</button>
-            </div>
-        </a>
-        <a href="/cms-User-Q">
-            <div class="button-frame">
-                <button class="btn btn-secondary">Cancelar</button>
-            </div>
-        </a>
-       </div>
+                        <!-- BUTTON AREA -->
+                        <div class="button-area">
+                            <a href="#">
+                                <div class="button-frame">
+                                    <button class="btn btn-success" form="form-user" type="submit">Salvar</button>
+                                </div>
+                            </a>
+                            <a href="/cms-User-Q">
+                                <div class="button-frame">
+                                    <button class="btn btn-secondary">Cancelar</button>
+                                </div>
+                            </a>
+                        </div>
 
     </main>
 
-    <%- include('../parts/footer')  %> 
-    
+    <%- include('../parts/footer')  %>
+
 </body>

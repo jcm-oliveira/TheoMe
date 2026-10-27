@@ -1,0 +1,40 @@
+<%# Conteúdo do pop-up "Meus dados", carregado pelo menu do usuário (public/scripts/cms-MyProfile.js).
+    O usuário logado edita o nome e os dados pessoais; e-mail, status e permissões não mudam aqui. %>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Meus dados</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-danger d-none" role="alert" data-my-profile-message></div>
+
+        <form id="form-my-profile" method="post" action="/cms-MyProfile" enctype="multipart/form-data" autocomplete="off">
+            <fieldset class="flex">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label form-label>Código</label>
+                        <input type="text" class="form-control" disabled value="<%= currentUser.id %>">
+                    </div>
+                    <div class="col-md-8">
+                        <label form-label>E-mail (usado no login)</label>
+                        <input type="text" class="form-control" disabled value="<%= userEmail %>">
+                    </div>
+                </div>
+
+                <div class="col-md-14">
+                    <label for="userName" form-label>Nome completo</label>
+                    <input class="form-control" type="text" id="userName" name="userName" maxlength="150" value="<%= user.userName %>" required>
+                </div>
+                <p><small class="text-muted">Para mudar o e-mail ou as permissões, fale com um administrador. Para mudar a senha, use "Trocar senha" no menu do usuário.</small></p>
+            </fieldset>
+
+            <%- include('cms-User-ProfileFields', { avatarUserId: currentUser.id }) %>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" form="form-my-profile" class="btn btn-success">Salvar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>

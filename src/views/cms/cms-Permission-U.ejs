@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+  <title>TheoMe</title>
+  <link rel="icon" type="image/png" href="/images/logo_aba.png"/>
+
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+   <!-- font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"/>
+   <!-- icons -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    
+    <!-- bootstrap customization -->
+      <link rel="stylesheet" href="/styles/parts/main.css" />
+      <link rel="stylesheet" href="/styles/parts/header.css" />
+      <link rel="stylesheet" href="/styles/parts/footer.css" />
+      <link rel="stylesheet" href="/styles/parts/button.css" />
+      <link rel="stylesheet" href="/styles/parts/form.css" />
+      <link rel="stylesheet" href="/styles/parts/grid.css" />
+</head>
+
+<body>
+    
+ <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <%- include('../parts/header')  %>
+
+    <%- include('../parts/navbar')  %>
+
+    <main>
+        <h1>Editar - Permissão de Acesso</h1>
+
+        <div class="alert <%= messages.alertType %> <%= messages.display %> alertPosition" role="alert">
+            <input class="inputAlertMessage" value="<%= messages.textMessage %>" disabled>
+            <a href="#" data-dismiss="alert"><i class="fas fa-times closeAlertMessage"></i></a>
+        </div>
+
+        <form id="form-permission" method="post" action="/cms-Permission-U/<%= permissionId %>">
+            <fieldset class="flex">
+                <legend>Dados básicos</legend>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label form-label>Código</label>
+                        <input type="text" class="form-control" disabled value="<%= permissionId %>">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="permissionStatus" form-label>Status</label>
+                        <select id="permissionStatus" name="permissionStatus" class="form-control">
+                            <option value="1" <%= permission.permissionStatus === 1 ? "selected" : "" %>>Ativo</option>
+                            <option value="0" <%= permission.permissionStatus === 0 ? "selected" : "" %>>Inativo</option>
+                        </select>
+                    </div>
+                </div>
+
+                    <div class="col-md-14">
+                        <label for="permissionName" form-label>Nome da Permissão</label>
+                        <input class="form-control" type="text" id="permissionName" name="permissionName" maxlength="150" value="<%= permission.permissionName %>" required>
+                    </div>
+
+                    <div class="col-md-14">
+                        <label for="permissionCode" form-label>Identificador (ex.: cms.users)</label>
+                        <input class="form-control" type="text" id="permissionCode" name="permissionCode" maxlength="100" pattern="[a-z0-9]+([._\-][a-z0-9]+)*" title="Letras minúsculas, números, ponto, sublinhado ou hífen." value="<%= permission.permissionCode %>" required>
+                    </div>
+
+                    <div class="col-md-14">
+                        <label for="permissionDescription" class="form-label">Descrição</label>
+                        <textarea class="form-control" id="permissionDescription" name="permissionDescription"><%= permission.permissionDescription %></textarea>
+                    </div>
+            </fieldset>
+        </form>
+
+                        <!-- BUTTON AREA -->
+                        <div class="button-area">
+                            <a href="#">
+                                <div class="button-frame">
+                                    <button class="btn btn-success" form="form-permission" type="submit">Salvar</button>
+                                </div>
+                            </a>
+                            <a href="/cms-Permission-Q">
+                                <div class="button-frame">
+                                    <button class="btn btn-secondary">Cancelar</button>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="button-frame">
+                                    <button class="btn btn-danger" data-toggle="modal" data-target="#DeleteModal">Excluir</button>
+                                </div>
+                            </a>
+                        </div>
+
+    </main>
+
+    <div class="modal fade" id="DeleteModal" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <%- include('../cms/cms-Permission-D') %>
+        </div>
+    </div>
+
+    <%- include('../parts/footer')  %>
+
+</body>

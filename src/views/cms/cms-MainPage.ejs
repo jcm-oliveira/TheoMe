@@ -40,7 +40,9 @@
     <main>
         
         <h1>CMS - Content Management System</h1>
-        <h3>Fulano, Seja Bem-Vindo</h3>
+        <h3><%= currentUser.name %>, seja bem-vindo(a)</h3>
+
+        <div class="alert <%= messages.alertType %> <%= messages.display %>" role="alert"><%= messages.textMessage %></div>
         <br><br><br><br><br><br><br><br><br><br><br>
 
     </main>

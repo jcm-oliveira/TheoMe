@@ -31,6 +31,12 @@
 <body>
 
   <!-- CMS NAVBAR -->
+  <%# o menu mostra apenas os grupos que o usuário logado pode acessar (ver src/auth/access.js) %>
+  <%
+    const canAccess = typeof can === "function" ? can : () => false;
+    const currentUserName = typeof currentUser !== "undefined" && currentUser ? currentUser.name : "";
+    const currentUserAvatarUrl = typeof currentUser !== "undefined" && currentUser ? currentUser.avatarUrl : null;
+  %>
   <nav class="navbar navbar-expand-lg">
 
     <div class="collapse navbar-collapse" id="navbarScroll">
@@ -40,6 +46,7 @@
           <a class="nav-link" href="/cms-MainPage"> <i class="fas fa-home"></i></a>
         </li>
 
+        <% if (canAccess("cms.bible")) { %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
             Bíblia
@@ -50,7 +57,9 @@
             <li><a class="dropdown-item" href="/cms-Chapter-Q">Capítulos</a></li>
           </ul>
         </li>
+        <% } %>
 
+        <% if (canAccess("cms.content")) { %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
             Pesquisa
@@ -60,7 +69,9 @@
             <li><a class="dropdown-item" href="/cms-StudyItemOld-Q">Item de estudo (antigo)</a></li>
           </ul>
         </li>
+        <% } %>
 
+        <% if (canAccess("cms.register")) { %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
             Cadastros
@@ -92,33 +103,53 @@
             <li><a class="dropdown-item" href="/cms-City-Q">Cidade</a></li>
           </ul>
         </li>
+        <% } %>
 
+        <% if (canAccess("cms.users") || canAccess("cms.permissions") || canAccess("cms.site")) { %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
             Sistema
           </a>
           <ul class="dropdown-menu">
 
+            <% if (canAccess("cms.users")) { %>
             <li><a class="dropdown-item" href="/cms-User-Q">Usuários</a></li>
+            <% } %>
+            <% if (canAccess("cms.permissions")) { %>
+            <li><a class="dropdown-item" href="/cms-Permission-Q">Permissões de acesso</a></li>
+            <% } %>
+            <% if (canAccess("cms.site")) { %>
             <li><a class="dropdown-item" href="/cms-Language-Q">Idiomas</a></li>
             <li>
               <hr class="dropdown-divider">
             </li>
             <li><a class="dropdown-item" href="/cms-BannerSlider-Q">Banner Slider</a></li>
             <li><a class="dropdown-item" href="/cms-InstitutionalVideo-C">Vídeo institucional</a></li>
+            <% } %>
 
           </ul>
         </li>
+        <% } %>
 
+      </ul>
+
+      <!-- MENU DO USUÁRIO (canto direito) -->
+      <ul class="navbar-nav my-2 my-lg-0 user-menu">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-            <i class="fas fa-user"></i>
+          <a class="nav-link dropdown-toggle user-menu-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+            <%# sem foto, a imagem fica oculta e sem src (o script preenche quando a foto é enviada) %>
+            <img <% if (currentUserAvatarUrl) { %>src="<%= currentUserAvatarUrl %>"<% } else { %>class="d-none"<% } %> alt="" width="24" height="24" style="object-fit: cover; border-radius: 50%;" data-current-user-avatar>
+            <span data-current-user-name><%= currentUserName %></span>
           </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#" data-toggle="modal" data-target="#UserPreferencesModal"><i class="fas fa-cog"></i>Preferências</a></li>
-            <li><a class="dropdown-item" href="#" data-toggle="modal" data-target="#ChangePasswordModal"><i class="fas fa-unlock-alt"></i>Trocar senha</a></li>
+          <ul class="dropdown-menu dropdown-menu-right">
+            <li><a class="dropdown-item" href="#" data-toggle="modal" data-target="#MyProfileModal">Meus dados</a></li>
+            <li><a class="dropdown-item" href="#" data-toggle="modal" data-target="#ChangePasswordModal">Trocar senha</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="/cms-LoginPage"><i class="fas fa-sign-out-alt"></i>Sair</a></li>
+            <li>
+              <form method="post" action="/cms-Logout">
+                <button class="dropdown-item" type="submit">Sair</button>
+              </form>
+            </li>
           </ul>
         </li>
 
@@ -130,21 +161,17 @@
   <div class="modal fade" id="ChangePasswordModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
 
-      <%- include('../cms/cms-ChangePassword-I')  %>   
+      <%- include('../cms/cms-ChangePassword-I')  %>
 
     </div>
   </div>
   <!-- END MODAL -->
 
-
-  <!-- TRIGGER MODAL USER PREFERENCES -->
-  <div class="modal fade" id="UserPreferencesModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-
-      <%- include('../cms/cms-UserPreferences-I')  %>   
-
-    </div>
+  <!-- TRIGGER MODAL MY PROFILE (conteúdo carregado ao abrir: public/scripts/cms-MyProfile.js) -->
+  <div class="modal fade" id="MyProfileModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg" data-my-profile-dialog></div>
   </div>
   <!-- END MODAL -->
+  <script src="/scripts/cms-MyProfile.js"></script>
 
 </body>

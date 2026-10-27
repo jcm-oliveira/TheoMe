@@ -25,6 +25,12 @@ const TimelineController = require('./controllers/TimelineController.js')
 const AttributeTypeController = require('./controllers/AttributeTypeController.js')
 const AttributeController = require('./controllers/AttributeController.js')
 const BannerSliderController = require('./controllers/BannerSliderController.js')
+const UserController = require('./controllers/UserController.js')
+const PermissionController = require('./controllers/PermissionController.js')
+const AuthController = require('./controllers/AuthController.js')
+const { loginLimiter, changePasswordLimiter } = require('./auth/limits.js')
+const ProfileController = require('./controllers/ProfileController.js')
+const { avatarUpload } = require('./helpers/avatarUpload.js')
 const multer = require('multer')
 const path = require('path')
 
@@ -91,8 +97,15 @@ routes.get('/Collaboration', (req,res) => res.render(views + "about/Collaboratio
 //---------------------------------------------------
 
 // CMS - Content Management System - B4
-routes.get('/cms-LoginPage', (req,res) => res.render(views + "cms/cms-LoginPage"));
-routes.get('/cms-MainPage', (req,res) => res.render(views + "cms/cms-MainPage"));
+// login, sessão e controle de acesso: ver src/auth/access.js
+routes.get('/cms-LoginPage', AuthController.loadLoginPage);
+routes.post('/cms-LoginPage', loginLimiter, AuthController.login);
+routes.post('/cms-Logout', AuthController.logout);
+routes.get('/cms-MainPage', AuthController.loadMainPage);
+routes.post('/cms-ChangePassword', changePasswordLimiter, AuthController.changePassword);
+routes.get('/cms-MyProfile', ProfileController.loadProfilePage);
+routes.post('/cms-MyProfile', avatarUpload, ProfileController.updateProfilePage);
+routes.get('/cms-UserAvatar/:id', ProfileController.sendUserAvatar);
 
 // RESEARCH
 routes.get('/cms-StudyItem-Q', StudyItemController.loadShowPage);
@@ -292,8 +305,29 @@ routes.post('/cms-Section-X-Level2', SectionController.level2Listener)
 
 
 //SYSTEM
-routes.get('/cms-User-Q', (req,res) => res.render(views + "cms/cms-User-Q"));
-routes.get('/cms-User-C', (req,res) => res.render(views + "cms/cms-User-C"));
+
+//_______________________User__________________________
+
+routes.get('/cms-User-Q', UserController.loadShowPage)
+routes.get('/cms-User-C', UserController.loadInsertPage)
+routes.get('/cms-User-C/:id', UserController.loadUpdatePage)
+routes.post('/cms-User-Q', UserController.paginationView)
+routes.post('/cms-User-C', avatarUpload, UserController.insertUserPage)
+routes.post('/cms-User-U/:id', avatarUpload, UserController.updateUserPage)
+routes.post('/cms-User-D/:id', UserController.deleteUserPage)
+routes.post('/cms-User-F', UserController.filterUserPage)
+
+//____________________Permission_______________________
+
+routes.get('/cms-Permission-Q', PermissionController.loadShowPage)
+routes.get('/cms-Permission-C', PermissionController.loadInsertPage)
+routes.get('/cms-Permission-C/:id', PermissionController.loadUpdatePage)
+routes.post('/cms-Permission-Q', PermissionController.paginationView)
+routes.post('/cms-Permission-C', PermissionController.insertPermissionPage)
+routes.post('/cms-Permission-U/:id', PermissionController.updatePermissionPage)
+routes.post('/cms-Permission-D/:id', PermissionController.deletePermissionPage)
+routes.post('/cms-Permission-F', PermissionController.filterPermissionPage)
+
 routes.get('/cms-Language-Q', (req,res) => res.render(views + "cms/cms-Language-Q"));
 routes.get('/cms-Language-C', (req,res) => res.render(views + "cms/cms-Language-C"));
 

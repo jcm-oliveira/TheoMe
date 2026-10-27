@@ -1,0 +1,50 @@
+<%# Dados pessoais do usuário (antiga tela "Preferências").
+    Incluído em cms-User-C, cms-User-U e cms-MyProfile-I (pop-up "Meus dados").
+    Espera: user, cityOptions, birthYearOptions e avatarUserId (id do usuário dono da foto). %>
+            <fieldset class="flex">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="userContact" form-label>WhatsApp (opcional)</label>
+                        <input class="form-control" type="tel" id="userContact" name="userContact" maxlength="20" inputmode="tel" autocomplete="tel" placeholder="+55 11 99999-9999" pattern="[0-9+()\s\-]*" title="Use apenas números, espaços, +, ( ) ou -." value="<%= user.userContact %>">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="userBirthYear" form-label>Ano em que nasceu (opcional)</label>
+                        <select class="form-control" id="userBirthYear" name="userBirthYear">
+                            <option value=""></option>
+                            <% birthYearOptions.forEach((year) => { %>
+                                <option value="<%= year %>" <%= user.userBirthYear === year ? "selected" : "" %>><%= year %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="userCity" form-label>Local de origem (opcional)</label>
+                        <select class="form-control" id="userCity" name="userCity">
+                            <option value=""></option>
+                            <% cityOptions.forEach((city) => { %>
+                                <option value="<%= city.id %>" <%= user.idCity === city.id ? "selected" : "" %>><%= city.label %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="userAvatar" class="form-label">Foto ou avatar (opcional, JPG, PNG ou WEBP, até 2 MB)</label>
+                        <% if (user.avatar && avatarUserId) { %>
+                            <div>
+                                <img src="/cms-UserAvatar/<%= avatarUserId %>?v=<%= encodeURIComponent(user.avatar) %>" alt="Foto atual" width="80" height="80" style="object-fit: cover; border-radius: 50%;">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="userRemoveAvatar" name="userRemoveAvatar" value="1">
+                                    <label class="form-check-label" for="userRemoveAvatar">Remover a foto atual</label>
+                                </div>
+                            </div>
+                        <% } %>
+                        <input class="form-control" type="file" id="userAvatar" name="userAvatar" accept="image/jpeg,image/png,image/webp">
+                    </div>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="userNewsletter" name="userNewsletter" value="1" <%= user.newsletterOptIn === 1 ? "checked" : "" %>>
+                    <label class="form-check-label" for="userNewsletter">Quero ficar por dentro das novidades da comunidade</label>
+                </div>
+            </fieldset>

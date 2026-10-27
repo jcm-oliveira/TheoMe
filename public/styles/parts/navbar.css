@@ -6,12 +6,12 @@
 }
 
 
-a.dropdown-item {
+.dropdown-item {
     display:flex;
     align-items: center;
 }
 
-a.dropdown-item i {
+.dropdown-item i {
     display:flex;
     justify-content: center;
     width:25px;
@@ -37,4 +37,30 @@ li.breadcrumb-item.active {
 
 .dropdown-menu a:hover {
     color: #4F768B;
+}
+
+/* MENU DO USUÁRIO (canto direito) */
+
+/* a lista não encolhe: ocupa a largura que o ícone + nome precisarem */
+.navbar .user-menu {
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+.navbar .user-menu .nav-item {
+    min-width: max-content;
+}
+
+/* foto (se houver), nome e seta na mesma linha */
+.navbar .user-menu .user-menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.navbar .user-menu .dropdown-menu {
+    min-width: 200px;
 }
