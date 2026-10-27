@@ -19,7 +19,24 @@ async function connect(){
     return pool;
 }
 
-module.exports = {connect}
+//transação: usa uma conexão própria do pool (o pool não tem beginTransaction)
+//e sempre a devolve ao pool, mesmo em caso de erro
+async function transaction(work){
+    const conn = await pool.getConnection();
+    try {
+        await conn.beginTransaction();
+        const result = await work(conn);
+        await conn.commit();
+        return result;
+    } catch (error) {
+        await conn.rollback().catch(() => {});
+        throw error;
+    } finally {
+        conn.release();
+    }
+}
+
+module.exports = {connect, transaction}
 
 
 

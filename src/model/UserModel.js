@@ -267,33 +267,31 @@ async function updateOwnPassword(id, passwordHash) {
 //---------------------------------------------
 
 async function insertUsers(newUser) {
-    const conn = await db.connect();
-    await conn.beginTransaction();
     try {
-        const sql = `
-            INSERT INTO user_account(name, email, password_hash, status, contact, birth_year, id_city, newsletter_opt_in, avatar)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-        `;
-        const values = [
-            newUser.userName,
-            newUser.userEmail,
-            newUser.passwordHash,
-            newUser.userStatus,
-            newUser.userContact || null,
-            newUser.userBirthYear || null,
-            newUser.idCity || null,
-            newUser.newsletterOptIn || 0,
-            newUser.avatar || null,
-        ];
-        const [queryResult] = await conn.query(sql, values);
-        await replaceUserPermissions(conn, queryResult.insertId, newUser.permissionIds);
-        await conn.commit();
-        return {
-            alertTypeResult: "alert-success",
-            textResult: "Registro n° " + queryResult.insertId + " inserido com sucesso.",
-        };
+        return await db.transaction(async (conn) => {
+            const sql = `
+                INSERT INTO user_account(name, email, password_hash, status, contact, birth_year, id_city, newsletter_opt_in, avatar)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            `;
+            const values = [
+                newUser.userName,
+                newUser.userEmail,
+                newUser.passwordHash,
+                newUser.userStatus,
+                newUser.userContact || null,
+                newUser.userBirthYear || null,
+                newUser.idCity || null,
+                newUser.newsletterOptIn || 0,
+                newUser.avatar || null,
+            ];
+            const [queryResult] = await conn.query(sql, values);
+            await replaceUserPermissions(conn, queryResult.insertId, newUser.permissionIds);
+            return {
+                alertTypeResult: "alert-success",
+                textResult: "Registro n° " + queryResult.insertId + " inserido com sucesso.",
+            };
+        });
     } catch (err) {
-        await conn.rollback();
         logError("insertUsers", err);
         return {
             alertTypeResult: "alert-danger",
@@ -310,33 +308,31 @@ async function insertUsers(newUser) {
 
 // a senha só é alterada quando um novo hash é informado
 async function updateUsers(id, user) {
-    const conn = await db.connect();
-    await conn.beginTransaction();
     try {
-        const assignments = profileAssignments(user);
-        const fields = ["status = ?", "name = ?", "email = ?", ...assignments.fields];
-        const values = [user.userStatus, user.userName, user.userEmail, ...assignments.values];
-        if (user.passwordHash) {
-            fields.push("password_hash = ?", "session_version = session_version + 1");
-            values.push(user.passwordHash);
-        }
-        values.push(id, 0);
+        return await db.transaction(async (conn) => {
+            const assignments = profileAssignments(user);
+            const fields = ["status = ?", "name = ?", "email = ?", ...assignments.fields];
+            const values = [user.userStatus, user.userName, user.userEmail, ...assignments.values];
+            if (user.passwordHash) {
+                fields.push("password_hash = ?", "session_version = session_version + 1");
+                values.push(user.passwordHash);
+            }
+            values.push(id, 0);
 
-        const sql = `UPDATE user_account SET ${fields.join(", ")} WHERE id = ? AND excluded = ?`;
-        const [queryResult] = await conn.query(sql, values);
-        await replaceUserPermissions(conn, id, user.permissionIds);
-        await conn.commit();
-        return {
-            alertTypeResult: "alert-success",
-            textResult:
-                "Registro " +
-                id +
-                " alterado com sucesso. Ocorreu " +
-                queryResult.affectedRows +
-                " alteração no Banco de Dados.",
-        };
+            const sql = `UPDATE user_account SET ${fields.join(", ")} WHERE id = ? AND excluded = ?`;
+            const [queryResult] = await conn.query(sql, values);
+            await replaceUserPermissions(conn, id, user.permissionIds);
+            return {
+                alertTypeResult: "alert-success",
+                textResult:
+                    "Registro " +
+                    id +
+                    " alterado com sucesso. Ocorreu " +
+                    queryResult.affectedRows +
+                    " alteração no Banco de Dados.",
+            };
+        });
     } catch (err) {
-        await conn.rollback();
         logError("updateUsers", err);
         return {
             alertTypeResult: "alert-danger",
@@ -352,19 +348,17 @@ async function updateUsers(id, user) {
 //------------------------------------------------
 
 async function deleteUsers(id) {
-    const conn = await db.connect();
-    await conn.beginTransaction();
     try {
-        await conn.query(`UPDATE user_account SET excluded = ?, status = ? WHERE id = ?`, [1, 0, id]);
-        // usuário excluído perde todos os acessos
-        await conn.query(`DELETE FROM user_account_permission WHERE id_user_account = ?`, [id]);
-        await conn.commit();
-        return {
-            alertTypeResult: "alert-warning",
-            textResult: "Registro n° " + id + " apagado com sucesso.",
-        };
+        return await db.transaction(async (conn) => {
+            await conn.query(`UPDATE user_account SET excluded = ?, status = ? WHERE id = ?`, [1, 0, id]);
+            // usuário excluído perde todos os acessos
+            await conn.query(`DELETE FROM user_account_permission WHERE id_user_account = ?`, [id]);
+            return {
+                alertTypeResult: "alert-warning",
+                textResult: "Registro n° " + id + " apagado com sucesso.",
+            };
+        });
     } catch (err) {
-        await conn.rollback();
         logError("deleteUsers", err);
         return {
             alertTypeResult: "alert-danger",

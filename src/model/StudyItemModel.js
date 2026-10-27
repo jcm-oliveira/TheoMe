@@ -706,9 +706,7 @@ async function insertChildCollections(conn, studyItemId, item) {
 }
 
 async function insertStudyItem(item) {
-    const conn = await db.connect();
-    await conn.beginTransaction();
-    try {
+    return db.transaction(async (conn) => {
         const sql = `
             INSERT INTO study_item(
                 status,
@@ -748,18 +746,12 @@ async function insertStudyItem(item) {
 
         await insertChildCollections(conn, studyItemInsert.insertId, item);
 
-        await conn.commit();
         return { insertedId: studyItemInsert.insertId };
-    } catch (error) {
-        await conn.rollback();
-        throw error;
-    }
+    });
 }
 
 async function updateStudyItem(studyItemId, item) {
-    const conn = await db.connect();
-    await conn.beginTransaction();
-    try {
+    return db.transaction(async (conn) => {
         const sql = `
             UPDATE study_item
             SET
@@ -801,26 +793,16 @@ async function updateStudyItem(studyItemId, item) {
         await softDeleteChildCollections(conn, studyItemId);
         await insertChildCollections(conn, studyItemId, item);
 
-        await conn.commit();
         return { updatedId: Number(studyItemId) };
-    } catch (error) {
-        await conn.rollback();
-        throw error;
-    }
+    });
 }
 
 async function deleteStudyItem(studyItemId) {
-    const conn = await db.connect();
-    await conn.beginTransaction();
-    try {
+    return db.transaction(async (conn) => {
         await conn.query(`UPDATE study_item SET excluded = ? WHERE id = ?`, [1, studyItemId]);
         await softDeleteChildCollections(conn, studyItemId);
-        await conn.commit();
         return { deletedId: Number(studyItemId) };
-    } catch (error) {
-        await conn.rollback();
-        throw error;
-    }
+    });
 }
 
 module.exports = {

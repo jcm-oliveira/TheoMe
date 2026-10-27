@@ -172,19 +172,17 @@ async function updatePermissions(id, permission) {
 //------------------------------------------------
 
 async function deletePermissions(id) {
-    const conn = await db.connect();
-    await conn.beginTransaction();
     try {
-        await conn.query(`UPDATE permission SET excluded = ? WHERE id = ?`, [1, id]);
-        // permissão excluída deixa de valer para todos os usuários
-        await conn.query(`DELETE FROM user_account_permission WHERE id_permission = ?`, [id]);
-        await conn.commit();
-        return {
-            alertTypeResult: "alert-warning",
-            textResult: "Registro n° " + id + " apagado com sucesso.",
-        };
+        return await db.transaction(async (conn) => {
+            await conn.query(`UPDATE permission SET excluded = ? WHERE id = ?`, [1, id]);
+            // permissão excluída deixa de valer para todos os usuários
+            await conn.query(`DELETE FROM user_account_permission WHERE id_permission = ?`, [id]);
+            return {
+                alertTypeResult: "alert-warning",
+                textResult: "Registro n° " + id + " apagado com sucesso.",
+            };
+        });
     } catch (err) {
-        await conn.rollback();
         console.log(err);
         return {
             alertTypeResult: "alert-danger",
