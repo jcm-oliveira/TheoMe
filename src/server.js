@@ -1,5 +1,7 @@
 const express = require("express")
 const server = express()
+//confia em 1 proxy reverso na frente (IP real do visitante, usado pelo limite de tentativas de login)
+server.set('trust proxy', 1);
 const routes = require("./routes")
 const path = require("path")
 const { createSessionMiddleware } = require("./auth/session")
@@ -10,11 +12,6 @@ server.set('view engine', 'ejs')
 
 //mudar a localização da pasta views
 server.set('views', path.join(__dirname, 'views'))
-
-//atrás de proxy reverso (HTTPS), informar TRUST_PROXY=1 no .env
-if (process.env.TRUST_PROXY) {
-    server.set('trust proxy', Number(process.env.TRUST_PROXY) || process.env.TRUST_PROXY)
-}
 
 //não informar a tecnologia do servidor nas respostas
 server.disable('x-powered-by')
