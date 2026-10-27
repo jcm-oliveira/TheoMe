@@ -52,6 +52,13 @@
     <main>
         <h1><%= formMode === "update" ? "Editar - Item de Estudo" : "Cadastrar - Item de Estudo" %></h1>
 
+        <% if (typeof saveError !== "undefined" && saveError) { %>
+            <div class="alert alert-danger" role="alert">
+                O item de estudo não foi salvo por um erro no servidor (código: <b><%= saveError %></b>).
+                As alterações feitas não foram gravadas.
+            </div>
+        <% } %>
+
         <form id="form-study-item" method="post" action="<%= formAction || '/cms-StudyItem-C' %>">
             <input type="hidden" id="attributeItemsJson" name="attributeItemsJson" value="<%= JSON.stringify(initialAttributeItems || []) %>">
             <input type="hidden" id="chronologyItemsJson" name="chronologyItemsJson" value="<%= JSON.stringify(initialChronologyItems || []) %>">

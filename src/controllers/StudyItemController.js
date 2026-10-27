@@ -13,6 +13,15 @@ function parseCollectionJson(payload) {
     }
 }
 
+// código do erro de gravação mostrado na tela (só letras, números e "_", nada do erro em si)
+function readSaveError(query) {
+    return typeof query.erro === "string" && /^[A-Z0-9_]{1,40}$/.test(query.erro) ? query.erro : null;
+}
+
+function saveErrorQuery(error) {
+    return "?erro=" + encodeURIComponent(String(error.code || "ERRO").replace(/[^A-Z0-9_]/gi, "").toUpperCase().slice(0, 40) || "ERRO");
+}
+
 function formatChronologyDate(day, month, year, reference, dateFormat) {
     if (dateFormat === "Somente Ano") {
         return [year, reference].filter(Boolean).join(" ");
@@ -172,6 +181,7 @@ module.exports = {
             nextStudyItemCode,
             formMode: "create",
             formAction: "/cms-StudyItem-C",
+            saveError: readSaveError(req.query),
             studyItem: null,
             initialAttributeItems: [],
             initialChronologyItems: [],
@@ -228,6 +238,7 @@ module.exports = {
             nextStudyItemCode: studyItem.id,
             formMode: "update",
             formAction: `/cms-StudyItem-U/${studyItemId}`,
+            saveError: readSaveError(req.query),
             studyItem,
             initialAttributeItems,
             initialChronologyItems,
@@ -344,7 +355,8 @@ module.exports = {
 
             return res.redirect("/cms-StudyItem-Q");
         } catch (error) {
-            return res.redirect("/cms-StudyItem-C");
+            console.error("StudyItem.insert:", error.code || "", error.message);
+            return res.redirect("/cms-StudyItem-C" + saveErrorQuery(error));
         }
     },
 
@@ -386,7 +398,8 @@ module.exports = {
 
             return res.redirect("/cms-StudyItem-Q");
         } catch (error) {
-            return res.redirect(`/cms-StudyItem-C/${studyItemId}`);
+            console.error("StudyItem.update:", error.code || "", error.message);
+            return res.redirect(`/cms-StudyItem-C/${studyItemId}` + saveErrorQuery(error));
         }
     },
 
@@ -395,6 +408,7 @@ module.exports = {
         try {
             await StudyItem.deleteStudyItem(studyItemId);
         } catch (error) {
+            console.error("StudyItem.delete:", error.code || "", error.message);
             return res.redirect("/cms-StudyItem-Q");
         }
         return res.redirect("/cms-StudyItem-Q");

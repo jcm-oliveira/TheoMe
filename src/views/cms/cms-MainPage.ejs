@@ -43,6 +43,13 @@
         <h3><%= currentUser.name %>, seja bem-vindo(a)</h3>
 
         <div class="alert <%= messages.alertType %> <%= messages.display %>" role="alert"><%= messages.textMessage %></div>
+
+        <% if (currentUser.permissionCount === 0) { %>
+            <div class="alert alert-warning" role="alert">
+                Seu usuário não tem nenhuma permissão de acesso ativa, por isso os menus não aparecem.
+                Peça a um administrador para vincular as permissões no cadastro de usuários.
+            </div>
+        <% } %>
         <br><br><br><br><br><br><br><br><br><br><br>
 
     </main>

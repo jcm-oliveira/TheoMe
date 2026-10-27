@@ -120,6 +120,7 @@ async function loadCurrentUser(req, res, next) {
             id: user.id,
             name: user.name,
             avatarUrl: avatarUrl(user.id, user.avatar),
+            permissionCount: user.permissions.length,
         };
         res.locals.can = (code) => user.permissions.includes(code);
         return next();
